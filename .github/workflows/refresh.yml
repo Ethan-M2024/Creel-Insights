@@ -35,7 +35,7 @@ jobs:
       # A warm cache is the difference between one run of a few minutes and one that
       # re-reads four hundred PDFs and fourteen years of paginated HTML.
       - name: Restore the source cache
-        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830  # v4
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9  # v6.1.0
         with:
           path: .cache
           key: wdfw-creel-${{ hashFiles('data/manifest.json') }}
