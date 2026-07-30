@@ -1,9 +1,9 @@
 {
- "built": "2026-07-30T22:03:32+00:00",
+ "built": "2026-07-30T22:34:56+00:00",
  "quota_records": 28,
  "sha256": {
-  "creel_effort": "35c73d5092378d42a028a4adbde416a221f6eed6f101c84523875bc19fdb13a6",
-  "creel_rows": "bae42b84bec0af253de0c6ead14a5af4d04aa471f65eb5290d66d386a243eb63"
+  "creel_effort": "ec5926c2323d378b42380ea7f25a581c5c92dd7375808bb48bd10ebab6c81dcb",
+  "creel_rows": "bf5142d99191a11d9ea173ba5f16b62a46f4765de86fd9877d8ade2c29e5df01"
  },
  "sources": {
   "buoy10": {
@@ -15,11 +15,11 @@
    "locations": 1
   },
   "columbia-sw": {
-   "catch_rows": 8565,
-   "effort_rows": 3910,
+   "catch_rows": 8597,
+   "effort_rows": 3928,
    "first": "2019-01-14",
    "label": "Columbia River and tributary report",
-   "last": "2026-07-13",
+   "last": "2026-07-20",
    "locations": 61
   },
   "creel-database": {
