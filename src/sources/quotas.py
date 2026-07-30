@@ -1,8 +1,11 @@
-"""The two pages that track a fishery against its ceiling rather than counting catch.
+"""Every fishery WDFW track against a ceiling, not only the Chinook ones.
 
     seasonal   Puget Sound Chinook: encounters against the guideline that closes the
                fishery when it is reached, by marine area, summer and winter
     sturgeon   the Columbia pools: estimated harvest against the season's guideline
+    ocean      the four coastal ports: Chinook against a guideline and coho against a
+               quota, tracked separately because they run out at different times
+    halibut    the four halibut subareas: pounds landed against a quota in pounds
 
 Neither is creel catch, and neither is forced into the catch table — an encounter is
 not a fish kept, and a pool's harvest estimate is not an interview. They are kept as
@@ -25,13 +28,15 @@ import paths
 SEASONAL_URL = 'https://wdfw.wa.gov/fishing/reports/creel/seasonal'
 STURGEON_URL = 'https://wdfw.wa.gov/fishing/reports/creel/sturgeon'
 
-FIELDS = ('fishery', 'area', 'criteria', 'limit', 'taken', 'percent',
-          'valid_through', 'status', 'season', 'opening', 'kind', 'source_page')
+FIELDS = ('fishery', 'area', 'species', 'unit', 'criteria', 'limit', 'taken',
+          'percent', 'valid_through', 'status', 'season', 'opening', 'kind',
+          'source_page')
 
 
 def record(fishery, area, **kw):
     r = {k: '' for k in FIELDS}
     r['kind'] = 'fishery'
+    r['unit'] = 'fish'
     r.update(fishery=fishery, area=str(area).strip(), **kw)
     return r
 
@@ -45,7 +50,7 @@ def _percent(text, *, taken='', limit=''):
     """
     m = re.search(r'(\d+(?:\.\d+)?)\s*%', str(text or ''))
     if m:
-        return float(m.group(1)) / 100
+        return round(float(m.group(1)) / 100, 4)
     if taken != '' and limit not in ('', 0):
         return round(float(taken) / float(limit), 4)
     return ''
@@ -153,7 +158,7 @@ def parse_seasonal(html_text):
                 criteria, opening = '', ''
             limit, taken = common.num(get(i_limit)), common.num(get(i_taken))
             out.append(record(
-                'Puget Sound Chinook', label,
+                'Puget Sound Chinook', label, species='Chinook',
                 criteria=criteria, limit=limit, taken=taken,
                 percent=_percent(get(i_pct), taken=taken, limit=limit),
                 valid_through=_valid_through(get(i_valid)),
@@ -187,12 +192,114 @@ def parse_sturgeon(html_text):
             get = lambda i: (cells[i] if i is not None and i < len(cells) else '')
             limit, taken = common.num(get(i_limit)), common.num(get(i_taken))
             out.append(record(
-                'Columbia River white sturgeon', cells[i_area],
+                'Columbia River white sturgeon', cells[i_area], species='Sturgeon',
                 criteria='Retention harvest', limit=limit, taken=taken,
                 opening=get(i_season),
                 percent=_percent(get(i_pct), taken=taken, limit=limit),
                 status=get(i_status), season=get(i_season),
                 source_page=STURGEON_URL))
+    return out
+
+
+def _implied_limit(taken, percent):
+    """WDFW print the share used but not always the ceiling it is a share of.
+
+    A quota is only interesting next to what is left of it, so where the percentage
+    and the running total are both published the ceiling they imply is worked back
+    out. It is rounded to the nearest ten, because a figure derived from a rounded
+    percentage is not exact and should not look it.
+    """
+    if taken in ('', None) or not percent:
+        return ''
+    implied = float(taken) / float(percent)
+    return int(round(implied, -1)) if implied >= 100 else int(round(implied))
+
+
+def parse_ocean(html_text, year=None):
+    """The ocean ports: Chinook against a guideline, coho against a quota."""
+    import ocean as ocean_source
+    out = []
+    for headings, rows in common.heading_tables(html_text):
+        area = ocean_source.area_for(headings)
+        if area is None:
+            # the coastwide table is the sum of the four ports. Summing catch twice
+            # would be wrong; tracking the coastwide quota alongside them is not, and
+            # it is the number the season is actually managed to
+            if not any(re.search(r'coastwide', h, re.I) for h in headings):
+                continue
+            area = 'Coastwide (all four ports)'
+        if len(rows) < 3:
+            continue
+        header = [h.lower() for h in rows[0]]
+        last = rows[-1]
+
+        def col(pattern):
+            for i, h in enumerate(header):
+                if re.search(pattern, h):
+                    return i
+            return None
+
+        i_dates = col(r'^dates')
+        for species, i_cum, i_pct, word in (
+                ('Chinook', col(r'cumulative chinook'), col(r'percent.*chinook'),
+                 'guideline'),
+                ('Coho', col(r'cumulative coho'), col(r'percent.*coho'), 'quota')):
+            if i_cum is None or i_pct is None or i_cum >= len(last):
+                continue
+            taken = common.num(last[i_cum])
+            percent = _percent(last[i_pct])
+            if taken == '' or percent == '':
+                continue
+            through = ocean_source.week_start(last[i_dates], year) if i_dates is not None else ''
+            out.append(record(
+                'Ocean salmon', area, species=species, criteria=f'{species} {word}',
+                limit=_implied_limit(taken, percent), taken=taken, percent=percent,
+                valid_through=through or '', season=str(year or ''),
+                source_page=ocean_source.URL))
+    return out
+
+
+QUOTA_LBS = re.compile(r'quota:?\s*([\d,]+)\s*lbs', re.I)
+
+
+def parse_halibut(html_text):
+    """The halibut subareas, whose quota is in pounds rather than fish."""
+    import halibut as halibut_source
+    out = []
+    year = ''
+    ym = halibut_source.LANDINGS_YEAR.search(common.strip_tags(html_text))
+    if ym:
+        year = ym.group(1)
+    for headings, rows in common.heading_tables(html_text):
+        area = halibut_source.subarea(headings)
+        if not area or len(rows) < 3:
+            continue
+        quota = next((QUOTA_LBS.search(h) for h in reversed(headings)
+                      if QUOTA_LBS.search(h)), None)
+        # the halibut tables use two header rows: "Weekly / Cumulative" over the
+        # columns, then the columns themselves
+        header = [h.lower() for h in rows[1]]
+        last = rows[-1]
+
+        def col(pattern):
+            for i, h in enumerate(header):
+                if re.search(pattern, h):
+                    return i
+            return None
+
+        i_taken = col(r'quota taken')
+        i_pounds = col(r'^pounds$')
+        if i_taken is None or i_taken >= len(last):
+            continue
+        percent = _percent(last[i_taken])
+        pounds = common.num(last[i_pounds]) if i_pounds is not None else ''
+        limit = common.num(quota.group(1)) if quota else _implied_limit(pounds, percent)
+        out.append(record(
+            'Pacific halibut', area, species='Halibut', unit='pounds',
+            criteria='Pounds landed against quota', limit=limit, taken=pounds,
+            percent=percent if percent != '' else _percent('', taken=pounds, limit=limit),
+            valid_through=halibut_source.week_start(last[1], year) if len(last) > 1 else '',
+            season=year, source_page=halibut_source.URL))
     return out
 
 
@@ -203,9 +310,19 @@ def load(*, full=False, say=print):
     sturgeon = parse_sturgeon(common.get_text(
         STURGEON_URL, cache_path=os.path.join(paths.PAGE_DIR, 'sturgeon.html'),
         max_age_h=0))
-    say(f'   quota trackers: {len(seasonal)} Chinook guidelines, '
+    import ocean as ocean_source
+    import halibut as halibut_source
+    from datetime import date as _date
+    ocean_rows = parse_ocean(common.get_text(
+        ocean_source.URL, cache_path=os.path.join(paths.PAGE_DIR, 'ocean.html'),
+        max_age_h=0), year=_date.today().year)
+    halibut_rows = parse_halibut(common.get_text(
+        halibut_source.URL, cache_path=os.path.join(paths.PAGE_DIR, 'halibut.html'),
+        max_age_h=0))
+    say(f'   quota trackers: {len(seasonal)} Puget Sound Chinook, '
+        f'{len(ocean_rows)} ocean salmon, {len(halibut_rows)} halibut subareas, '
         f'{len(sturgeon)} sturgeon pools')
-    return seasonal + sturgeon
+    return seasonal + ocean_rows + halibut_rows + sturgeon
 
 
 if __name__ == '__main__':

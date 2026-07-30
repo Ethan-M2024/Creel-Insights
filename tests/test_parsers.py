@@ -362,6 +362,64 @@ class TestQuotas(unittest.TestCase):
         self.assertEqual(quotas._percent('', taken='', limit=''), '')
 
 
+OCEAN_QUOTA_PAGE = """
+<h2>Westport</h2>
+<table>
+<tr><th>Stat Week</th><th>Dates</th><th>Number of anglers</th><th>Number of Chinook</th>
+<th>Cumulative Chinook</th><th>Cumulative Coho</th><th>Percent of coho quota</th>
+<th>Percent of Chinook guideline</th></tr>
+<tr><td>29</td><td>Jul 13-19</td><td>3,000</td><td>2,000</td><td>9,000</td>
+<td>5,000</td><td>13%</td><td>41%</td></tr>
+<tr><td>30</td><td>Jul 20-26</td><td>3,555</td><td>2,347</td><td>11,494</td>
+<td>7,634</td><td>20%</td><td>52%</td></tr>
+</table>
+"""
+
+HALIBUT_QUOTA_PAGE = """
+<h2>2026 Pacific halibut landings summary</h2>
+<h3>Puget Sound - Quota 80,512 lbs</h3>
+<table>
+<tr><th>Week</th><th>Dates open</th><th>Weekly</th><th>Cumulative</th></tr>
+<tr><th>Week</th><th>Dates open</th><th>Halibut (number)</th><th>Anglers (number)</th>
+<th>Average weight (pounds)</th><th>Total Pounds</th><th>Pounds</th>
+<th>Quota taken</th><th>Pounds remaining</th></tr>
+<tr><td>27</td><td>Jun 29-30</td><td>62</td><td>472</td><td>15.7</td><td>978</td>
+<td>46,792</td><td>58.1%</td><td>33,720</td></tr>
+</table>
+"""
+
+
+class TestOtherQuotas(unittest.TestCase):
+    """Chinook is not the only fishery run against a ceiling."""
+
+    def test_ocean_tracks_chinook_and_coho_separately(self):
+        rows = quotas.parse_ocean(OCEAN_QUOTA_PAGE, year=2026)
+        by_species = {r['species']: r for r in rows}
+        self.assertEqual(set(by_species), {'Chinook', 'Coho'})
+        self.assertEqual(by_species['Chinook']['taken'], 11494)
+        self.assertEqual(by_species['Chinook']['percent'], 0.52)
+        self.assertEqual(by_species['Coho']['percent'], 0.2)
+
+    def test_the_running_total_is_the_latest_week_not_the_first(self):
+        rows = quotas.parse_ocean(OCEAN_QUOTA_PAGE, year=2026)
+        self.assertEqual([r['taken'] for r in rows if r['species'] == 'Coho'], [7634])
+
+    def test_an_unpublished_ceiling_is_implied_from_the_share_used(self):
+        # 11,494 fish at 52% implies a guideline near 22,100
+        rows = quotas.parse_ocean(OCEAN_QUOTA_PAGE, year=2026)
+        chinook = [r for r in rows if r['species'] == 'Chinook'][0]
+        self.assertEqual(chinook['limit'], 22100)
+
+    def test_halibut_is_counted_in_pounds(self):
+        rows = quotas.parse_halibut(HALIBUT_QUOTA_PAGE)
+        self.assertEqual(len(rows), 1)
+        row = rows[0]
+        self.assertEqual(row['unit'], 'pounds')
+        self.assertEqual(row['limit'], 80512)     # published in the heading
+        self.assertEqual(row['taken'], 46792)
+        self.assertEqual(row['percent'], 0.581)
+
+
 class TestTrendArithmetic(unittest.TestCase):
     """The comparison the whole dashboard turns on, on figures worked by hand."""
 

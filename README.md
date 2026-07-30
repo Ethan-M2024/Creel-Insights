@@ -76,11 +76,17 @@ past and the map answers a shorter question: what changed since the last report.
 **When does this water usually produce?** Every species has a week-by-week seasonality
 curve built from the last five years, and every place has its own weekly history.
 
-**How much of the quota is gone?** The quotas tab shows each Puget Sound marine
-area's Chinook encounters against its guideline, and each Columbia pool's sturgeon
-harvest against its own, as a count and a percentage, with the date WDFW say each
-estimate runs through — because that date, not the date the page was built, is how
-current the figure is.
+**How much of the quota is gone?** The quotas tab covers every fishery WDFW run
+against a ceiling, not only the Chinook ones: Puget Sound Chinook encounters against
+their guideline, ocean Chinook and coho by port, Pacific halibut in pounds by subarea,
+and Columbia white sturgeon by pool — each as a count and a percentage, with the date
+WDFW say the estimate runs through, because that date, not the date the page was
+built, is how current the figure is.
+
+Chinook and coho are tracked separately at the same port because they run out at
+different times. Halibut is the one quota counted in pounds rather than fish. Where
+WDFW publish the share used but not the ceiling it is a share of, the ceiling is
+worked back out of their own two figures and rounded, and the panel says so.
 
 An area can run two guideline fisheries in one season, so each is listed under the day
 it opened: Area 11 has used 54% of the quota for the fishery that opened 1 June and

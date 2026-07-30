@@ -385,14 +385,31 @@ ul.checks li { padding: 4px 0; border-bottom: 1px solid var(--grid); }
       <div id="quota-chinook"></div>
     </div>
     <div class="card">
+      <h2>Ocean salmon, by port</h2>
+      <p class="note">Chinook run against a guideline and coho against a quota, and
+        they run out at different times: a port can be most of the way through its
+        Chinook and barely into its coho. Where WDFW publish the share used but not
+        the ceiling, the ceiling is worked back out of their own two figures and
+        rounded, so it is an implied number rather than a published one.</p>
+      <div id="quota-ocean"></div>
+    </div>
+
+    <div class="card">
+      <h2>Pacific halibut, by subarea</h2>
+      <p class="note">The only quota here counted in pounds rather than fish.</p>
+      <div id="quota-halibut"></div>
+    </div>
+
+    <div class="card">
       <h2>White sturgeon retention</h2>
       <p class="note">Harvest against the season's guideline, pool by pool on the
         Columbia.</p>
       <div id="quota-sturgeon"></div>
       <h3>Where these come from</h3>
-      <p class="note">Read from WDFW's seasonal salmon fishery guidelines page and the
-        white sturgeon page. Neither is creel catch, so neither is mixed into the catch
-        tables anywhere else in this dashboard.</p>
+      <p class="note">Read from four WDFW pages: the seasonal salmon fishery
+        guidelines, the ocean sport quota report, the halibut seasons and quotas page,
+        and the white sturgeon page. None of it is creel catch, so none of it is mixed
+        into the catch tables anywhere else in this dashboard.</p>
     </div>
   </div>
 </section>
@@ -1073,10 +1090,15 @@ function weekChart(weeks) {
 
 function renderQuotas() {
   const rows = DATA.quotas || [];
-  const chinook = rows.filter(r => /chinook/i.test(r.fishery));
-  const sturgeon = rows.filter(r => /sturgeon/i.test(r.fishery));
-  document.getElementById('quota-chinook').innerHTML = quotaTable(chinook, true);
-  document.getElementById('quota-sturgeon').innerHTML = quotaTable(sturgeon, false);
+  const of = name => rows.filter(r => r.fishery === name);
+  document.getElementById('quota-chinook').innerHTML =
+    quotaTable(of('Puget Sound Chinook'), true);
+  document.getElementById('quota-ocean').innerHTML =
+    quotaTable(of('Ocean salmon'), true);
+  document.getElementById('quota-halibut').innerHTML =
+    quotaTable(of('Pacific halibut'), true);
+  document.getElementById('quota-sturgeon').innerHTML =
+    quotaTable(of('Columbia River white sturgeon'), false);
 }
 
 function quotaTable(rows, withDate) {
@@ -1114,7 +1136,8 @@ function quotaTable(rows, withDate) {
         `<br><span class="k" style="color:var(--ink-3)">${escapeHtml(x.criteria)}: ` +
         `${fmt(x.taken)} of ${fmt(x.limit)}${x.percent === '' ? '' : ` (${Math.round(x.percent * 100)}%)`}</span>`).join('');
       const counted =
-        `<span class="k" style="color:var(--ink-3)">${fmt(r.taken)} of ${fmt(r.limit)}</span>`;
+        `<span class="k" style="color:var(--ink-3)">${fmt(r.taken)} of ${fmt(r.limit)}` +
+        `${r.unit && r.unit !== 'fish' ? ' ' + escapeHtml(r.unit) : ''}</span>`;
       return `<tr>
       <td>${escapeHtml(r.area)}${openLine}${r.season && withDate ? `<br><span class="pill">${escapeHtml(r.season)}</span>` : ''}</td>
       <td>${escapeHtml(r.criteria || '—')}<br>${counted}${extraLines}</td>
