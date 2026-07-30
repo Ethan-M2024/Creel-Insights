@@ -36,9 +36,19 @@ def record(fishery, area, **kw):
     return r
 
 
-def _percent(text):
+def _percent(text, *, taken='', limit=''):
+    """The share of the quota used.
+
+    WDFW print it on most rows and leave it off a few. Where it is missing it is
+    worked out from their own two numbers rather than left blank, because a quota
+    without a percentage is the one thing this table exists to show.
+    """
     m = re.search(r'(\d+(?:\.\d+)?)\s*%', str(text or ''))
-    return float(m.group(1)) / 100 if m else ''
+    if m:
+        return float(m.group(1)) / 100
+    if taken != '' and limit not in ('', 0):
+        return round(float(taken) / float(limit), 4)
+    return ''
 
 
 def _valid_through(text):
@@ -141,10 +151,11 @@ def parse_seasonal(html_text):
                 # that was not run — which is not the same as the area being shut,
                 # and is worded so nobody reads it that way
                 criteria, opening = '', ''
+            limit, taken = common.num(get(i_limit)), common.num(get(i_taken))
             out.append(record(
                 'Puget Sound Chinook', label,
-                criteria=criteria, limit=common.num(get(i_limit)),
-                taken=common.num(get(i_taken)), percent=_percent(get(i_pct)),
+                criteria=criteria, limit=limit, taken=taken,
+                percent=_percent(get(i_pct), taken=taken, limit=limit),
                 valid_through=_valid_through(get(i_valid)),
                 status=('No such fishery this season' if no_fishery else
                         (get(i_status) or ('Closed' if closed else ''))),
@@ -174,11 +185,12 @@ def parse_sturgeon(html_text):
             if len(cells) < 3 or not cells[i_area].strip():
                 continue
             get = lambda i: (cells[i] if i is not None and i < len(cells) else '')
+            limit, taken = common.num(get(i_limit)), common.num(get(i_taken))
             out.append(record(
                 'Columbia River white sturgeon', cells[i_area],
-                criteria='Retention harvest', limit=common.num(get(i_limit)),
+                criteria='Retention harvest', limit=limit, taken=taken,
                 opening=get(i_season),
-                taken=common.num(get(i_taken)), percent=_percent(get(i_pct)),
+                percent=_percent(get(i_pct), taken=taken, limit=limit),
                 status=get(i_status), season=get(i_season),
                 source_page=STURGEON_URL))
     return out

@@ -24,7 +24,6 @@ import pikeminnow     # noqa: E402
 import southwest      # noqa: E402
 import halibut       # noqa: E402
 import quotas        # noqa: E402
-import rules         # noqa: E402
 import build_data     # noqa: E402
 
 
@@ -331,21 +330,21 @@ class TestQuotas(unittest.TestCase):
     def test_over_the_guideline_is_reported_as_over(self):
         area9 = [r for r in self.rows if r['area'] == 'Marine Area 9'][0]
         self.assertEqual(area9['percent'], 1.31)
-        self.assertEqual(area9['status'], 'Closed')
+        self.assertEqual(area9['taken'], 3479)
 
     def test_subtotal_rows_are_not_fisheries(self):
         self.assertEqual({r['area'] for r in self.rows if r['kind'] == 'fishery'},
                          {'Marine Area 5', 'Marine Area 9', 'Marine Area 11'})
 
     def test_an_area_can_run_two_seasons_at_once(self):
-        # Area 11's June season closed on its end date at 54%; its July season is
-        # open. Reporting only the first would call an open fishery closed.
+        # Area 11 runs two summer Chinook fisheries: one that opened 1 June and used
+        # 54% of its quota, and one that opened 23 July at 15%. Reporting only the
+        # first would show the wrong quota entirely.
         eleven = [r for r in self.rows
                   if r['area'] == 'Marine Area 11' and r['kind'] == 'fishery']
         self.assertEqual(len(eleven), 2)
         by_open = {r['opening']: r for r in eleven}
-        self.assertEqual(by_open['June 1']['status'], 'Closed')
-        self.assertEqual(by_open['July 23']['status'], 'Open')
+        self.assertEqual(by_open['June 1']['percent'], 0.54)
         self.assertEqual(by_open['July 23']['percent'], 0.15)
 
     def test_the_date_is_the_estimate_not_the_fetch(self):
@@ -355,39 +354,12 @@ class TestQuotas(unittest.TestCase):
     def test_numeric_dates_parse_too(self):
         self.assertEqual(quotas._valid_through('04/11/26'), '2026-04-11')
 
-
-RULE_PAGE = """
-<div><p>Action: No more than one hatchery Chinook may be retained as part of the
-salmon daily limit. Effective dates: Aug. 1 - Sept. 30, 2026. Species affected:
-Chinook salmon. Location: Waters of Commencement Bay in Marine Area 11.
-Reason for action : Aligns rules with the rest of Marine Area 11.</p></div>
-"""
-
-
-class TestEmergencyRules(unittest.TestCase):
-    def setUp(self):
-        self.rule = rules.parse(RULE_PAGE, title='Commencement Bay salmon fishery',
-                                url='/x', published='2026-07-01')
-
-    def test_labelled_fields_are_read(self):
-        self.assertTrue(self.rule['action'].startswith('No more than one hatchery'))
-        self.assertEqual(self.rule['species'], 'Chinook salmon')
-
-    def test_the_area_is_picked_out_of_the_location(self):
-        self.assertEqual(self.rule['areas'], ['11'])
-
-    def test_the_end_date_is_the_end_of_the_range(self):
-        self.assertEqual(self.rule['ends'], '2026-09-30')
-
-    def test_an_open_ended_rule_has_no_end(self):
-        self.assertEqual(rules._ends('Immediately, until further notice'), '')
-
-    def test_a_start_date_is_not_an_end_date(self):
-        # "July 9, 2026, until further notice" is a rule still in force; reading its
-        # single date as an end would show it as expired
-        self.assertEqual(rules._ends('July 9, 2026, until further notice'), '')
-        self.assertEqual(rules._ends('July 18 - 31, 2026'), '2026-07-31')
-        self.assertEqual(rules._ends('Aug. 1 - Sept. 30, 2026'), '2026-09-30')
+    def test_a_missing_percentage_is_worked_out(self):
+        # WDFW leave the percentage off some rows; a quota table with no percentage
+        # on it is the one thing this panel exists to show
+        self.assertEqual(quotas._percent('', taken=99, limit=105), 0.9429)
+        self.assertEqual(quotas._percent('80%', taken=99, limit=105), 0.8)
+        self.assertEqual(quotas._percent('', taken='', limit=''), '')
 
 
 class TestTrendArithmetic(unittest.TestCase):

@@ -452,9 +452,6 @@ def main(say=print):
     if os.path.exists(paths.QUOTAS):
         with open(paths.QUOTAS, encoding='utf-8') as f:
             payload['quotas'] = json.load(f)
-    if os.path.exists(paths.RULES):
-        with open(paths.RULES, encoding='utf-8') as f:
-            payload['rules'] = json.load(f)
     if os.path.exists(paths.MANIFEST):
         with open(paths.MANIFEST, encoding='utf-8') as f:
             payload['manifest'] = json.load(f)

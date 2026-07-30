@@ -383,7 +383,7 @@
   "criteria": "Retention harvest",
   "limit": 105,
   "taken": 99,
-  "percent": "",
+  "percent": 0.9429,
   "valid_through": "",
   "status": "Closed",
   "season": "Jan. 1 - Jan. 9",

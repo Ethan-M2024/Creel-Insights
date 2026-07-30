@@ -229,7 +229,7 @@ ul.checks li { padding: 4px 0; border-bottom: 1px solid var(--grid); }
   <button role="tab" id="tab-map" aria-selected="true">Heat map</button>
   <button role="tab" id="tab-places">Places</button>
   <button role="tab" id="tab-species">Species</button>
-  <button role="tab" id="tab-quotas">Quotas &amp; closures</button>
+  <button role="tab" id="tab-quotas">Quotas</button>
   <button role="tab" id="tab-sources">Sources &amp; accuracy</button>
 </nav>
 
@@ -372,39 +372,18 @@ ul.checks li { padding: 4px 0; border-bottom: 1px solid var(--grid); }
   <div class="stack">
     <div class="card">
       <h2>Puget Sound Chinook, against the guideline</h2>
-      <p class="note"><b>This table is about quota-managed Chinook fisheries, not about
-        whether water is open.</b> A status here applies to the one fishery on its row.
-        An area with no guideline — Marine Area 12 has no winter Chinook quota — can
-        be open and fishing well; it simply has no quota to track. What opens and
-        closes water is the
+      <p class="note">How much of each quota has been used. These fisheries are
+        managed on encounters rather than on catch, so the figure counted against the
+        guideline is encounters or harvest, whichever WDFW set for that area. An area
+        can run two guideline fisheries in a season, so each is listed under the day it
+        opened. Only areas with a quota appear — this is a measure of quota used, not
+        a statement about whether water is open, which is set by the
         <a href="https://wdfw.wa.gov/fishing/regulations/sport-fishing">sport fishing
-        rules</a> and the emergency rules below.</p>
-      <p class="note">These fisheries are managed on encounters, not on catch: when a
-        marine area reaches its guideline that fishery closes, whether or not anyone is
-        still catching fish. An area can run two of them at once and be shut for one
-        while open for the other, so each is listed under the day it opened. A fishery
-        can also close on its end date well short of its quota — Area 11's June season
-        closed at 54% because June ended, and Area 11 reopened on 23 July. WDFW state
-        the date each estimate runs through, and that date, not today's, is how current
-        the figure is.</p>
+        rules</a>.</p>
+      <p class="note">WDFW state the date each estimate runs through, and that date,
+        not today's, is how current the figure is.</p>
       <div id="quota-chinook"></div>
     </div>
-    <div class="card">
-      <h2>Emergency rule changes</h2>
-      <p class="note">What WDFW has actually changed on the water in the last year,
-        newest first — the rules that open, close and re-limit fisheries between
-        pamphlet printings. Filter to a marine area to see only what applies there.
-        These are summaries of WDFW's own notices, not the regulations: follow the
-        link before you fish.</p>
-      <div class="controls" style="box-shadow:none;padding:10px 12px;margin-bottom:12px">
-        <div class="field">
-          <label for="f-rule-area">Marine area</label>
-          <select id="f-rule-area"></select>
-        </div>
-      </div>
-      <div class="scroll" id="rules-list"></div>
-    </div>
-
     <div class="card">
       <h2>White sturgeon retention</h2>
       <p class="note">Harvest against the season's guideline, pool by pool on the
@@ -1093,7 +1072,6 @@ function weekChart(weeks) {
 /* ------------------------------------------------------------------ quotas */
 
 function renderQuotas() {
-  renderRules();
   const rows = DATA.quotas || [];
   const chinook = rows.filter(r => /chinook/i.test(r.fishery));
   const sturgeon = rows.filter(r => /sturgeon/i.test(r.fishery));
@@ -1111,7 +1089,9 @@ function quotaTable(rows, withDate) {
     if (!subs.has(key)) subs.set(key, []);
     subs.get(key).push(r);
   }
-  rows = rows.filter(r => r.kind !== 'sub');
+  // an area with no guideline has no quota to be a percentage of; it belongs in the
+  // regulations, not in a table of quota used
+  rows = rows.filter(r => r.kind !== 'sub' && !(r.limit === '' && r.taken === ''));
   const bar = r => {
     const p = r.percent === '' || r.percent === null ? null : Number(r.percent);
     if (p === null) return '<span class="flat">—</span>';
@@ -1123,7 +1103,7 @@ function quotaTable(rows, withDate) {
       `<span class="meter-label">${Math.round(p * 100)}%</span>`;
   };
   return `<table><thead><tr><th>Area</th><th>Counted against</th><th>Used</th>` +
-    (withDate ? '<th>Through</th>' : '<th>Season</th>') + `<th>Status</th></tr></thead><tbody>` +
+    (withDate ? '<th>Through</th>' : '<th>Season</th>') + `</tr></thead><tbody>` +
     rows.map(r => {
       const extra = subs.get(r.area + '|' + r.opening) || [];
       const far = r.valid_through &&
@@ -1133,9 +1113,8 @@ function quotaTable(rows, withDate) {
       const extraLines = extra.map(x =>
         `<br><span class="k" style="color:var(--ink-3)">${escapeHtml(x.criteria)}: ` +
         `${fmt(x.taken)} of ${fmt(x.limit)}${x.percent === '' ? '' : ` (${Math.round(x.percent * 100)}%)`}</span>`).join('');
-      const counted = (r.limit === '' && r.taken === '')
-        ? '<span class="k" style="color:var(--ink-3)">no quota fishery here this season</span>'
-        : `<span class="k" style="color:var(--ink-3)">${fmt(r.taken)} of ${fmt(r.limit)}</span>`;
+      const counted =
+        `<span class="k" style="color:var(--ink-3)">${fmt(r.taken)} of ${fmt(r.limit)}</span>`;
       return `<tr>
       <td>${escapeHtml(r.area)}${openLine}${r.season && withDate ? `<br><span class="pill">${escapeHtml(r.season)}</span>` : ''}</td>
       <td>${escapeHtml(r.criteria || '—')}<br>${counted}${extraLines}</td>
@@ -1147,41 +1126,8 @@ function quotaTable(rows, withDate) {
                'other row in the table runs to 2026, so it is almost certainly a ' +
                'typo for 2026-07-26; it is shown as published rather than corrected ' +
                'here.">as published — likely a typo for 2026</span>' : '') + `</td>
-      <td class="wrap">${escapeHtml(r.status || '—')}</td>
     </tr>`;
     }).join('') + '</tbody></table>';
-}
-
-/* ------------------------------------------------------------ emergency rules */
-
-let ruleArea = '';
-
-function renderRules() {
-  const rules = DATA.rules || [];
-  const select = document.getElementById('f-rule-area');
-  if (select && !select.options.length) {
-    const areas = [...new Set(rules.flatMap(r => r.areas))]
-      .sort((a, b) => Number(a) - Number(b));
-    select.innerHTML = '<option value="">Every area</option>' +
-      areas.map(a => `<option value="${escapeHtml(a)}">Marine Area ${escapeHtml(a)}</option>`).join('');
-    select.addEventListener('change', () => { ruleArea = select.value; renderRules(); });
-  }
-  const shown = ruleArea ? rules.filter(r => r.areas.includes(ruleArea)) : rules;
-  const today = META.as_of;
-  document.getElementById('rules-list').innerHTML = shown.length ? shown.map(r => {
-    // a rule that has run out is kept, greyed, because "this changed and has since
-    // expired" is a different thing from "this never happened"
-    const expired = r.ends && r.ends < today;
-    return `<div style="padding:10px 0;border-bottom:1px solid var(--grid);${expired ? 'opacity:.55' : ''}">
-      <a href="${escapeHtml(r.url)}" style="color:var(--accent);font-weight:600">${escapeHtml(r.title)}</a>
-      ${r.areas.length ? r.areas.map(a => `<span class="pill">Area ${escapeHtml(a)}</span>`).join(' ') : ''}
-      ${expired ? '<span class="pill">expired</span>' : ''}
-      <div style="font-size:13px;color:var(--ink-2);margin-top:3px">${escapeHtml(r.action)}</div>
-      <div style="font-size:12.5px;color:var(--ink-3);margin-top:2px">
-        ${r.effective ? escapeHtml(r.effective) : 'dates in the notice'}
-        ${r.species ? ' &middot; ' + escapeHtml(r.species) : ''}</div>
-    </div>`;
-  }).join('') : '<p class="note">No rule changes listed for that area in the last year.</p>';
 }
 
 /* ----------------------------------------------------------------- sources */

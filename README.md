@@ -76,24 +76,17 @@ past and the map answers a shorter question: what changed since the last report.
 **When does this water usually produce?** Every species has a week-by-week seasonality
 curve built from the last five years, and every place has its own weekly history.
 
-**Is my area about to close?** The quotas tab tracks each Puget Sound marine area's
-Chinook encounters against the guideline that shuts it, and each Columbia pool's
-sturgeon harvest against its own, with the date WDFW say each estimate runs
-through — because that date, not the date the page was built, is how current the
-number is.
+**How much of the quota is gone?** The quotas tab shows each Puget Sound marine
+area's Chinook encounters against its guideline, and each Columbia pool's sturgeon
+harvest against its own, as a count and a percentage, with the date WDFW say each
+estimate runs through — because that date, not the date the page was built, is how
+current the figure is.
 
-That tab is about **quota-managed fisheries, not about whether water is open**. A
-status applies to the one fishery on its row. An area with no guideline — Marine Area
-12 has no winter Chinook quota — can be open and fishing well; it simply has nothing
-to track. An area can also run two guideline fisheries at once and be shut for one
-while open for the other, which is why Area 11 reads *closed at 54%* under its June
-season (June ended) and *open at 15%* under the season that started 23 July.
-
-Beside it sits the last year of **emergency rule changes** — what WDFW has actually
-changed on the water between pamphlet printings — filterable by marine area, each
-linking to WDFW's own notice. Those, and the
-[sport fishing rules](https://wdfw.wa.gov/fishing/regulations/sport-fishing), are what
-open and close fishing. Nothing here is a substitute for reading them.
+An area can run two guideline fisheries in one season, so each is listed under the day
+it opened: Area 11 has used 54% of the quota for the fishery that opened 1 June and
+15% of the one that opened 23 July. Only areas with a quota appear. This is a measure
+of quota used, not a statement about whether water is open — that is set by the
+[sport fishing rules](https://wdfw.wa.gov/fishing/regulations/sport-fishing).
 
 A figure WDFW publish that cannot be right — an estimate dated a year out — is shown
 as published and marked, not quietly corrected.
@@ -122,7 +115,6 @@ read here.
 | Pikeminnow Sport-Reward Fishery | PDF tables | 2019 to now | weekly registered anglers and fish per check station |
 | Seasonal salmon guidelines and quotas | HTML | current seasons | Puget Sound Chinook encounters against the guideline that closes each area |
 | White sturgeon | HTML | current season | Columbia pool harvest against its guideline |
-| Emergency rule changes | HTML | last 14 months | what actually opened, closed or re-limited each fishery, by area |
 
 The last two are not creel catch — an encounter is not a fish kept, and a pool's
 harvest estimate is not an interview — so they are kept in their own table
@@ -223,7 +215,6 @@ src/sources/            one module per WDFW publication
     pikeminnow.py       the sport-reward fishery
     halibut.py          the Pacific halibut landings summary
     quotas.py           encounter guidelines and harvest quotas
-    rules.py            emergency rule changes, by area
 src/geo.py              placing locations, and how confident that placement is
 src/build_data.py       the trend arithmetic and the dashboard payload
 src/validate.py         the audit

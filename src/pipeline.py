@@ -35,7 +35,6 @@ import pikeminnow
 import southwest
 import halibut
 import quotas
-import rules
 
 LOG = []
 
@@ -93,9 +92,7 @@ def gather(full=False):
     add('halibut', halibut.load(full=full, say=say))
     say('reading the quota trackers')
     quota_rows = quotas.load(full=full, say=say)
-    say('reading the emergency rule changes')
-    rule_rows = rules.load(full=full, say=say)
-    return catch_rows, effort_rows, summary, quota_rows, rule_rows
+    return catch_rows, effort_rows, summary, quota_rows
 
 
 def write_table(path, rows, fields):
@@ -118,7 +115,7 @@ def read_table(path, fields):
 def update(full=False, no_open=False):
     paths.ensure_dirs()
     started = time.time()
-    catch_rows, effort_rows, summary, quota_rows, rule_rows = gather(full=full)
+    catch_rows, effort_rows, summary, quota_rows = gather(full=full)
     if not catch_rows:
         say('no data was read from any source; refusing to overwrite what is here', '!!')
         return 1
@@ -129,10 +126,7 @@ def update(full=False, no_open=False):
 
     with open(paths.QUOTAS, 'w', encoding='utf-8') as f:
         json.dump(quota_rows, f, indent=1)
-    with open(paths.RULES, 'w', encoding='utf-8') as f:
-        json.dump(rule_rows, f, indent=1)
-    say(f'   {len(quota_rows)} quota and guideline records, '
-        f'{len(rule_rows)} emergency rules')
+    say(f'   {len(quota_rows)} quota and guideline records')
 
     manifest = {
         'built': datetime.now(timezone.utc).isoformat(timespec='seconds'),
