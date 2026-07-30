@@ -1,0 +1,4388 @@
+[
+{
+"name": "Aeneas Lake",
+"county": "Okanogan",
+"lat": 48.676789,
+"lon": -119.508789
+},
+{
+"name": "Albright Lake",
+"county": "Okanogan",
+"lat": 48.540857,
+"lon": -119.611806
+},
+{
+"name": "Alkali Lake",
+"county": "Grant",
+"lat": 47.52304,
+"lon": -119.494575
+},
+{
+"name": "Alkali Lake",
+"county": "Grant",
+"lat": 47.525197,
+"lon": -119.496485
+},
+{
+"name": "Alkali Lake",
+"county": "Grant",
+"lat": 47.527808,
+"lon": -119.494552
+},
+{
+"name": "Alta Lake",
+"county": "Okanogan",
+"lat": 48.020114,
+"lon": -119.943817
+},
+{
+"name": "Alta Lake",
+"county": "Okanogan",
+"lat": 48.027353,
+"lon": -119.935542
+},
+{
+"name": "Amber Lake",
+"county": "Spokane",
+"lat": 47.34792,
+"lon": -117.71465
+},
+{
+"name": "American Lake",
+"county": "Pierce",
+"lat": 47.12246,
+"lon": -122.56831
+},
+{
+"name": "American Lake",
+"county": "Pierce",
+"lat": 47.14053,
+"lon": -122.56112
+},
+{
+"name": "Ancient Lakes",
+"county": "Grant",
+"lat": 47.149991,
+"lon": -119.943913
+},
+{
+"name": "Angle Lake",
+"county": "King",
+"lat": 47.42742,
+"lon": -122.29233
+},
+{
+"name": "Asotin Headgate County",
+"county": "Asotin",
+"lat": 46.32628,
+"lon": -117.21274
+},
+{
+"name": "Aspen Lake",
+"county": "Okanogan",
+"lat": 48.410329,
+"lon": -120.210743
+},
+{
+"name": "Badger Lake",
+"county": "Spokane",
+"lat": 47.34259,
+"lon": -117.63768
+},
+{
+"name": "Ballinger Lake",
+"county": "Snohomish",
+"lat": 47.78492,
+"lon": -122.32682
+},
+{
+"name": "Banks Lake",
+"county": "Grant",
+"lat": 47.619216,
+"lon": -119.296216
+},
+{
+"name": "Banks Lake",
+"county": "Grant",
+"lat": 47.62818,
+"lon": -119.32798
+},
+{
+"name": "Banks Lake",
+"county": "Grant",
+"lat": 47.723701,
+"lon": -119.254768
+},
+{
+"name": "Banks Lake",
+"county": "Grant",
+"lat": 47.755571,
+"lon": -119.225085
+},
+{
+"name": "Banks Lake",
+"county": "Grant",
+"lat": 47.811558,
+"lon": -119.162484
+},
+{
+"name": "Banks Lake",
+"county": "Grant",
+"lat": 47.8566,
+"lon": -119.104444
+},
+{
+"name": "Banks Lake",
+"county": "Grant",
+"lat": 47.863664,
+"lon": -119.118579
+},
+{
+"name": "Banks Lake",
+"county": "Grant",
+"lat": 47.872236,
+"lon": -119.098363
+},
+{
+"name": "Banks Lake",
+"county": "Grant",
+"lat": 47.874532,
+"lon": -119.093879
+},
+{
+"name": "Banks Lake",
+"county": "Grant",
+"lat": 47.889074,
+"lon": -119.081389
+},
+{
+"name": "Banks Lake",
+"county": "Grant",
+"lat": 47.902855,
+"lon": -119.165561
+},
+{
+"name": "Banks Lake",
+"county": "Grant",
+"lat": 47.942265,
+"lon": -119.021995
+},
+{
+"name": "Battle Ground Lake",
+"county": "Clark",
+"lat": 45.803401,
+"lon": -122.492983
+},
+{
+"name": "Battle Ground Lake",
+"county": "Clark",
+"lat": 45.804335,
+"lon": -122.492486
+},
+{
+"name": "Bay Lake",
+"county": "Pierce",
+"lat": 47.24732,
+"lon": -122.75899
+},
+{
+"name": "Bayley Lake",
+"county": "Stevens",
+"lat": 48.41927,
+"lon": -117.66033
+},
+{
+"name": "Bead Lake",
+"county": "Pend Oreille",
+"lat": 48.28888,
+"lon": -117.11003
+},
+{
+"name": "Bear Lake",
+"county": "Spokane",
+"lat": 47.92575,
+"lon": -117.35331
+},
+{
+"name": "Bear Lake",
+"county": "Spokane",
+"lat": 47.9271,
+"lon": -117.35636
+},
+{
+"name": "Beaver Lake",
+"county": "Okanogan",
+"lat": 48.852973,
+"lon": -118.974224
+},
+{
+"name": "Beaver Lake",
+"county": "Okanogan",
+"lat": 48.854794,
+"lon": -118.976488
+},
+{
+"name": "Beaver Lake",
+"county": "Skagit",
+"lat": 48.44599,
+"lon": -122.22111
+},
+{
+"name": "Beaver Lake - Sammamish",
+"county": "King ",
+"lat": 47.58679,
+"lon": -122.00022
+},
+{
+"name": "Beaver Lake - Sammamish",
+"county": "King ",
+"lat": 47.58746,
+"lon": -122.00239
+},
+{
+"name": "Beda Lake",
+"county": "Grant",
+"lat": 47.049056,
+"lon": -119.54724
+},
+{
+"name": "Bennington Lake",
+"county": "Walla Walla",
+"lat": 46.0654,
+"lon": -118.26368
+},
+{
+"name": "Big Bow lake",
+"county": "Douglas",
+"lat": 47.377922,
+"lon": -120.167103
+},
+{
+"name": "Big Bow lake",
+"county": "Douglas",
+"lat": 47.383816,
+"lon": -120.154664
+},
+{
+"name": "Big Buck Lake",
+"county": "Okanogan",
+"lat": 48.392283,
+"lon": -120.184716
+},
+{
+"name": "Big Four Lake",
+"county": "Columbia",
+"lat": 46.26054,
+"lon": -117.66609
+},
+{
+"name": "Big Lake",
+"county": "Skagit",
+"lat": 48.37916,
+"lon": -122.23308
+},
+{
+"name": "Big Meadow Lake",
+"county": "Pend Oreille",
+"lat": 48.72775,
+"lon": -117.56258
+},
+{
+"name": "Big Twin Lake",
+"county": "Okanogan",
+"lat": 48.443363,
+"lon": -120.195754
+},
+{
+"name": "Big Twin Lake",
+"county": "Okanogan",
+"lat": 48.447106,
+"lon": -120.19259
+},
+{
+"name": "Billy Clapp Lake",
+"county": "Grant",
+"lat": 47.45276,
+"lon": -119.25272
+},
+{
+"name": "Billy Clapp Lake",
+"county": "Grant",
+"lat": 47.50077,
+"lon": -119.297306
+},
+{
+"name": "Bitter Lake",
+"county": "King",
+"lat": 47.72488,
+"lon": -122.3507
+},
+{
+"name": "Black Lake",
+"county": "Thurston",
+"lat": 46.98293,
+"lon": -122.97518
+},
+{
+"name": "Black Lake",
+"county": "Chelan",
+"lat": 47.306401,
+"lon": -120.336142
+},
+{
+"name": "Black Lake pacific county",
+"county": "Pacific",
+"lat": 46.31444,
+"lon": -124.04207
+},
+{
+"name": "Black Lake pacific county",
+"county": "Pacific",
+"lat": 46.31673,
+"lon": -124.04342
+},
+{
+"name": "Blackbird Island Pond",
+"county": "Chelan",
+"lat": 47.588228,
+"lon": -120.667664
+},
+{
+"name": "Blackmans Lake",
+"county": "Snohomish",
+"lat": 47.93037,
+"lon": -122.09466
+},
+{
+"name": "Blackmans Lake",
+"county": "Snohomish",
+"lat": 47.93141,
+"lon": -122.09063
+},
+{
+"name": "Blackmans Lake",
+"county": "Snohomish",
+"lat": 47.93206,
+"lon": -122.09011
+},
+{
+"name": "Blue Lake",
+"county": "Grant",
+"lat": 47.549265,
+"lon": -119.464615
+},
+{
+"name": "Blue Lake",
+"county": "Grant",
+"lat": 47.552635,
+"lon": -119.455661
+},
+{
+"name": "Blue Lake",
+"county": "Grant",
+"lat": 47.553273,
+"lon": -119.462164
+},
+{
+"name": "Blue Lake",
+"county": "Grant",
+"lat": 47.559676,
+"lon": -119.451948
+},
+{
+"name": "Blue Lake",
+"county": "Grant",
+"lat": 47.561416,
+"lon": -119.456415
+},
+{
+"name": "Blue Lake",
+"county": "Grant",
+"lat": 47.570291,
+"lon": -119.446542
+},
+{
+"name": "Blue Lake",
+"county": "Okanogan",
+"lat": 48.56504,
+"lon": -119.611546
+},
+{
+"name": "Blue Lake",
+"county": "Okanogan",
+"lat": 48.672645,
+"lon": -119.690178
+},
+{
+"name": "Blue Lake",
+"county": "Okanogan",
+"lat": 48.681009,
+"lon": -119.687307
+},
+{
+"name": "Blue Lake",
+"county": "Okanogan",
+"lat": 48.684019,
+"lon": -119.687876
+},
+{
+"name": "Blue Lake",
+"county": "Okanogan",
+"lat": 48.902357,
+"lon": -119.497442
+},
+{
+"name": "Blue Lake",
+"county": "Columbia",
+"lat": 46.3241,
+"lon": -117.67055
+},
+{
+"name": "Blythe Lake",
+"county": "Grant",
+"lat": 46.958594,
+"lon": -119.29372
+},
+{
+"name": "Bosworth Lake",
+"county": "Snohomish",
+"lat": 48.04813,
+"lon": -121.97326
+},
+{
+"name": "Boundary Lake",
+"county": "Pend Oreille",
+"lat": 48.99749,
+"lon": -117.30061
+},
+{
+"name": "Boundary Reservoir",
+"county": "Pend Oreille",
+"lat": 48.9831,
+"lon": -117.35011
+},
+{
+"name": "Bradley Lake",
+"county": "Pierce",
+"lat": 47.15979,
+"lon": -122.28448
+},
+{
+"name": "Bradley Lake",
+"county": "Pierce",
+"lat": 47.16232,
+"lon": -122.28499
+},
+{
+"name": "Browns Lake",
+"county": "Pend Oreille",
+"lat": 48.43684,
+"lon": -117.19614
+},
+{
+"name": "Buck Lake",
+"county": "Okanogan",
+"lat": 48.604749,
+"lon": -120.199837
+},
+{
+"name": "Burke Lake",
+"county": "Grant",
+"lat": 47.130965,
+"lon": -119.900713
+},
+{
+"name": "Burke Lake",
+"county": "Grant",
+"lat": 47.134549,
+"lon": -119.925554
+},
+{
+"name": "Burke Lake",
+"county": "Grant",
+"lat": 47.136393,
+"lon": -119.926951
+},
+{
+"name": "Buzzard Lake",
+"county": "Okanogan",
+"lat": 48.41812,
+"lon": -119.71426
+},
+{
+"name": "Campbell Lake",
+"county": "Okanogan",
+"lat": 48.440568,
+"lon": -120.066536
+},
+{
+"name": "Canal Lake",
+"county": "Grant",
+"lat": 46.929908,
+"lon": -119.180729
+},
+{
+"name": "Carlisle Lake",
+"county": "Lewis",
+"lat": 46.724113,
+"lon": -122.72651
+},
+{
+"name": "Carls Lake",
+"county": "Pend Oreille",
+"lat": 48.65863,
+"lon": -117.43904
+},
+{
+"name": "Carrie Blake Park Pond",
+"county": "Clallam",
+"lat": 48.0808,
+"lon": -123.08575
+},
+{
+"name": "Cascade Lake",
+"county": "San Juan",
+"lat": 48.65524,
+"lon": -122.85548
+},
+{
+"name": "Cassidy Lake",
+"county": "Snohomish",
+"lat": 48.04953,
+"lon": -122.09822
+},
+{
+"name": "Cassidy Lake",
+"county": "Snohomish",
+"lat": 48.05235,
+"lon": -122.0915
+},
+{
+"name": "Castle Lake",
+"county": "Grant",
+"lat": 47.599614,
+"lon": -119.310539
+},
+{
+"name": "Cattail Lake",
+"county": "Grant",
+"lat": 46.944465,
+"lon": -119.2257
+},
+{
+"name": "Chain Lake",
+"county": "Snohomish",
+"lat": 47.90272,
+"lon": -121.97206
+},
+{
+"name": "Chain Lake",
+"county": "Pend Oreille",
+"lat": 48.05902,
+"lon": -117.20738
+},
+{
+"name": "Chambers Lake",
+"county": "Thurston",
+"lat": 47.03282,
+"lon": -122.83956
+},
+{
+"name": "Chance Lake",
+"county": "Franklin",
+"lat": 46.66741,
+"lon": -119.0321
+},
+{
+"name": "Chopaka Lake",
+"county": "Okanogan",
+"lat": 48.913846,
+"lon": -119.701472
+},
+{
+"name": "Chopaka Lake",
+"county": "Okanogan",
+"lat": 48.917023,
+"lon": -119.701692
+},
+{
+"name": "Chukar Lake",
+"county": "Grant",
+"lat": 46.957525,
+"lon": -119.274008
+},
+{
+"name": "Clark Pond",
+"county": "Franklin",
+"lat": 46.51875,
+"lon": -119.07034
+},
+{
+"name": "Clear Lake",
+"county": "Spokane",
+"lat": 47.51694,
+"lon": -117.69423
+},
+{
+"name": "Clear Lake",
+"county": "Thurston",
+"lat": 46.81821,
+"lon": -122.47636
+},
+{
+"name": "Clear Lake",
+"county": "Chelan",
+"lat": 47.29681,
+"lon": -120.300311
+},
+{
+"name": "Clear Lake",
+"county": "Yakima",
+"lat": 46.62596,
+"lon": -121.27071
+},
+{
+"name": "Clear Lake",
+"county": "Yakima",
+"lat": 46.62684,
+"lon": -121.27182
+},
+{
+"name": "Clear Lake",
+"county": "Yakima",
+"lat": 46.62824,
+"lon": -121.27255
+},
+{
+"name": "Clear Lake",
+"county": "Skagit",
+"lat": 48.45801,
+"lon": -122.23285
+},
+{
+"name": "Clear Lake",
+"county": "Skagit",
+"lat": 48.46448,
+"lon": -122.2257
+},
+{
+"name": "Cliff Lake",
+"county": "Grant",
+"lat": 47.133287,
+"lon": -119.93952
+},
+{
+"name": "Coffee Pot Lake",
+"county": "Lincoln",
+"lat": 47.50042,
+"lon": -118.55545
+},
+{
+"name": "Coffin Lake",
+"county": "Stevens",
+"lat": 48.57689,
+"lon": -117.55518
+},
+{
+"name": "Columbia Park Pond #1",
+"county": "Benton",
+"lat": 46.21994,
+"lon": -119.14385
+},
+{
+"name": "Columbia Park Pond #2",
+"county": "Benton",
+"lat": 46.21853,
+"lon": -119.14324
+},
+{
+"name": "Conconully Lake",
+"county": "Okanogan",
+"lat": 48.560913,
+"lon": -119.744919
+},
+{
+"name": "Conconully Lake",
+"county": "Okanogan",
+"lat": 48.564595,
+"lon": -119.730635
+},
+{
+"name": "Conconully Reservoir",
+"county": "Okanogan",
+"lat": 48.550286,
+"lon": -119.748619
+},
+{
+"name": "Conger Pond 2",
+"county": "Pend Oreille",
+"lat": 48.3827,
+"lon": -117.38541
+},
+{
+"name": "Conners Lake",
+"county": "Okanogan",
+"lat": 48.75799,
+"lon": -119.66282
+},
+{
+"name": "Cooks Lake",
+"county": "Pend Oreille",
+"lat": 48.34388,
+"lon": -117.17303
+},
+{
+"name": "Cooper Lake",
+"county": "Kittitas",
+"lat": 47.4257,
+"lon": -121.17333
+},
+{
+"name": "Coot Lake",
+"county": "Grant",
+"lat": 46.921314,
+"lon": -119.204863
+},
+{
+"name": "Corral Lake",
+"county": "Grant",
+"lat": 46.963811,
+"lon": -119.307786
+},
+{
+"name": "Cottage Lake",
+"county": "King",
+"lat": 47.75519,
+"lon": -122.08764
+},
+{
+"name": "Cougar Lake",
+"county": "Okanogan",
+"lat": 48.476844,
+"lon": -120.095992
+},
+{
+"name": "Cow Lake",
+"county": "Adams",
+"lat": 47.134716,
+"lon": -118.158936
+},
+{
+"name": "Coyote Creek Ponds",
+"county": "Adams",
+"lat": 46.878621,
+"lon": -119.257411
+},
+{
+"name": "Crabapple Lake",
+"county": "Snohomish",
+"lat": 48.13258,
+"lon": -122.27437
+},
+{
+"name": "Cranberry Lake",
+"county": "Island",
+"lat": 48.39259,
+"lon": -122.64949
+},
+{
+"name": "Cranberry Lake",
+"county": "Island",
+"lat": 48.39705,
+"lon": -122.65449
+},
+{
+"name": "Cranberry Lake",
+"county": "Island",
+"lat": 48.39899,
+"lon": -122.66215
+},
+{
+"name": "Crescent Lake",
+"county": "Ferry",
+"lat": 48.98745,
+"lon": -117.31371
+},
+{
+"name": "Crystal Lake",
+"county": "Grant",
+"lat": 47.130062,
+"lon": -119.934811
+},
+{
+"name": "Cup Lake",
+"county": "Grant",
+"lat": 47.131514,
+"lon": -119.937043
+},
+{
+"name": "Curl Lake",
+"county": "Columbia",
+"lat": 46.25445,
+"lon": -117.67291
+},
+{
+"name": "Curlew Lake",
+"county": "Ferry",
+"lat": 48.72138,
+"lon": -118.66257
+},
+{
+"name": "Curlew Lake",
+"county": "Ferry",
+"lat": 48.76232,
+"lon": -118.66402
+},
+{
+"name": "Dalton Lake",
+"county": "Franklin",
+"lat": 46.29476,
+"lon": -118.80657
+},
+{
+"name": "Dam Pond",
+"county": "Columbia",
+"lat": 46.58332,
+"lon": -118.01634
+},
+{
+"name": "Davis Lake",
+"county": "Pend Oreille",
+"lat": 48.21845,
+"lon": -117.29124
+},
+{
+"name": "Davis Lake",
+"county": "Pend Oreille",
+"lat": 48.23036,
+"lon": -117.2898
+},
+{
+"name": "Davis Lake",
+"county": "Okanogan",
+"lat": 48.44228,
+"lon": -120.121419
+},
+{
+"name": "Dayton Pond",
+"county": "Columbia",
+"lat": 46.31398,
+"lon": -117.97399
+},
+{
+"name": "Deadman Lake",
+"county": "Adams",
+"lat": 46.88551,
+"lon": -119.241767
+},
+{
+"name": "Deception Lake",
+"county": "Pend Oreille",
+"lat": 48.72734,
+"lon": -117.33671
+},
+{
+"name": "Deep Lake",
+"county": "King",
+"lat": 47.2706,
+"lon": -121.9409
+},
+{
+"name": "Deep Lake",
+"county": "Stevens",
+"lat": 48.86519,
+"lon": -117.60064
+},
+{
+"name": "Deep Lake",
+"county": "Grant",
+"lat": 47.588401,
+"lon": -119.34071
+},
+{
+"name": "Deer Lake",
+"county": "Island",
+"lat": 47.97415,
+"lon": -122.38028
+},
+{
+"name": "Deer Lake ",
+"county": "Columbia",
+"lat": 46.30574,
+"lon": -117.65214
+},
+{
+"name": "Desert Lake Chain",
+"county": "Grant",
+"lat": 47.008081,
+"lon": -119.483496
+},
+{
+"name": "Devereaux Lake",
+"county": "Mason",
+"lat": 47.40743,
+"lon": -122.8445
+},
+{
+"name": "Diamond Lake",
+"county": "Pend Oreille",
+"lat": 48.129248,
+"lon": -117.186599
+},
+{
+"name": "Dibble Lake",
+"county": "Okanogan",
+"lat": 48.2846,
+"lon": -120.171636
+},
+{
+"name": "Domke Lake",
+"county": "Chelan",
+"lat": 48.201184,
+"lon": -120.598142
+},
+{
+"name": "Dry Falls Lake",
+"county": "Grant",
+"lat": 47.602799,
+"lon": -119.354181
+},
+{
+"name": "Dry Lake",
+"county": "Chelan",
+"lat": 47.908633,
+"lon": -120.167262
+},
+{
+"name": "Duck Lake",
+"county": "Grays Harbor",
+"lat": 46.97115,
+"lon": -124.14162
+},
+{
+"name": "Duck Lake",
+"county": "Grays Harbor",
+"lat": 46.9974,
+"lon": -124.1477
+},
+{
+"name": "Dusty Lake",
+"county": "Grant",
+"lat": 47.136234,
+"lon": -119.940956
+},
+{
+"name": "Easton Ponds",
+"county": "Kittitas",
+"lat": 47.23352,
+"lon": -121.16908
+},
+{
+"name": "Echo Lake",
+"county": "King",
+"lat": 47.77269,
+"lon": -122.34125
+},
+{
+"name": "Echo Lake",
+"county": "Snohomish ",
+"lat": 47.78572,
+"lon": -122.04977
+},
+{
+"name": "Egg Lake",
+"county": "San Juan",
+"lat": 48.56679,
+"lon": -123.08284
+},
+{
+"name": "Ell Lake",
+"county": "Okanogan",
+"lat": 48.602875,
+"lon": -119.117677
+},
+{
+"name": "Elton Pond North",
+"county": "Yakima",
+"lat": 46.65761,
+"lon": -120.49112
+},
+{
+"name": "Emma Lake",
+"county": "Franklin",
+"lat": 46.3314,
+"lon": -118.76811
+},
+{
+"name": "Evergreen Reservoir",
+"county": "Grant",
+"lat": 47.12388,
+"lon": -119.928164
+},
+{
+"name": "Evergreen Reservoir",
+"county": "Grant",
+"lat": 47.124894,
+"lon": -119.898168
+},
+{
+"name": "Evergreen Reservoir",
+"county": "Grant",
+"lat": 47.127139,
+"lon": -119.93214
+},
+{
+"name": "Evergreen Reservoir",
+"county": "Grant",
+"lat": 47.129373,
+"lon": -119.930574
+},
+{
+"name": "Evergreen Reservoir",
+"county": "Grant",
+"lat": 47.133168,
+"lon": -119.927377
+},
+{
+"name": "Falcon Lakes",
+"county": "Grant",
+"lat": 46.981433,
+"lon": -119.28756
+},
+{
+"name": "Fan Lake",
+"county": "Pend Oreille",
+"lat": 48.05507,
+"lon": -117.40347
+},
+{
+"name": "Fanchers Dam Reservoir",
+"county": "Okanogan",
+"lat": 48.829137,
+"lon": -119.261529
+},
+{
+"name": "Ferry Lake",
+"county": "Ferry",
+"lat": 48.52122,
+"lon": -118.81164
+},
+{
+"name": "Fiorito North",
+"county": "Kittitas",
+"lat": 46.93957,
+"lon": -120.50602
+},
+{
+"name": "Fiorito South",
+"county": "Kittitas",
+"lat": 46.93623,
+"lon": -120.5049
+},
+{
+"name": "Firing Center Pond 1",
+"county": "Yakima",
+"lat": 46.67445,
+"lon": -120.44569
+},
+{
+"name": "First Thought Lake",
+"county": "Stevens",
+"lat": 48.90393,
+"lon": -118.16895
+},
+{
+"name": "Fish Lake",
+"county": "Chelan",
+"lat": 47.829091,
+"lon": -120.713836
+},
+{
+"name": "Fish Lake",
+"county": "Okanogan",
+"lat": 48.610572,
+"lon": -119.685305
+},
+{
+"name": "Fish Lake",
+"county": "Okanogan",
+"lat": 48.614048,
+"lon": -119.692821
+},
+{
+"name": "Fish Lake",
+"county": "Okanogan",
+"lat": 48.615586,
+"lon": -119.70942
+},
+{
+"name": "Fish Lake",
+"county": "Okanogan",
+"lat": 48.615767,
+"lon": -119.704802
+},
+{
+"name": "Fish Lake",
+"county": "King",
+"lat": 47.26877,
+"lon": -121.9556
+},
+{
+"name": "Fish Lake",
+"county": "Spokane",
+"lat": 47.52041,
+"lon": -117.51822
+},
+{
+"name": "Fishhook Pond",
+"county": "Walla Walla",
+"lat": 46.30878,
+"lon": -118.76368
+},
+{
+"name": "Fishhook Pond",
+"county": "Walla Walla",
+"lat": 46.31794,
+"lon": -118.76181
+},
+{
+"name": "Fishtrap Lake",
+"county": "Lincoln",
+"lat": 47.35489,
+"lon": -117.82394
+},
+{
+"name": "Fivemile Lake",
+"county": "King",
+"lat": 47.27359,
+"lon": -122.28418
+},
+{
+"name": "Florence Lake",
+"county": "Pierce",
+"lat": 47.16742,
+"lon": -122.68937
+},
+{
+"name": "Flowing Lake",
+"county": "Snohomish",
+"lat": 47.9425,
+"lon": -121.98095
+},
+{
+"name": "Flowing Lake",
+"county": "Snohomish",
+"lat": 47.95125,
+"lon": -121.98827
+},
+{
+"name": "Forde Lake",
+"county": "Okanogan",
+"lat": 48.736928,
+"lon": -119.669836
+},
+{
+"name": "Franklin Roosevelt Lake",
+"county": "Stevens",
+"lat": 47.81553,
+"lon": -118.33054
+},
+{
+"name": "Franklin Roosevelt Lake",
+"county": "Stevens",
+"lat": 47.83337,
+"lon": -118.42271
+},
+{
+"name": "Franklin Roosevelt Lake",
+"county": "Stevens",
+"lat": 47.8592,
+"lon": -118.34203
+},
+{
+"name": "Franklin Roosevelt Lake",
+"county": "Stevens",
+"lat": 47.90557,
+"lon": -118.3155
+},
+{
+"name": "Franklin Roosevelt Lake",
+"county": "Stevens",
+"lat": 47.92065,
+"lon": -118.58264
+},
+{
+"name": "Franklin Roosevelt Lake",
+"county": "Stevens",
+"lat": 47.92161,
+"lon": -118.62571
+},
+{
+"name": "Franklin Roosevelt Lake",
+"county": "Stevens",
+"lat": 47.92243,
+"lon": -118.5835
+},
+{
+"name": "Franklin Roosevelt Lake",
+"county": "Stevens",
+"lat": 47.94753,
+"lon": -118.98767
+},
+{
+"name": "Franklin Roosevelt Lake",
+"county": "Stevens",
+"lat": 47.94817,
+"lon": -118.96486
+},
+{
+"name": "Franklin Roosevelt Lake",
+"county": "Stevens",
+"lat": 48.12967,
+"lon": -118.22549
+},
+{
+"name": "Franklin Roosevelt Lake",
+"county": "Stevens",
+"lat": 48.2883,
+"lon": -118.14569
+},
+{
+"name": "Franklin Roosevelt Lake",
+"county": "Stevens",
+"lat": 48.51442,
+"lon": -118.14872
+},
+{
+"name": "Franklin Roosevelt Lake",
+"county": "Stevens",
+"lat": 48.57071,
+"lon": -118.11385
+},
+{
+"name": "Franklin Roosevelt Lake",
+"county": "Stevens",
+"lat": 48.57313,
+"lon": -118.08927
+},
+{
+"name": "Franklin Roosevelt Lake",
+"county": "Stevens",
+"lat": 48.59958,
+"lon": -118.12436
+},
+{
+"name": "Franklin Roosevelt Lake",
+"county": "Stevens",
+"lat": 48.62435,
+"lon": -118.11456
+},
+{
+"name": "Franklin Roosevelt Lake",
+"county": "Stevens",
+"lat": 48.67368,
+"lon": -118.11548
+},
+{
+"name": "Frater Lake",
+"county": "Pend Oreille",
+"lat": 48.65516,
+"lon": -117.48468
+},
+{
+"name": "Ft. Borst Park Pond",
+"county": "Lewis",
+"lat": 46.724113,
+"lon": -122.978547
+},
+{
+"name": "Gadwall Lake",
+"county": "Grant",
+"lat": 46.946567,
+"lon": -119.231302
+},
+{
+"name": "Garfield Pond",
+"county": "Whitman",
+"lat": 46.99797,
+"lon": -117.19144
+},
+{
+"name": "Gissberg Ponds",
+"county": "Snohomish",
+"lat": 48.14146,
+"lon": -122.18818
+},
+{
+"name": "Gissberg Ponds",
+"county": "Snohomish",
+"lat": 48.14332,
+"lon": -122.19035
+},
+{
+"name": "Golf Course Pond",
+"county": "Columbia",
+"lat": 46.41471,
+"lon": -117.08803
+},
+{
+"name": "Grandy Lake ",
+"county": "Skagit",
+"lat": 48.56564,
+"lon": -121.80463
+},
+{
+"name": "Granger Pond",
+"county": "Yakima",
+"lat": 46.33586,
+"lon": -120.19219
+},
+{
+"name": "Green Lake",
+"county": "Okanogan",
+"lat": 48.451345,
+"lon": -119.627613
+},
+{
+"name": "Green Lake ",
+"county": "King ",
+"lat": 47.67201,
+"lon": -122.34182
+},
+{
+"name": "Green Lake ",
+"county": "King ",
+"lat": 47.67606,
+"lon": -122.33378
+},
+{
+"name": "Green Lake ",
+"county": "King ",
+"lat": 47.67689,
+"lon": -122.33304
+},
+{
+"name": "Grimes Lake",
+"county": "Douglas",
+"lat": 47.721533,
+"lon": -119.599976
+},
+{
+"name": "Half Moon Lake",
+"county": "Pend Oreille",
+"lat": 48.41423,
+"lon": -117.21384
+},
+{
+"name": "Halfmoon Lake",
+"county": "Adams",
+"lat": 46.892085,
+"lon": -119.234187
+},
+{
+"name": "Haller Lake",
+"county": "King",
+"lat": 47.71955,
+"lon": -122.33572
+},
+{
+"name": "Hammond Lake",
+"county": "Douglas",
+"lat": 47.368584,
+"lon": -120.121759
+},
+{
+"name": "Hammond Lake",
+"county": "Douglas",
+"lat": 47.37372,
+"lon": -120.127807
+},
+{
+"name": "Hanson - Lower Pond",
+"county": "Kittitas",
+"lat": 47.18367,
+"lon": -120.90858
+},
+{
+"name": "Hanson - Upper Pond",
+"county": "Kittitas",
+"lat": 47.18512,
+"lon": -120.9165
+},
+{
+"name": "Harris Lake",
+"county": "Grant",
+"lat": 47.0127,
+"lon": -119.494131
+},
+{
+"name": "Harts Lake",
+"county": "Pierce",
+"lat": 46.89389,
+"lon": -122.46483
+},
+{
+"name": "Hatch Lake",
+"county": "Pend Oreille",
+"lat": 48.50082,
+"lon": -117.80759
+},
+{
+"name": "Heart Lake",
+"county": "Grant",
+"lat": 46.931186,
+"lon": -119.183534
+},
+{
+"name": "Heart Lake ",
+"county": "Skagit",
+"lat": 48.47506,
+"lon": -122.62854
+},
+{
+"name": "Herman Lake",
+"county": "Adams",
+"lat": 46.897353,
+"lon": -119.199701
+},
+{
+"name": "Heron Lakes",
+"county": "Grant",
+"lat": 46.982385,
+"lon": -119.28698
+},
+{
+"name": "Hess Lake",
+"county": "Okanogan",
+"lat": 48.50568,
+"lon": -119.64116
+},
+{
+"name": "Hicks Lake",
+"county": "Thurston",
+"lat": 47.02201,
+"lon": -122.80212
+},
+{
+"name": "Hicks Lake",
+"county": "Thurston",
+"lat": 47.02269,
+"lon": -122.80253
+},
+{
+"name": "Hidden (Allen) Lake",
+"county": "Chelan",
+"lat": 47.82358,
+"lon": -120.809719
+},
+{
+"name": "Hideaway Lake",
+"county": "Douglas",
+"lat": 47.381781,
+"lon": -120.14385
+},
+{
+"name": "Hog Canyon Lake",
+"county": "Spokane",
+"lat": 47.37383,
+"lon": -117.80974
+},
+{
+"name": "Holm Lake",
+"county": "King",
+"lat": 47.30078,
+"lon": -122.12381
+},
+{
+"name": "Homestead Lake",
+"county": "Grant",
+"lat": 47.29708,
+"lon": -119.317256
+},
+{
+"name": "Hood Park Ponds",
+"county": "Walla Walla",
+"lat": 46.21381,
+"lon": -119.01155
+},
+{
+"name": "Horseshoe Lake",
+"county": "Cowlitz",
+"lat": 45.901403,
+"lon": -122.744364
+},
+{
+"name": "Horseshoe Lake",
+"county": "Cowlitz",
+"lat": 45.90142,
+"lon": -122.740955
+},
+{
+"name": "Horseshoe Lake",
+"county": "Kitsap",
+"lat": 47.40555,
+"lon": -122.66445
+},
+{
+"name": "Horseshoe Lake",
+"county": "Pend Oreille",
+"lat": 48.10918,
+"lon": -117.42258
+},
+{
+"name": "Horseshoe Lake",
+"county": "Grant",
+"lat": 47.021102,
+"lon": -119.963974
+},
+{
+"name": "Horsethief Lake",
+"county": "Klickitat",
+"lat": 45.6427,
+"lon": -121.104748
+},
+{
+"name": "Hourglass Lake",
+"county": "Grant",
+"lat": 46.940314,
+"lon": -119.225908
+},
+{
+"name": "Hunsinger Lake",
+"county": "Okanogan",
+"lat": 48.445681,
+"lon": -119.600781
+},
+{
+"name": "I-82 Pond 1",
+"county": "Yakima",
+"lat": 46.48342,
+"lon": -120.41114
+},
+{
+"name": "I-82 Pond 3",
+"county": "Yakima",
+"lat": 46.46741,
+"lon": -120.38193
+},
+{
+"name": "I-82 Pond 4",
+"county": "Yakima",
+"lat": 46.44074,
+"lon": -120.34652
+},
+{
+"name": "I-82 Pond 5",
+"county": "Yakima",
+"lat": 46.43401,
+"lon": -120.34808
+},
+{
+"name": "I-82 Pond 6",
+"county": "Yakima",
+"lat": 46.42144,
+"lon": -120.32031
+},
+{
+"name": "Icehouse Lake",
+"county": "Skamania",
+"lat": 46.661441,
+"lon": -121.906395
+},
+{
+"name": "Indian Flat Pond",
+"county": "Yakima",
+"lat": 46.98257,
+"lon": -121.13202
+},
+{
+"name": "Isabella Lake",
+"county": "Mason",
+"lat": 47.16725,
+"lon": -123.11688
+},
+{
+"name": "Island Lake",
+"county": "Mason",
+"lat": 47.25002,
+"lon": -123.11893
+},
+{
+"name": "Island Lake",
+"county": "Kitsap",
+"lat": 47.68261,
+"lon": -122.66051
+},
+{
+"name": "Jackson Lake",
+"county": "Pierce",
+"lat": 47.28926,
+"lon": -122.77543
+},
+{
+"name": "Jameson Lake",
+"county": "Douglas",
+"lat": 47.6601,
+"lon": -119.633397
+},
+{
+"name": "Jameson Lake",
+"county": "Douglas",
+"lat": 47.666673,
+"lon": -119.62941
+},
+{
+"name": "Jameson Lake",
+"county": "Douglas",
+"lat": 47.672298,
+"lon": -119.630124
+},
+{
+"name": "Jameson Lake",
+"county": "Douglas",
+"lat": 47.675621,
+"lon": -119.629207
+},
+{
+"name": "Jameson Lake",
+"county": "Douglas",
+"lat": 47.696877,
+"lon": -119.617483
+},
+{
+"name": "Janet Lake",
+"county": "Grant",
+"lat": 46.941635,
+"lon": -119.2065
+},
+{
+"name": "Jefferson Park Pond",
+"county": "Walla Walla",
+"lat": 46.05529,
+"lon": -118.3456
+},
+{
+"name": "June Lake",
+"county": "Grant",
+"lat": 46.946011,
+"lon": -119.17846
+},
+{
+"name": "Katy Lake",
+"county": "Grant",
+"lat": 46.949677,
+"lon": -119.20391
+},
+{
+"name": "Kitsap Lake",
+"county": "Kitsap",
+"lat": 47.56581,
+"lon": -122.70868
+},
+{
+"name": "Kitsap Lake",
+"county": "Kitsap",
+"lat": 47.56624,
+"lon": -122.70186
+},
+{
+"name": "Kiwanis Pond",
+"county": "Kittitas",
+"lat": 47.18653,
+"lon": -120.9197
+},
+{
+"name": "Klineline Pond",
+"county": "Clark",
+"lat": 45.707268,
+"lon": -122.657575
+},
+{
+"name": "Klineline Pond",
+"county": "Clark",
+"lat": 45.708322,
+"lon": -122.65731
+},
+{
+"name": "Klineline Pond",
+"county": "Clark",
+"lat": 45.709258,
+"lon": -122.657177
+},
+{
+"name": "Kress Lake",
+"county": "Cowlitz",
+"lat": 46.046589,
+"lon": -122.853409
+},
+{
+"name": "Lacamas Lake",
+"county": "Clark",
+"lat": 45.604064,
+"lon": -122.408567
+},
+{
+"name": "Lacamas Lake",
+"county": "Clark",
+"lat": 45.604845,
+"lon": -122.407623
+},
+{
+"name": "Lacamas Lake",
+"county": "Clark",
+"lat": 45.615619,
+"lon": -122.41966
+},
+{
+"name": "Lacamas Lake",
+"county": "Clark",
+"lat": 45.621574,
+"lon": -122.428975
+},
+{
+"name": "Lake Aberdeen",
+"county": "Grays Harbor",
+"lat": 46.98082,
+"lon": -123.74121
+},
+{
+"name": "Lake Alice",
+"county": "King",
+"lat": 47.53248,
+"lon": -121.88427
+},
+{
+"name": "Lake Armstrong",
+"county": "Snohomish",
+"lat": 48.22394,
+"lon": -122.12302
+},
+{
+"name": "Lake Beth",
+"county": "Okanogan",
+"lat": 48.860203,
+"lon": -118.986941
+},
+{
+"name": "Lake Boren",
+"county": "King",
+"lat": 47.53153,
+"lon": -122.16489
+},
+{
+"name": "Lake Campbell",
+"county": "Skagit",
+"lat": 48.44264,
+"lon": -122.61835
+},
+{
+"name": "Lake Cavanaugh",
+"county": "Skagit",
+"lat": 48.31096,
+"lon": -121.98853
+},
+{
+"name": "Lake Chelan",
+"county": "Chelan",
+"lat": 47.835067,
+"lon": -120.016006
+},
+{
+"name": "Lake Chelan",
+"county": "Chelan",
+"lat": 47.875353,
+"lon": -120.19679
+},
+{
+"name": "Lake Chelan",
+"county": "Chelan",
+"lat": 47.878253,
+"lon": -120.128625
+},
+{
+"name": "Lake Chelan",
+"county": "Chelan",
+"lat": 47.993115,
+"lon": -120.26146
+},
+{
+"name": "Lake Desire",
+"county": "King",
+"lat": 47.44592,
+"lon": -122.10767
+},
+{
+"name": "Lake Dolloff",
+"county": "King",
+"lat": 47.32384,
+"lon": -122.28506
+},
+{
+"name": "Lake Easton ",
+"county": "Kittitas",
+"lat": 47.25298,
+"lon": -121.19591
+},
+{
+"name": "Lake Ellen",
+"county": "Ferry",
+"lat": 48.49656,
+"lon": -118.26335
+},
+{
+"name": "Lake Ellen",
+"county": "Ferry",
+"lat": 48.49843,
+"lon": -118.25492
+},
+{
+"name": "Lake Entiat",
+"county": "Chelan",
+"lat": 47.539624,
+"lon": -120.281316
+},
+{
+"name": "Lake Entiat",
+"county": "Chelan",
+"lat": 47.542799,
+"lon": -120.29224
+},
+{
+"name": "Lake Entiat",
+"county": "Chelan",
+"lat": 47.665864,
+"lon": -120.220326
+},
+{
+"name": "Lake Entiat",
+"county": "Chelan",
+"lat": 47.704917,
+"lon": -120.203092
+},
+{
+"name": "Lake Entiat",
+"county": "Chelan",
+"lat": 47.801167,
+"lon": -119.983364
+},
+{
+"name": "Lake Entiat",
+"county": "Chelan",
+"lat": 47.805116,
+"lon": -119.987293
+},
+{
+"name": "Lake Entiat",
+"county": "Chelan",
+"lat": 47.807722,
+"lon": -119.973943
+},
+{
+"name": "Lake Entiat",
+"county": "Chelan",
+"lat": 47.823226,
+"lon": -119.972001
+},
+{
+"name": "Lake Entiat",
+"county": "Chelan",
+"lat": 47.934717,
+"lon": -119.870315
+},
+{
+"name": "Lake Erie",
+"county": "Skagit",
+"lat": 48.44939,
+"lon": -122.63962
+},
+{
+"name": "Lake Fenwick",
+"county": "King",
+"lat": 47.36841,
+"lon": -122.27297
+},
+{
+"name": "Lake Geneva",
+"county": "King",
+"lat": 47.29233,
+"lon": -122.27885
+},
+{
+"name": "Lake Gillette",
+"county": "Stevens",
+"lat": 48.6134,
+"lon": -117.5403
+},
+{
+"name": "Lake Goodwin",
+"county": "Snohomish",
+"lat": 48.1366,
+"lon": -122.29047
+},
+{
+"name": "Lake Goodwin",
+"county": "Snohomish",
+"lat": 48.154,
+"lon": -122.29546
+},
+{
+"name": "Lake Goss",
+"county": "Island",
+"lat": 48.03938,
+"lon": -122.47814
+},
+{
+"name": "Lake Howard",
+"county": "Snohomish",
+"lat": 48.15835,
+"lon": -122.32979
+},
+{
+"name": "Lake Kapowsin",
+"county": "Pierce",
+"lat": 46.98445,
+"lon": -122.21878
+},
+{
+"name": "Lake Kapowsin",
+"county": "Pierce",
+"lat": 46.98493,
+"lon": -122.21793
+},
+{
+"name": "Lake Ketchum",
+"county": "Snohomish",
+"lat": 48.28098,
+"lon": -122.34586
+},
+{
+"name": "Lake Ki",
+"county": "Snohomish",
+"lat": 48.15668,
+"lon": -122.26237
+},
+{
+"name": "Lake Killarney",
+"county": "King",
+"lat": 47.28634,
+"lon": -122.29156
+},
+{
+"name": "Lake Lawrence",
+"county": "Thurston",
+"lat": 46.84985,
+"lon": -122.57194
+},
+{
+"name": "Lake Lenore",
+"county": "Grant",
+"lat": 47.460367,
+"lon": -119.519047
+},
+{
+"name": "Lake Lenore",
+"county": "Grant",
+"lat": 47.464555,
+"lon": -119.518642
+},
+{
+"name": "Lake Lenore",
+"county": "Grant",
+"lat": 47.475086,
+"lon": -119.518169
+},
+{
+"name": "Lake Lenore",
+"county": "Grant",
+"lat": 47.493459,
+"lon": -119.511603
+},
+{
+"name": "Lake Lenore",
+"county": "Grant",
+"lat": 47.513271,
+"lon": -119.503162
+},
+{
+"name": "Lake Lenore",
+"county": "Grant",
+"lat": 47.526834,
+"lon": -119.495707
+},
+{
+"name": "Lake Lenore",
+"county": "Grant",
+"lat": 47.530561,
+"lon": -119.49362
+},
+{
+"name": "Lake Leo",
+"county": "Pend Oreille",
+"lat": 48.64932,
+"lon": -117.49653
+},
+{
+"name": "Lake Limerick",
+"county": "Mason",
+"lat": 47.28063,
+"lon": -123.0505
+},
+{
+"name": "Lake Margaret",
+"county": "King",
+"lat": 47.76761,
+"lon": -121.90226
+},
+{
+"name": "Lake McMurray",
+"county": "Skagit",
+"lat": 48.31285,
+"lon": -122.22061
+},
+{
+"name": "Lake Meridian",
+"county": "King",
+"lat": 47.35934,
+"lon": -122.14601
+},
+{
+"name": "Lake Morton",
+"county": "King",
+"lat": 47.3252,
+"lon": -122.08812
+},
+{
+"name": "Lake Morton",
+"county": "King",
+"lat": 47.42827,
+"lon": -122.10701
+},
+{
+"name": "Lake Osoyoos",
+"county": "Okanogan",
+"lat": 48.94939,
+"lon": -119.430549
+},
+{
+"name": "Lake Osoyoos",
+"county": "Okanogan",
+"lat": 48.964309,
+"lon": -119.441863
+},
+{
+"name": "Lake Padden",
+"county": "Whatcom",
+"lat": 48.70392,
+"lon": -122.46214
+},
+{
+"name": "Lake Padden",
+"county": "Whatcom",
+"lat": 48.7056,
+"lon": -122.4491
+},
+{
+"name": "Lake Padden",
+"county": "Whatcom",
+"lat": 48.70571,
+"lon": -122.46031
+},
+{
+"name": "Lake Pateros",
+"county": "Douglas",
+"lat": 47.984084,
+"lon": -119.887973
+},
+{
+"name": "Lake Pateros",
+"county": "Douglas",
+"lat": 48.014442,
+"lon": -119.677649
+},
+{
+"name": "Lake Pateros",
+"county": "Douglas",
+"lat": 48.017871,
+"lon": -119.685895
+},
+{
+"name": "Lake Pateros",
+"county": "Douglas",
+"lat": 48.051356,
+"lon": -119.903923
+},
+{
+"name": "Lake Pateros",
+"county": "Douglas",
+"lat": 48.090895,
+"lon": -119.786099
+},
+{
+"name": "Lake Roesiger",
+"county": "Snohomish",
+"lat": 47.97248,
+"lon": -121.92308
+},
+{
+"name": "Lake Roesiger",
+"county": "Snohomish",
+"lat": 47.98088,
+"lon": -121.91609
+},
+{
+"name": "Lake Sacajawea",
+"county": "Cowlitz",
+"lat": 46.12743,
+"lon": -122.942544
+},
+{
+"name": "Lake Samish",
+"county": "Whatcom",
+"lat": 48.66652,
+"lon": -122.37682
+},
+{
+"name": "Lake Sammamish",
+"county": "King ",
+"lat": 47.56425,
+"lon": -122.05571
+},
+{
+"name": "Lake Sammamish",
+"county": "King ",
+"lat": 47.64293,
+"lon": -122.10128
+},
+{
+"name": "Lake Sawyer",
+"county": "King",
+"lat": 47.3234,
+"lon": -122.03122
+},
+{
+"name": "Lake Sawyer",
+"county": "King",
+"lat": 47.33701,
+"lon": -122.0415
+},
+{
+"name": "Lake Serene",
+"county": "Snohomish",
+"lat": 47.87146,
+"lon": -122.29012
+},
+{
+"name": "Lake Spokane",
+"county": "Stevens",
+"lat": 47.79409,
+"lon": -117.56744
+},
+{
+"name": "Lake Spokane",
+"county": "Stevens",
+"lat": 47.83388,
+"lon": -117.76104
+},
+{
+"name": "Lake Stevens",
+"county": "Snohomish",
+"lat": 47.99664,
+"lon": -122.08681
+},
+{
+"name": "Lake Stevens",
+"county": "Snohomish",
+"lat": 48.01307,
+"lon": -122.06674
+},
+{
+"name": "Lake Stevens",
+"county": "Snohomish",
+"lat": 48.01404,
+"lon": -122.06703
+},
+{
+"name": "Lake Terrell",
+"county": "Whatcom",
+"lat": 48.86172,
+"lon": -122.68918
+},
+{
+"name": "Lake Thomas",
+"county": "Stevens",
+"lat": 48.62378,
+"lon": -117.53703
+},
+{
+"name": "Lake Union",
+"county": "King",
+"lat": 47.6367,
+"lon": -122.32952
+},
+{
+"name": "Lake Union",
+"county": "King",
+"lat": 47.63976,
+"lon": -122.32968
+},
+{
+"name": "Lake Union",
+"county": "King",
+"lat": 47.64794,
+"lon": -122.32555
+},
+{
+"name": "Lake Wallula",
+"county": "Benton",
+"lat": 45.94411,
+"lon": -119.29895
+},
+{
+"name": "Lake Wallula",
+"county": "Benton",
+"lat": 46.02583,
+"lon": -118.93925
+},
+{
+"name": "Lake Wallula",
+"county": "Benton",
+"lat": 46.18436,
+"lon": -119.03205
+},
+{
+"name": "Lake Wallula",
+"county": "Benton",
+"lat": 46.20173,
+"lon": -119.03749
+},
+{
+"name": "Lake Wallula",
+"county": "Benton",
+"lat": 46.2148,
+"lon": -119.01894
+},
+{
+"name": "Lake Wallula",
+"county": "Benton",
+"lat": 46.21674,
+"lon": -119.11591
+},
+{
+"name": "Lake Wallula",
+"county": "Benton",
+"lat": 46.21909,
+"lon": -119.09116
+},
+{
+"name": "Lake Wallula",
+"county": "Benton",
+"lat": 46.22206,
+"lon": -119.13826
+},
+{
+"name": "Lake Wallula",
+"county": "Benton",
+"lat": 46.23217,
+"lon": -119.16264
+},
+{
+"name": "Lake Wallula",
+"county": "Benton",
+"lat": 46.23866,
+"lon": -119.21899
+},
+{
+"name": "Lake Wallula",
+"county": "Benton",
+"lat": 46.2441,
+"lon": -119.20551
+},
+{
+"name": "Lake Wallula",
+"county": "Benton",
+"lat": 46.26448,
+"lon": -119.25135
+},
+{
+"name": "Lake Wallula",
+"county": "Benton",
+"lat": 46.27495,
+"lon": -119.26958
+},
+{
+"name": "Lake Wallula",
+"county": "Benton",
+"lat": 46.27714,
+"lon": -119.27074
+},
+{
+"name": "Lake Wallula",
+"county": "Benton",
+"lat": 46.2796,
+"lon": -119.27062
+},
+{
+"name": "Lake Wallula",
+"county": "Benton",
+"lat": 46.30942,
+"lon": -119.26204
+},
+{
+"name": "Lake Wallula",
+"county": "Benton",
+"lat": 46.31437,
+"lon": -119.26018
+},
+{
+"name": "Lake Wallula",
+"county": "Benton",
+"lat": 46.3211,
+"lon": -119.24876
+},
+{
+"name": "Lake Wallula",
+"county": "Benton",
+"lat": 46.50542,
+"lon": -119.26065
+},
+{
+"name": "Lake Wallula",
+"county": "Benton",
+"lat": 46.50842,
+"lon": -119.26226
+},
+{
+"name": "Lake Wallula",
+"county": "Benton",
+"lat": 46.58575,
+"lon": -119.36749
+},
+{
+"name": "Lake Wallula",
+"county": "Benton",
+"lat": 46.63876,
+"lon": -119.74525
+},
+{
+"name": "Lake Wallula",
+"county": "Benton",
+"lat": 46.63992,
+"lon": -119.74283
+},
+{
+"name": "Lake Wallula",
+"county": "Benton",
+"lat": 46.6747,
+"lon": -119.45397
+},
+{
+"name": "Lake Washington",
+"county": "King ",
+"lat": 47.50639,
+"lon": -122.2033
+},
+{
+"name": "Lake Washington",
+"county": "King ",
+"lat": 47.56085,
+"lon": -122.25559
+},
+{
+"name": "Lake Washington",
+"county": "King ",
+"lat": 47.56554,
+"lon": -122.19206
+},
+{
+"name": "Lake Washington",
+"county": "King ",
+"lat": 47.57169,
+"lon": -122.27668
+},
+{
+"name": "Lake Washington",
+"county": "King ",
+"lat": 47.5784,
+"lon": -122.19709
+},
+{
+"name": "Lake Washington",
+"county": "King ",
+"lat": 47.57903,
+"lon": -122.283
+},
+{
+"name": "Lake Washington",
+"county": "King ",
+"lat": 47.58345,
+"lon": -122.28679
+},
+{
+"name": "Lake Washington",
+"county": "King ",
+"lat": 47.58811,
+"lon": -122.20665
+},
+{
+"name": "Lake Washington",
+"county": "King ",
+"lat": 47.59076,
+"lon": -122.22418
+},
+{
+"name": "Lake Washington",
+"county": "King ",
+"lat": 47.59742,
+"lon": -122.21057
+},
+{
+"name": "Lake Washington",
+"county": "King ",
+"lat": 47.59992,
+"lon": -122.2116
+},
+{
+"name": "Lake Washington",
+"county": "King ",
+"lat": 47.60591,
+"lon": -122.28257
+},
+{
+"name": "Lake Washington",
+"county": "King ",
+"lat": 47.61412,
+"lon": -122.21817
+},
+{
+"name": "Lake Washington",
+"county": "King ",
+"lat": 47.63696,
+"lon": -122.27587
+},
+{
+"name": "Lake Washington",
+"county": "King ",
+"lat": 47.64581,
+"lon": -122.29986
+},
+{
+"name": "Lake Washington",
+"county": "King ",
+"lat": 47.652161,
+"lon": -122.218539
+},
+{
+"name": "Lake Washington",
+"county": "King ",
+"lat": 47.6565,
+"lon": -122.20927
+},
+{
+"name": "Lake Washington",
+"county": "King ",
+"lat": 47.66082,
+"lon": -122.20812
+},
+{
+"name": "Lake Washington",
+"county": "King ",
+"lat": 47.66604,
+"lon": -122.20783
+},
+{
+"name": "Lake Washington",
+"county": "King ",
+"lat": 47.66799,
+"lon": -122.20816
+},
+{
+"name": "Lake Washington",
+"county": "King ",
+"lat": 47.67056,
+"lon": -122.20704
+},
+{
+"name": "Lake Washington",
+"county": "King ",
+"lat": 47.67318,
+"lon": -122.20793
+},
+{
+"name": "Lake Washington",
+"county": "King ",
+"lat": 47.67398,
+"lon": -122.20931
+},
+{
+"name": "Lake Washington",
+"county": "King ",
+"lat": 47.6754,
+"lon": -122.2099
+},
+{
+"name": "Lake Washington",
+"county": "King ",
+"lat": 47.6769,
+"lon": -122.24929
+},
+{
+"name": "Lake Washington",
+"county": "King ",
+"lat": 47.68713,
+"lon": -122.21825
+},
+{
+"name": "Lake Washington",
+"county": "King ",
+"lat": 47.70281,
+"lon": -122.21631
+},
+{
+"name": "Lake Washington",
+"county": "King ",
+"lat": 47.75543,
+"lon": -122.26447
+},
+{
+"name": "Lake Wenatchee",
+"county": "Chelan",
+"lat": 47.806637,
+"lon": -120.727065
+},
+{
+"name": "Lake Wenatchee",
+"county": "Chelan",
+"lat": 47.809592,
+"lon": -120.727762
+},
+{
+"name": "Lake Wenatchee",
+"county": "Chelan",
+"lat": 47.823849,
+"lon": -120.809693
+},
+{
+"name": "Lake Whatcom",
+"county": "Whatcom",
+"lat": 48.72743,
+"lon": -122.30733
+},
+{
+"name": "Lake Whatcom",
+"county": "Whatcom",
+"lat": 48.76133,
+"lon": -122.41815
+},
+{
+"name": "Lake Whitman",
+"county": "Pierce",
+"lat": 46.96067,
+"lon": -122.25813
+},
+{
+"name": "Lake Wilderness",
+"county": "King",
+"lat": 47.3754,
+"lon": -122.03697
+},
+{
+"name": "Lake Wilderness",
+"county": "King",
+"lat": 47.37702,
+"lon": -122.03772
+},
+{
+"name": "Langlois Lake",
+"county": "King",
+"lat": 47.63505,
+"lon": -121.88479
+},
+{
+"name": "Lavender Lake",
+"county": "Kittitas",
+"lat": 47.2186,
+"lon": -121.13017
+},
+{
+"name": "Leader lake",
+"county": "Okanogan",
+"lat": 48.36037,
+"lon": -119.690862
+},
+{
+"name": "Leader lake",
+"county": "Okanogan",
+"lat": 48.362032,
+"lon": -119.69516
+},
+{
+"name": "Leader lake",
+"county": "Okanogan",
+"lat": 48.362221,
+"lon": -119.690756
+},
+{
+"name": "Leland Lake",
+"county": "Jefferson",
+"lat": 47.89858,
+"lon": -122.87529
+},
+{
+"name": "Lemna Lake",
+"county": "Grant",
+"lat": 46.942992,
+"lon": -119.229985
+},
+{
+"name": "Lenice Lake",
+"county": "Grant",
+"lat": 46.837891,
+"lon": -119.832542
+},
+{
+"name": "Liberty Lake",
+"county": "Spokane",
+"lat": 47.63727,
+"lon": -117.06391
+},
+{
+"name": "Liberty Lake",
+"county": "Spokane",
+"lat": 47.65401,
+"lon": -117.08454
+},
+{
+"name": "Lilly Lake",
+"county": "Chelan",
+"lat": 47.29593,
+"lon": -120.30912
+},
+{
+"name": "Lincoln Park Pond 1",
+"county": "Clallam",
+"lat": 48.11585,
+"lon": -123.47567
+},
+{
+"name": "Lions Park Pond",
+"county": "Walla Walla",
+"lat": 46.04125,
+"lon": -118.37604
+},
+{
+"name": "Little Beaver Lake",
+"county": "Okanogan",
+"lat": 48.851093,
+"lon": -118.960575
+},
+{
+"name": "Little Green Lake",
+"county": "Okanogan",
+"lat": 48.43664,
+"lon": -119.628662
+},
+{
+"name": "Little Lost Lake",
+"county": "Pend Oreille",
+"lat": 48.82031,
+"lon": -117.43986
+},
+{
+"name": "Little Twin Lake",
+"county": "Okanogan",
+"lat": 48.448505,
+"lon": -120.190857
+},
+{
+"name": "Lois Lake",
+"county": "Grant",
+"lat": 46.948649,
+"lon": -119.1679
+},
+{
+"name": "Lone Lake",
+"county": "Island",
+"lat": 48.02384,
+"lon": -122.46121
+},
+{
+"name": "Long Lake",
+"county": "Grant",
+"lat": 46.928381,
+"lon": -119.202006
+},
+{
+"name": "Long Lake",
+"county": "Okanogan",
+"lat": 48.612668,
+"lon": -119.132091
+},
+{
+"name": "Long Lake",
+"county": "Ferry",
+"lat": 48.4982,
+"lon": -118.81157
+},
+{
+"name": "Long Lake ",
+"county": "Thurston",
+"lat": 47.02134,
+"lon": -122.78174
+},
+{
+"name": "Long Lake (pierce)",
+"county": "Kitsap",
+"lat": 47.48519,
+"lon": -122.59228
+},
+{
+"name": "Long Lake (pierce)",
+"county": "Kitsap",
+"lat": 47.49917,
+"lon": -122.58228
+},
+{
+"name": "Long's Pond",
+"county": "Thurston",
+"lat": 47.03897,
+"lon": -122.79263
+},
+{
+"name": "Loomis Lake",
+"county": "Pacific",
+"lat": 46.4384,
+"lon": -124.04453
+},
+{
+"name": "Lost Lake",
+"county": "Mason",
+"lat": 47.16435,
+"lon": -123.24711
+},
+{
+"name": "Lost Lake",
+"county": "Kittitas",
+"lat": 47.33324,
+"lon": -121.39524
+},
+{
+"name": "Lower Antilon Lake",
+"county": "Chelan",
+"lat": 47.960817,
+"lon": -120.152191
+},
+{
+"name": "Lower Antilon Lake",
+"county": "Chelan",
+"lat": 47.967696,
+"lon": -120.155155
+},
+{
+"name": "Lower Caliche Lake",
+"county": "Grant",
+"lat": 47.031599,
+"lon": -119.927838
+},
+{
+"name": "Lower Goose Lake",
+"county": "Grant",
+"lat": 46.918879,
+"lon": -119.283991
+},
+{
+"name": "Lower Goose Lake",
+"county": "Grant",
+"lat": 46.923944,
+"lon": -119.295088
+},
+{
+"name": "Lower Hampton Lake",
+"county": "Grant",
+"lat": 46.92623,
+"lon": -119.220623
+},
+{
+"name": "Lower Hampton Lake",
+"county": "Grant",
+"lat": 46.92734,
+"lon": -119.221785
+},
+{
+"name": "Lower Twin Lake",
+"county": "Lincoln",
+"lat": 47.52939,
+"lon": -118.50763
+},
+{
+"name": "Lyle Lake",
+"county": "Adams",
+"lat": 46.89756,
+"lon": -119.205652
+},
+{
+"name": "Lyman Lake",
+"county": "Okanogan",
+"lat": 48.526648,
+"lon": -119.021542
+},
+{
+"name": "Marmes Pond",
+"county": "Franklin",
+"lat": 46.6148,
+"lon": -118.20288
+},
+{
+"name": "Marshall Lake",
+"county": "Pend Oreille",
+"lat": 48.25656,
+"lon": -117.07864
+},
+{
+"name": "Martha Alderwood Manor",
+"county": "Snohomish",
+"lat": 47.85046,
+"lon": -122.24526
+},
+{
+"name": "Martha Alderwood Manor",
+"county": "Snohomish",
+"lat": 47.85074,
+"lon": -122.24376
+},
+{
+"name": "Martha Alderwood Manor",
+"county": "Snohomish",
+"lat": 47.85102,
+"lon": -122.24293
+},
+{
+"name": "Martha Lake",
+"county": "Grant",
+"lat": 47.092651,
+"lon": -119.838216
+},
+{
+"name": "Martha Lake",
+"county": "Grant",
+"lat": 47.095271,
+"lon": -119.837904
+},
+{
+"name": "Martha Lake",
+"county": "Grant",
+"lat": 47.096907,
+"lon": -119.83836
+},
+{
+"name": "Mary Ann Lake",
+"county": "Okanogan",
+"lat": 48.937313,
+"lon": -119.087944
+},
+{
+"name": "Mattoon Lake",
+"county": "Kittitas",
+"lat": 46.97842,
+"lon": -120.55273
+},
+{
+"name": "Mattoon Lake",
+"county": "Kittitas",
+"lat": 46.97713,
+"lon": -120.54832
+},
+{
+"name": "Mayfield Lake",
+"county": "Lewis",
+"lat": 46.531778,
+"lon": -122.554859
+},
+{
+"name": "Mayfield Lake",
+"county": "Lewis",
+"lat": 46.548374,
+"lon": -122.519237
+},
+{
+"name": "Mayfield Lake",
+"county": "Lewis",
+"lat": 46.553167,
+"lon": -122.537248
+},
+{
+"name": "McCabe Pond",
+"county": "Kittitas",
+"lat": 46.92413,
+"lon": -120.50834
+},
+{
+"name": "McDowell Lake",
+"county": "Stevens",
+"lat": 48.46947,
+"lon": -117.68338
+},
+{
+"name": "McMannaman Lake",
+"county": "Adams",
+"lat": 46.908021,
+"lon": -119.2288
+},
+{
+"name": "Medical Lake",
+"county": "Spokane",
+"lat": 47.56301,
+"lon": -117.69009
+},
+{
+"name": "Medical Lake",
+"county": "Spokane",
+"lat": 47.56349,
+"lon": -117.69277
+},
+{
+"name": "Medical Lake",
+"county": "Spokane",
+"lat": 47.57715,
+"lon": -117.68792
+},
+{
+"name": "Medical Lake",
+"county": "Spokane",
+"lat": 47.57807,
+"lon": -117.69162
+},
+{
+"name": "Merwin Reservoir",
+"county": "Cowlitz",
+"lat": 45.95731,
+"lon": -122.559552
+},
+{
+"name": "Merwin Reservoir",
+"county": "Cowlitz",
+"lat": 45.968611,
+"lon": -122.3864
+},
+{
+"name": "Merwin Reservoir",
+"county": "Cowlitz",
+"lat": 45.981625,
+"lon": -122.418848
+},
+{
+"name": "Mesa Lake",
+"county": "Franklin",
+"lat": 46.56536,
+"lon": -119.04548
+},
+{
+"name": "Mesa Lake",
+"county": "Franklin",
+"lat": 46.57242,
+"lon": -119.02932
+},
+{
+"name": "Milk Pond",
+"county": "Kittitas",
+"lat": 46.986,
+"lon": -121.0618
+},
+{
+"name": "Mineral Lake",
+"county": "Lewis",
+"lat": 46.720426,
+"lon": -122.18208
+},
+{
+"name": "Mission Pond",
+"county": "Okanogan",
+"lat": 48.270509,
+"lon": -120.240537
+},
+{
+"name": "Mitchell Pond",
+"county": "Benton",
+"lat": 46.06182,
+"lon": -118.9521
+},
+{
+"name": "Moses Lake",
+"county": "Grant",
+"lat": 47.063298,
+"lon": -119.324379
+},
+{
+"name": "Moses Lake",
+"county": "Grant",
+"lat": 47.07954,
+"lon": -119.333439
+},
+{
+"name": "Moses Lake",
+"county": "Grant",
+"lat": 47.084318,
+"lon": -119.332517
+},
+{
+"name": "Moses Lake",
+"county": "Grant",
+"lat": 47.090625,
+"lon": -119.31108
+},
+{
+"name": "Moses Lake",
+"county": "Grant",
+"lat": 47.103715,
+"lon": -119.325313
+},
+{
+"name": "Moses Lake",
+"county": "Grant",
+"lat": 47.108685,
+"lon": -119.284133
+},
+{
+"name": "Moses Lake",
+"county": "Grant",
+"lat": 47.135848,
+"lon": -119.278162
+},
+{
+"name": "Moses Lake",
+"county": "Grant",
+"lat": 47.13897,
+"lon": -119.314911
+},
+{
+"name": "Moses Lake",
+"county": "Grant",
+"lat": 47.186039,
+"lon": -119.349346
+},
+{
+"name": "Moses Lake",
+"county": "Grant",
+"lat": 47.240597,
+"lon": -119.44874
+},
+{
+"name": "Mountain Lake",
+"county": "San Juan",
+"lat": 48.6552,
+"lon": -122.81863
+},
+{
+"name": "Mountain Lake",
+"county": "San Juan",
+"lat": 48.65702,
+"lon": -122.81799
+},
+{
+"name": "Mudgett Lake",
+"county": "Stevens",
+"lat": 48.03848,
+"lon": -118.2173
+},
+{
+"name": "Munn Lake",
+"county": "Thurston",
+"lat": 46.98772,
+"lon": -122.87843
+},
+{
+"name": "Muskegon Lake",
+"county": "Pend Oreille",
+"lat": 48.79674,
+"lon": -117.03788
+},
+{
+"name": "Myron Lake",
+"county": "Yakima",
+"lat": 46.62137,
+"lon": -120.55622
+},
+{
+"name": "Mystic Lake",
+"county": "Pend Oreille",
+"lat": 48.32595,
+"lon": -117.14545
+},
+{
+"name": "N. North Windmill Lake",
+"county": "Grant",
+"lat": 46.941287,
+"lon": -119.173404
+},
+{
+"name": "Naneum Pond",
+"county": "Kittitas",
+"lat": 47.00436,
+"lon": -120.46446
+},
+{
+"name": "Newman Lake",
+"county": "Spokane",
+"lat": 47.77283,
+"lon": -117.08509
+},
+{
+"name": "Newman Lake",
+"county": "Spokane",
+"lat": 47.79006,
+"lon": -117.11011
+},
+{
+"name": "Nile Lake",
+"county": "Pend Oreille",
+"lat": 48.65814,
+"lon": -117.47263
+},
+{
+"name": "No Name Lake",
+"county": "Pend Oreille",
+"lat": 48.29663,
+"lon": -117.13322
+},
+{
+"name": "North Lake",
+"county": "King",
+"lat": 47.30744,
+"lon": -122.28856
+},
+{
+"name": "North Teal Lake",
+"county": "Grant",
+"lat": 46.917894,
+"lon": -119.204426
+},
+{
+"name": "North Teal Lake",
+"county": "Grant",
+"lat": 46.921913,
+"lon": -119.196196
+},
+{
+"name": "North Windmill Lake",
+"county": "Grant",
+"lat": 46.941331,
+"lon": -119.172524
+},
+{
+"name": "Northrup Lake",
+"county": "Grant",
+"lat": 47.874833,
+"lon": -119.053882
+},
+{
+"name": "Ohop Lake",
+"county": "Pierce",
+"lat": 46.88511,
+"lon": -122.27899
+},
+{
+"name": "Ohop Lake",
+"county": "Pierce",
+"lat": 46.90878,
+"lon": -122.26628
+},
+{
+"name": "Orchard Pond",
+"county": "Columbia",
+"lat": 46.58329,
+"lon": -118.22132
+},
+{
+"name": "Pacific Lake",
+"county": "Lincoln",
+"lat": 47.41443,
+"lon": -118.73386
+},
+{
+"name": "Palmer Lake",
+"county": "Okanogan",
+"lat": 48.873769,
+"lon": -119.620735
+},
+{
+"name": "Palmer Lake",
+"county": "Okanogan",
+"lat": 48.915484,
+"lon": -119.634107
+},
+{
+"name": "Pampa Pond",
+"county": "Whitman",
+"lat": 46.78029,
+"lon": -117.9468
+},
+{
+"name": "Panther Lake",
+"county": "Snohomish",
+"lat": 47.95025,
+"lon": -122.00777
+},
+{
+"name": "Para & Juvenile Lakes",
+"county": "Grant",
+"lat": 46.917187,
+"lon": -119.229591
+},
+{
+"name": "Park Lake",
+"county": "Grant",
+"lat": 47.57756,
+"lon": -119.426101
+},
+{
+"name": "Park Lake",
+"county": "Grant",
+"lat": 47.583353,
+"lon": -119.419076
+},
+{
+"name": "Park Lake",
+"county": "Grant",
+"lat": 47.587452,
+"lon": -119.396271
+},
+{
+"name": "Park Lake",
+"county": "Grant",
+"lat": 47.590622,
+"lon": -119.395509
+},
+{
+"name": "Patterson Lake",
+"county": "Okanogan",
+"lat": 48.461549,
+"lon": -120.244182
+},
+{
+"name": "Pattison Lake",
+"county": "Thurston",
+"lat": 46.99588,
+"lon": -122.77094
+},
+{
+"name": "Pearrygin Lake",
+"county": "Okanogan",
+"lat": 48.488475,
+"lon": -120.148606
+},
+{
+"name": "Pearrygin Lake",
+"county": "Okanogan",
+"lat": 48.49289,
+"lon": -120.158597
+},
+{
+"name": "Pearrygin Lake",
+"county": "Okanogan",
+"lat": 48.494305,
+"lon": -120.159767
+},
+{
+"name": "Perch Lake",
+"county": "Grant",
+"lat": 47.59532,
+"lon": -119.365997
+},
+{
+"name": "Phantom Lake",
+"county": "King",
+"lat": 47.5926,
+"lon": -122.12898
+},
+{
+"name": "Pierre Lake",
+"county": "Stevens",
+"lat": 48.90392,
+"lon": -118.13836
+},
+{
+"name": "Pierre Lake",
+"county": "Stevens",
+"lat": 48.90533,
+"lon": -118.14043
+},
+{
+"name": "Pillar Lake",
+"county": "Grant",
+"lat": 46.952658,
+"lon": -119.223139
+},
+{
+"name": "Pine Lake",
+"county": "King",
+"lat": 47.58794,
+"lon": -122.04122
+},
+{
+"name": "Pit Lake",
+"county": "Douglas",
+"lat": 47.376698,
+"lon": -120.139541
+},
+{
+"name": "Poacher Lake",
+"county": "Grant",
+"lat": 46.944028,
+"lon": -119.22794
+},
+{
+"name": "Potholes Reservoir",
+"county": "Grant",
+"lat": 46.967644,
+"lon": -119.319864
+},
+{
+"name": "Potholes Reservoir",
+"county": "Grant",
+"lat": 46.969943,
+"lon": -119.333393
+},
+{
+"name": "Potholes Reservoir",
+"county": "Grant",
+"lat": 46.981456,
+"lon": -119.34795
+},
+{
+"name": "Potholes Reservoir",
+"county": "Grant",
+"lat": 46.98271,
+"lon": -119.286885
+},
+{
+"name": "Potholes Reservoir",
+"county": "Grant",
+"lat": 46.983548,
+"lon": -119.276242
+},
+{
+"name": "Potholes Reservoir",
+"county": "Grant",
+"lat": 46.984457,
+"lon": -119.257533
+},
+{
+"name": "Potholes Reservoir",
+"county": "Grant",
+"lat": 46.985086,
+"lon": -119.240258
+},
+{
+"name": "Potholes Reservoir",
+"county": "Grant",
+"lat": 46.986359,
+"lon": -119.222877
+},
+{
+"name": "Potholes Reservoir",
+"county": "Grant",
+"lat": 47.002318,
+"lon": -119.287064
+},
+{
+"name": "Potholes Reservoir",
+"county": "Grant",
+"lat": 47.066278,
+"lon": -119.359356
+},
+{
+"name": "Potholes Reservoir",
+"county": "Grant",
+"lat": 47.079489,
+"lon": -119.333564
+},
+{
+"name": "Potholes Reservoir",
+"county": "Grant",
+"lat": 47.084238,
+"lon": -119.333049
+},
+{
+"name": "Potter's Pond",
+"county": "Stevens",
+"lat": 48.42571,
+"lon": -117.66221
+},
+{
+"name": "Power Lake",
+"county": "Pend Oreille",
+"lat": 48.23932,
+"lon": -117.36437
+},
+{
+"name": "Powerline Lake",
+"county": "Franklin",
+"lat": 46.62146,
+"lon": -119.05196
+},
+{
+"name": "Powerline Lake",
+"county": "Franklin",
+"lat": 46.63935,
+"lon": -119.0606
+},
+{
+"name": "Putters Pond",
+"county": "Douglas",
+"lat": 47.376298,
+"lon": -120.139363
+},
+{
+"name": "Putters Pond",
+"county": "Douglas",
+"lat": 47.376857,
+"lon": -120.13608
+},
+{
+"name": "Quail Lake",
+"county": "Adams",
+"lat": 46.900692,
+"lon": -119.19495
+},
+{
+"name": "Quarry Pond",
+"county": "Walla Walla",
+"lat": 46.14923,
+"lon": -118.94173
+},
+{
+"name": "Quartz Creek Pond",
+"county": "Kittitas",
+"lat": 47.02064,
+"lon": -121.13919
+},
+{
+"name": "Quincy Lake",
+"county": "Grant",
+"lat": 47.13975,
+"lon": -119.920277
+},
+{
+"name": "Quincy Lake",
+"county": "Grant",
+"lat": 47.141031,
+"lon": -119.925968
+},
+{
+"name": "Quincy Lake",
+"county": "Grant",
+"lat": 47.141533,
+"lon": -119.927473
+},
+{
+"name": "Rainbow Lake",
+"county": "Columbia",
+"lat": 46.31443,
+"lon": -117.65877
+},
+{
+"name": "Rainbow Lake - Vic Meyers",
+"county": "Grant",
+"lat": 47.591737,
+"lon": -119.377535
+},
+{
+"name": "Rapjohn Lake",
+"county": "Pierce",
+"lat": 46.90562,
+"lon": -122.34518
+},
+{
+"name": "Rat Lake",
+"county": "Okanogan",
+"lat": 48.176772,
+"lon": -119.807726
+},
+{
+"name": "Rattlesnake Lake",
+"county": "King",
+"lat": 47.4276,
+"lon": -121.77537
+},
+{
+"name": "Rattlesnake Lake",
+"county": "King",
+"lat": 47.43252,
+"lon": -121.77026
+},
+{
+"name": "Red Rock Lake",
+"county": "Grant",
+"lat": 46.873128,
+"lon": -119.579686
+},
+{
+"name": "Red Rock Lake",
+"county": "Grant",
+"lat": 46.875189,
+"lon": -119.58373
+},
+{
+"name": "Reflection Pond",
+"county": "Okanogan",
+"lat": 48.738291,
+"lon": -119.671807
+},
+{
+"name": "Reflection Pond",
+"county": "Yakima",
+"lat": 46.60132,
+"lon": -120.47614
+},
+{
+"name": "Renner Lake",
+"county": "Ferry",
+"lat": 48.7803,
+"lon": -118.18673
+},
+{
+"name": "Riffe Lake",
+"county": "Lewis",
+"lat": 46.536841,
+"lon": -122.425203
+},
+{
+"name": "Rigley Lake",
+"county": "Stevens",
+"lat": 48.65347,
+"lon": -117.98978
+},
+{
+"name": "Riley Lake",
+"county": "Snohomish",
+"lat": 48.24427,
+"lon": -121.94465
+},
+{
+"name": "Rimrock Lake",
+"county": "Yakima",
+"lat": 46.64287,
+"lon": -121.20028
+},
+{
+"name": "Riparia Pond",
+"county": "Whitman",
+"lat": 46.57754,
+"lon": -118.08104
+},
+{
+"name": "Rock Lake",
+"county": "Whitman",
+"lat": 47.13939,
+"lon": -117.72488
+},
+{
+"name": "Roses Lake",
+"county": "Chelan",
+"lat": 47.902194,
+"lon": -120.157817
+},
+{
+"name": "Roses Lake",
+"county": "Chelan",
+"lat": 47.902358,
+"lon": -120.155052
+},
+{
+"name": "Roses Lake",
+"county": "Chelan",
+"lat": 47.902646,
+"lon": -120.158285
+},
+{
+"name": "Rotary Lake",
+"county": "Yakima",
+"lat": 46.62899,
+"lon": -120.50806
+},
+{
+"name": "Round Lake",
+"county": "Okanogan",
+"lat": 48.606723,
+"lon": -119.122467
+},
+{
+"name": "Round Lake",
+"county": "Okanogan",
+"lat": 48.60771,
+"lon": -119.126133
+},
+{
+"name": "Rowland, North",
+"county": "Klickitat",
+"lat": 45.709805,
+"lon": -121.381195
+},
+{
+"name": "Rowland, South",
+"county": "Klickitat",
+"lat": 45.709121,
+"lon": -122.375493
+},
+{
+"name": "Sage Lake - East",
+"county": "Grant",
+"lat": 46.933157,
+"lon": -119.195787
+},
+{
+"name": "Sage Lake - West",
+"county": "Grant",
+"lat": 46.930968,
+"lon": -119.201381
+},
+{
+"name": "Sago Lake",
+"county": "Grant",
+"lat": 46.940593,
+"lon": -119.222998
+},
+{
+"name": "Scooteney Reservoir",
+"county": "Franklin",
+"lat": 46.70005,
+"lon": -119.02398
+},
+{
+"name": "Scooteney Reservoir",
+"county": "Franklin",
+"lat": 46.70473,
+"lon": -119.02519
+},
+{
+"name": "Scout Lake",
+"county": "Grant",
+"lat": 47.12307,
+"lon": -119.929205
+},
+{
+"name": "Sedge Lake",
+"county": "Grant",
+"lat": 47.007305,
+"lon": -119.491855
+},
+{
+"name": "Shiner Lake",
+"county": "Adams",
+"lat": 46.879291,
+"lon": -119.28835
+},
+{
+"name": "Shoveler Lake",
+"county": "Grant",
+"lat": 46.941933,
+"lon": -119.22879
+},
+{
+"name": "Silver Lake",
+"county": "Cowlitz",
+"lat": 46.310547,
+"lon": -122.777438
+},
+{
+"name": "Silver Lake",
+"county": "Cowlitz",
+"lat": 46.318521,
+"lon": -122.776342
+},
+{
+"name": "Silver Lake",
+"county": "Snohomish",
+"lat": 47.88956,
+"lon": -122.20821
+},
+{
+"name": "Silver Lake",
+"county": "Snohomish",
+"lat": 47.89281,
+"lon": -122.20451
+},
+{
+"name": "Silver Lake",
+"county": "Snohomish",
+"lat": 47.8935,
+"lon": -122.2126
+},
+{
+"name": "Silver Lake",
+"county": "Snohomish",
+"lat": 47.89352,
+"lon": -122.212
+},
+{
+"name": "Silver Lake",
+"county": "Snohomish",
+"lat": 47.89421,
+"lon": -122.20357
+},
+{
+"name": "Silver Lake",
+"county": "Snohomish",
+"lat": 47.89535,
+"lon": -122.2055
+},
+{
+"name": "Silver Lake",
+"county": "Whatcom",
+"lat": 48.97112,
+"lon": -122.06966
+},
+{
+"name": "Silver Lake",
+"county": "Whatcom",
+"lat": 48.9713,
+"lon": -122.06923
+},
+{
+"name": "Silver Lake",
+"county": "Whatcom",
+"lat": 48.97169,
+"lon": -122.06825
+},
+{
+"name": "Silver Lake",
+"county": "Whatcom",
+"lat": 48.98623,
+"lon": -122.06984
+},
+{
+"name": "Silver Lake",
+"county": "Spokane",
+"lat": 47.57207,
+"lon": -117.65583
+},
+{
+"name": "Silver Nail Lake",
+"county": "Okanogan",
+"lat": 48.994199,
+"lon": -119.463845
+},
+{
+"name": "Smith Lake",
+"county": "Okanogan",
+"lat": 48.322108,
+"lon": -119.75429
+},
+{
+"name": "Snipe Lake",
+"county": "Grant",
+"lat": 46.946572,
+"lon": -119.226018
+},
+{
+"name": "Soda Lake",
+"county": "Grant",
+"lat": 46.955876,
+"lon": -119.239661
+},
+{
+"name": "Soda Lake",
+"county": "Grant",
+"lat": 46.969729,
+"lon": -119.246063
+},
+{
+"name": "South Lewis County Park Pond",
+"county": "Lewis",
+"lat": 46.433075,
+"lon": -122.842642
+},
+{
+"name": "South Teal Lake",
+"county": "Grant",
+"lat": 46.912072,
+"lon": -119.20398
+},
+{
+"name": "South Teal Lake",
+"county": "Grant",
+"lat": 46.915275,
+"lon": -119.204298
+},
+{
+"name": "Spearfish Lake",
+"county": "Klickitat",
+"lat": 46.626002,
+"lon": -121.128247
+},
+{
+"name": "Spectacle Lake",
+"county": "Okanogan",
+"lat": 48.809947,
+"lon": -119.546498
+},
+{
+"name": "Spectacle Lake",
+"county": "Okanogan",
+"lat": 48.812389,
+"lon": -119.563818
+},
+{
+"name": "Spectacle Lake",
+"county": "Okanogan",
+"lat": 48.814568,
+"lon": -119.570573
+},
+{
+"name": "Spectacle Lake",
+"county": "Okanogan",
+"lat": 48.815375,
+"lon": -119.523146
+},
+{
+"name": "Spencer Lake",
+"county": "Mason",
+"lat": 47.26175,
+"lon": -122.96826
+},
+{
+"name": "Sprague Lake",
+"county": "Adams",
+"lat": 47.244962,
+"lon": -118.077549
+},
+{
+"name": "Sprague Lake",
+"county": "Adams",
+"lat": 47.254867,
+"lon": -118.08374
+},
+{
+"name": "Sprague Lake",
+"county": "Adams",
+"lat": 47.280869,
+"lon": -118.024462
+},
+{
+"name": "Sprague Lake",
+"county": "Adams",
+"lat": 47.288524,
+"lon": -118.022418
+},
+{
+"name": "Spring Lake",
+"county": "King",
+"lat": 47.43664,
+"lon": -122.09178
+},
+{
+"name": "Spring Lake",
+"county": "Columbia",
+"lat": 46.33344,
+"lon": -117.67771
+},
+{
+"name": "Springdale City Pond",
+"county": "Stevens",
+"lat": 48.058,
+"lon": -117.7424
+},
+{
+"name": "St. Clair Lake",
+"county": "Thurston",
+"lat": 46.99847,
+"lon": -122.71777
+},
+{
+"name": "St. Clair Lake",
+"county": "Thurston",
+"lat": 46.99895,
+"lon": -122.71657
+},
+{
+"name": "Stan Coffin Lake",
+"county": "Grant",
+"lat": 47.149505,
+"lon": -119.918471
+},
+{
+"name": "Star Lake",
+"county": "King",
+"lat": 47.35288,
+"lon": -122.28652
+},
+{
+"name": "Starvation Lake",
+"county": "Stevens",
+"lat": 48.49206,
+"lon": -117.70949
+},
+{
+"name": "Starzman Lake Middle",
+"county": "Okanogan",
+"lat": 48.231998,
+"lon": -119.776973
+},
+{
+"name": "Starzman Lake Upper",
+"county": "Okanogan",
+"lat": 48.234578,
+"lon": -119.77591
+},
+{
+"name": "Steele Lake ",
+"county": "King",
+"lat": 47.32607,
+"lon": -122.30131
+},
+{
+"name": "Steilacoom Lake",
+"county": "Pierce",
+"lat": 47.17351,
+"lon": -122.53444
+},
+{
+"name": "Stickney Lake",
+"county": "Snohomish",
+"lat": 47.87589,
+"lon": -122.25493
+},
+{
+"name": "Storm Lake",
+"county": "Snohomish",
+"lat": 47.94235,
+"lon": -121.97772
+},
+{
+"name": "Sugarloaf Lake",
+"county": "Okanogan",
+"lat": 48.593899,
+"lon": -119.697211
+},
+{
+"name": "Sullivan Lake",
+"county": "Pend Oreille",
+"lat": 48.79293,
+"lon": -117.28206
+},
+{
+"name": "Sullivan Lake",
+"county": "Pend Oreille",
+"lat": 48.83697,
+"lon": -117.2784
+},
+{
+"name": "Sullivan Lake",
+"county": "Pend Oreille",
+"lat": 48.83805,
+"lon": -117.285
+},
+{
+"name": "Summit Lake",
+"county": "Stevens",
+"lat": 48.95785,
+"lon": -118.1262
+},
+{
+"name": "Sunday Lake",
+"county": "Snohomish",
+"lat": 48.23016,
+"lon": -122.25548
+},
+{
+"name": "Susan Lake",
+"county": "Grant",
+"lat": 46.957817,
+"lon": -119.2011
+},
+{
+"name": "Swift Reservoir",
+"county": "Skamania",
+"lat": 46.051501,
+"lon": -122.043848
+},
+{
+"name": "Swofford Pond",
+"county": "Lewis",
+"lat": 46.502336,
+"lon": -122.391765
+},
+{
+"name": "Sylvia Lake",
+"county": "Grays Harbor",
+"lat": 46.99662,
+"lon": -123.59597
+},
+{
+"name": "Tanwax Lake",
+"county": "Pierce",
+"lat": 46.94351,
+"lon": -122.27398
+},
+{
+"name": "Tarboo Lake",
+"county": "Jefferson",
+"lat": 47.92123,
+"lon": -122.84937
+},
+{
+"name": "Tern Lake",
+"county": "Grant",
+"lat": 47.00568,
+"lon": -119.4916
+},
+{
+"name": "Thompson Pond",
+"county": "Okanogan",
+"lat": 48.467126,
+"lon": -120.261295
+},
+{
+"name": "Thompson Seep North",
+"county": "Franklin",
+"lat": 46.68801,
+"lon": -119.26202
+},
+{
+"name": "Thompson Seep South",
+"county": "Franklin",
+"lat": 46.6735,
+"lon": -119.27372
+},
+{
+"name": "Tieton Ranger Pond",
+"county": "Yakima",
+"lat": 46.69177,
+"lon": -121.07562
+},
+{
+"name": "Tims Ponds",
+"county": "Yakima",
+"lat": 46.73219,
+"lon": -120.79684
+},
+{
+"name": "Trout Lake",
+"county": "King",
+"lat": 47.26488,
+"lon": -122.27966
+},
+{
+"name": "Tunnel Lake",
+"county": "Skamania",
+"lat": 45.617709,
+"lon": -121.617709
+},
+{
+"name": "Tye Lake",
+"county": "Snohomish",
+"lat": 47.86329,
+"lon": -122.01026
+},
+{
+"name": "Tye Lake",
+"county": "Snohomish",
+"lat": 47.86819,
+"lon": -122.01043
+},
+{
+"name": "Upper Antilon",
+"county": "Chelan",
+"lat": 47.975526,
+"lon": -120.163039
+},
+{
+"name": "Upper Antilon",
+"county": "Chelan",
+"lat": 47.97671,
+"lon": -120.163933
+},
+{
+"name": "Upper Caliche Lake",
+"county": "Grant",
+"lat": 47.032557,
+"lon": -119.927616
+},
+{
+"name": "Upper Goose Lake",
+"county": "Grant",
+"lat": 46.941132,
+"lon": -119.272902
+},
+{
+"name": "Upper Goose Lake",
+"county": "Grant",
+"lat": 46.945074,
+"lon": -119.26713
+},
+{
+"name": "Upper Hampton Lake",
+"county": "Grant",
+"lat": 46.93138,
+"lon": -119.223614
+},
+{
+"name": "Upper Twin Lake",
+"county": "Lincoln",
+"lat": 47.53091,
+"lon": -118.50559
+},
+{
+"name": "Vance Creek Pond 1 (Bowers Lake)",
+"county": "Grays Harbor",
+"lat": 46.99761,
+"lon": -123.41457
+},
+{
+"name": "Vance Creek Pond 2 (Inez Lake)",
+"county": "Grays Harbor",
+"lat": 46.99483,
+"lon": -123.41748
+},
+{
+"name": "Vance Creek Pond 2 (Inez Lake)",
+"county": "Grays Harbor",
+"lat": 46.99677,
+"lon": -123.41748
+},
+{
+"name": "Vancouver Lake",
+"county": "Clark",
+"lat": 45.664239,
+"lon": -122.717072
+},
+{
+"name": "Vancouver Lake",
+"county": "Clark",
+"lat": 45.669039,
+"lon": -122.743581
+},
+{
+"name": "Vancouver Lake",
+"county": "Clark",
+"lat": 45.680746,
+"lon": -122.742997
+},
+{
+"name": "Vancouver Lake",
+"county": "Clark",
+"lat": 45.706357,
+"lon": -122.721987
+},
+{
+"name": "Virgin Lake",
+"county": "Grant",
+"lat": 46.945222,
+"lon": -119.1693
+},
+{
+"name": "Vogler Lake",
+"county": "Skagit",
+"lat": 48.57222,
+"lon": -121.77306
+},
+{
+"name": "Waitts Lake",
+"county": "Stevens",
+"lat": 48.17751,
+"lon": -117.78183
+},
+{
+"name": "Walker Lake",
+"county": "King",
+"lat": 47.26334,
+"lon": -121.90988
+},
+{
+"name": "Wannacut Lake",
+"county": "Okanogan",
+"lat": 48.868999,
+"lon": -119.517308
+},
+{
+"name": "Wapato Lake",
+"county": "Chelan",
+"lat": 47.912712,
+"lon": -120.15438
+},
+{
+"name": "Wapato Lake",
+"county": "Pierce",
+"lat": 47.19279,
+"lon": -122.45712
+},
+{
+"name": "Wapato Lake",
+"county": "Pierce",
+"lat": 47.19472,
+"lon": -122.4557
+},
+{
+"name": "Wapato Lake",
+"county": "Pierce",
+"lat": 47.19497,
+"lon": -122.45504
+},
+{
+"name": "Ward Lake",
+"county": "Thurston",
+"lat": 47.00682,
+"lon": -122.87342
+},
+{
+"name": "Ward Lake",
+"county": "Thurston",
+"lat": 47.00927,
+"lon": -122.87214
+},
+{
+"name": "Warden Lake",
+"county": "Grant",
+"lat": 46.966818,
+"lon": -119.173865
+},
+{
+"name": "Warden Lake",
+"county": "Grant",
+"lat": 46.981025,
+"lon": -119.158826
+},
+{
+"name": "Warden Lake South",
+"county": "Grant",
+"lat": 46.962327,
+"lon": -119.175074
+},
+{
+"name": "Washburn Island Pond",
+"county": "Okanogan",
+"lat": 48.094334,
+"lon": -119.667487
+},
+{
+"name": "Washburn Lake",
+"county": "Okanogan",
+"lat": 48.841719,
+"lon": -119.59536
+},
+{
+"name": "Watson Lake",
+"county": "Columbia",
+"lat": 46.28472,
+"lon": -117.65591
+},
+{
+"name": "Waughop Lake",
+"county": "Pierce",
+"lat": 47.17099,
+"lon": -122.56194
+},
+{
+"name": "West Evans Pond",
+"county": "Asotin",
+"lat": 46.41916,
+"lon": -117.11476
+},
+{
+"name": "West Medical Lake",
+"county": "Spokane",
+"lat": 47.56335,
+"lon": -117.70329
+},
+{
+"name": "Whistle Lake",
+"county": "Skagit",
+"lat": 48.46246,
+"lon": -122.60511
+},
+{
+"name": "Whitestone Lake",
+"county": "Okanogan",
+"lat": 48.791802,
+"lon": -119.469988
+},
+{
+"name": "Widgeon Lake",
+"county": "Grant",
+"lat": 46.938767,
+"lon": -119.227353
+},
+{
+"name": "Wildcat Lake",
+"county": "Kitsap",
+"lat": 47.60234,
+"lon": -122.76683
+},
+{
+"name": "Wildcat Lake",
+"county": "Kitsap",
+"lat": 47.60319,
+"lon": -122.77226
+},
+{
+"name": "Williams Lake",
+"county": "Stevens",
+"lat": 48.75492,
+"lon": -117.96528
+},
+{
+"name": "Winchester Lake Access",
+"county": "Grant",
+"lat": 47.119642,
+"lon": -119.621118
+},
+{
+"name": "Windmill Lake",
+"county": "Grant",
+"lat": 46.930389,
+"lon": -119.179881
+},
+{
+"name": "Wnidmill Lake",
+"county": "Franklin",
+"lat": 46.62122,
+"lon": -119.06418
+},
+{
+"name": "Woodhouse Pond",
+"county": "Kittitas",
+"lat": 46.94674,
+"lon": -120.51814
+},
+{
+"name": "Worth Lake",
+"county": "Franklin",
+"lat": 46.60291,
+"lon": -119.08608
+},
+{
+"name": "Yakima Sportsmens Pond",
+"county": "Yakima",
+"lat": 46.59366,
+"lon": -120.45808
+},
+{
+"name": "Yale Reservoir",
+"county": "Cowlitz",
+"lat": 46.02607,
+"lon": -122.317244
+},
+{
+"name": "Yokum Lake",
+"county": "Pend Oreille",
+"lat": 48.60878,
+"lon": -117.32882
+},
+{
+"name": "Z Lake",
+"county": "Lincoln",
+"lat": 47.59229,
+"lon": -118.40084
+},
+{
+"name": "Z Lake",
+"county": "Lincoln",
+"lat": 47.61298,
+"lon": -118.40082
+},
+{
+"name": "Zillah Winery Pond",
+"county": "Yakima",
+"lat": 46.40569,
+"lon": -120.28202
+}
+]

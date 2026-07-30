@@ -1,0 +1,1169 @@
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src data:; font-src data:; form-action 'none'; base-uri 'none'">
+<meta name="referrer" content="no-referrer">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Washington Creel Report Insights</title>
+
+<!-- Link preview. Social crawlers do not run JavaScript, so every value here is
+     written in by assemble.py at build time rather than filled in by the page. -->
+<meta name="description" content="__DESC__">
+<link rel="canonical" href="__URL__">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Washington Creel Report Insights">
+<meta property="og:title" content="Washington Creel Report Insights">
+<meta property="og:description" content="__DESC__">
+<meta property="og:url" content="__URL__">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Washington Creel Report Insights">
+<meta name="twitter:description" content="__DESC__">
+
+<style>
+:root {
+  color-scheme: light;
+  --plane:       #edf1f2;
+  --surface:     #fbfcfd;
+  --surface-2:   #f3f6f7;
+  --ink:         #0c1416;
+  --ink-2:       #4a5659;
+  --ink-3:       #7c888b;
+  --rule:        #dbe2e4;
+  --grid:        #e5eaec;
+  --axis:        #c2cbcd;
+  --accent:      #10555f;
+  --accent-soft: #dcebed;
+  --land:        #e6ecee;
+  --water:       #dfe9ee;
+  --hot:         #c8482a;
+  --warm:        #e8853c;
+  --steady:      #98a4a7;
+  --cool:        #4a86bd;
+  --cold:        #2b5f96;
+  --good:        #17864f;
+  --crit:        #c03a2f;
+  --shadow: 0 1px 2px rgba(12,20,22,.05), 0 10px 26px -18px rgba(12,20,22,.28);
+  --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+  --sans: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) {
+    color-scheme: dark;
+    --plane:       #090f11; --surface: #141b1d; --surface-2: #1b2325;
+    --ink:         #f1f5f6; --ink-2: #b1bcbe; --ink-3: #7e8a8d;
+    --rule:        #253032; --grid: #212a2c; --axis: #35403f;
+    --accent:      #56cfd4; --accent-soft: #113234; --land: #1e2628;
+    --water:       #131e24;
+    --hot: #e4633c; --warm: #f0a25c; --steady: #7d898c;
+    --cool: #6ea6d8; --cold: #4b83bd; --good: #35b271; --crit: #e26a5c;
+    --shadow: 0 1px 2px rgba(0,0,0,.45), 0 10px 26px -18px rgba(0,0,0,.85);
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --plane:       #090f11; --surface: #141b1d; --surface-2: #1b2325;
+  --ink:         #f1f5f6; --ink-2: #b1bcbe; --ink-3: #7e8a8d;
+  --rule:        #253032; --grid: #212a2c; --axis: #35403f;
+  --accent:      #56cfd4; --accent-soft: #113234; --land: #1e2628;
+  --water:       #131e24;
+  --hot: #e4633c; --warm: #f0a25c; --steady: #7d898c;
+  --cool: #6ea6d8; --cold: #4b83bd; --good: #35b271; --crit: #e26a5c;
+  --shadow: 0 1px 2px rgba(0,0,0,.45), 0 10px 26px -18px rgba(0,0,0,.85);
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--plane); color: var(--ink);
+  font-family: var(--sans); font-size: 15px; line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+.wrap { max-width: 1280px; margin: 0 auto; padding: 0 20px 80px; }
+
+header.top { padding: 38px 0 20px; border-bottom: 1px solid var(--rule); }
+.eyebrow {
+  font-family: var(--mono); font-size: 11px; letter-spacing: .14em;
+  text-transform: uppercase; color: var(--ink-3); margin: 0 0 10px;
+}
+h1 {
+  margin: 0; font-size: clamp(27px, 4.2vw, 42px); line-height: 1.08;
+  letter-spacing: -.022em; font-weight: 660; text-wrap: balance; max-width: 24ch;
+}
+.standfirst {
+  margin: 12px 0 0; max-width: 68ch; color: var(--ink-2); font-size: 16.5px;
+}
+.currency { font-size: 13px; color: var(--ink-3); margin-top: 10px; }
+.currency b { color: var(--ink-2); font-weight: 600; }
+
+nav.tabs {
+  display: flex; gap: 4px; margin: 18px 0 22px; flex-wrap: wrap;
+  border-bottom: 1px solid var(--rule);
+}
+nav.tabs button {
+  appearance: none; background: none; border: 0; border-bottom: 2px solid transparent;
+  padding: 10px 14px; font: inherit; font-size: 14.5px; color: var(--ink-3);
+  cursor: pointer; margin-bottom: -1px;
+}
+nav.tabs button:hover { color: var(--ink); }
+nav.tabs button[aria-selected="true"] { color: var(--ink); border-bottom-color: var(--accent); font-weight: 600; }
+
+.panel[hidden] { display: none; }
+
+.controls {
+  display: flex; flex-wrap: wrap; gap: 14px 18px; align-items: flex-end;
+  background: var(--surface); border: 1px solid var(--rule); border-radius: 12px;
+  padding: 14px 16px; box-shadow: var(--shadow); margin-bottom: 18px;
+}
+.field { display: flex; flex-direction: column; gap: 5px; }
+.field > label {
+  font-family: var(--mono); font-size: 10.5px; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--ink-3);
+}
+select, input[type="search"] {
+  appearance: none; font: inherit; font-size: 14px; color: var(--ink);
+  background: var(--surface-2); border: 1px solid var(--rule); border-radius: 8px;
+  padding: 7px 10px; min-width: 150px;
+}
+input[type="search"] { min-width: 230px; }
+.seg { display: inline-flex; border: 1px solid var(--rule); border-radius: 8px; overflow: hidden; }
+.seg button {
+  appearance: none; background: var(--surface-2); border: 0; border-right: 1px solid var(--rule);
+  padding: 7px 12px; font: inherit; font-size: 13.5px; color: var(--ink-2); cursor: pointer;
+}
+.seg button:last-child { border-right: 0; }
+.seg button[aria-pressed="true"] { background: var(--accent); color: #fff; font-weight: 600; }
+.spacer { flex: 1 1 auto; }
+.ghost {
+  appearance: none; background: var(--surface-2); border: 1px solid var(--rule);
+  border-radius: 8px; padding: 7px 12px; font: inherit; font-size: 13.5px;
+  color: var(--ink-2); cursor: pointer;
+}
+.ghost:hover { color: var(--ink); }
+
+.layout { display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(300px, 1fr); gap: 18px; }
+@media (max-width: 960px) { .layout { grid-template-columns: minmax(0, 1fr); } }
+
+.card {
+  background: var(--surface); border: 1px solid var(--rule); border-radius: 12px;
+  box-shadow: var(--shadow); padding: 16px 18px 18px;
+}
+.card h2 { margin: 0 0 2px; font-size: 16px; letter-spacing: -.01em; }
+.card h3 { margin: 18px 0 6px; font-size: 13.5px; color: var(--ink-2); }
+.card p.note { margin: 4px 0 12px; color: var(--ink-3); font-size: 13px; max-width: 62ch; }
+
+#map-holder { position: relative; }
+canvas { display: block; width: 100%; height: auto; border-radius: 8px; }
+#tip {
+  position: absolute; pointer-events: none; opacity: 0; transition: opacity .1s;
+  background: var(--surface); border: 1px solid var(--rule); border-radius: 8px;
+  box-shadow: var(--shadow); padding: 8px 10px; font-size: 12.5px; max-width: 260px;
+  z-index: 5;
+}
+#tip b { display: block; font-size: 13px; margin-bottom: 3px; }
+#tip .k { color: var(--ink-3); }
+
+.legend { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 12px; font-size: 12.5px; color: var(--ink-2); }
+.legend .sw { display: inline-block; width: 11px; height: 11px; border-radius: 50%; margin-right: 5px; vertical-align: -1px; }
+
+table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+th, td { text-align: right; padding: 6px 8px; border-bottom: 1px solid var(--grid); white-space: nowrap; }
+th:first-child, td:first-child { text-align: left; white-space: normal; }
+thead th {
+  font-family: var(--mono); font-size: 10.5px; letter-spacing: .07em;
+  text-transform: uppercase; color: var(--ink-3); font-weight: 500; cursor: pointer;
+  border-bottom: 1px solid var(--rule);
+}
+thead th[aria-sort] { color: var(--ink); }
+tbody tr:hover { background: var(--surface-2); cursor: pointer; }
+td.num { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+.up { color: var(--hot); font-weight: 600; }
+.down { color: var(--cold); font-weight: 600; }
+.flat { color: var(--ink-3); }
+.pill {
+  display: inline-block; font-family: var(--mono); font-size: 10px; letter-spacing: .06em;
+  text-transform: uppercase; border: 1px solid var(--axis); border-radius: 4px;
+  padding: 1px 5px; color: var(--ink-3);
+}
+.scroll { max-height: 460px; overflow-y: auto; overflow-x: auto; }
+
+.stat-row { display: flex; flex-wrap: wrap; gap: 18px 28px; margin: 2px 0 14px; }
+.stat .v { font-size: 25px; font-weight: 640; letter-spacing: -.02em; font-variant-numeric: tabular-nums; }
+.stat .l { font-size: 12px; color: var(--ink-3); }
+
+svg { display: block; width: 100%; height: auto; overflow: visible; }
+.axis text { font-size: 10.5px; fill: var(--ink-3); font-family: var(--mono); }
+.axis line, .axis path { stroke: var(--axis); }
+.gridline { stroke: var(--grid); }
+.bar { fill: var(--accent); }
+.bar.alt { fill: var(--cool); }
+.line { fill: none; stroke: var(--hot); stroke-width: 2; }
+.area { fill: var(--accent-soft); }
+
+footer { margin-top: 42px; padding-top: 18px; border-top: 1px solid var(--rule); color: var(--ink-3); font-size: 13px; }
+footer a { color: var(--accent); }
+.check-ok { color: var(--good); }
+.check-bad { color: var(--crit); }
+ul.checks { list-style: none; padding: 0; margin: 8px 0 0; font-size: 13.5px; }
+ul.checks li { padding: 4px 0; border-bottom: 1px solid var(--grid); }
+</style>
+
+<div class="wrap">
+<header class="top">
+  <p class="eyebrow">WDFW creel and catch reports</p>
+  <h1>Where Washington is catching fish, and where it stopped</h1>
+  <p class="standfirst">
+    Every creel report WDFW publishes — the statewide interview database, the Puget
+    Sound ramp counts, Buoy 10, Willapa Bay, the ocean quota report, the Columbia
+    River weekly summaries and the pikeminnow reward fishery — read into one record
+    of who fished, where, and what they caught.
+  </p>
+  <p class="currency" id="currency"></p>
+</header>
+
+<nav class="tabs" role="tablist">
+  <button role="tab" id="tab-map" aria-selected="true">Heat map</button>
+  <button role="tab" id="tab-places">Places</button>
+  <button role="tab" id="tab-species">Species</button>
+  <button role="tab" id="tab-sources">Sources &amp; accuracy</button>
+</nav>
+
+<!-- ------------------------------------------------------------------ map -->
+<section class="panel" id="panel-map">
+  <div class="controls">
+    <div class="field">
+      <label for="f-species">Species</label>
+      <select id="f-species"></select>
+    </div>
+    <div class="field">
+      <label>Window</label>
+      <div class="seg" id="f-window"></div>
+    </div>
+    <div class="field">
+      <label>Colour by</label>
+      <div class="seg" id="f-metric">
+        <button data-v="season" aria-pressed="true">vs. same weeks last years</button>
+        <button data-v="prior">vs. weeks just before</button>
+        <button data-v="rate">catch per angler</button>
+      </div>
+    </div>
+    <div class="field">
+      <label>Show</label>
+      <div class="seg" id="f-mode">
+        <button data-v="place" aria-pressed="true">Places</button>
+        <button data-v="area" aria-pressed="false">Catch areas</button>
+      </div>
+    </div>
+    <div class="field">
+      <label for="f-water">Water</label>
+      <select id="f-water">
+        <option value="">Salt and fresh</option>
+        <option value="marine">Salt water</option>
+        <option value="fresh">Fresh water</option>
+      </select>
+    </div>
+    <div class="field">
+      <label for="f-region">Region</label>
+      <select id="f-region"></select>
+    </div>
+  </div>
+
+  <div class="layout">
+    <div class="card">
+      <h2 id="map-title">Where it is picking up</h2>
+      <p class="note" id="map-note"></p>
+      <div id="map-holder">
+        <canvas id="map" width="900" height="760" role="img" aria-label="Map of Washington creel locations"></canvas>
+        <div id="tip"></div>
+      </div>
+      <div class="legend" id="map-legend"></div>
+    </div>
+
+    <div>
+      <div class="card" id="movers">
+        <h2>Heating up</h2>
+        <p class="note">Catch per angler against the same weeks in previous years.</p>
+        <div id="movers-up"></div>
+        <h3>Cooled off</h3>
+        <div id="movers-down"></div>
+      </div>
+      <div class="card" id="detail" style="margin-top:18px">
+        <h2 id="detail-title">Pick a place</h2>
+        <p class="note" id="detail-note">Click any point on the map, or a row in either
+          list, to see how that place has fished week by week.</p>
+        <div id="detail-body"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- --------------------------------------------------------------- places -->
+<section class="panel" id="panel-places" hidden>
+  <div class="controls">
+    <div class="field">
+      <label for="f-search">Search</label>
+      <input type="search" id="f-search" placeholder="ramp, river, bay...">
+    </div>
+    <div class="field">
+      <label for="f-species2">Species</label>
+      <select id="f-species2"></select>
+    </div>
+    <div class="field">
+      <label for="f-source">Source</label>
+      <select id="f-source"></select>
+    </div>
+    <div class="spacer"></div>
+    <button class="ghost" id="export-places">Download CSV</button>
+  </div>
+  <div class="card">
+    <h2>Every place in the window</h2>
+    <p class="note" id="places-note"></p>
+    <div class="scroll">
+      <table id="places-table">
+        <thead><tr>
+          <th data-k="name">Place</th>
+          <th data-k="source">Source</th>
+          <th data-k="anglers">Anglers</th>
+          <th data-k="kept">Kept</th>
+          <th data-k="rel">Released</th>
+          <th data-k="cpue">Per angler</th>
+          <th data-k="dseason">vs. season</th>
+          <th data-k="dprior">vs. prior</th>
+        </tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- -------------------------------------------------------------- species -->
+<section class="panel" id="panel-species" hidden>
+  <div class="controls">
+    <div class="field">
+      <label for="f-species3">Species</label>
+      <select id="f-species3"></select>
+    </div>
+  </div>
+  <div class="layout">
+    <div class="card">
+      <h2>Kept by year</h2>
+      <p class="note">Every fish this species contributed to the record, by the year it
+        was counted. Years before a source began are lower because the record is, not
+        because the fishing was.</p>
+      <div id="year-chart"></div>
+    </div>
+    <div class="card">
+      <h2>When it is caught</h2>
+      <p class="note">Fish kept by week of the year, across the last five seasons.</p>
+      <div id="season-chart"></div>
+      <h3>Best places in the window</h3>
+      <div id="species-top"></div>
+    </div>
+  </div>
+</section>
+
+<!-- -------------------------------------------------------------- sources -->
+<section class="panel" id="panel-sources" hidden>
+  <div class="layout">
+    <div class="card">
+      <h2>What was read</h2>
+      <p class="note">Seven WDFW publications, in four formats. Each row is what that
+        source contributed to this build.</p>
+      <div class="scroll"><table id="sources-table">
+        <thead><tr><th>Source</th><th>First</th><th>Last</th><th>Places</th><th>Species rows</th></tr></thead>
+        <tbody></tbody>
+      </table></div>
+      <h3>How a number gets here</h3>
+      <p class="note">
+        Every figure is parsed from a WDFW report and nothing is estimated. Catch and
+        effort are kept in separate tables, because one interview counts anglers once
+        and their fish once per species; folding them together would inflate every
+        catch-per-angler figure. Catch rates are only shown where at least
+        <b id="min-anglers"></b> anglers were interviewed in the window.
+      </p>
+    </div>
+    <div class="card">
+      <h2>Accuracy</h2>
+      <p class="note" id="audit-note"></p>
+      <ul class="checks" id="audit-list"></ul>
+      <h3>Locations without coordinates</h3>
+      <p class="note" id="unplaced-note"></p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Built from WDFW's <a href="https://wdfw.wa.gov/fishing/reports/creel">creel and
+  catch reports</a> and the creel tables published on
+  <a href="https://data.wa.gov">data.wa.gov</a>. Data is preliminary and subject to
+  WDFW's own quality control. <span id="built-stamp"></span></p>
+</footer>
+</div>
+
+<script id="payload" type="application/json">__DATA__</script>
+<script>
+"use strict";
+
+const DATA = JSON.parse(document.getElementById('payload').textContent);
+const META = DATA.meta;
+const PLACES = DATA.places;
+const SPECIES = META.species;
+
+/* Trends arrive as one flat list covering every window. Indexing them once by
+   window, then by place and species, is what makes changing the window instant. */
+const TREND = new Map();               // window -> Map(place -> Map(species -> row))
+for (const t of DATA.trend) {
+  let byPlace = TREND.get(t.w);
+  if (!byPlace) TREND.set(t.w, byPlace = new Map());
+  let bySp = byPlace.get(t.p);
+  if (!bySp) byPlace.set(t.p, bySp = new Map());
+  bySp.set(t.s, t);
+}
+
+/* The same scoring, run over catch and reporting areas rather than points. Two
+   hundred Puget Sound marinas exist in no WDFW coordinate dataset and can never be
+   a dot; every one of them reports an area, so this view keeps them on the map. */
+const AREA_PLACES = DATA.area_places || [];
+const AREA_TREND = new Map();
+for (const t of (DATA.area_trend || [])) {
+  let byArea = AREA_TREND.get(t.w);
+  if (!byArea) AREA_TREND.set(t.w, byArea = new Map());
+  let bySp = byArea.get(t.p);
+  if (!bySp) byArea.set(t.p, bySp = new Map());
+  bySp.set(t.s, t);
+}
+
+/* Puget Sound is drawn as several polygons per reporting area — 10, 10A, 10E, 10F
+   are all "Area 10" to a reader — so they are grouped by their leading number. */
+const AREA_SHAPES = new Map();
+for (const a of (DATA.areas || [])) {
+  const m = /^(\d+(?:\.\d+)?)/.exec(a.code || '');
+  if (!m) continue;
+  if (!AREA_SHAPES.has(m[1])) AREA_SHAPES.set(m[1], []);
+  AREA_SHAPES.get(m[1]).push(...a.rings);
+}
+
+const state = {
+  tab: 'map',
+  mode: 'place',
+  species: SPECIES.indexOf(META.headline_species[0] || SPECIES[0]),
+  window: META.windows[1] || META.windows[0],
+  metric: 'season',
+  water: '',
+  region: '',
+  source: '',
+  search: '',
+  sort: { key: 'anglers', dir: -1 },
+  place: null,
+};
+
+const fmt = n => (n === null || n === undefined || Number.isNaN(n)) ? '—'
+  : Math.abs(n) >= 1000 ? n.toLocaleString('en-US', { maximumFractionDigits: 0 })
+  : (Math.round(n * 100) / 100).toLocaleString('en-US');
+const rate = n => (n === null || n === undefined) ? '—' : n.toFixed(2);
+const pct = n => (n === null || n === undefined) ? '—'
+  : (n > 0 ? '+' : '') + Math.round(n * 100) + '%';
+const dayLabel = iso => new Date(iso + 'T12:00:00Z').toLocaleDateString('en-US',
+  { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC' });
+
+/* ------------------------------------------------------------------ helpers */
+
+function areaRowsForWindow() {
+  const byArea = AREA_TREND.get(state.window) || new Map();
+  const out = [];
+  for (const [aid, bySp] of byArea) {
+    const t = bySp.get(state.species);
+    if (!t) continue;
+    const a = AREA_PLACES[aid];
+    if (state.water && a.water !== state.water) continue;
+    out.push({
+      pid: aid, place: a, name: a.name, source: a.source,
+      anglers: t.anglers, kept: t.kept, rel: t.rel, cpue: t.cpue,
+      season: t.season, prior: t.prior, years: t.season_years,
+      dseason: change(t.cpue, t.season), dprior: change(t.cpue, t.prior),
+      rings: AREA_SHAPES.get(a.area) || [],
+    });
+  }
+  return out;
+}
+
+function rowsForWindow() {
+  const byPlace = TREND.get(state.window) || new Map();
+  const out = [];
+  for (const [pid, bySp] of byPlace) {
+    const t = bySp.get(state.species);
+    if (!t) continue;
+    const p = PLACES[pid];
+    if (state.water && p.water !== state.water) continue;
+    if (state.region && p.region !== state.region) continue;
+    if (state.source && p.source !== state.source) continue;
+    out.push({
+      pid, place: p, name: p.name, source: p.source,
+      anglers: t.anglers, kept: t.kept, rel: t.rel, cpue: t.cpue,
+      season: t.season, prior: t.prior, years: t.season_years,
+      dseason: change(t.cpue, t.season), dprior: change(t.cpue, t.prior),
+    });
+  }
+  return out;
+}
+
+/* A ratio needs a floor or a place that went from one fish to two reads as a
+   doubling. Below a tenth of a fish per angler both sides are effectively zero,
+   and the honest answer is that nothing is happening either way. */
+function change(now, before) {
+  if (before === null || before === undefined) return null;
+  if (before < 0.02 && now < 0.02) return 0;
+  if (before < 0.02) return now > 0.05 ? 2 : 0;
+  return now / before - 1;
+}
+
+function colourFor(row) {
+  if (state.metric === 'rate') {
+    const scale = Math.max(0.01, quantile(currentRows().map(r => r.cpue), 0.9));
+    const v = Math.min(1, row.cpue / scale);
+    return mix(getVar('--surface-2'), getVar('--hot'), Math.pow(v, 0.65));
+  }
+  const d = state.metric === 'season' ? row.dseason : row.dprior;
+  if (d === null) return getVar('--steady');
+  if (d >= 0.5) return getVar('--hot');
+  if (d >= 0.15) return getVar('--warm');
+  if (d <= -0.5) return getVar('--cold');
+  if (d <= -0.15) return getVar('--cool');
+  return getVar('--steady');
+}
+
+function quantile(values, q) {
+  const v = values.filter(x => x !== null && !Number.isNaN(x)).sort((a, b) => a - b);
+  if (!v.length) return 0;
+  return v[Math.min(v.length - 1, Math.floor(q * v.length))];
+}
+
+const varCache = new Map();
+function getVar(name) {
+  if (!varCache.has(name)) {
+    varCache.set(name, getComputedStyle(document.documentElement)
+      .getPropertyValue(name).trim());
+  }
+  return varCache.get(name);
+}
+function mix(a, b, t) {
+  const pa = hex(a), pb = hex(b);
+  return `rgb(${Math.round(pa[0] + (pb[0] - pa[0]) * t)},` +
+    `${Math.round(pa[1] + (pb[1] - pa[1]) * t)},` +
+    `${Math.round(pa[2] + (pb[2] - pa[2]) * t)})`;
+}
+function hex(c) {
+  const m = c.replace('#', '');
+  const n = m.length === 3 ? m.split('').map(x => x + x).join('') : m;
+  return [parseInt(n.slice(0, 2), 16), parseInt(n.slice(2, 4), 16), parseInt(n.slice(4, 6), 16)];
+}
+
+/* ---------------------------------------------------------------- the map */
+
+const BOX = { west: -124.9, east: -116.85, south: 45.45, north: 49.05 };
+const canvas = document.getElementById('map');
+const ctx = canvas.getContext('2d');
+let plotted = [];                       // what is currently drawn, for hit testing
+
+function project(lon, lat, w, h) {
+  /* Equirectangular, with longitude squeezed by the cosine of the middle latitude
+     so Washington is not stretched sideways. Enough for a state-sized map, and it
+     needs no projection library to draw. */
+  const k = Math.cos((BOX.south + BOX.north) / 2 * Math.PI / 180);
+  const spanX = (BOX.east - BOX.west) * k, spanY = BOX.north - BOX.south;
+  const scale = Math.min(w / spanX, h / spanY);
+  const ox = (w - spanX * scale) / 2, oy = (h - spanY * scale) / 2;
+  return [ox + (lon - BOX.west) * k * scale, oy + (BOX.north - lat) * scale];
+}
+
+function drawMap() {
+  const dpr = window.devicePixelRatio || 1;
+  const cssW = canvas.clientWidth || 900;
+  const cssH = Math.round(cssW * 0.84);
+  canvas.width = cssW * dpr; canvas.height = cssH * dpr;
+  canvas.style.height = cssH + 'px';
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  ctx.clearRect(0, 0, cssW, cssH);
+
+  ctx.fillStyle = getVar('--water');
+  ctx.fillRect(0, 0, cssW, cssH);
+
+  // the state itself
+  ctx.fillStyle = getVar('--land');
+  ctx.strokeStyle = getVar('--axis');
+  ctx.lineWidth = 0.6;
+  for (const ring of (DATA.outline || [])) {
+    ctx.beginPath();
+    ring.forEach(([lon, lat], i) => {
+      const [x, y] = project(lon, lat, cssW, cssH);
+      i ? ctx.lineTo(x, y) : ctx.moveTo(x, y);
+    });
+    ctx.closePath(); ctx.fill(); ctx.stroke();
+  }
+
+  // Puget Sound catch and reporting areas, as a faint background
+  ctx.strokeStyle = getVar('--grid');
+  ctx.lineWidth = 0.8;
+  for (const area of (DATA.areas || [])) {
+    for (const ring of area.rings) {
+      ctx.beginPath();
+      ring.forEach(([lon, lat], i) => {
+        const [x, y] = project(lon, lat, cssW, cssH);
+        i ? ctx.lineTo(x, y) : ctx.moveTo(x, y);
+      });
+      ctx.closePath(); ctx.stroke();
+    }
+  }
+
+  if (state.mode === 'area') {
+    drawAreas(cssW, cssH);
+    return;
+  }
+
+  const rows = rowsForWindow().filter(r => r.place.lat !== null && r.place.lat !== undefined);
+  const maxAnglers = Math.max(1, ...rows.map(r => r.anglers));
+  plotted = [];
+  // biggest first, so a busy port never hides a quiet creek behind it
+  rows.sort((a, b) => b.anglers - a.anglers);
+  for (const row of rows) {
+    const [x, y] = project(row.place.lon, row.place.lat, cssW, cssH);
+    const r = 3.2 + 11 * Math.sqrt(row.anglers / maxAnglers);
+    ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI * 2);
+    ctx.fillStyle = colourFor(row);
+    ctx.globalAlpha = 0.86; ctx.fill(); ctx.globalAlpha = 1;
+    ctx.lineWidth = state.place === row.pid ? 2.4 : 0.9;
+    ctx.strokeStyle = state.place === row.pid ? getVar('--ink') : getVar('--surface');
+    ctx.stroke();
+    plotted.push({ x, y, r, row });
+  }
+
+  const scored = rowsForWindow().length;
+  document.getElementById('map-note').textContent =
+    `${rows.length} places with at least ${META.min_anglers} anglers interviewed in the ` +
+    `${state.window} days to ${dayLabel(META.as_of)}. Dot size is how many anglers.` +
+    (scored > rows.length
+      ? ` ${scored - rows.length} more — mostly Puget Sound marinas and city docks, which ` +
+        `appear in no WDFW coordinate dataset — are in the tables and in the catch area view.`
+      : '');
+}
+
+function drawAreas(cssW, cssH) {
+  const rows = areaRowsForWindow().filter(r => r.rings.length);
+  plotted = [];
+  for (const row of rows) {
+    const path = new Path2D();
+    for (const ring of row.rings) {
+      ring.forEach(([lon, lat], i) => {
+        const [x, y] = project(lon, lat, cssW, cssH);
+        i ? path.lineTo(x, y) : path.moveTo(x, y);
+      });
+      path.closePath();
+    }
+    ctx.fillStyle = colourFor(row);
+    ctx.globalAlpha = 0.75; ctx.fill(path); ctx.globalAlpha = 1;
+    ctx.lineWidth = state.place === row.pid ? 2 : 0.8;
+    ctx.strokeStyle = state.place === row.pid ? getVar('--ink') : getVar('--surface');
+    ctx.stroke(path);
+    plotted.push({ path, row, x: 0, y: 0, r: 0 });
+  }
+  const drawn = new Set(rows.map(r => r.place.area));
+  const missing = areaRowsForWindow().filter(r => !drawn.has(r.place.area))
+    .map(r => r.name);
+  document.getElementById('map-note').textContent =
+    `${rows.length} catch and reporting areas over the ${state.window} days to ` +
+    `${dayLabel(META.as_of)}, every ramp in each one pooled.` +
+    (missing.length ? ` ${missing.join(', ')} report catch but have no published outline, and are in the tables only.` : '');
+}
+
+function hit(ev) {
+  const rect = canvas.getBoundingClientRect();
+  const x = ev.clientX - rect.left, y = ev.clientY - rect.top;
+  if (state.mode === 'area') {
+    // isPointInPath tests in device pixels: the path was built in CSS pixels and
+    // then scaled by the transform, but the point given here is not
+    const dpr = window.devicePixelRatio || 1;
+    for (const p of plotted) {
+      if (p.path && ctx.isPointInPath(p.path, x * dpr, y * dpr)) return p;
+    }
+    return null;
+  }
+  let best = null, bestD = 1e9;
+  for (const p of plotted) {
+    const d = Math.hypot(p.x - x, p.y - y);
+    if (d < Math.max(p.r, 6) && d < bestD) { best = p; bestD = d; }
+  }
+  return best;
+}
+
+const tip = document.getElementById('tip');
+canvas.addEventListener('mousemove', ev => {
+  const p = hit(ev);
+  if (!p) { tip.style.opacity = 0; canvas.style.cursor = 'default'; return; }
+  canvas.style.cursor = 'pointer';
+  const r = p.row;
+  tip.innerHTML =
+    `<b>${escapeHtml(r.name)}</b>` +
+    `<span class="k">${escapeHtml(r.place.region || r.source)}</span><br>` +
+    `${fmt(r.kept)} kept from ${fmt(r.anglers)} anglers<br>` +
+    `<span class="k">per angler</span> ${rate(r.cpue)}` +
+    (r.season !== null ? ` &middot; <span class="k">season normal</span> ${rate(r.season)}` : '') +
+    `<br><span class="k">vs. season</span> ${pct(r.dseason)}` +
+    ` &middot; <span class="k">vs. prior</span> ${pct(r.dprior)}` +
+    (r.place.precision === 'approximate' ? '<br><span class="k">position approximate</span>' : '');
+  const holder = document.getElementById('map-holder').getBoundingClientRect();
+  tip.style.left = Math.min(holder.width - 250, p.x + 14) + 'px';
+  tip.style.top = Math.max(0, p.y - 10) + 'px';
+  tip.style.opacity = 1;
+});
+canvas.addEventListener('mouseleave', () => { tip.style.opacity = 0; });
+canvas.addEventListener('click', ev => {
+  const p = hit(ev);
+  if (p) selectPlace(p.row.pid);
+});
+
+function escapeHtml(s) {
+  return String(s).replace(/[&<>"']/g, c =>
+    ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+}
+
+/* ------------------------------------------------------------------ movers */
+
+function currentRows() {
+  return state.mode === 'area' ? areaRowsForWindow() : rowsForWindow();
+}
+
+function renderMovers() {
+  const rows = currentRows().filter(r => r.dseason !== null && r.anglers >= META.min_anglers);
+  const up = rows.filter(r => r.kept > 0).sort((a, b) => b.dseason - a.dseason).slice(0, 8);
+  const down = rows.filter(r => (r.season || 0) > 0.05).sort((a, b) => a.dseason - b.dseason).slice(0, 8);
+  document.getElementById('movers-up').innerHTML = moverTable(up);
+  document.getElementById('movers-down').innerHTML = moverTable(down);
+  for (const tr of document.querySelectorAll('#movers tbody tr')) {
+    tr.addEventListener('click', () => selectPlace(Number(tr.dataset.pid)));
+  }
+  document.querySelector('#movers h2').textContent =
+    state.mode === 'area' ? 'Areas heating up' : 'Heating up';
+}
+
+function moverTable(rows) {
+  if (!rows.length) return '<p class="note">Nothing clears the angler threshold here yet.</p>';
+  return '<table><tbody>' + rows.map(r => `
+    <tr data-pid="${r.pid}">
+      <td>${escapeHtml(r.name)}<br><span class="pill">${escapeHtml(r.source)}</span></td>
+      <td class="num">${rate(r.cpue)}<br><span class="k" style="color:var(--ink-3)">was ${rate(r.season)}</span></td>
+      <td class="num ${r.dseason > 0 ? 'up' : r.dseason < 0 ? 'down' : 'flat'}">${pct(r.dseason)}</td>
+    </tr>`).join('') + '</tbody></table>';
+}
+
+/* ------------------------------------------------------------------ detail */
+
+function selectPlace(pid, mode) {
+  state.place = pid;
+  state.placeMode = mode || state.mode;
+  drawMap();
+  renderDetail();
+  document.getElementById('detail').scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+}
+
+function weeklyFor(pid, spIdx) {
+  const w = DATA.weekly;
+  const out = new Map();
+  for (let i = 0; i < w.place.length; i++) {
+    if (w.place[i] !== pid || w.species[i] !== spIdx) continue;
+    out.set(w.periods[w.period[i]], { kept: w.kept[i], rel: w.released[i], anglers: 0 });
+  }
+  for (const [p, per, anglers] of w.effort) {
+    if (p !== pid) continue;
+    const key = w.periods[per];
+    if (!out.has(key)) out.set(key, { kept: 0, rel: 0, anglers: 0 });
+    out.get(key).anglers = anglers;
+  }
+  return [...out.entries()].sort((a, b) => a[0] < b[0] ? -1 : 1);
+}
+
+/* Every place whose reporting area matches, pooled — the weekly counterpart of the
+   area view on the map. */
+function weeklyForArea(areaNumber, spIdx) {
+  const members = new Set();
+  PLACES.forEach((p, i) => {
+    const m = /(?:marine\s+)?area\s*(\d+(?:\.\d+)?)/i.exec(p.area || p.name || '');
+    if (m && m[1] === areaNumber) members.add(i);
+  });
+  const w = DATA.weekly, out = new Map();
+  const cell = k => {
+    if (!out.has(k)) out.set(k, { kept: 0, rel: 0, anglers: 0 });
+    return out.get(k);
+  };
+  for (let i = 0; i < w.place.length; i++) {
+    if (!members.has(w.place[i]) || w.species[i] !== spIdx) continue;
+    const c = cell(w.periods[w.period[i]]);
+    c.kept += w.kept[i]; c.rel += w.released[i];
+  }
+  for (const [p, per, anglers] of w.effort) {
+    if (!members.has(p)) continue;
+    cell(w.periods[per]).anglers += anglers;
+  }
+  return [...out.entries()].sort((a, b) => a[0] < b[0] ? -1 : 1);
+}
+
+function renderDetail() {
+  const pid = state.place;
+  const body = document.getElementById('detail-body');
+  if (pid === null) { body.innerHTML = ''; return; }
+  const area = state.placeMode === 'area';
+  const p = area ? AREA_PLACES[pid] : PLACES[pid];
+  if (!p) { body.innerHTML = ''; return; }
+  const t = ((area ? AREA_TREND : TREND).get(state.window)?.get(pid)
+    ?.get(state.species)) || null;
+  document.getElementById('detail-title').textContent = p.name;
+  document.getElementById('detail-note').innerHTML =
+    `${escapeHtml(p.region || '')} &middot; ${escapeHtml(p.source)}` +
+    (p.matched_to && p.matched_to !== p.name
+      ? ` &middot; placed at <span class="k">${escapeHtml(p.matched_to)}</span>` : '') +
+    (p.precision === 'approximate' ? ' <span class="pill">approximate position</span>' : '');
+
+  const series = (area ? weeklyForArea(p.area, state.species)
+    : weeklyFor(pid, state.species)).slice(-60);
+  const stats = t ? `
+    <div class="stat-row">
+      <div class="stat"><div class="v">${rate(t.cpue)}</div><div class="l">${escapeHtml(SPECIES[state.species])} per angler, last ${state.window} days</div></div>
+      <div class="stat"><div class="v">${fmt(t.kept)}</div><div class="l">kept</div></div>
+      <div class="stat"><div class="v">${fmt(t.anglers)}</div><div class="l">anglers</div></div>
+      <div class="stat"><div class="v ${t.season === null ? 'flat' : change(t.cpue, t.season) > 0 ? 'up' : 'down'}">${pct(change(t.cpue, t.season))}</div><div class="l">vs. the same weeks in ${t.season_years || 0} past years</div></div>
+    </div>` : '<p class="note">This place has no scored window for that species.</p>';
+
+  body.innerHTML = stats + weeklyChart(series);
+}
+
+function weeklyChart(series) {
+  if (!series.length) return '<p class="note">No weekly detail in the last four years.</p>';
+  const W = 460, H = 190, padL = 34, padR = 10, padT = 10, padB = 22;
+  const maxKept = Math.max(1, ...series.map(([, v]) => v.kept));
+  const maxCpue = Math.max(0.01, ...series.map(([, v]) => v.anglers ? v.kept / v.anglers : 0));
+  const bw = (W - padL - padR) / series.length;
+  let bars = '', line = '', prev = null;
+  series.forEach(([week, v], i) => {
+    const x = padL + i * bw;
+    const h = (H - padT - padB) * (v.kept / maxKept);
+    bars += `<rect class="bar" x="${x.toFixed(1)}" y="${(H - padB - h).toFixed(1)}" width="${Math.max(1, bw - 1).toFixed(1)}" height="${h.toFixed(1)}"><title>${week}: ${v.kept} kept, ${v.anglers} anglers</title></rect>`;
+    if (v.anglers) {
+      const y = H - padB - (H - padT - padB) * ((v.kept / v.anglers) / maxCpue);
+      const px = x + bw / 2;
+      line += prev === null ? `M${px.toFixed(1)},${y.toFixed(1)}` : `L${px.toFixed(1)},${y.toFixed(1)}`;
+      prev = y;
+    }
+  });
+  const first = series[0][0], last = series[series.length - 1][0];
+  return `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Weekly kept fish and catch per angler">
+    <g class="axis">
+      <line x1="${padL}" y1="${H - padB}" x2="${W - padR}" y2="${H - padB}"></line>
+      <text x="${padL}" y="${H - 6}">${first}</text>
+      <text x="${W - padR}" y="${H - 6}" text-anchor="end">${last}</text>
+      <text x="0" y="${padT + 8}">${fmt(maxKept)}</text>
+      <text x="0" y="${H - padB}">0</text>
+    </g>
+    ${bars}<path class="line" d="${line}"></path>
+  </svg>
+  <p class="note">Bars are fish kept each week; the line is fish per angler, peaking at
+    ${rate(maxCpue)}.</p>`;
+}
+
+/* ------------------------------------------------------------------ places */
+
+function renderPlaces() {
+  const q = state.search.trim().toLowerCase();
+  let rows = rowsForWindow();
+  if (q) rows = rows.filter(r => r.name.toLowerCase().includes(q) ||
+    (r.place.region || '').toLowerCase().includes(q));
+  const k = state.sort.key, dir = state.sort.dir;
+  rows.sort((a, b) => {
+    const av = a[k], bv = b[k];
+    if (typeof av === 'string') return dir * av.localeCompare(bv);
+    return dir * ((av === null ? -Infinity : av) - (bv === null ? -Infinity : bv));
+  });
+  const tbody = document.querySelector('#places-table tbody');
+  tbody.innerHTML = rows.map(r => `
+    <tr data-pid="${r.pid}">
+      <td>${escapeHtml(r.name)}${r.place.region ? `<br><span class="k" style="color:var(--ink-3)">${escapeHtml(r.place.region)}</span>` : ''}</td>
+      <td><span class="pill">${escapeHtml(r.source)}</span></td>
+      <td class="num">${fmt(r.anglers)}</td>
+      <td class="num">${fmt(r.kept)}</td>
+      <td class="num">${fmt(r.rel)}</td>
+      <td class="num">${rate(r.cpue)}</td>
+      <td class="num ${cls(r.dseason)}">${pct(r.dseason)}</td>
+      <td class="num ${cls(r.dprior)}">${pct(r.dprior)}</td>
+    </tr>`).join('');
+  for (const tr of tbody.querySelectorAll('tr')) {
+    tr.addEventListener('click', () => { selectPlace(Number(tr.dataset.pid)); showTab('map'); });
+  }
+  document.getElementById('places-note').textContent =
+    `${rows.length} places, ${SPECIES[state.species]}, ${state.window} days to ${dayLabel(META.as_of)}.`;
+  state._placeRows = rows;
+}
+
+const cls = d => d === null ? 'flat' : d > 0.15 ? 'up' : d < -0.15 ? 'down' : 'flat';
+
+function exportPlaces() {
+  const rows = state._placeRows || [];
+  const head = ['place', 'source', 'region', 'water', 'species', 'window_days',
+    'as_of', 'anglers', 'kept', 'released', 'kept_per_angler',
+    'season_normal_per_angler', 'change_vs_season', 'change_vs_prior', 'lat', 'lon'];
+  const lines = [head.join(',')];
+  for (const r of rows) {
+    lines.push([r.name, r.source, r.place.region, r.place.water, SPECIES[state.species],
+      state.window, META.as_of, r.anglers, r.kept, r.rel, r.cpue, r.season,
+      r.dseason === null ? '' : r.dseason.toFixed(3),
+      r.dprior === null ? '' : r.dprior.toFixed(3),
+      r.place.lat ?? '', r.place.lon ?? '']
+      .map(v => {
+        const s = v === null || v === undefined ? '' : String(v);
+        return /[",\n]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s;
+      }).join(','));
+  }
+  const blob = new Blob([lines.join('\n')], { type: 'text/csv' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = `wdfw-creel-${SPECIES[state.species].toLowerCase()}-${META.as_of}.csv`;
+  a.click();
+  setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+}
+
+/* ----------------------------------------------------------------- species */
+
+function renderSpecies() {
+  const sp = SPECIES[state.species];
+  const years = Object.entries(DATA.years)
+    .map(([y, byS]) => [y, byS[sp] || 0])
+    .filter(([y]) => y >= '1998');
+  document.getElementById('year-chart').innerHTML = barChart(years, 'fish kept');
+  const weeks = (DATA.season.kept[String(state.species)] || []).slice();
+  document.getElementById('season-chart').innerHTML = weekChart(weeks);
+  const top = currentRows().filter(r => r.kept > 0)
+    .sort((a, b) => b.cpue - a.cpue).slice(0, 10);
+  document.getElementById('species-top').innerHTML = top.length ? `
+    <table><tbody>${top.map(r => `
+      <tr data-pid="${r.pid}"><td>${escapeHtml(r.name)}</td>
+      <td class="num">${rate(r.cpue)}</td>
+      <td class="num" style="color:var(--ink-3)">${fmt(r.anglers)} anglers</td></tr>`).join('')}
+    </tbody></table>` : '<p class="note">No place clears the angler threshold for this species right now.</p>';
+  for (const tr of document.querySelectorAll('#species-top tr')) {
+    tr.addEventListener('click', () => { selectPlace(Number(tr.dataset.pid)); showTab('map'); });
+  }
+}
+
+function barChart(pairs, label) {
+  if (!pairs.length) return '<p class="note">Nothing recorded.</p>';
+  const W = 470, H = 220, padL = 40, padR = 8, padT = 10, padB = 24;
+  const max = Math.max(1, ...pairs.map(p => p[1]));
+  const bw = (W - padL - padR) / pairs.length;
+  const bars = pairs.map(([y, v], i) => {
+    const h = (H - padT - padB) * (v / max);
+    return `<rect class="bar" x="${(padL + i * bw).toFixed(1)}" y="${(H - padB - h).toFixed(1)}"
+      width="${Math.max(1, bw - 2).toFixed(1)}" height="${h.toFixed(1)}"><title>${y}: ${fmt(v)} ${label}</title></rect>`;
+  }).join('');
+  const ticks = pairs.filter((_, i) => i % Math.ceil(pairs.length / 8) === 0);
+  return `<svg viewBox="0 0 ${W} ${H}">
+    <g class="axis">
+      <line x1="${padL}" y1="${H - padB}" x2="${W - padR}" y2="${H - padB}"></line>
+      <text x="0" y="${padT + 8}">${fmt(max)}</text>
+      ${ticks.map(([y]) => {
+        const i = pairs.findIndex(p => p[0] === y);
+        return `<text x="${(padL + i * bw + bw / 2).toFixed(1)}" y="${H - 7}" text-anchor="middle">${y.slice(2)}</text>`;
+      }).join('')}
+    </g>${bars}</svg>`;
+}
+
+function weekChart(weeks) {
+  const W = 470, H = 170, padL = 34, padR = 8, padT = 10, padB = 22;
+  const max = Math.max(1, ...weeks);
+  const step = (W - padL - padR) / 53;
+  let d = `M${padL},${H - padB}`;
+  weeks.forEach((v, i) => {
+    d += `L${(padL + i * step).toFixed(1)},${(H - padB - (H - padT - padB) * (v / max)).toFixed(1)}`;
+  });
+  d += `L${W - padR},${H - padB}Z`;
+  const months = [['Jan', 1], ['Mar', 9], ['May', 18], ['Jul', 27], ['Sep', 35], ['Nov', 44]];
+  return `<svg viewBox="0 0 ${W} ${H}">
+    <path class="area" d="${d}"></path>
+    <g class="axis">
+      <line x1="${padL}" y1="${H - padB}" x2="${W - padR}" y2="${H - padB}"></line>
+      <text x="0" y="${padT + 8}">${fmt(max)}</text>
+      ${months.map(([m, w]) => `<text x="${(padL + w * step).toFixed(1)}" y="${H - 7}" text-anchor="middle">${m}</text>`).join('')}
+    </g></svg>`;
+}
+
+/* ----------------------------------------------------------------- sources */
+
+function renderSources() {
+  const man = (DATA.manifest && DATA.manifest.sources) || {};
+  document.querySelector('#sources-table tbody').innerHTML =
+    Object.entries(man).map(([id, s]) => `
+      <tr><td>${escapeHtml(s.label || id)}<br><span class="pill">${escapeHtml(id)}</span></td>
+      <td class="num">${s.first || '—'}</td><td class="num">${s.last || '—'}</td>
+      <td class="num">${fmt(s.locations)}</td><td class="num">${fmt(s.catch_rows)}</td></tr>`).join('');
+
+  const audit = DATA.audit;
+  const note = document.getElementById('audit-note');
+  const list = document.getElementById('audit-list');
+  if (!audit) { note.textContent = 'This build shipped without an audit record.'; return; }
+  note.innerHTML = `${audit.passed} of ${audit.checks} checks passed on this build` +
+    (audit.compared_against ? `, including a row-by-row comparison against ${escapeHtml(audit.compared_against)}.` : '.');
+  list.innerHTML = audit.results.map(r =>
+    `<li><span class="${r.ok ? 'check-ok' : 'check-bad'}">${r.ok ? '✓' : '✗'}</span>
+     ${escapeHtml(r.name)}${r.detail ? ` <span class="k" style="color:var(--ink-3)">${escapeHtml(r.detail)}</span>` : ''}</li>`).join('');
+
+  const un = DATA.unplaced || [];
+  document.getElementById('unplaced-note').textContent = un.length
+    ? `${un.length} of ${PLACES.length} location names could not be matched to WDFW ` +
+      `coordinates and are absent from the map, though their numbers are in every table: ` +
+      un.slice(0, 12).join(', ') + (un.length > 12 ? '…' : '')
+    : 'Every location in the record has coordinates.';
+  document.getElementById('min-anglers').textContent = META.min_anglers;
+}
+
+/* -------------------------------------------------------------------- wiring */
+
+function showTab(name) {
+  state.tab = name;
+  for (const t of ['map', 'places', 'species', 'sources']) {
+    document.getElementById('panel-' + t).hidden = t !== name;
+    document.getElementById('tab-' + t).setAttribute('aria-selected', String(t === name));
+  }
+  if (name === 'map') drawMap();
+  if (name === 'places') renderPlaces();
+  if (name === 'species') renderSpecies();
+  if (name === 'sources') renderSources();
+}
+
+function fillSpeciesSelects() {
+  const opts = SPECIES.map((s, i) =>
+    `<option value="${i}"${i === state.species ? ' selected' : ''}>${escapeHtml(s)}</option>`).join('');
+  const headline = META.headline_species.map(s => SPECIES.indexOf(s));
+  const group = `<optgroup label="Most caught">${headline.map(i =>
+    `<option value="${i}"${i === state.species ? ' selected' : ''}>${escapeHtml(SPECIES[i])}</option>`).join('')}</optgroup>
+    <optgroup label="Everything else">${SPECIES.map((s, i) => headline.includes(i) ? '' :
+      `<option value="${i}">${escapeHtml(s)}</option>`).join('')}</optgroup>`;
+  for (const id of ['f-species', 'f-species2', 'f-species3']) {
+    const el = document.getElementById(id);
+    el.innerHTML = group;
+    el.value = String(state.species);
+    el.addEventListener('change', () => {
+      state.species = Number(el.value);
+      for (const other of ['f-species', 'f-species2', 'f-species3']) {
+        document.getElementById(other).value = String(state.species);
+      }
+      refresh();
+    });
+  }
+}
+
+function refresh() {
+  if (state.tab === 'map') { drawMap(); renderMovers(); renderDetail(); }
+  if (state.tab === 'places') renderPlaces();
+  if (state.tab === 'species') renderSpecies();
+}
+
+function init() {
+  document.getElementById('currency').innerHTML =
+    `<b>${fmt(META.total_fish)}</b> fish and <b>${fmt(META.total_anglers)}</b> anglers ` +
+    `interviewed, ${META.first.slice(0, 4)} to ${META.as_of.slice(0, 4)}. ` +
+    `Latest report: <b>${dayLabel(META.as_of)}</b>.`;
+  document.getElementById('built-stamp').textContent =
+    'Built ' + META.built.replace('T', ' ').replace('+00:00', ' UTC') + '.';
+
+  fillSpeciesSelects();
+
+  const seg = document.getElementById('f-window');
+  seg.innerHTML = META.windows.map(w =>
+    `<button data-v="${w}" aria-pressed="${w === state.window}">${w} days</button>`).join('');
+  seg.addEventListener('click', ev => {
+    const b = ev.target.closest('button'); if (!b) return;
+    state.window = Number(b.dataset.v);
+    for (const other of seg.querySelectorAll('button')) {
+      other.setAttribute('aria-pressed', String(other === b));
+    }
+    refresh();
+  });
+
+  const mode = document.getElementById('f-mode');
+  mode.addEventListener('click', ev => {
+    const b = ev.target.closest('button'); if (!b) return;
+    state.mode = b.dataset.v;
+    state.place = null;
+    for (const other of mode.querySelectorAll('button')) {
+      other.setAttribute('aria-pressed', String(other === b));
+    }
+    refresh();
+  });
+
+  const metric = document.getElementById('f-metric');
+  metric.addEventListener('click', ev => {
+    const b = ev.target.closest('button'); if (!b) return;
+    state.metric = b.dataset.v;
+    for (const other of metric.querySelectorAll('button')) {
+      other.setAttribute('aria-pressed', String(other === b));
+    }
+    document.getElementById('map-title').textContent = {
+      season: 'Where it is picking up', prior: 'What changed in the last fortnight',
+      rate: 'Where the fish are, right now',
+    }[state.metric];
+    drawMap(); renderLegend();
+  });
+
+  const region = document.getElementById('f-region');
+  region.innerHTML = '<option value="">Every region</option>' +
+    META.regions.map(r => `<option value="${escapeHtml(r)}">${escapeHtml(r)}</option>`).join('');
+  region.addEventListener('change', () => { state.region = region.value; refresh(); });
+
+  document.getElementById('f-water').addEventListener('change', ev => {
+    state.water = ev.target.value; refresh();
+  });
+
+  const source = document.getElementById('f-source');
+  source.innerHTML = '<option value="">Every source</option>' +
+    META.sources.map(s => `<option value="${escapeHtml(s)}">${escapeHtml(s)}</option>`).join('');
+  source.addEventListener('change', () => { state.source = source.value; renderPlaces(); });
+
+  const search = document.getElementById('f-search');
+  search.addEventListener('input', () => { state.search = search.value; renderPlaces(); });
+  document.getElementById('export-places').addEventListener('click', exportPlaces);
+
+  for (const th of document.querySelectorAll('#places-table thead th')) {
+    th.addEventListener('click', () => {
+      const k = th.dataset.k;
+      state.sort = { key: k, dir: state.sort.key === k ? -state.sort.dir : -1 };
+      for (const other of document.querySelectorAll('#places-table thead th')) {
+        other.removeAttribute('aria-sort');
+      }
+      th.setAttribute('aria-sort', state.sort.dir < 0 ? 'descending' : 'ascending');
+      renderPlaces();
+    });
+  }
+
+  for (const t of ['map', 'places', 'species', 'sources']) {
+    document.getElementById('tab-' + t).addEventListener('click', () => showTab(t));
+  }
+
+  renderLegend();
+  showTab('map');
+  renderMovers();
+  window.addEventListener('resize', () => { if (state.tab === 'map') drawMap(); });
+  matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+    varCache.clear(); drawMap();
+  });
+}
+
+function renderLegend() {
+  const el = document.getElementById('map-legend');
+  if (state.metric === 'rate') {
+    el.innerHTML = `<span><span class="sw" style="background:var(--surface-2);border:1px solid var(--axis)"></span>few fish per angler</span>
+      <span><span class="sw" style="background:var(--hot)"></span>many</span>
+      <span style="color:var(--ink-3)">Dot size is anglers interviewed.</span>`;
+    return;
+  }
+  el.innerHTML = `
+    <span><span class="sw" style="background:var(--hot)"></span>up by half or more</span>
+    <span><span class="sw" style="background:var(--warm)"></span>up</span>
+    <span><span class="sw" style="background:var(--steady)"></span>about the same</span>
+    <span><span class="sw" style="background:var(--cool)"></span>down</span>
+    <span><span class="sw" style="background:var(--cold)"></span>down by half or more</span>
+    <span style="color:var(--ink-3)">Dot size is anglers interviewed.</span>`;
+}
+
+init();
+</script>

@@ -1,0 +1,8 @@
+# Source PDFs and the parse cache are rebuilt on demand and are far too large to track
+.cache/
+.venv/
+_testdl/
+__pycache__/
+*.pyc
+.DS_Store
+Thumbs.db

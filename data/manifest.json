@@ -1,0 +1,65 @@
+{
+ "built": "2026-07-30T20:56:14+00:00",
+ "sha256": {
+  "creel_effort": "7baacfeadf0e3d415ef9db69d9c15aef5c4350a9aaea93f9eb53c35238868a9e",
+  "creel_rows": "f84b919ccc9c9d781cefaf1e106663dff30a41911251e0af2d2b04bc04c9d181"
+ },
+ "sources": {
+  "buoy10": {
+   "catch_rows": 1123,
+   "effort_rows": 675,
+   "first": "2014-08-01",
+   "label": "Buoy 10",
+   "last": "2025-09-28",
+   "locations": 1
+  },
+  "columbia-sw": {
+   "catch_rows": 8565,
+   "effort_rows": 3910,
+   "first": "2019-01-14",
+   "label": "Columbia River and tributary report",
+   "last": "2026-07-13",
+   "locations": 61
+  },
+  "creel-database": {
+   "catch_rows": 113173,
+   "effort_rows": 159929,
+   "first": "1973-05-17",
+   "label": "WDFW creel database (statewide)",
+   "last": "2026-07-29",
+   "locations": 86
+  },
+  "ocean-quota": {
+   "catch_rows": 1464,
+   "effort_rows": 515,
+   "first": "2016-07-01",
+   "label": "Ocean sport salmon quota report",
+   "last": "2026-07-13",
+   "locations": 4
+  },
+  "pikeminnow": {
+   "catch_rows": 2514,
+   "effort_rows": 2514,
+   "first": "2017-05-01",
+   "label": "Northern pikeminnow sport reward",
+   "last": "2026-04-20",
+   "locations": 29
+  },
+  "puget-ramp": {
+   "catch_rows": 330057,
+   "effort_rows": 47151,
+   "first": "2013-01-02",
+   "label": "Puget Sound ramp creel",
+   "last": "2026-07-30",
+   "locations": 218
+  },
+  "willapa": {
+   "catch_rows": 299,
+   "effort_rows": 75,
+   "first": "2018-08-01",
+   "label": "Willapa Bay",
+   "last": "2025-09-29",
+   "locations": 1
+  }
+ }
+}

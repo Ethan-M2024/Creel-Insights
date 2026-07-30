@@ -1,0 +1,10 @@
+# Windows batch files need CRLF; shell launchers must stay LF or they will not run
+*.bat        text eol=crlf
+*.command    text eol=lf
+*.sh         text eol=lf
+*.py         text eol=lf
+*.md         text eol=lf
+*.yml        text eol=lf
+*.html       text eol=lf
+*.csv.gz     binary
+*.json       text eol=lf

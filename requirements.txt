@@ -1,0 +1,8 @@
+# Pinned deliberately. An open range like "pdfplumber>=0.10" means every update
+# silently installs whatever is newest on PyPI, so one compromised release would
+# run on your machine the next time you double-click the updater.
+#
+# requirements.lock.txt pins the whole dependency tree by SHA-256 and is what the
+# launchers and CI actually install. Move a pin on purpose, then regenerate:
+#     python src/lock_requirements.py
+pdfplumber==0.11.10

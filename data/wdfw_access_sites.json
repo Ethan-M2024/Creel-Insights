@@ -1,0 +1,3313 @@
+[
+{
+"name": "Fourth of July Lake",
+"county": "Lincoln",
+"ramps": 1,
+"lat": 47.269778,
+"lon": -117.966025
+},
+{
+"name": "Jameson Lake",
+"county": "Douglas",
+"ramps": 2,
+"lat": 47.674818,
+"lon": -119.627831
+},
+{
+"name": "Weiss",
+"county": "Pierce",
+"ramps": 1,
+"lat": 47.150961,
+"lon": -122.221283
+},
+{
+"name": "Whitestone Lake",
+"county": "Okanogan",
+"ramps": 1,
+"lat": 48.791962,
+"lon": -119.469807
+},
+{
+"name": "Aeneas Lake",
+"county": "Okanogan",
+"ramps": 1,
+"lat": 48.677002,
+"lon": -119.508009
+},
+{
+"name": "Lake Alice",
+"county": "King",
+"ramps": 1,
+"lat": 47.532179,
+"lon": -121.883565
+},
+{
+"name": "Amber Lake",
+"county": "Spokane",
+"ramps": 0,
+"lat": 47.348121,
+"lon": -117.714629
+},
+{
+"name": "American Lake",
+"county": "Pierce",
+"ramps": 1,
+"lat": 47.122012,
+"lon": -122.567932
+},
+{
+"name": "Lake Armstrong",
+"county": "Snohomish",
+"ramps": 1,
+"lat": 48.223662,
+"lon": -122.122994
+},
+{
+"name": "Badger Lake",
+"county": "Spokane",
+"ramps": 1,
+"lat": 47.342912,
+"lon": -117.63793
+},
+{
+"name": "Barrier Dam",
+"county": "Lewis",
+"ramps": 1,
+"lat": 46.515919,
+"lon": -122.63737
+},
+{
+"name": "Bass Lake",
+"county": "King",
+"ramps": 0,
+"lat": 47.253641,
+"lon": -121.991543
+},
+{
+"name": "Bay Lake",
+"county": "Pierce",
+"ramps": 1,
+"lat": 47.248304,
+"lon": -122.759134
+},
+{
+"name": "Beaver Creek",
+"county": "Wahkiakum",
+"ramps": 0,
+"lat": 46.226601,
+"lon": -123.331691
+},
+{
+"name": "Beaver Lake",
+"county": "King",
+"ramps": 1,
+"lat": 47.586726,
+"lon": -121.999749
+},
+{
+"name": "Beaver Lake",
+"county": "Skagit",
+"ramps": 1,
+"lat": 48.445811,
+"lon": -122.22109
+},
+{
+"name": "Beginners' Hole",
+"county": "Cowlitz",
+"ramps": 0,
+"lat": 46.046856,
+"lon": -122.807103
+},
+{
+"name": "Benson Lake",
+"county": "Mason",
+"ramps": 1,
+"lat": 47.337074,
+"lon": -122.921042
+},
+{
+"name": "Big Lake",
+"county": "Skagit",
+"ramps": 1,
+"lat": 48.378911,
+"lon": -122.233595
+},
+{
+"name": "Big Quilcene",
+"county": "Jefferson",
+"ramps": 0,
+"lat": 47.81155,
+"lon": -122.910954
+},
+{
+"name": "Black Lake",
+"county": "Stevens",
+"ramps": 1,
+"lat": 48.555099,
+"lon": -117.624333
+},
+{
+"name": "Black Lake",
+"county": "Thurston",
+"ramps": 1,
+"lat": 46.983009,
+"lon": -122.973418
+},
+{
+"name": "Old Highway 9",
+"county": "Grays Harbor",
+"ramps": 1,
+"lat": 46.829961,
+"lon": -123.185509
+},
+{
+"name": "Blue Creek",
+"county": "Lewis",
+"ramps": 0,
+"lat": 46.483875,
+"lon": -122.731074
+},
+{
+"name": "Blue Lake",
+"county": "Grant",
+"ramps": 1,
+"lat": 47.559263,
+"lon": -119.451237
+},
+{
+"name": "Blue Lake",
+"county": "Okanogan",
+"ramps": 0,
+"lat": 48.568331,
+"lon": -119.61181
+},
+{
+"name": "Blue Lake",
+"county": "Okanogan",
+"ramps": 1,
+"lat": 48.902095,
+"lon": -119.497955
+},
+{
+"name": "Bonney Lake",
+"county": "Pierce",
+"ramps": 1,
+"lat": 47.190072,
+"lon": -122.187013
+},
+{
+"name": "Boston Harbor",
+"county": "Thurston",
+"ramps": 1,
+"lat": 47.139651,
+"lon": -122.905489
+},
+{
+"name": "Bosworth Lake",
+"county": "Snohomish",
+"ramps": 1,
+"lat": 48.048311,
+"lon": -121.973129
+},
+{
+"name": "Bryant Lake",
+"county": "Snohomish",
+"ramps": 0,
+"lat": 48.233521,
+"lon": -122.15333
+},
+{
+"name": "Buck Lake",
+"county": "Kitsap",
+"ramps": 1,
+"lat": 47.911189,
+"lon": -122.558167
+},
+{
+"name": "Cady Lake",
+"county": "Mason",
+"ramps": 1,
+"lat": 47.427737,
+"lon": -123.050602
+},
+{
+"name": "Cain Lake",
+"county": "Whatcom",
+"ramps": 1,
+"lat": 48.645606,
+"lon": -122.329824
+},
+{
+"name": "Caldwell Lake",
+"county": "Pend Oreille",
+"ramps": 0,
+"lat": 48.650506,
+"lon": -117.334493
+},
+{
+"name": "Lake Campbell",
+"county": "Skagit",
+"ramps": 1,
+"lat": 48.443072,
+"lon": -122.618109
+},
+{
+"name": "Canyon Creek",
+"county": "Snohomish",
+"ramps": 0,
+"lat": 48.114416,
+"lon": -121.963736
+},
+{
+"name": "Carney Lake",
+"county": "Pierce",
+"ramps": 1,
+"lat": 47.402988,
+"lon": -122.763858
+},
+{
+"name": "Lake Cavanaugh",
+"county": "Skagit",
+"ramps": 1,
+"lat": 48.310725,
+"lon": -121.988699
+},
+{
+"name": "Cedar Lake",
+"county": "Stevens",
+"ramps": 1,
+"lat": 48.941441,
+"lon": -117.589192
+},
+{
+"name": "Chain Lake",
+"county": "Pend Oreille",
+"ramps": 0,
+"lat": 48.059138,
+"lon": -117.208083
+},
+{
+"name": "Chain Lake",
+"county": "Snohomish",
+"ramps": 0,
+"lat": 47.902676,
+"lon": -121.972067
+},
+{
+"name": "Chambers Lake",
+"county": "Thurston",
+"ramps": 1,
+"lat": 47.03352,
+"lon": -122.839748
+},
+{
+"name": "Fuller Bridge",
+"county": "Grays Harbor",
+"ramps": 1,
+"lat": 46.979106,
+"lon": -123.478548
+},
+{
+"name": "Robert & Anna Bell",
+"county": "Kittitas",
+"ramps": 0,
+"lat": 47.300374,
+"lon": -121.102067
+},
+{
+"name": "Clear Lake",
+"county": "Pierce",
+"ramps": 1,
+"lat": 46.931868,
+"lon": -122.28075
+},
+{
+"name": "Clear Lake",
+"county": "Skagit",
+"ramps": 1,
+"lat": 48.464888,
+"lon": -122.225864
+},
+{
+"name": "Clear Lake",
+"county": "Spokane",
+"ramps": 1,
+"lat": 47.516639,
+"lon": -117.694014
+},
+{
+"name": "Clear Lake",
+"county": "Thurston",
+"ramps": 1,
+"lat": 46.817721,
+"lon": -122.476423
+},
+{
+"name": "Woodland Bar",
+"county": "Cowlitz",
+"ramps": 1,
+"lat": 45.919108,
+"lon": -122.802611
+},
+{
+"name": "Knappton",
+"county": "Pacific",
+"ramps": 1,
+"lat": 46.272884,
+"lon": -123.815861
+},
+{
+"name": "Connor Lake",
+"county": "Snohomish",
+"ramps": 0,
+"lat": 48.022877,
+"lon": -122.034147
+},
+{
+"name": "Couse Creek",
+"county": "Asotin",
+"ramps": 1,
+"lat": 46.205512,
+"lon": -116.967277
+},
+{
+"name": "Cow Lake",
+"county": "Adams",
+"ramps": 0,
+"lat": 47.135256,
+"lon": -118.154953
+},
+{
+"name": "Olequa Crossing",
+"county": "Cowlitz",
+"ramps": 1,
+"lat": 46.367827,
+"lon": -122.934225
+},
+{
+"name": "Wallace Bar",
+"county": "Lewis",
+"ramps": 0,
+"lat": 46.406117,
+"lon": -122.931826
+},
+{
+"name": "Toledo",
+"county": "Lewis",
+"ramps": 0,
+"lat": 46.434481,
+"lon": -122.847825
+},
+{
+"name": "Crabapple Lake",
+"county": "Snohomish",
+"ramps": 1,
+"lat": 48.132715,
+"lon": -122.2745
+},
+{
+"name": "Crescent Lake",
+"county": "Pierce",
+"ramps": 1,
+"lat": 47.394688,
+"lon": -122.567507
+},
+{
+"name": "Crocker Lake",
+"county": "Jefferson",
+"ramps": 1,
+"lat": 47.936295,
+"lon": -122.884493
+},
+{
+"name": "Davis Lake",
+"county": "Okanogan",
+"ramps": 1,
+"lat": 48.442582,
+"lon": -120.12134
+},
+{
+"name": "Davis Lake",
+"county": "Pend Oreille",
+"ramps": 1,
+"lat": 48.230241,
+"lon": -117.289634
+},
+{
+"name": "Hog Lake",
+"county": "Spokane",
+"ramps": 1,
+"lat": 47.3737,
+"lon": -117.809922
+},
+{
+"name": "Deep Lake",
+"county": "Stevens",
+"ramps": 1,
+"lat": 48.865157,
+"lon": -117.600292
+},
+{
+"name": "Deer Lake",
+"county": "Island",
+"ramps": 1,
+"lat": 47.974106,
+"lon": -122.380235
+},
+{
+"name": "Deer Lake",
+"county": "Stevens",
+"ramps": 1,
+"lat": 48.108381,
+"lon": -117.605815
+},
+{
+"name": "Lake Desire",
+"county": "King",
+"ramps": 1,
+"lat": 47.446355,
+"lon": -122.108036
+},
+{
+"name": "Diamond Lake",
+"county": "Pend Oreille",
+"ramps": 1,
+"lat": 48.129117,
+"lon": -117.186461
+},
+{
+"name": "Lake Dolloff",
+"county": "King",
+"ramps": 1,
+"lat": 47.323523,
+"lon": -122.284547
+},
+{
+"name": "Drano Lake",
+"county": "Skamania",
+"ramps": 1,
+"lat": 45.710434,
+"lon": -121.63939
+},
+{
+"name": "Duportail",
+"county": "Benton",
+"ramps": 1,
+"lat": 46.265171,
+"lon": -119.305857
+},
+{
+"name": "Echo Lake",
+"county": "Snohomish",
+"ramps": 1,
+"lat": 47.785591,
+"lon": -122.049036
+},
+{
+"name": "Egg Lake",
+"county": "San Juan",
+"ramps": 0,
+"lat": 48.566631,
+"lon": -123.082994
+},
+{
+"name": "Ell Lake",
+"county": "Okanogan",
+"ramps": 1,
+"lat": 48.601935,
+"lon": -119.117739
+},
+{
+"name": "Upper Elochoman",
+"county": "Wahkiakum",
+"ramps": 0,
+"lat": 46.240222,
+"lon": -123.319964
+},
+{
+"name": "Eloika Lake",
+"county": "Spokane",
+"ramps": 1,
+"lat": 48.018347,
+"lon": -117.366357
+},
+{
+"name": "Elton Pond",
+"county": "Yakima",
+"ramps": 0,
+"lat": 46.657576,
+"lon": -120.49115
+},
+{
+"name": "Elwha River",
+"county": "Clallam",
+"ramps": 0,
+"lat": 48.109842,
+"lon": -123.551597
+},
+{
+"name": "Lake Erie",
+"county": "Skagit",
+"ramps": 1,
+"lat": 48.449266,
+"lon": -122.639724
+},
+{
+"name": "Faber Ferry",
+"county": "Skagit",
+"ramps": 2,
+"lat": 48.513359,
+"lon": -121.672269
+},
+{
+"name": "Failor Lake",
+"county": "Grays Harbor",
+"ramps": 1,
+"lat": 47.107525,
+"lon": -123.964278
+},
+{
+"name": "Fan Lake",
+"county": "Pend Oreille",
+"ramps": 1,
+"lat": 48.054123,
+"lon": -117.403046
+},
+{
+"name": "Lake Fazon",
+"county": "Whatcom",
+"ramps": 1,
+"lat": 48.863638,
+"lon": -122.370004
+},
+{
+"name": "Lake Fenwick",
+"county": "King",
+"ramps": 0,
+"lat": 47.365884,
+"lon": -122.272258
+},
+{
+"name": "Fiorito Lake",
+"county": "Kittitas",
+"ramps": 0,
+"lat": 46.939468,
+"lon": -120.506207
+},
+{
+"name": "Fish Lake",
+"county": "King",
+"ramps": 0,
+"lat": 47.268295,
+"lon": -121.955345
+},
+{
+"name": "Fishtrap Lake",
+"county": "Lincoln",
+"ramps": 1,
+"lat": 47.355019,
+"lon": -117.824385
+},
+{
+"name": "Flowing Lake",
+"county": "Snohomish",
+"ramps": 1,
+"lat": 47.942475,
+"lon": -121.980666
+},
+{
+"name": "Fortson Hole",
+"county": "Snohomish",
+"ramps": 0,
+"lat": 48.277992,
+"lon": -121.72795
+},
+{
+"name": "Gate",
+"county": "Thurston",
+"ramps": 1,
+"lat": 46.829381,
+"lon": -123.133836
+},
+{
+"name": "Lake Goss",
+"county": "Island",
+"ramps": 1,
+"lat": 48.039521,
+"lon": -122.477813
+},
+{
+"name": "Woodhouse Ponds",
+"county": "Kittitas",
+"ramps": 0,
+"lat": 46.946742,
+"lon": -120.518058
+},
+{
+"name": "Satterlund",
+"county": "Wahkiakum",
+"ramps": 0,
+"lat": 46.36487,
+"lon": -123.565176
+},
+{
+"name": "Soos Creek Drift",
+"county": "King",
+"ramps": 0,
+"lat": 47.301097,
+"lon": -122.175105
+},
+{
+"name": "Grimes Lake",
+"county": "Douglas",
+"ramps": 0,
+"lat": 47.721494,
+"lon": -119.600047
+},
+{
+"name": "Halterman's Hole",
+"county": "Okanogan",
+"ramps": 0,
+"lat": 48.348497,
+"lon": -120.107267
+},
+{
+"name": "Hamilton",
+"county": "Skagit",
+"ramps": 1,
+"lat": 48.51677,
+"lon": -121.981121
+},
+{
+"name": "Harts Lake",
+"county": "Pierce",
+"ramps": 1,
+"lat": 46.893871,
+"lon": -122.464462
+},
+{
+"name": "Hatch Lake",
+"county": "Stevens",
+"ramps": 0,
+"lat": 48.501333,
+"lon": -117.80756
+},
+{
+"name": "Haven Lake",
+"county": "Mason",
+"ramps": 1,
+"lat": 47.457167,
+"lon": -122.977126
+},
+{
+"name": "Heller Bar",
+"county": "Asotin",
+"ramps": 1,
+"lat": 46.085752,
+"lon": -116.983375
+},
+{
+"name": "Hicks Lake",
+"county": "Thurston",
+"ramps": 1,
+"lat": 47.022047,
+"lon": -122.802654
+},
+{
+"name": "Lake Holm",
+"county": "King",
+"ramps": 1,
+"lat": 47.300771,
+"lon": -122.123879
+},
+{
+"name": "E Fk Hoquiam",
+"county": "Grays Harbor",
+"ramps": 1,
+"lat": 47.03768,
+"lon": -123.86798
+},
+{
+"name": "Horseshoe Lake",
+"county": "Kitsap",
+"ramps": 1,
+"lat": 47.406979,
+"lon": -122.666913
+},
+{
+"name": "Horseshoe Lake",
+"county": "Pend Oreille",
+"ramps": 1,
+"lat": 48.10908,
+"lon": -117.423264
+},
+{
+"name": "Lake Howard",
+"county": "Snohomish",
+"ramps": 1,
+"lat": 48.158392,
+"lon": -122.329893
+},
+{
+"name": "Hummel Lake",
+"county": "San Juan",
+"ramps": 1,
+"lat": 48.521104,
+"lon": -122.893339
+},
+{
+"name": "Humptulips Old 101",
+"county": "Grays Harbor",
+"ramps": 1,
+"lat": 47.231234,
+"lon": -123.973958
+},
+{
+"name": "Reynvaan Bar",
+"county": "Grays Harbor",
+"ramps": 1,
+"lat": 47.153014,
+"lon": -124.016704
+},
+{
+"name": "Thorberg",
+"county": "Grays Harbor",
+"ramps": 1,
+"lat": 47.090613,
+"lon": -124.061497
+},
+{
+"name": "I-5 Bridge",
+"county": "Lewis",
+"ramps": 1,
+"lat": 46.413445,
+"lon": -122.89093
+},
+{
+"name": "Isabella Lake",
+"county": "Mason",
+"ramps": 1,
+"lat": 47.166907,
+"lon": -123.116833
+},
+{
+"name": "Island",
+"county": "Cowlitz",
+"ramps": 1,
+"lat": 45.939288,
+"lon": -122.681607
+},
+{
+"name": "Island Lake",
+"county": "Mason",
+"ramps": 1,
+"lat": 47.250068,
+"lon": -123.119259
+},
+{
+"name": "Island Lake",
+"county": "Pacific",
+"ramps": 0,
+"lat": 46.420502,
+"lon": -124.037123
+},
+{
+"name": "Jackson Lake",
+"county": "Pierce",
+"ramps": 1,
+"lat": 47.289597,
+"lon": -122.775397
+},
+{
+"name": "Jumpoff Joe Lake",
+"county": "Stevens",
+"ramps": 1,
+"lat": 48.139627,
+"lon": -117.685736
+},
+{
+"name": "Prichard",
+"county": "Cowlitz",
+"ramps": 0,
+"lat": 46.046176,
+"lon": -122.77363
+},
+{
+"name": "Hand",
+"county": "Cowlitz",
+"ramps": 1,
+"lat": 46.0443,
+"lon": -122.798422
+},
+{
+"name": "Lake Ketchum",
+"county": "Snohomish",
+"ramps": 1,
+"lat": 48.280768,
+"lon": -122.34593
+},
+{
+"name": "Orient",
+"county": "Ferry",
+"ramps": 0,
+"lat": 48.867612,
+"lon": -118.200077
+},
+{
+"name": "Lake Killarney",
+"county": "King",
+"ramps": 1,
+"lat": 47.290138,
+"lon": -122.286363
+},
+{
+"name": "Kitsap Lake",
+"county": "Kitsap",
+"ramps": 1,
+"lat": 47.565714,
+"lon": -122.708929
+},
+{
+"name": "Kress Lake",
+"county": "Cowlitz",
+"ramps": 1,
+"lat": 46.046511,
+"lon": -122.853563
+},
+{
+"name": "Lake Cassidy",
+"county": "Snohomish",
+"ramps": 1,
+"lat": 48.049722,
+"lon": -122.098764
+},
+{
+"name": "Devereaux Lake",
+"county": "Mason",
+"ramps": 1,
+"lat": 47.407587,
+"lon": -122.844086
+},
+{
+"name": "Lake Kapowsin",
+"county": "Pierce",
+"ramps": 1,
+"lat": 46.985048,
+"lon": -122.218375
+},
+{
+"name": "Lake Saint Clair",
+"county": "Thurston",
+"ramps": 2,
+"lat": 46.998664,
+"lon": -122.717725
+},
+{
+"name": "North Cove",
+"county": "Snohomish",
+"ramps": 1,
+"lat": 48.013161,
+"lon": -122.065745
+},
+{
+"name": "Kenmore",
+"county": "King",
+"ramps": 1,
+"lat": 47.753898,
+"lon": -122.250353
+},
+{
+"name": "Langlois Lake",
+"county": "King",
+"ramps": 1,
+"lat": 47.634859,
+"lon": -121.884208
+},
+{
+"name": "Lavender Lake",
+"county": "Kittitas",
+"ramps": 0,
+"lat": 47.218884,
+"lon": -121.131443
+},
+{
+"name": "Lake Lawrence",
+"county": "Thurston",
+"ramps": 1,
+"lat": 46.849763,
+"lon": -122.572145
+},
+{
+"name": "Leland Lake",
+"county": "Jefferson",
+"ramps": 1,
+"lat": 47.897763,
+"lon": -122.876561
+},
+{
+"name": "Cedar Creek",
+"county": "Clark",
+"ramps": 1,
+"lat": 45.936305,
+"lon": -122.620344
+},
+{
+"name": "Liberty Lake",
+"county": "Spokane",
+"ramps": 1,
+"lat": 47.654516,
+"lon": -117.084217
+},
+{
+"name": "Lake Limerick",
+"county": "Mason",
+"ramps": 1,
+"lat": 47.280581,
+"lon": -123.050952
+},
+{
+"name": "Littlerock",
+"county": "Thurston",
+"ramps": 1,
+"lat": 46.873129,
+"lon": -123.023801
+},
+{
+"name": "Lake Loma",
+"county": "Snohomish",
+"ramps": 1,
+"lat": 48.13517,
+"lon": -122.24862
+},
+{
+"name": "Lone Lake",
+"county": "Island",
+"ramps": 1,
+"lat": 48.023913,
+"lon": -122.460856
+},
+{
+"name": "Long Lake",
+"county": "Kitsap",
+"ramps": 1,
+"lat": 47.485223,
+"lon": -122.593192
+},
+{
+"name": "Long Lake",
+"county": "Okanogan",
+"ramps": 1,
+"lat": 48.612038,
+"lon": -119.132376
+},
+{
+"name": "Long Lake",
+"county": "Thurston",
+"ramps": 1,
+"lat": 47.021232,
+"lon": -122.782323
+},
+{
+"name": "Lost Lake",
+"county": "Mason",
+"ramps": 1,
+"lat": 47.164315,
+"lon": -123.246534
+},
+{
+"name": "Devil's Lake",
+"county": "Snohomish",
+"ramps": 1,
+"lat": 47.799554,
+"lon": -122.042233
+},
+{
+"name": "Maggie Lake",
+"county": "Mason",
+"ramps": 1,
+"lat": 47.403498,
+"lon": -123.030619
+},
+{
+"name": "Lake Margaret",
+"county": "King",
+"ramps": 1,
+"lat": 47.767498,
+"lon": -121.902629
+},
+{
+"name": "Marshall Lake",
+"county": "Pend Oreille",
+"ramps": 1,
+"lat": 48.256084,
+"lon": -117.078592
+},
+{
+"name": "Martha Lake",
+"county": "Snohomish",
+"ramps": 1,
+"lat": 47.85073,
+"lon": -122.242529
+},
+{
+"name": "Massey Bar",
+"county": "Lewis",
+"ramps": 1,
+"lat": 46.458753,
+"lon": -122.807586
+},
+{
+"name": "Mattoon Lake",
+"county": "Kittitas",
+"ramps": 1,
+"lat": 46.978464,
+"lon": -120.553278
+},
+{
+"name": "McIntosh Lake",
+"county": "Thurston",
+"ramps": 1,
+"lat": 46.867325,
+"lon": -122.769996
+},
+{
+"name": "Lake McMurray",
+"county": "Skagit",
+"ramps": 1,
+"lat": 48.312887,
+"lon": -122.220285
+},
+{
+"name": "Lake Meridian",
+"county": "King",
+"ramps": 1,
+"lat": 47.361527,
+"lon": -122.144339
+},
+{
+"name": "McFarland",
+"county": "Okanogan",
+"ramps": 1,
+"lat": 48.151416,
+"lon": -120.057468
+},
+{
+"name": "Carlton Hole",
+"county": "Okanogan",
+"ramps": 1,
+"lat": 48.246538,
+"lon": -120.117554
+},
+{
+"name": "Swaram",
+"county": "Okanogan",
+"ramps": 0,
+"lat": 48.093059,
+"lon": -120.018757
+},
+{
+"name": "Bridge One",
+"county": "Okanogan",
+"ramps": 0,
+"lat": 48.075341,
+"lon": -119.956962
+},
+{
+"name": "Mineral Lake",
+"county": "Lewis",
+"ramps": 1,
+"lat": 46.719278,
+"lon": -122.18191
+},
+{
+"name": "Misery Point",
+"county": "Kitsap",
+"ramps": 1,
+"lat": 47.652135,
+"lon": -122.835174
+},
+{
+"name": "Mission Lake",
+"county": "Kitsap",
+"ramps": 1,
+"lat": 47.533386,
+"lon": -122.822526
+},
+{
+"name": "Modrow Bridge",
+"county": "Cowlitz",
+"ramps": 1,
+"lat": 46.047478,
+"lon": -122.836703
+},
+{
+"name": "Lake Morton",
+"county": "King",
+"ramps": 1,
+"lat": 47.325307,
+"lon": -122.088679
+},
+{
+"name": "Munn Lake",
+"county": "Thurston",
+"ramps": 1,
+"lat": 46.987872,
+"lon": -122.87832
+},
+{
+"name": "Lake Myron",
+"county": "Yakima",
+"ramps": 0,
+"lat": 46.62106,
+"lon": -120.556597
+},
+{
+"name": "McCormick",
+"county": "Yakima",
+"ramps": 0,
+"lat": 46.651757,
+"lon": -120.618326
+},
+{
+"name": "Rowe",
+"county": "Yakima",
+"ramps": 0,
+"lat": 46.702519,
+"lon": -120.660387
+},
+{
+"name": "Waterworks",
+"county": "Yakima",
+"ramps": 0,
+"lat": 46.686397,
+"lon": -120.654261
+},
+{
+"name": "Nahwatzel Lake",
+"county": "Mason",
+"ramps": 1,
+"lat": 47.240477,
+"lon": -123.326588
+},
+{
+"name": "Highway 4",
+"county": "Pacific",
+"ramps": 0,
+"lat": 46.368797,
+"lon": -123.780915
+},
+{
+"name": "Old Naselle Bridge",
+"county": "Pacific",
+"ramps": 1,
+"lat": 46.36602,
+"lon": -123.809874
+},
+{
+"name": "Newman Lake",
+"county": "Spokane",
+"ramps": 1,
+"lat": 47.773291,
+"lon": -117.08474
+},
+{
+"name": "Handicap Hole",
+"county": "Thurston",
+"ramps": 0,
+"lat": 47.057897,
+"lon": -122.69212
+},
+{
+"name": "Harksell",
+"county": "Whatcom",
+"ramps": 0,
+"lat": 48.906151,
+"lon": -122.548231
+},
+{
+"name": "De Groot",
+"county": "Whatcom",
+"ramps": 1,
+"lat": 48.918561,
+"lon": -122.486194
+},
+{
+"name": "Hof Bar",
+"county": "Whatcom",
+"ramps": 0,
+"lat": 48.914134,
+"lon": -122.510513
+},
+{
+"name": "Proctor-Rupke",
+"county": "Whatcom",
+"ramps": 0,
+"lat": 48.91998,
+"lon": -122.363854
+},
+{
+"name": "Nugents Corner",
+"county": "Whatcom",
+"ramps": 1,
+"lat": 48.843295,
+"lon": -122.293497
+},
+{
+"name": "North Bay",
+"county": "Mason",
+"ramps": 0,
+"lat": 47.390418,
+"lon": -122.812194
+},
+{
+"name": "North Lake",
+"county": "King",
+"ramps": 1,
+"lat": 47.308072,
+"lon": -122.289159
+},
+{
+"name": "Oakland Bay",
+"county": "Mason",
+"ramps": 0,
+"lat": 47.24977,
+"lon": -123.041754
+},
+{
+"name": "Offutt Lake",
+"county": "Thurston",
+"ramps": 1,
+"lat": 46.919624,
+"lon": -122.830604
+},
+{
+"name": "Ohop Lake",
+"county": "Pierce",
+"ramps": 1,
+"lat": 46.885308,
+"lon": -122.279423
+},
+{
+"name": "Riverside",
+"county": "Okanogan",
+"ramps": 1,
+"lat": 48.501917,
+"lon": -119.502432
+},
+{
+"name": "Palix River",
+"county": "Pacific",
+"ramps": 1,
+"lat": 46.608736,
+"lon": -123.9153
+},
+{
+"name": "Panther Lake",
+"county": "King",
+"ramps": 0,
+"lat": 47.422598,
+"lon": -122.187065
+},
+{
+"name": "Panther Lake",
+"county": "Mason",
+"ramps": 1,
+"lat": 47.518593,
+"lon": -122.852096
+},
+{
+"name": "Panther Lake",
+"county": "Snohomish",
+"ramps": 1,
+"lat": 47.950199,
+"lon": -122.008233
+},
+{
+"name": "Patterson Lake",
+"county": "Okanogan",
+"ramps": 1,
+"lat": 48.461546,
+"lon": -120.243844
+},
+{
+"name": "Pattison Lake",
+"county": "Thurston",
+"ramps": 1,
+"lat": 46.996182,
+"lon": -122.77064
+},
+{
+"name": "Pearrygin Lake",
+"county": "Okanogan",
+"ramps": 1,
+"lat": 48.494279,
+"lon": -120.159383
+},
+{
+"name": "Ruby Ferry",
+"county": "Pend Oreille",
+"ramps": 1,
+"lat": 48.521039,
+"lon": -117.294448
+},
+{
+"name": "Grasser's Lagoon",
+"county": "Island",
+"ramps": 0,
+"lat": 48.234007,
+"lon": -122.731855
+},
+{
+"name": "Mueller Park",
+"county": "Island",
+"ramps": 0,
+"lat": 48.224184,
+"lon": -122.730926
+},
+{
+"name": "Phillips Lake",
+"county": "Mason",
+"ramps": 1,
+"lat": 47.257155,
+"lon": -122.954053
+},
+{
+"name": "Pilchuck River",
+"county": "Snohomish",
+"ramps": 0,
+"lat": 47.987163,
+"lon": -122.035257
+},
+{
+"name": "Ray Gray",
+"county": "Snohomish",
+"ramps": 0,
+"lat": 48.076548,
+"lon": -121.982062
+},
+{
+"name": "Pleasant Harbor",
+"county": "Jefferson",
+"ramps": 1,
+"lat": 47.659756,
+"lon": -122.921589
+},
+{
+"name": "Plummer Lake",
+"county": "Lewis",
+"ramps": 1,
+"lat": 46.71798,
+"lon": -122.975125
+},
+{
+"name": "Point No Point",
+"county": "Kitsap",
+"ramps": 0,
+"lat": 47.911099,
+"lon": -122.532605
+},
+{
+"name": "Point Whitney",
+"county": "Jefferson",
+"ramps": 1,
+"lat": 47.761667,
+"lon": -122.851242
+},
+{
+"name": "Porter Bridge",
+"county": "Grays Harbor",
+"ramps": 1,
+"lat": 46.938715,
+"lon": -123.315538
+},
+{
+"name": "Pressentin Ferry",
+"county": "Skagit",
+"ramps": 1,
+"lat": 48.517236,
+"lon": -121.851875
+},
+{
+"name": "Trails End Lake",
+"county": "Mason",
+"ramps": 1,
+"lat": 47.375686,
+"lon": -122.892003
+},
+{
+"name": "Puget Island",
+"county": "Wahkiakum",
+"ramps": 0,
+"lat": 46.150943,
+"lon": -123.365347
+},
+{
+"name": "Sumner Sportsmen's",
+"county": "Pierce",
+"ramps": 0,
+"lat": 47.169863,
+"lon": -122.217928
+},
+{
+"name": "Indian George Creek",
+"county": "Jefferson",
+"ramps": 0,
+"lat": 47.809695,
+"lon": -122.871712
+},
+{
+"name": "Rapjohn Lake",
+"county": "Pierce",
+"ramps": 1,
+"lat": 46.905552,
+"lon": -122.345539
+},
+{
+"name": "Rat Lake",
+"county": "Okanogan",
+"ramps": 1,
+"lat": 48.176188,
+"lon": -119.80809
+},
+{
+"name": "Riley Lake",
+"county": "Snohomish",
+"ramps": 1,
+"lat": 48.243973,
+"lon": -121.944722
+},
+{
+"name": "Rock Lake",
+"county": "Whitman",
+"ramps": 1,
+"lat": 47.139132,
+"lon": -117.724981
+},
+{
+"name": "Lake Roesiger",
+"county": "Snohomish",
+"ramps": 1,
+"lat": 47.972343,
+"lon": -121.922976
+},
+{
+"name": "Roses Lake",
+"county": "Chelan",
+"ramps": 1,
+"lat": 47.902277,
+"lon": -120.158344
+},
+{
+"name": "Ross Point",
+"county": "Kitsap",
+"ramps": 0,
+"lat": 47.539642,
+"lon": -122.661728
+},
+{
+"name": "Rotary Lake",
+"county": "Yakima",
+"ramps": 0,
+"lat": 46.629165,
+"lon": -120.508066
+},
+{
+"name": "Round Lake",
+"county": "Okanogan",
+"ramps": 1,
+"lat": 48.605647,
+"lon": -119.122477
+},
+{
+"name": "Rowland Lake",
+"county": "Klickitat",
+"ramps": 1,
+"lat": 45.709816,
+"lon": -121.380811
+},
+{
+"name": "Sacheen Lake",
+"county": "Pend Oreille",
+"ramps": 1,
+"lat": 48.15128,
+"lon": -117.305885
+},
+{
+"name": "Lake Samish",
+"county": "Whatcom",
+"ramps": 1,
+"lat": 48.666748,
+"lon": -122.376147
+},
+{
+"name": "Samish River",
+"county": "Skagit",
+"ramps": 0,
+"lat": 48.547373,
+"lon": -122.337989
+},
+{
+"name": "Tornow Branch",
+"county": "Grays Harbor",
+"ramps": 0,
+"lat": 47.153949,
+"lon": -123.500546
+},
+{
+"name": "W Fork Satsop",
+"county": "Grays Harbor",
+"ramps": 1,
+"lat": 47.036679,
+"lon": -123.528569
+},
+{
+"name": "Wharton",
+"county": "Grays Harbor",
+"ramps": 0,
+"lat": 46.988268,
+"lon": -123.492448
+},
+{
+"name": "Double Bridges",
+"county": "Grays Harbor",
+"ramps": 1,
+"lat": 46.999408,
+"lon": -123.491952
+},
+{
+"name": "Sedro-Woolley",
+"county": "Skagit",
+"ramps": 1,
+"lat": 48.490151,
+"lon": -122.220912
+},
+{
+"name": "Lake Serene",
+"county": "Snohomish",
+"ramps": 1,
+"lat": 47.871477,
+"lon": -122.290842
+},
+{
+"name": "Shadow Lake",
+"county": "King",
+"ramps": 1,
+"lat": 47.411033,
+"lon": -122.085537
+},
+{
+"name": "Shady Lake",
+"county": "King",
+"ramps": 1,
+"lat": 47.428003,
+"lon": -122.106786
+},
+{
+"name": "Sherwood Creek",
+"county": "Mason",
+"ramps": 0,
+"lat": 47.375321,
+"lon": -122.832852
+},
+{
+"name": "Lake Shoecraft",
+"county": "Snohomish",
+"ramps": 1,
+"lat": 48.125834,
+"lon": -122.307212
+},
+{
+"name": "Sidley Lake",
+"county": "Okanogan",
+"ramps": 0,
+"lat": 48.99187,
+"lon": -119.221917
+},
+{
+"name": "Silver Lake",
+"county": "Spokane",
+"ramps": 1,
+"lat": 47.571877,
+"lon": -117.656967
+},
+{
+"name": "Silver Lake",
+"county": "Whatcom",
+"ramps": 1,
+"lat": 48.986475,
+"lon": -122.070116
+},
+{
+"name": "Silver Nail Lake",
+"county": "Okanogan",
+"ramps": 0,
+"lat": 48.993403,
+"lon": -119.462539
+},
+{
+"name": "Sixteen Lake",
+"county": "Skagit",
+"ramps": 1,
+"lat": 48.341667,
+"lon": -122.289688
+},
+{
+"name": "Gilligan Creek",
+"county": "Skagit",
+"ramps": 0,
+"lat": 48.486128,
+"lon": -122.136748
+},
+{
+"name": "Utopia",
+"county": "Skagit",
+"ramps": 0,
+"lat": 48.514856,
+"lon": -122.111823
+},
+{
+"name": "Baker River",
+"county": "Skagit",
+"ramps": 1,
+"lat": 48.533937,
+"lon": -121.738491
+},
+{
+"name": "Edgewater Park",
+"county": "Skagit",
+"ramps": 1,
+"lat": 48.417993,
+"lon": -122.342062
+},
+{
+"name": "Skokomish 101",
+"county": "Mason",
+"ramps": 1,
+"lat": 47.30921,
+"lon": -123.176238
+},
+{
+"name": "Colonel's Hole",
+"county": "Mason",
+"ramps": 0,
+"lat": 47.319625,
+"lon": -123.200999
+},
+{
+"name": "Baehler",
+"county": "Snohomish",
+"ramps": 1,
+"lat": 47.832026,
+"lon": -121.992735
+},
+{
+"name": "Jonker",
+"county": "Snohomish",
+"ramps": 0,
+"lat": 47.858447,
+"lon": -121.814658
+},
+{
+"name": "Lewis Street",
+"county": "Snohomish",
+"ramps": 1,
+"lat": 47.846442,
+"lon": -121.972259
+},
+{
+"name": "Big Eddy",
+"county": "Snohomish",
+"ramps": 0,
+"lat": 47.836041,
+"lon": -121.657629
+},
+{
+"name": "Simmons",
+"county": "Snohomish",
+"ramps": 0,
+"lat": 47.845548,
+"lon": -121.685731
+},
+{
+"name": "Ben Howard Hole",
+"county": "Snohomish",
+"ramps": 1,
+"lat": 47.845141,
+"lon": -121.927461
+},
+{
+"name": "Irving Lawson",
+"county": "Snohomish",
+"ramps": 0,
+"lat": 47.895996,
+"lon": -122.093494
+},
+{
+"name": "Plum",
+"county": "King",
+"ramps": 1,
+"lat": 47.551467,
+"lon": -121.850542
+},
+{
+"name": "Raging River",
+"county": "King",
+"ramps": 1,
+"lat": 47.56789,
+"lon": -121.882566
+},
+{
+"name": "Richter",
+"county": "King",
+"ramps": 1,
+"lat": 47.596037,
+"lon": -121.91384
+},
+{
+"name": "Hillstrom",
+"county": "Clallam",
+"ramps": 1,
+"lat": 48.061249,
+"lon": -124.233791
+},
+{
+"name": "Maxfield",
+"county": "Clallam",
+"ramps": 1,
+"lat": 48.022694,
+"lon": -124.384689
+},
+{
+"name": "Spectacle Lake E",
+"county": "Okanogan",
+"ramps": 0,
+"lat": 48.81361,
+"lon": -119.534862
+},
+{
+"name": "Spectacle Lake W",
+"county": "Okanogan",
+"ramps": 1,
+"lat": 48.810052,
+"lon": -119.546559
+},
+{
+"name": "Spencer Lake",
+"county": "Mason",
+"ramps": 1,
+"lat": 47.262106,
+"lon": -122.968705
+},
+{
+"name": "Sportsmans Lake",
+"county": "San Juan",
+"ramps": 1,
+"lat": 48.568927,
+"lon": -123.070068
+},
+{
+"name": "Spring Lake",
+"county": "King",
+"ramps": 1,
+"lat": 47.436763,
+"lon": -122.09245
+},
+{
+"name": "Spud House",
+"county": "Skagit",
+"ramps": 1,
+"lat": 48.395176,
+"lon": -122.365287
+},
+{
+"name": "Squalicum Lake",
+"county": "Whatcom",
+"ramps": 0,
+"lat": 48.799844,
+"lon": -122.34915
+},
+{
+"name": "Steel Lake",
+"county": "King",
+"ramps": 1,
+"lat": 47.325871,
+"lon": -122.29999
+},
+{
+"name": "Stickney Lake",
+"county": "Snohomish",
+"ramps": 1,
+"lat": 47.876222,
+"lon": -122.254784
+},
+{
+"name": "Boulder River",
+"county": "Snohomish",
+"ramps": 0,
+"lat": 48.282482,
+"lon": -121.774534
+},
+{
+"name": "Hat Slough",
+"county": "Snohomish",
+"ramps": 1,
+"lat": 48.211772,
+"lon": -122.339484
+},
+{
+"name": "Hazel",
+"county": "Snohomish",
+"ramps": 0,
+"lat": 48.282957,
+"lon": -121.830426
+},
+{
+"name": "Jordan Store",
+"county": "Snohomish",
+"ramps": 0,
+"lat": 48.147963,
+"lon": -122.039286
+},
+{
+"name": "Blue Stilly",
+"county": "Snohomish",
+"ramps": 0,
+"lat": 48.197638,
+"lon": -122.187625
+},
+{
+"name": "Lime Quarry",
+"county": "Snohomish",
+"ramps": 1,
+"lat": 48.248703,
+"lon": -122.061218
+},
+{
+"name": "Storm Lake",
+"county": "Snohomish",
+"ramps": 1,
+"lat": 47.942444,
+"lon": -121.977753
+},
+{
+"name": "Summit Lake",
+"county": "Thurston",
+"ramps": 1,
+"lat": 47.048768,
+"lon": -123.116153
+},
+{
+"name": "Sunday Lake",
+"county": "Snohomish",
+"ramps": 0,
+"lat": 48.230703,
+"lon": -122.255197
+},
+{
+"name": "Lake Sutherland",
+"county": "Clallam",
+"ramps": 1,
+"lat": 48.074268,
+"lon": -123.710866
+},
+{
+"name": "Tahuya Lake",
+"county": "Kitsap",
+"ramps": 0,
+"lat": 47.567803,
+"lon": -122.83623
+},
+{
+"name": "Tanwax Lake",
+"county": "Pierce",
+"ramps": 1,
+"lat": 46.943267,
+"lon": -122.274105
+},
+{
+"name": "Tarboo Lake",
+"county": "Jefferson",
+"ramps": 1,
+"lat": 47.921221,
+"lon": -122.849154
+},
+{
+"name": "Tee Lake",
+"county": "Mason",
+"ramps": 1,
+"lat": 47.437191,
+"lon": -123.022395
+},
+{
+"name": "Thrall",
+"county": "Kittitas",
+"ramps": 1,
+"lat": 46.926874,
+"lon": -120.516751
+},
+{
+"name": "Tiger Lake",
+"county": "Kitsap",
+"ramps": 1,
+"lat": 47.522107,
+"lon": -122.829326
+},
+{
+"name": "Toad Lake",
+"county": "Whatcom",
+"ramps": 1,
+"lat": 48.789207,
+"lon": -122.398254
+},
+{
+"name": "Upper Tolt",
+"county": "King",
+"ramps": 0,
+"lat": 47.67245,
+"lon": -121.855621
+},
+{
+"name": "Dodd",
+"county": "Walla Walla",
+"ramps": 0,
+"lat": 46.136461,
+"lon": -118.663378
+},
+{
+"name": "Tower Bridge",
+"county": "Cowlitz",
+"ramps": 0,
+"lat": 46.33383,
+"lon": -122.840773
+},
+{
+"name": "Mouth of Toutle",
+"county": "Cowlitz",
+"ramps": 0,
+"lat": 46.309757,
+"lon": -122.916906
+},
+{
+"name": "Triton Cove",
+"county": "Jefferson",
+"ramps": 0,
+"lat": 47.613305,
+"lon": -122.983796
+},
+{
+"name": "Lake Number 12",
+"county": "King",
+"ramps": 0,
+"lat": 47.323965,
+"lon": -121.972128
+},
+{
+"name": "Twin Lakes",
+"county": "Mason",
+"ramps": 1,
+"lat": 47.482596,
+"lon": -122.950413
+},
+{
+"name": "Twin Lakes",
+"county": "Okanogan",
+"ramps": 2,
+"lat": 48.447787,
+"lon": -120.191339
+},
+{
+"name": "Vogler Lake",
+"county": "Skagit",
+"ramps": 1,
+"lat": 48.572384,
+"lon": -121.773022
+},
+{
+"name": "Wagner Lake",
+"county": "Snohomish",
+"ramps": 0,
+"lat": 47.881493,
+"lon": -121.935828
+},
+{
+"name": "Waitts Lake",
+"county": "Stevens",
+"ramps": 1,
+"lat": 48.177227,
+"lon": -117.781073
+},
+{
+"name": "Walker Lake",
+"county": "King",
+"ramps": 0,
+"lat": 47.263301,
+"lon": -121.910747
+},
+{
+"name": "Wallace River",
+"county": "Snohomish",
+"ramps": 0,
+"lat": 47.865582,
+"lon": -121.745234
+},
+{
+"name": "Wannacut Lake",
+"county": "Okanogan",
+"ramps": 1,
+"lat": 48.868822,
+"lon": -119.517833
+},
+{
+"name": "Ward Lake",
+"county": "Thurston",
+"ramps": 1,
+"lat": 47.009208,
+"lon": -122.871912
+},
+{
+"name": "Warden Lake",
+"county": "Grant",
+"ramps": 1,
+"lat": 46.981023,
+"lon": -119.15909
+},
+{
+"name": "Three Mile",
+"county": "Clark",
+"ramps": 0,
+"lat": 45.616377,
+"lon": -122.341239
+},
+{
+"name": "County Line",
+"county": "Clark",
+"ramps": 0,
+"lat": 45.618107,
+"lon": -122.255167
+},
+{
+"name": "Steel Bridge",
+"county": "Skamania",
+"ramps": 0,
+"lat": 45.606655,
+"lon": -122.232992
+},
+{
+"name": "Wiser Lake",
+"county": "Whatcom",
+"ramps": 1,
+"lat": 48.905777,
+"lon": -122.485
+},
+{
+"name": "Upper Dryden",
+"county": "Chelan",
+"ramps": 0,
+"lat": 47.544449,
+"lon": -120.572731
+},
+{
+"name": "Lower Dryden",
+"county": "Chelan",
+"ramps": 0,
+"lat": 47.540689,
+"lon": -120.547519
+},
+{
+"name": "Fox Miller",
+"county": "Chelan",
+"ramps": 0,
+"lat": 47.531829,
+"lon": -120.532382
+},
+{
+"name": "Lower Monitor",
+"county": "Chelan",
+"ramps": 1,
+"lat": 47.487454,
+"lon": -120.415182
+},
+{
+"name": "Peshastin",
+"county": "Chelan",
+"ramps": 0,
+"lat": 47.569433,
+"lon": -120.595399
+},
+{
+"name": "Turkey Shoot",
+"county": "Chelan",
+"ramps": 0,
+"lat": 47.533324,
+"lon": -120.508034
+},
+{
+"name": "Upper Monitor",
+"county": "Chelan",
+"ramps": 0,
+"lat": 47.500872,
+"lon": -120.426918
+},
+{
+"name": "Dryden Dam",
+"county": "Chelan",
+"ramps": 0,
+"lat": 47.556254,
+"lon": -120.574865
+},
+{
+"name": "West Medical Lake",
+"county": "Spokane",
+"ramps": 2,
+"lat": 47.562886,
+"lon": -117.703858
+},
+{
+"name": "Lake Whatcom",
+"county": "Whatcom",
+"ramps": 1,
+"lat": 48.673437,
+"lon": -122.315045
+},
+{
+"name": "Lake Whitman",
+"county": "Pierce",
+"ramps": 1,
+"lat": 46.960435,
+"lon": -122.258137
+},
+{
+"name": "Wildcat Lake",
+"county": "Kitsap",
+"ramps": 1,
+"lat": 47.602358,
+"lon": -122.765937
+},
+{
+"name": "Wilderness Lake",
+"county": "King",
+"ramps": 1,
+"lat": 47.37413,
+"lon": -122.037542
+},
+{
+"name": "Ward Creek",
+"county": "Pacific",
+"ramps": 1,
+"lat": 46.677742,
+"lon": -123.67035
+},
+{
+"name": "Williams Lake",
+"county": "Spokane",
+"ramps": 1,
+"lat": 47.332999,
+"lon": -117.677464
+},
+{
+"name": "Wishkah River",
+"county": "Grays Harbor",
+"ramps": 0,
+"lat": 47.123223,
+"lon": -123.774678
+},
+{
+"name": "Long Swamp",
+"county": "Grays Harbor",
+"ramps": 1,
+"lat": 47.039493,
+"lon": -123.802512
+},
+{
+"name": "Lake Wooten",
+"county": "Mason",
+"ramps": 1,
+"lat": 47.464694,
+"lon": -122.985517
+},
+{
+"name": "Wye Lake",
+"county": "Kitsap",
+"ramps": 1,
+"lat": 47.422015,
+"lon": -122.758913
+},
+{
+"name": "Black Creek",
+"county": "Grays Harbor",
+"ramps": 1,
+"lat": 47.01057,
+"lon": -123.653389
+},
+{
+"name": "Old White Bridge",
+"county": "Grays Harbor",
+"ramps": 1,
+"lat": 47.104347,
+"lon": -123.674571
+},
+{
+"name": "Kinghorn Slough",
+"county": "Kittitas",
+"ramps": 1,
+"lat": 47.214769,
+"lon": -121.091822
+},
+{
+"name": "Granger",
+"county": "Yakima",
+"ramps": 1,
+"lat": 46.335508,
+"lon": -120.195432
+},
+{
+"name": "Snively Road",
+"county": "Benton",
+"ramps": 1,
+"lat": 46.359575,
+"lon": -119.396127
+},
+{
+"name": "Hyde Road",
+"county": "Benton",
+"ramps": 1,
+"lat": 46.300531,
+"lon": -119.330904
+},
+{
+"name": "Young's Bar",
+"county": "Skagit",
+"ramps": 0,
+"lat": 48.427861,
+"lon": -122.345119
+},
+{
+"name": "Blue Lake N",
+"county": "Okanogan",
+"ramps": 1,
+"lat": 48.68271,
+"lon": -119.687531
+},
+{
+"name": "Blue Lake S",
+"county": "Okanogan",
+"ramps": 1,
+"lat": 48.672214,
+"lon": -119.690296
+},
+{
+"name": "Gage Station",
+"county": "Grant",
+"ramps": 1,
+"lat": 47.51325,
+"lon": -119.502123
+},
+{
+"name": "Mile Post 10",
+"county": "Kittitas",
+"ramps": 1,
+"lat": 46.79808,
+"lon": -120.462721
+},
+{
+"name": "Mile Post 8",
+"county": "Kittitas",
+"ramps": 1,
+"lat": 46.775906,
+"lon": -120.452833
+},
+{
+"name": "North Fork",
+"county": "Skagit",
+"ramps": 0,
+"lat": 48.364075,
+"lon": -122.415467
+},
+{
+"name": "Moses Lake",
+"county": "Grant",
+"ramps": 1,
+"lat": 47.229694,
+"lon": -119.42867
+},
+{
+"name": "Outlet",
+"county": "Grant",
+"ramps": 0,
+"lat": 47.083543,
+"lon": -119.333353
+},
+{
+"name": "Rearing Pond",
+"county": "Clallam",
+"ramps": 1,
+"lat": 47.934471,
+"lon": -124.441189
+},
+{
+"name": "Ringold Springs",
+"county": "Franklin",
+"ramps": 1,
+"lat": 46.505256,
+"lon": -119.260104
+},
+{
+"name": "Salmon Hatchery",
+"county": "Clallam",
+"ramps": 1,
+"lat": 48.056726,
+"lon": -124.308405
+},
+{
+"name": "Shumaker Grade",
+"county": "Asotin",
+"ramps": 0,
+"lat": 46.034777,
+"lon": -117.115012
+},
+{
+"name": "S Fk Willapa",
+"county": "Pacific",
+"ramps": 0,
+"lat": 46.650183,
+"lon": -123.721365
+},
+{
+"name": "Teanaway Junction",
+"county": "Kittitas",
+"ramps": 1,
+"lat": 47.171662,
+"lon": -120.857715
+},
+{
+"name": "Tennant Lake",
+"county": "Whatcom",
+"ramps": 1,
+"lat": 48.830282,
+"lon": -122.584789
+},
+{
+"name": "Thorp",
+"county": "Kittitas",
+"ramps": 1,
+"lat": 47.100859,
+"lon": -120.701512
+},
+{
+"name": "Vernita Bridge",
+"county": "Grant",
+"ramps": 2,
+"lat": 46.641878,
+"lon": -119.740094
+},
+{
+"name": "Wilson",
+"county": "Clallam",
+"ramps": 1,
+"lat": 47.918333,
+"lon": -124.497481
+},
+{
+"name": "Thomas",
+"county": "Clallam",
+"ramps": 0,
+"lat": 47.887363,
+"lon": -124.351298
+},
+{
+"name": "Leyendecker",
+"county": "Clallam",
+"ramps": 1,
+"lat": 47.914199,
+"lon": -124.540914
+},
+{
+"name": "Vannausdle",
+"county": "Jefferson",
+"ramps": 0,
+"lat": 47.872408,
+"lon": -124.298149
+},
+{
+"name": "Boggan's",
+"county": "Asotin",
+"ramps": 1,
+"lat": 46.041764,
+"lon": -117.253518
+},
+{
+"name": "Cougar Creek",
+"county": "Asotin",
+"ramps": 1,
+"lat": 46.030516,
+"lon": -117.316783
+},
+{
+"name": "Highway 10 Take-out",
+"county": "Kittitas",
+"ramps": 1,
+"lat": 47.070401,
+"lon": -120.657139
+},
+{
+"name": "Rosburg",
+"county": "Wahkiakum",
+"ramps": 1,
+"lat": 46.331241,
+"lon": -123.639743
+},
+{
+"name": "Oscar Hoover",
+"county": "Snohomish",
+"ramps": 0,
+"lat": 47.866475,
+"lon": -122.076574
+},
+{
+"name": "Icicle Creek",
+"county": "Chelan",
+"ramps": 0,
+"lat": 47.569401,
+"lon": -120.661234
+},
+{
+"name": "Gardiner",
+"county": "Jefferson",
+"ramps": 1,
+"lat": 48.056998,
+"lon": -122.916789
+},
+{
+"name": "Silver Lake",
+"county": "Cowlitz",
+"ramps": 1,
+"lat": 46.310688,
+"lon": -122.777932
+},
+{
+"name": "Barnaby Slough",
+"county": "Skagit",
+"ramps": 0,
+"lat": 48.480795,
+"lon": -121.582243
+},
+{
+"name": "Farris",
+"county": "Chelan",
+"ramps": 0,
+"lat": 47.696283,
+"lon": -120.322188
+},
+{
+"name": "Teanaway River",
+"county": "Kittitas",
+"ramps": 0,
+"lat": 47.200649,
+"lon": -120.782646
+},
+{
+"name": "Lyman Ferry",
+"county": "Skagit",
+"ramps": 0,
+"lat": 48.504712,
+"lon": -122.023667
+},
+{
+"name": "Pekin Ferry",
+"county": "Cowlitz",
+"ramps": 1,
+"lat": 45.867898,
+"lon": -122.724351
+},
+{
+"name": "Williams Lake",
+"county": "Stevens",
+"ramps": 1,
+"lat": 48.75494,
+"lon": -117.965072
+},
+{
+"name": "Lake Martha",
+"county": "Snohomish",
+"ramps": 1,
+"lat": 48.170359,
+"lon": -122.346072
+},
+{
+"name": "Cook Slough",
+"county": "Snohomish",
+"ramps": 0,
+"lat": 48.19695,
+"lon": -122.244172
+},
+{
+"name": "Rocky Ford Hatchery",
+"county": "Grant",
+"ramps": 0,
+"lat": 47.321929,
+"lon": -119.43978
+},
+{
+"name": "Langsdorf Landing",
+"county": "Clark",
+"ramps": 1,
+"lat": 45.704124,
+"lon": -122.759491
+},
+{
+"name": "Deep River",
+"county": "Wahkiakum",
+"ramps": 1,
+"lat": 46.314081,
+"lon": -123.713712
+},
+{
+"name": "Beda Lake",
+"county": "Grant",
+"ramps": 0,
+"lat": 47.049037,
+"lon": -119.547106
+},
+{
+"name": "Caliche Lakes",
+"county": "Grant",
+"ramps": 1,
+"lat": 47.032924,
+"lon": -119.927911
+},
+{
+"name": "Chehalis River - Oakville",
+"county": "Grays Harbor",
+"ramps": 1,
+"lat": 46.850186,
+"lon": -123.253051
+},
+{
+"name": "Cutchie 1",
+"county": "Okanogan",
+"ramps": 0,
+"lat": 48.987821,
+"lon": -119.719124
+},
+{
+"name": "Cutchie 2",
+"county": "Okanogan",
+"ramps": 0,
+"lat": 48.957991,
+"lon": -119.714753
+},
+{
+"name": "Cutchie 3",
+"county": "Okanogan",
+"ramps": 0,
+"lat": 48.948746,
+"lon": -119.652997
+},
+{
+"name": "Morley",
+"county": "Grays Harbor",
+"ramps": 1,
+"lat": 47.049436,
+"lon": -124.044056
+},
+{
+"name": "Sportsman's Club",
+"county": "Cowlitz",
+"ramps": 1,
+"lat": 46.038879,
+"lon": -122.873955
+},
+{
+"name": "Turkey Hole",
+"county": "Klickitat",
+"ramps": 0,
+"lat": 45.74004,
+"lon": -121.228514
+},
+{
+"name": "Loomis Lake",
+"county": "Pacific",
+"ramps": 1,
+"lat": 46.438387,
+"lon": -124.044927
+},
+{
+"name": "Loon Lake",
+"county": "Stevens",
+"ramps": 1,
+"lat": 48.052278,
+"lon": -117.64428
+},
+{
+"name": "Bendtsen",
+"county": "Okanogan",
+"ramps": 0,
+"lat": 48.216157,
+"lon": -120.125913
+},
+{
+"name": "Driscoll Island",
+"county": "Okanogan",
+"ramps": 0,
+"lat": 48.914408,
+"lon": -119.423686
+},
+{
+"name": "Skagit Headquarters",
+"county": "Skagit",
+"ramps": 1,
+"lat": 48.324866,
+"lon": -122.374461
+},
+{
+"name": "Fisherman's Loop",
+"county": "Cowlitz",
+"ramps": 1,
+"lat": 46.038868,
+"lon": -122.864307
+},
+{
+"name": "Sprague Lake",
+"county": "Adams",
+"ramps": 1,
+"lat": 47.244899,
+"lon": -118.077047
+},
+{
+"name": "Benton City",
+"county": "Benton",
+"ramps": 1,
+"lat": 46.254847,
+"lon": -119.474447
+},
+{
+"name": "Fitzsimmons",
+"county": "Yakima",
+"ramps": 0,
+"lat": 46.449339,
+"lon": -120.36346
+},
+{
+"name": "Mellis Road",
+"county": "Yakima",
+"ramps": 0,
+"lat": 46.490874,
+"lon": -120.43085
+},
+{
+"name": "Zillah Bridge",
+"county": "Yakima",
+"ramps": 1,
+"lat": 46.401028,
+"lon": -120.280946
+},
+{
+"name": "239 Drain",
+"county": "Grant",
+"ramps": 0,
+"lat": 47.016011,
+"lon": -119.770612
+},
+{
+"name": "Alkali Lake",
+"county": "Grant",
+"ramps": 1,
+"lat": 47.522964,
+"lon": -119.49477
+},
+{
+"name": "Ankeny N",
+"county": "Douglas",
+"ramps": 1,
+"lat": 47.639776,
+"lon": -119.322011
+},
+{
+"name": "Ankeny S",
+"county": "Douglas",
+"ramps": 1,
+"lat": 47.628372,
+"lon": -119.328401
+},
+{
+"name": "Barker Canyon",
+"county": "Douglas",
+"ramps": 1,
+"lat": 47.902733,
+"lon": -119.165352
+},
+{
+"name": "Beebe Springs",
+"county": "Chelan",
+"ramps": 0,
+"lat": 47.823156,
+"lon": -119.972307
+},
+{
+"name": "Big Ditch",
+"county": "Snohomish",
+"ramps": 0,
+"lat": 48.276261,
+"lon": -122.377724
+},
+{
+"name": "Billy Clapp Lake",
+"county": "Grant",
+"ramps": 1,
+"lat": 47.452755,
+"lon": -119.252786
+},
+{
+"name": "Blythe",
+"county": "Grant",
+"ramps": 1,
+"lat": 46.969746,
+"lon": -119.334375
+},
+{
+"name": "Buckshot",
+"county": "Grant",
+"ramps": 1,
+"lat": 46.710652,
+"lon": -119.952485
+},
+{
+"name": "Pond 6 - Buena",
+"county": "Yakima",
+"ramps": 0,
+"lat": 46.421874,
+"lon": -120.321146
+},
+{
+"name": "Burke Lake S",
+"county": "Grant",
+"ramps": 1,
+"lat": 47.134303,
+"lon": -119.925468
+},
+{
+"name": "Burke Lake E",
+"county": "Grant",
+"ramps": 1,
+"lat": 47.131058,
+"lon": -119.900076
+},
+{
+"name": "Burke Lake W",
+"county": "Grant",
+"ramps": 1,
+"lat": 47.137529,
+"lon": -119.93138
+},
+{
+"name": "Buzzard Lake",
+"county": "Okanogan",
+"ramps": 0,
+"lat": 48.419143,
+"lon": -119.71264
+},
+{
+"name": "Campbell Lake",
+"county": "Okanogan",
+"ramps": 1,
+"lat": 48.44044,
+"lon": -120.066577
+},
+{
+"name": "Clark Pond",
+"county": "Franklin",
+"ramps": 1,
+"lat": 46.518649,
+"lon": -119.069912
+},
+{
+"name": "Conners Lake",
+"county": "Okanogan",
+"ramps": 1,
+"lat": 48.751075,
+"lon": -119.662743
+},
+{
+"name": "Corral Lake",
+"county": "Grant",
+"ramps": 1,
+"lat": 46.969249,
+"lon": -119.311128
+},
+{
+"name": "Cougar Lake",
+"county": "Okanogan",
+"ramps": 0,
+"lat": 48.476653,
+"lon": -120.0961
+},
+{
+"name": "Crab Creek",
+"county": "Grant",
+"ramps": 1,
+"lat": 47.066254,
+"lon": -119.359362
+},
+{
+"name": "Crescent Lake",
+"county": "Snohomish",
+"ramps": 0,
+"lat": 47.808351,
+"lon": -121.999991
+},
+{
+"name": "Davis Slough",
+"county": "Snohomish",
+"ramps": 0,
+"lat": 48.239549,
+"lon": -122.393017
+},
+{
+"name": "Dodson & Winchester",
+"county": "Grant",
+"ramps": 1,
+"lat": 47.053732,
+"lon": -119.555556
+},
+{
+"name": "Fish Lake E",
+"county": "Okanogan",
+"ramps": 1,
+"lat": 48.610146,
+"lon": -119.685071
+},
+{
+"name": "Evergreen Reservoir E",
+"county": "Grant",
+"ramps": 1,
+"lat": 47.124926,
+"lon": -119.897864
+},
+{
+"name": "Evergreen Reservoir N",
+"county": "Grant",
+"ramps": 1,
+"lat": 47.13341,
+"lon": -119.92739
+},
+{
+"name": "Evergreen Reservoir SW",
+"county": "Grant",
+"ramps": 1,
+"lat": 47.127079,
+"lon": -119.932119
+},
+{
+"name": "Fedesco-Harris",
+"county": "Grant",
+"ramps": 0,
+"lat": 46.994855,
+"lon": -119.425612
+},
+{
+"name": "Forde Lake",
+"county": "Okanogan",
+"ramps": 1,
+"lat": 48.737179,
+"lon": -119.670004
+},
+{
+"name": "Frenchman Hills Wasteway",
+"county": "Grant",
+"ramps": 0,
+"lat": 46.964025,
+"lon": -119.496463
+},
+{
+"name": "Frenchman Hills Lake",
+"county": "Grant",
+"ramps": 1,
+"lat": 46.978481,
+"lon": -119.585624
+},
+{
+"name": "Green Lake",
+"county": "Okanogan",
+"ramps": 1,
+"lat": 48.451081,
+"lon": -119.627093
+},
+{
+"name": "Johns River",
+"county": "Grays Harbor",
+"ramps": 1,
+"lat": 46.899576,
+"lon": -123.996139
+},
+{
+"name": "Lake Terrell",
+"county": "Whatcom",
+"ramps": 1,
+"lat": 48.858297,
+"lon": -122.689965
+},
+{
+"name": "Leidl",
+"county": "Klickitat",
+"ramps": 1,
+"lat": 45.937686,
+"lon": -121.119073
+},
+{
+"name": "Lenice Lake",
+"county": "Grant",
+"ramps": 0,
+"lat": 46.834361,
+"lon": -119.833551
+},
+{
+"name": "Little Green Lake",
+"county": "Okanogan",
+"ramps": 1,
+"lat": 48.436546,
+"lon": -119.628236
+},
+{
+"name": "Long Lake",
+"county": "Grant",
+"ramps": 1,
+"lat": 46.928459,
+"lon": -119.197123
+},
+{
+"name": "Lower Goose Lake",
+"county": "Grant",
+"ramps": 1,
+"lat": 46.924194,
+"lon": -119.295032
+},
+{
+"name": "Luhr's Landing",
+"county": "Thurston",
+"ramps": 1,
+"lat": 47.100929,
+"lon": -122.727487
+},
+{
+"name": "Lyle Lake",
+"county": "Adams",
+"ramps": 0,
+"lat": 46.8954,
+"lon": -119.203151
+},
+{
+"name": "Mabton Bridge",
+"county": "Yakima",
+"ramps": 1,
+"lat": 46.232658,
+"lon": -119.999862
+},
+{
+"name": "Martha Lake",
+"county": "Grant",
+"ramps": 0,
+"lat": 47.094832,
+"lon": -119.838556
+},
+{
+"name": "Million Dollar Mile N",
+"county": "Grant",
+"ramps": 1,
+"lat": 47.755545,
+"lon": -119.224609
+},
+{
+"name": "Million Dollar Mile S",
+"county": "Grant",
+"ramps": 1,
+"lat": 47.719434,
+"lon": -119.257974
+},
+{
+"name": "Mineral Springs",
+"county": "Klickitat",
+"ramps": 1,
+"lat": 45.818868,
+"lon": -121.117731
+},
+{
+"name": "Fish Lake W",
+"county": "Okanogan",
+"ramps": 1,
+"lat": 48.618114,
+"lon": -119.706774
+},
+{
+"name": "Osborn Bay Lake",
+"county": "Grant",
+"ramps": 1,
+"lat": 47.917354,
+"lon": -119.053453
+},
+{
+"name": "Ponds 4 & 5",
+"county": "Yakima",
+"ramps": 0,
+"lat": 46.441113,
+"lon": -120.346466
+},
+{
+"name": "Quincy Lake",
+"county": "Grant",
+"ramps": 1,
+"lat": 47.141414,
+"lon": -119.927646
+},
+{
+"name": "Sam Israel",
+"county": "Grant",
+"ramps": 1,
+"lat": 47.474851,
+"lon": -119.517466
+},
+{
+"name": "Smith Creek",
+"county": "Pacific",
+"ramps": 1,
+"lat": 46.74813,
+"lon": -123.883128
+},
+{
+"name": "Snyder Bar",
+"county": "Asotin",
+"ramps": 0,
+"lat": 46.025345,
+"lon": -117.1441
+},
+{
+"name": "South Montesano Bridge",
+"county": "Grays Harbor",
+"ramps": 1,
+"lat": 46.963079,
+"lon": -123.603228
+},
+{
+"name": "Stan Coffin Lake",
+"county": "Grant",
+"ramps": 1,
+"lat": 47.149392,
+"lon": -119.919467
+},
+{
+"name": "Stimpson Flats",
+"county": "Klickitat",
+"ramps": 1,
+"lat": 45.924188,
+"lon": -121.110256
+},
+{
+"name": "Sunland Estates",
+"county": "Grant",
+"ramps": 1,
+"lat": 47.069724,
+"lon": -120.025316
+},
+{
+"name": "Tim Ponds",
+"county": "Yakima",
+"ramps": 0,
+"lat": 46.732553,
+"lon": -120.796601
+},
+{
+"name": "Union River",
+"county": "Mason",
+"ramps": 0,
+"lat": 47.447185,
+"lon": -122.841328
+},
+{
+"name": "Upper Goose Lake",
+"county": "Grant",
+"ramps": 1,
+"lat": 46.941293,
+"lon": -119.272515
+},
+{
+"name": "Vancouver Lake",
+"county": "Clark",
+"ramps": 1,
+"lat": 45.663674,
+"lon": -122.717158
+},
+{
+"name": "Winchester Lake 1",
+"county": "Grant",
+"ramps": 1,
+"lat": 47.107326,
+"lon": -119.61851
+},
+{
+"name": "Winchester Lake 2",
+"county": "Grant",
+"ramps": 0,
+"lat": 47.117841,
+"lon": -119.620314
+},
+{
+"name": "Winchester Lake 3",
+"county": "Grant",
+"ramps": 1,
+"lat": 47.141802,
+"lon": -119.639192
+},
+{
+"name": "Yoyo Rock",
+"county": "Chelan",
+"ramps": 1,
+"lat": 47.281366,
+"lon": -120.092923
+},
+{
+"name": "Frank Faha",
+"county": "Asotin",
+"ramps": 0,
+"lat": 46.062897,
+"lon": -116.99551
+},
+{
+"name": "Lind Coulee Bridge",
+"county": "Grant",
+"ramps": 1,
+"lat": 46.989269,
+"lon": -119.209771
+},
+{
+"name": "Lind Coulee East",
+"county": "Grant",
+"ramps": 0,
+"lat": 46.993528,
+"lon": -119.207927
+},
+{
+"name": "Lind Coulee Point",
+"county": "Grant",
+"ramps": 1,
+"lat": 46.984785,
+"lon": -119.242834
+},
+{
+"name": "Lind Coulee Island",
+"county": "Grant",
+"ramps": 1,
+"lat": 46.987101,
+"lon": -119.222538
+},
+{
+"name": "Glen Williams",
+"county": "Grant",
+"ramps": 1,
+"lat": 46.982924,
+"lon": -119.255716
+},
+{
+"name": "Medicare Beach",
+"county": "Grant",
+"ramps": 0,
+"lat": 46.990343,
+"lon": -119.267023
+},
+{
+"name": "Sampson's Pit",
+"county": "Grant",
+"ramps": 1,
+"lat": 46.987712,
+"lon": -119.246012
+},
+{
+"name": "Warden Outfall",
+"county": "Grant",
+"ramps": 0,
+"lat": 46.991884,
+"lon": -119.170894
+},
+{
+"name": "Mesa Lake",
+"county": "Franklin",
+"ramps": 1,
+"lat": 46.565119,
+"lon": -119.046424
+},
+{
+"name": "Kettle River",
+"county": "Ferry",
+"ramps": 0,
+"lat": 48.995891,
+"lon": -118.770151
+},
+{
+"name": "Bridgeport Bar",
+"county": "Douglas",
+"ramps": 1,
+"lat": 48.07076,
+"lon": -119.69134
+},
+{
+"name": "Evergreen Reservoir W",
+"county": "Grant",
+"ramps": 1,
+"lat": 47.130283,
+"lon": -119.932769
+},
+{
+"name": "Road C & Frenchman",
+"county": "Grant",
+"ramps": 0,
+"lat": 46.974124,
+"lon": -119.428837
+},
+{
+"name": "South Bend",
+"county": "Pacific",
+"ramps": 1,
+"lat": 46.671596,
+"lon": -123.816062
+},
+{
+"name": "Windmill-Canal-Heart Lakes",
+"county": "Grant",
+"ramps": 3,
+"lat": 46.93071,
+"lon": -119.18119
+},
+{
+"name": "7400 Road",
+"county": "Grays Harbor",
+"ramps": 1,
+"lat": 47.209352,
+"lon": -123.631767
+},
+{
+"name": "Lake Geneva",
+"county": "King",
+"ramps": 1,
+"lat": 47.29039,
+"lon": -122.285303
+},
+{
+"name": "Swofford Pond",
+"county": "Lewis",
+"ramps": 1,
+"lat": 46.502346,
+"lon": -122.391689
+},
+{
+"name": "Sekiu",
+"county": "Clallam",
+"ramps": 1,
+"lat": 48.265783,
+"lon": -124.298906
+},
+{
+"name": "Deadwater Slough",
+"county": "Snohomish",
+"ramps": 0,
+"lat": 47.977616,
+"lon": -122.161889
+}
+]

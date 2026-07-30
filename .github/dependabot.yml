@@ -1,0 +1,22 @@
+# Pinning by hash stops a compromised release from installing itself — but it also
+# means nothing patches itself any more. These alerts are what close that gap: they
+# tell you when a pinned version develops a known vulnerability so you can move the
+# pin on purpose, then regenerate the lock with:
+#     python src/lock_requirements.py
+version: 2
+updates:
+  - package-ecosystem: pip
+    directory: /
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "deps"
+
+  # the workflow pins actions to commit SHAs; this keeps those SHAs current
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly
+    commit-message:
+      prefix: "ci"
