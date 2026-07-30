@@ -181,6 +181,14 @@ td.num { font-family: var(--mono); font-variant-numeric: tabular-nums; }
   padding: 1px 5px; color: var(--ink-3);
 }
 .scroll { max-height: 460px; overflow-y: auto; overflow-x: auto; }
+.meter {
+  display: inline-block; width: 90px; height: 8px; border-radius: 4px;
+  background: var(--surface-2); border: 1px solid var(--rule); overflow: hidden;
+  vertical-align: middle;
+}
+.meter > span { display: block; height: 100%; }
+.meter-label { font-family: var(--mono); font-size: 11.5px; margin-left: 7px; }
+td.wrap { white-space: normal; min-width: 8ch; }
 
 .stat-row { display: flex; flex-wrap: wrap; gap: 18px 28px; margin: 2px 0 14px; }
 .stat .v { font-size: 25px; font-weight: 640; letter-spacing: -.02em; font-variant-numeric: tabular-nums; }
@@ -220,6 +228,7 @@ ul.checks li { padding: 4px 0; border-bottom: 1px solid var(--grid); }
   <button role="tab" id="tab-map" aria-selected="true">Heat map</button>
   <button role="tab" id="tab-places">Places</button>
   <button role="tab" id="tab-species">Species</button>
+  <button role="tab" id="tab-quotas">Quotas &amp; closures</button>
   <button role="tab" id="tab-sources">Sources &amp; accuracy</button>
 </nav>
 
@@ -357,6 +366,30 @@ ul.checks li { padding: 4px 0; border-bottom: 1px solid var(--grid); }
   </div>
 </section>
 
+<!-- --------------------------------------------------------------- quotas -->
+<section class="panel" id="panel-quotas" hidden>
+  <div class="layout">
+    <div class="card">
+      <h2>Puget Sound Chinook, against the guideline</h2>
+      <p class="note">These fisheries are managed on encounters, not on catch: when a
+        marine area reaches its guideline it closes, whether or not anyone is still
+        catching fish. WDFW state the date each estimate runs through, and that date
+        — not today's — is how current the figure is.</p>
+      <div id="quota-chinook"></div>
+    </div>
+    <div class="card">
+      <h2>White sturgeon retention</h2>
+      <p class="note">Harvest against the season's guideline, pool by pool on the
+        Columbia.</p>
+      <div id="quota-sturgeon"></div>
+      <h3>Where these come from</h3>
+      <p class="note">Read from WDFW's seasonal salmon fishery guidelines page and the
+        white sturgeon page. Neither is creel catch, so neither is mixed into the catch
+        tables anywhere else in this dashboard.</p>
+    </div>
+  </div>
+</section>
+
 <!-- -------------------------------------------------------------- sources -->
 <section class="panel" id="panel-sources" hidden>
   <div class="layout">
@@ -368,6 +401,23 @@ ul.checks li { padding: 4px 0; border-bottom: 1px solid var(--grid); }
         <thead><tr><th>Source</th><th>First</th><th>Last</th><th>Places</th><th>Species rows</th></tr></thead>
         <tbody></tbody>
       </table></div>
+      <h3>What is not read</h3>
+      <p class="note">One entry on WDFW's creel index carries no in-season data:
+        <b>Sport catch reports</b>, the annual catch-record-card publications, whose
+        most recent edition covers 2021. They summarise a year rather than track a
+        season, so nothing on this page is built from them. Everything else WDFW lists
+        there is read, including the two quota trackers on the previous tab.</p>
+
+      <h3>How current each source is</h3>
+      <p class="note">The date of the most recent report read from each source, and
+        how long ago that was. A source that runs a season — Buoy 10 opens in August,
+        Willapa in August, the pikeminnow fishery in spring — is not stale between
+        seasons; it has simply not published yet.</p>
+      <div class="scroll"><table id="freshness-table">
+        <thead><tr><th>Source</th><th>Latest report</th><th>Age</th><th>Season</th></tr></thead>
+        <tbody></tbody>
+      </table></div>
+
       <h3>How a number gets here</h3>
       <p class="note">
         Every figure is parsed from a WDFW report and nothing is estimated. Catch and
@@ -987,6 +1037,39 @@ function weekChart(weeks) {
     </g></svg>`;
 }
 
+/* ------------------------------------------------------------------ quotas */
+
+function renderQuotas() {
+  const rows = DATA.quotas || [];
+  const chinook = rows.filter(r => /chinook/i.test(r.fishery));
+  const sturgeon = rows.filter(r => /sturgeon/i.test(r.fishery));
+  document.getElementById('quota-chinook').innerHTML = quotaTable(chinook, true);
+  document.getElementById('quota-sturgeon').innerHTML = quotaTable(sturgeon, false);
+}
+
+function quotaTable(rows, withDate) {
+  if (!rows.length) return '<p class="note">Nothing published for this season yet.</p>';
+  const bar = r => {
+    const p = r.percent === '' || r.percent === null ? null : Number(r.percent);
+    if (p === null) return '<span class="flat">—</span>';
+    const width = Math.min(100, p * 100);
+    // over the guideline is the whole point of the panel, so it is drawn as full
+    // and coloured, not clipped and hidden
+    const colour = p >= 1 ? 'var(--hot)' : p >= 0.85 ? 'var(--warm)' : 'var(--accent)';
+    return `<span class="meter"><span style="width:${width}%;background:${colour}"></span></span>` +
+      `<span class="meter-label">${Math.round(p * 100)}%</span>`;
+  };
+  return `<table><thead><tr><th>Area</th><th>Counted against</th><th>Used</th>` +
+    (withDate ? '<th>Through</th>' : '<th>Season</th>') + `<th>Status</th></tr></thead><tbody>` +
+    rows.map(r => `<tr>
+      <td>${escapeHtml(r.area)}${r.season && withDate ? `<br><span class="pill">${escapeHtml(r.season)}</span>` : ''}</td>
+      <td>${escapeHtml(r.criteria || '')}<br><span class="k" style="color:var(--ink-3)">${fmt(r.taken)} of ${fmt(r.limit)}</span></td>
+      <td>${bar(r)}</td>
+      <td class="${withDate ? 'num' : 'wrap'}">${escapeHtml(withDate ? (r.valid_through || '—') : (r.season || '—'))}</td>
+      <td class="wrap">${escapeHtml(r.status || '—')}</td>
+    </tr>`).join('') + '</tbody></table>';
+}
+
 /* ----------------------------------------------------------------- sources */
 
 function renderSources() {
@@ -996,6 +1079,8 @@ function renderSources() {
       <tr><td>${escapeHtml(s.label || id)}<br><span class="pill">${escapeHtml(id)}</span></td>
       <td class="num">${s.first || '—'}</td><td class="num">${s.last || '—'}</td>
       <td class="num">${fmt(s.locations)}</td><td class="num">${fmt(s.catch_rows)}</td></tr>`).join('');
+
+  renderFreshness(man);
 
   const audit = DATA.audit;
   const note = document.getElementById('audit-note');
@@ -1016,17 +1101,43 @@ function renderSources() {
   document.getElementById('min-anglers').textContent = META.min_anglers;
 }
 
+/* Seasonal fisheries and year-round ones age differently, and a table that called
+   Buoy 10 "197 days old" every July would be reporting the calendar, not a problem. */
+const SEASONAL_SOURCES = {
+  buoy10: 'August to December',
+  willapa: 'August to January',
+  'ocean-quota': 'June to September',
+  pikeminnow: 'May to September',
+  halibut: 'April to July',
+};
+
+function renderFreshness(manifest) {
+  const asOf = new Date(META.as_of + 'T12:00:00Z');
+  const rows = Object.entries(manifest).map(([id, s]) => {
+    const last = s.last ? new Date(s.last + 'T12:00:00Z') : null;
+    const days = last ? Math.round((asOf - last) / 86400000) : null;
+    return { id, label: s.label || id, last: s.last, days };
+  }).sort((a, b) => (a.days ?? 1e9) - (b.days ?? 1e9));
+  document.querySelector('#freshness-table tbody').innerHTML = rows.map(r => `
+    <tr><td>${escapeHtml(r.label)}</td>
+    <td class="num">${r.last || '—'}</td>
+    <td class="num ${r.days !== null && r.days <= 10 ? 'check-ok' : ''}">${
+      r.days === null ? '—' : r.days === 0 ? 'today' : r.days + ' days'}</td>
+    <td>${escapeHtml(SEASONAL_SOURCES[r.id] || 'year-round')}</td></tr>`).join('');
+}
+
 /* -------------------------------------------------------------------- wiring */
 
 function showTab(name) {
   state.tab = name;
-  for (const t of ['map', 'places', 'species', 'sources']) {
+  for (const t of ['map', 'places', 'species', 'quotas', 'sources']) {
     document.getElementById('panel-' + t).hidden = t !== name;
     document.getElementById('tab-' + t).setAttribute('aria-selected', String(t === name));
   }
   if (name === 'map') drawMap();
   if (name === 'places') renderPlaces();
   if (name === 'species') renderSpecies();
+  if (name === 'quotas') renderQuotas();
   if (name === 'sources') renderSources();
 }
 
@@ -1135,7 +1246,7 @@ function init() {
     });
   }
 
-  for (const t of ['map', 'places', 'species', 'sources']) {
+  for (const t of ['map', 'places', 'species', 'quotas', 'sources']) {
     document.getElementById('tab-' + t).addEventListener('click', () => showTab(t));
   }
 

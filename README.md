@@ -6,13 +6,13 @@ parsed out of WDFW's pages, PDFs and databases, reconciled, and turned into a ma
 
 **[▶ Open the live dashboard](https://ethan-m2024.github.io/Creel-Insights/)**
 
-WDFW publishes creel data in seven places and four formats. A Drupal table for Puget
-Sound ramps. A weekly PDF written in sentences for the Columbia. A quota report for
-the ocean ports. A fixed-width PDF for the pikeminnow reward fishery. An
-interview-level database on data.wa.gov. Read one at a time they answer one question
-each: how did last weekend go at that ramp. Read together they answer the question
-anglers actually ask — where are fish being caught right now, and is that better or
-worse than this water usually does at this point in the season.
+WDFW publishes creel data in eleven places and four formats. A Drupal table for Puget
+Sound ramps. A weekly PDF written in sentences for the Columbia. Quota reports for the
+ocean ports and the halibut subareas. A fixed-width PDF for the pikeminnow reward
+fishery. An interview-level database on data.wa.gov. Read one at a time they answer
+one question each: how did last weekend go at that ramp. Read together they answer the
+question anglers actually ask — where are fish being caught right now, and is that
+better or worse than this water usually does at this point in the season.
 
 This repository holds all of it, parsed and checked, and rebuilds itself daily.
 Nothing is hand-entered and no figure is estimated: every number traces to a
@@ -70,6 +70,12 @@ past and the map answers a shorter question: what changed since the last report.
 **When does this water usually produce?** Every species has a week-by-week seasonality
 curve built from the last five years, and every place has its own weekly history.
 
+**Is my area about to close?** The quotas tab tracks each Puget Sound marine area's
+Chinook encounters against the guideline that shuts it, and each Columbia pool's
+sturgeon harvest against its own, with the date WDFW say each estimate runs
+through — because that date, not the date the page was built, is how current the
+number is.
+
 **Where do the numbers come from?** The sources tab lists every report read, its date
 range, how many places it covers, and the result of every accuracy check on the build
 you are looking at.
@@ -78,17 +84,34 @@ you are looking at.
 
 ## The sources
 
+WDFW's creel index lists eleven things. Nine of them carry data, and all nine are
+read here.
+
 | Source | Format | Covers | What it gives |
 |---|---|---|---|
 | WDFW creel database (`data.wa.gov`) | JSON API | statewide, 1973 to now | angler interviews and individual fish, by species, fate and fin mark |
-| Puget Sound ramp creel | HTML, paginated | 2013 to now | every sampled ramp-day: interviews, anglers, and catch by species |
-| Buoy 10 | HTML | 2014 to now | daily boats, anglers, Chinook and coho kept at the Columbia mouth |
-| Willapa Bay | HTML | 2018 to now | management-week interviews and catch, clipped and unmarked kept apart |
-| Ocean sport salmon quota report | HTML | 2016 to now | weekly anglers and salmon for Columbia, Westport, La Push, Neah Bay |
-| Columbia River and tributary report | PDF prose | 2019 to now | weekly bank and boat effort and catch, by river section |
-| Northern pikeminnow sport reward | PDF table | 2019 to now | weekly registered anglers and fish per check station |
+| Puget Sound creel reports | HTML, paginated | 2013 to now | every sampled ramp-day: interviews, anglers, and catch by species |
+| North coast creel surveys | JSON API | 2020 to now | Olympic Peninsula river creel, inside the same database |
+| Southwest Washington fishing reports | PDF prose | 2019 to now | weekly bank and boat effort and catch, by Columbia river section |
+| Buoy 10 fishing reports | HTML | 2014 to now | daily boats, anglers, Chinook and coho kept at the Columbia mouth |
+| Willapa Bay (Marine Area 2.1) | HTML | 2018 to now | management-week interviews and catch, clipped and unmarked kept apart |
+| Ocean sport quota report | HTML | 2016 to now | weekly anglers and salmon for Columbia, Westport, La Push, Neah Bay |
+| Recreational bottomfish and halibut | HTML | current season | weekly halibut, anglers and average weight for four coastal subareas |
+| Pikeminnow Sport-Reward Fishery | PDF tables | 2019 to now | weekly registered anglers and fish per check station |
+| Seasonal salmon guidelines and quotas | HTML | current seasons | Puget Sound Chinook encounters against the guideline that closes each area |
+| White sturgeon | HTML | current season | Columbia pool harvest against its guideline |
 
-Two of these need explaining.
+The last two are not creel catch — an encounter is not a fish kept, and a pool's
+harvest estimate is not an interview — so they are kept in their own table
+(`data/quotas.json`) and shown on their own tab rather than mixed into the catch
+figures.
+
+The one index entry with nothing to read is **Sport catch reports**: annual
+catch-record-card publications, the most recent for 2021, which summarise a year
+rather than track a season. They are listed in the dashboard's sources tab as
+unread, with the reason.
+
+Two sources need explaining.
 
 **The Columbia report is prose, not a table.** WDFW writes it out in sentences:
 *"Section 6 (Kalama) — 110 bank anglers kept eight steelhead and released four
@@ -173,6 +196,8 @@ src/sources/            one module per WDFW publication
     ocean.py            ocean sport salmon quota report
     southwest.py        the Columbia report, read out of prose
     pikeminnow.py       the sport-reward fishery
+    halibut.py          the Pacific halibut landings summary
+    quotas.py           encounter guidelines and harvest quotas
 src/geo.py              placing locations, and how confident that placement is
 src/build_data.py       the trend arithmetic and the dashboard payload
 src/validate.py         the audit

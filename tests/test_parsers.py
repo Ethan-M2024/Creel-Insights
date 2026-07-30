@@ -22,6 +22,8 @@ import willapa        # noqa: E402
 import ocean          # noqa: E402
 import pikeminnow     # noqa: E402
 import southwest      # noqa: E402
+import halibut       # noqa: E402
+import quotas        # noqa: E402
 import build_data     # noqa: E402
 
 
@@ -239,6 +241,80 @@ class TestSouthwest(unittest.TestCase):
         cowlitz = [r for r in self.effort if r['location'] == 'Section 7 (Cowlitz)']
         self.assertEqual(len(cowlitz), 1)
         self.assertEqual(cowlitz[0]['anglers'], 2)
+
+
+HALIBUT_PAGE = """
+<h2>2026 Pacific halibut landings summary</h2>
+<h3>Puget Sound - Quota 80,512 lbs</h3>
+<table>
+<tr><th>Week</th><th>Dates open</th><th>Weekly</th><th>Cumulative</th></tr>
+<tr><th>Halibut (number)</th><th>Anglers (number)</th><th>Average weight (pounds)</th>
+<th>Total Pounds</th><th>Pounds</th><th>Quota taken</th><th>Pounds remaining</th></tr>
+<tr><td>14</td><td>Apr 2-5</td><td>177</td><td>1,047</td><td>19.6</td><td>3,470</td>
+<td>3,470</td><td>4.3%</td></tr>
+<tr><td>15</td><td>Apr 30; May 1-2</td><td>164</td><td>1,373</td><td>19.5</td>
+<td>3,191</td><td>6,661</td><td>8.3%</td></tr>
+</table>
+"""
+
+
+class TestHalibut(unittest.TestCase):
+    def setUp(self):
+        self.catch, self.effort = halibut.parse(HALIBUT_PAGE)
+
+    def test_subarea_from_heading(self):
+        self.assertEqual({r['location'] for r in self.effort}, {'Puget Sound halibut'})
+
+    def test_year_from_the_summary_heading(self):
+        self.assertEqual(self.effort[0]['date'], '2026-04-02')
+
+    def test_a_split_week_starts_on_its_first_open_day(self):
+        self.assertEqual(self.effort[1]['date'], '2026-04-30')
+
+    def test_fish_and_anglers_are_not_swapped(self):
+        self.assertEqual(self.catch[0]['fish'], 177)
+        self.assertEqual(self.effort[0]['anglers'], 1047)
+
+
+SEASONAL_PAGE = """
+<h2>Summer Chinook fishery guidelines</h2>
+<table>
+<tr><th>Area</th><th>Opening Date</th><th>Management Criteria</th>
+<th>Encounters Guideline /Harvest Quota</th><th>Encounters /Harvest</th>
+<th>Estimate Valid Through:</th><th>Percentage of Criteria</th><th>Current Status</th></tr>
+<tr><td>5</td><td>July 1</td><td>Legal Size Encounters</td><td>4,323</td><td>3,477</td>
+<td>July 26, 2026</td><td>80%</td><td>Open</td></tr>
+<tr><td>Total Sublegal Encounters</td><td>914</td><td>38</td></tr>
+<tr><td>9</td><td>July 1</td><td>Harvest Quota</td><td>2,650</td><td>3,479</td>
+<td>July 18, 2026</td><td>131%</td><td>Closed</td></tr>
+</table>
+"""
+
+
+class TestQuotas(unittest.TestCase):
+    def setUp(self):
+        self.rows = quotas.parse_seasonal(SEASONAL_PAGE)
+
+    def test_guideline_and_running_total_are_different_columns(self):
+        area5 = [r for r in self.rows if r['area'] == 'Marine Area 5'][0]
+        self.assertEqual(area5['limit'], 4323)
+        self.assertEqual(area5['taken'], 3477)
+
+    def test_over_the_guideline_is_reported_as_over(self):
+        area9 = [r for r in self.rows if r['area'] == 'Marine Area 9'][0]
+        self.assertEqual(area9['percent'], 1.31)
+        self.assertEqual(area9['status'], 'Closed')
+
+    def test_subtotal_rows_are_not_areas(self):
+        self.assertEqual({r['area'] for r in self.rows},
+                         {'Marine Area 5', 'Marine Area 9'})
+
+    def test_the_date_is_the_estimate_not_the_fetch(self):
+        area5 = [r for r in self.rows if r['area'] == 'Marine Area 5'][0]
+        self.assertEqual(area5['valid_through'], '2026-07-26')
+
+    def test_numeric_dates_parse_too(self):
+        self.assertEqual(quotas._valid_through('04/11/26'), '2026-04-11')
 
 
 class TestTrendArithmetic(unittest.TestCase):

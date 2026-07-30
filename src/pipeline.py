@@ -33,6 +33,8 @@ import willapa
 import ocean
 import pikeminnow
 import southwest
+import halibut
+import quotas
 
 LOG = []
 
@@ -52,6 +54,7 @@ SOURCES = (
     ('ocean-quota', 'Ocean sport salmon quota report'),
     ('columbia-sw', 'Columbia River and tributary report'),
     ('pikeminnow', 'Northern pikeminnow sport reward'),
+    ('halibut', 'Pacific halibut landings summary'),
 )
 
 
@@ -85,7 +88,11 @@ def gather(full=False):
     add('columbia-sw', southwest.load(full=full, say=say))
     say('reading the pikeminnow sport-reward reports')
     add('pikeminnow', pikeminnow.load(full=full, say=say))
-    return catch_rows, effort_rows, summary
+    say('reading the halibut landings summary')
+    add('halibut', halibut.load(full=full, say=say))
+    say('reading the quota trackers')
+    quota_rows = quotas.load(full=full, say=say)
+    return catch_rows, effort_rows, summary, quota_rows
 
 
 def write_table(path, rows, fields):
@@ -108,7 +115,7 @@ def read_table(path, fields):
 def update(full=False, no_open=False):
     paths.ensure_dirs()
     started = time.time()
-    catch_rows, effort_rows, summary = gather(full=full)
+    catch_rows, effort_rows, summary, quota_rows = gather(full=full)
     if not catch_rows:
         say('no data was read from any source; refusing to overwrite what is here', '!!')
         return 1
@@ -117,10 +124,15 @@ def update(full=False, no_open=False):
     n_effort = write_table(paths.EFFORT, effort_rows, common.EFFORT_FIELDS)
     say(f'wrote {n_catch:,} species rows and {n_effort:,} effort rows')
 
+    with open(paths.QUOTAS, 'w', encoding='utf-8') as f:
+        json.dump(quota_rows, f, indent=1)
+    say(f'   {len(quota_rows)} quota and guideline records')
+
     manifest = {
         'built': datetime.now(timezone.utc).isoformat(timespec='seconds'),
         'sources': {name: dict(summary.get(name, {}), label=label)
                     for name, label in SOURCES},
+        'quota_records': len(quota_rows),
         'sha256': {
             'creel_rows': _sha(paths.RAW), 'creel_effort': _sha(paths.EFFORT)},
     }
