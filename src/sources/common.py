@@ -204,15 +204,58 @@ def strip_tags(html_fragment):
     return re.sub(r'\s+', ' ', _html.unescape(txt)).strip()
 
 
+_SPAN = re.compile(r'(rowspan|colspan)\s*=\s*"?(\d+)"?', re.I)
+
+
+def table_grid(table_html):
+    """One table as a rectangular grid, with merged cells filled in.
+
+    WDFW merge cells constantly, and a merge is not decoration: on the seasonal
+    guidelines page a single ``rowspan="5"`` on the cell that says "11" is what tells
+    a reader that the fishery three rows below it is *also* Marine Area 11 — a second
+    season, opened later, and open right now. Reading the rows as they appear drops
+    that cell and the season with it.
+
+    So a spanned cell is repeated into every row and column it covers, which is what
+    it means, and the caller sees a grid where every row is complete.
+    """
+    grid = []
+    pending = {}                     # column -> [remaining rows, text]
+    for tr in re.findall(r'<tr[^>]*>(.*?)</tr>', table_html, re.S):
+        cells = re.findall(r'<t[dh]([^>]*)>(.*?)</t[dh]>', tr, re.S)
+        if not cells:
+            continue
+        row = []
+        col = 0
+        for attrs, html_cell in cells:
+            while col in pending:            # a cell from an earlier row sits here
+                row.append(pending[col][1])
+                col += 1
+            spans = {k.lower(): int(v) for k, v in _SPAN.findall(attrs)}
+            text = strip_tags(html_cell)
+            for _ in range(max(1, spans.get('colspan', 1))):
+                row.append(text)
+                if spans.get('rowspan', 1) > 1:
+                    # counted for this row too: the tally is decremented once at the
+                    # end of every row, including the one the cell was declared in
+                    pending[col] = [spans['rowspan'], text]
+                col += 1
+        while col in pending:                # trailing spanned columns
+            row.append(pending[col][1])
+            col += 1
+        for c in list(pending):
+            pending[c][0] -= 1
+            if pending[c][0] <= 0:
+                del pending[c]
+        grid.append(row)
+    return grid
+
+
 def tables(html_text):
-    """Every <table> on a page, as lists of rows of already-cleaned cell text."""
+    """Every <table> on a page, as grids of already-cleaned cell text."""
     out = []
     for tb in re.findall(r'<table[^>]*>.*?</table>', html_text, re.S):
-        rows = []
-        for tr in re.findall(r'<tr[^>]*>(.*?)</tr>', tb, re.S):
-            cells = re.findall(r'<t[dh][^>]*>(.*?)</t[dh]>', tr, re.S)
-            if cells:
-                rows.append([strip_tags(c) for c in cells])
+        rows = table_grid(tb)
         if rows:
             out.append(rows)
     return out

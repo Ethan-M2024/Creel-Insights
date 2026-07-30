@@ -137,6 +137,7 @@ input[type="search"] { min-width: 230px; }
 .ghost:hover { color: var(--ink); }
 
 .layout { display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(300px, 1fr); gap: 18px; }
+.stack { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; }
 @media (max-width: 960px) { .layout { grid-template-columns: minmax(0, 1fr); } }
 
 .card {
@@ -368,13 +369,17 @@ ul.checks li { padding: 4px 0; border-bottom: 1px solid var(--grid); }
 
 <!-- --------------------------------------------------------------- quotas -->
 <section class="panel" id="panel-quotas" hidden>
-  <div class="layout">
+  <div class="stack">
     <div class="card">
       <h2>Puget Sound Chinook, against the guideline</h2>
       <p class="note">These fisheries are managed on encounters, not on catch: when a
         marine area reaches its guideline it closes, whether or not anyone is still
-        catching fish. WDFW state the date each estimate runs through, and that date
-        — not today's — is how current the figure is.</p>
+        catching fish. An area can run two of them in a season and be shut for one
+        while open for the other, so each is listed under the day it opened. A
+        fishery can also close on its end date well short of its quota — Area 11's
+        June season closed at 54% because June ended. WDFW state the date each
+        estimate runs through, and that date, not today's, is how current the figure
+        is.</p>
       <div id="quota-chinook"></div>
     </div>
     <div class="card">
@@ -1074,6 +1079,15 @@ function renderQuotas() {
 
 function quotaTable(rows, withDate) {
   if (!rows.length) return '<p class="note">Nothing published for this season yet.</p>';
+  // an area can be running two fisheries at once — Area 11 opened on 1 June and
+  // again on 23 July — so the row key is the area *and* the day it opened
+  const subs = new Map();
+  for (const r of rows.filter(r => r.kind === 'sub')) {
+    const key = r.area + '|' + r.opening;
+    if (!subs.has(key)) subs.set(key, []);
+    subs.get(key).push(r);
+  }
+  rows = rows.filter(r => r.kind !== 'sub');
   const bar = r => {
     const p = r.percent === '' || r.percent === null ? null : Number(r.percent);
     if (p === null) return '<span class="flat">—</span>';
@@ -1086,13 +1100,29 @@ function quotaTable(rows, withDate) {
   };
   return `<table><thead><tr><th>Area</th><th>Counted against</th><th>Used</th>` +
     (withDate ? '<th>Through</th>' : '<th>Season</th>') + `<th>Status</th></tr></thead><tbody>` +
-    rows.map(r => `<tr>
-      <td>${escapeHtml(r.area)}${r.season && withDate ? `<br><span class="pill">${escapeHtml(r.season)}</span>` : ''}</td>
-      <td>${escapeHtml(r.criteria || '')}<br><span class="k" style="color:var(--ink-3)">${fmt(r.taken)} of ${fmt(r.limit)}</span></td>
+    rows.map(r => {
+      const extra = subs.get(r.area + '|' + r.opening) || [];
+      const far = r.valid_through &&
+        (new Date(r.valid_through) - new Date(META.as_of)) > 60 * 86400000;
+      const openLine = r.opening
+        ? `<br><span class="k" style="color:var(--ink-3)">opened ${escapeHtml(r.opening)}</span>` : '';
+      const extraLines = extra.map(x =>
+        `<br><span class="k" style="color:var(--ink-3)">${escapeHtml(x.criteria)}: ` +
+        `${fmt(x.taken)} of ${fmt(x.limit)}${x.percent === '' ? '' : ` (${Math.round(x.percent * 100)}%)`}</span>`).join('');
+      const counted = (r.limit === '' && r.taken === '')
+        ? '<span class="k" style="color:var(--ink-3)">no guideline set for this season</span>'
+        : `<span class="k" style="color:var(--ink-3)">${fmt(r.taken)} of ${fmt(r.limit)}</span>`;
+      return `<tr>
+      <td>${escapeHtml(r.area)}${openLine}${r.season && withDate ? `<br><span class="pill">${escapeHtml(r.season)}</span>` : ''}</td>
+      <td>${escapeHtml(r.criteria || '—')}<br>${counted}${extraLines}</td>
       <td>${bar(r)}</td>
-      <td class="${withDate ? 'num' : 'wrap'}">${escapeHtml(withDate ? (r.valid_through || '—') : (r.season || '—'))}</td>
+      <td class="${withDate ? 'num' : 'wrap'}">${escapeHtml(withDate ? (r.valid_through || '—') : (r.season || '—'))}` +
+        // WDFW have published a date a year out; it is shown as published rather
+        // than quietly corrected, and marked so nobody reads it as a fact
+        (far ? '<br><span class="pill">as published</span>' : '') + `</td>
       <td class="wrap">${escapeHtml(r.status || '—')}</td>
-    </tr>`).join('') + '</tbody></table>';
+    </tr>`;
+    }).join('') + '</tbody></table>';
 }
 
 /* ----------------------------------------------------------------- sources */

@@ -82,6 +82,12 @@ sturgeon harvest against its own, with the date WDFW say each estimate runs
 through — because that date, not the date the page was built, is how current the
 number is.
 
+An area can run two of these fisheries in one season and be shut for one while open
+for the other, so each is listed under the day it opened. A fishery can also close on
+its end date well short of its quota, which is why Area 11's June season reads
+*closed at 54%*: June ended. A figure WDFW publish that cannot be right — a date a
+year out — is shown as published and marked, not quietly corrected.
+
 **Where do the numbers come from?** The sources tab lists every report read, its date
 range, how many places it covers, and the result of every accuracy check on the build
 you are looking at.

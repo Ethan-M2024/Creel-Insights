@@ -9,6 +9,8 @@
   "valid_through": "2026-07-26",
   "status": "Open",
   "season": "Summer Chinook",
+  "opening": "July 1",
+  "kind": "fishery",
   "source_page": "https://wdfw.wa.gov/fishing/reports/creel/seasonal"
  },
  {
@@ -21,6 +23,8 @@
   "valid_through": "2026-07-26",
   "status": "Open",
   "season": "Summer Chinook",
+  "opening": "July 1",
+  "kind": "fishery",
   "source_page": "https://wdfw.wa.gov/fishing/reports/creel/seasonal"
  },
  {
@@ -33,6 +37,36 @@
   "valid_through": "2026-07-27",
   "status": "May reopen for additional day",
   "season": "Summer Chinook",
+  "opening": "July 16",
+  "kind": "fishery",
+  "source_page": "https://wdfw.wa.gov/fishing/reports/creel/seasonal"
+ },
+ {
+  "fishery": "Puget Sound Chinook",
+  "area": "Marine Area 7",
+  "criteria": "Total Unmarked Encounters",
+  "limit": 3672,
+  "taken": 1015,
+  "percent": 0.28,
+  "valid_through": "2026-07-27",
+  "status": "May reopen for additional day",
+  "season": "Summer Chinook",
+  "opening": "July 16",
+  "kind": "sub",
+  "source_page": "https://wdfw.wa.gov/fishing/reports/creel/seasonal"
+ },
+ {
+  "fishery": "Puget Sound Chinook",
+  "area": "Marine Area 7",
+  "criteria": "Total Sublegal Encounters",
+  "limit": 2429,
+  "taken": 914,
+  "percent": 0.38,
+  "valid_through": "2026-07-27",
+  "status": "May reopen for additional day",
+  "season": "Summer Chinook",
+  "opening": "July 16",
+  "kind": "sub",
   "source_page": "https://wdfw.wa.gov/fishing/reports/creel/seasonal"
  },
  {
@@ -45,6 +79,8 @@
   "valid_through": "2026-07-04",
   "status": "Closed",
   "season": "Summer Chinook",
+  "opening": "May 22",
+  "kind": "fishery",
   "source_page": "https://wdfw.wa.gov/fishing/reports/creel/seasonal"
  },
  {
@@ -57,6 +93,8 @@
   "valid_through": "2026-07-18",
   "status": "Closed",
   "season": "Summer Chinook",
+  "opening": "July 16",
+  "kind": "fishery",
   "source_page": "https://wdfw.wa.gov/fishing/reports/creel/seasonal"
  },
  {
@@ -69,6 +107,22 @@
   "valid_through": "2026-07-25",
   "status": "Closed",
   "season": "Summer Chinook",
+  "opening": "July 23",
+  "kind": "fishery",
+  "source_page": "https://wdfw.wa.gov/fishing/reports/creel/seasonal"
+ },
+ {
+  "fishery": "Puget Sound Chinook",
+  "area": "Marine Area 10",
+  "criteria": "Total Sublegal Encounters",
+  "limit": 2913,
+  "taken": 1210,
+  "percent": 0.42,
+  "valid_through": "2026-07-25",
+  "status": "Closed",
+  "season": "Summer Chinook",
+  "opening": "July 23",
+  "kind": "sub",
   "source_page": "https://wdfw.wa.gov/fishing/reports/creel/seasonal"
  },
  {
@@ -81,6 +135,120 @@
   "valid_through": "2026-06-30",
   "status": "Closed",
   "season": "Summer Chinook",
+  "opening": "June 1",
+  "kind": "fishery",
+  "source_page": "https://wdfw.wa.gov/fishing/reports/creel/seasonal"
+ },
+ {
+  "fishery": "Puget Sound Chinook",
+  "area": "Marine Area 11",
+  "criteria": "Total Unmarked Encounters",
+  "limit": 820,
+  "taken": 705,
+  "percent": 0.86,
+  "valid_through": "2026-06-30",
+  "status": "Closed",
+  "season": "Summer Chinook",
+  "opening": "June 1",
+  "kind": "sub",
+  "source_page": "https://wdfw.wa.gov/fishing/reports/creel/seasonal"
+ },
+ {
+  "fishery": "Puget Sound Chinook",
+  "area": "Marine Area 11",
+  "criteria": "Total Sublegal Encounters",
+  "limit": 2186,
+  "taken": 1145,
+  "percent": 0.52,
+  "valid_through": "2026-06-30",
+  "status": "Closed",
+  "season": "Summer Chinook",
+  "opening": "June 1",
+  "kind": "sub",
+  "source_page": "https://wdfw.wa.gov/fishing/reports/creel/seasonal"
+ },
+ {
+  "fishery": "Puget Sound Chinook",
+  "area": "Marine Area 11",
+  "criteria": "Harvest Quota",
+  "limit": 3379,
+  "taken": 499,
+  "percent": 0.15,
+  "valid_through": "2027-07-26",
+  "status": "Open",
+  "season": "Summer Chinook",
+  "opening": "July 23",
+  "kind": "fishery",
+  "source_page": "https://wdfw.wa.gov/fishing/reports/creel/seasonal"
+ },
+ {
+  "fishery": "Puget Sound Chinook",
+  "area": "Marine Area 11",
+  "criteria": "Total Sublegal Encounters",
+  "limit": 5105,
+  "taken": 1619,
+  "percent": 0.32,
+  "valid_through": "2027-07-26",
+  "status": "Open",
+  "season": "Summer Chinook",
+  "opening": "July 23",
+  "kind": "sub",
+  "source_page": "https://wdfw.wa.gov/fishing/reports/creel/seasonal"
+ },
+ {
+  "fishery": "Puget Sound Chinook",
+  "area": "Marine Area 5",
+  "criteria": "",
+  "limit": "",
+  "taken": "",
+  "percent": "",
+  "valid_through": "",
+  "status": "Closed for the season",
+  "season": "Winter Chinook",
+  "opening": "",
+  "kind": "fishery",
+  "source_page": "https://wdfw.wa.gov/fishing/reports/creel/seasonal"
+ },
+ {
+  "fishery": "Puget Sound Chinook",
+  "area": "Marine Area 6",
+  "criteria": "",
+  "limit": "",
+  "taken": "",
+  "percent": "",
+  "valid_through": "",
+  "status": "Closed for the season",
+  "season": "Winter Chinook",
+  "opening": "",
+  "kind": "fishery",
+  "source_page": "https://wdfw.wa.gov/fishing/reports/creel/seasonal"
+ },
+ {
+  "fishery": "Puget Sound Chinook",
+  "area": "Marine Area 7",
+  "criteria": "",
+  "limit": "",
+  "taken": "",
+  "percent": "",
+  "valid_through": "",
+  "status": "Closed for the season",
+  "season": "Winter Chinook",
+  "opening": "",
+  "kind": "fishery",
+  "source_page": "https://wdfw.wa.gov/fishing/reports/creel/seasonal"
+ },
+ {
+  "fishery": "Puget Sound Chinook",
+  "area": "Marine Area 9",
+  "criteria": "",
+  "limit": "",
+  "taken": "",
+  "percent": "",
+  "valid_through": "",
+  "status": "Closed for the season",
+  "season": "Winter Chinook",
+  "opening": "",
+  "kind": "fishery",
   "source_page": "https://wdfw.wa.gov/fishing/reports/creel/seasonal"
  },
  {
@@ -93,6 +261,36 @@
   "valid_through": "2026-04-11",
   "status": "Closed",
   "season": "Winter Chinook",
+  "opening": "April 1 - April 30, 2026 (open Wed-Sat)",
+  "kind": "fishery",
+  "source_page": "https://wdfw.wa.gov/fishing/reports/creel/seasonal"
+ },
+ {
+  "fishery": "Puget Sound Chinook",
+  "area": "Marine Area 10",
+  "criteria": "Unmarked Encounters",
+  "limit": 967,
+  "taken": 999,
+  "percent": 1.03,
+  "valid_through": "2026-04-11",
+  "status": "Closed",
+  "season": "Winter Chinook",
+  "opening": "April 1 - April 30, 2026 (open Wed-Sat)",
+  "kind": "sub",
+  "source_page": "https://wdfw.wa.gov/fishing/reports/creel/seasonal"
+ },
+ {
+  "fishery": "Puget Sound Chinook",
+  "area": "Marine Area 10",
+  "criteria": "Sublegal Encounters",
+  "limit": 3713,
+  "taken": 2056,
+  "percent": 0.55,
+  "valid_through": "2026-04-11",
+  "status": "Closed",
+  "season": "Winter Chinook",
+  "opening": "April 1 - April 30, 2026 (open Wed-Sat)",
+  "kind": "sub",
   "source_page": "https://wdfw.wa.gov/fishing/reports/creel/seasonal"
  },
  {
@@ -105,6 +303,50 @@
   "valid_through": "2026-04-11",
   "status": "Closed",
   "season": "Winter Chinook",
+  "opening": "April 1 - April 30, 2026 (open Wed- Sat)",
+  "kind": "fishery",
+  "source_page": "https://wdfw.wa.gov/fishing/reports/creel/seasonal"
+ },
+ {
+  "fishery": "Puget Sound Chinook",
+  "area": "Marine Area 11",
+  "criteria": "Unmarked Encounters",
+  "limit": 314,
+  "taken": 394,
+  "percent": 1.25,
+  "valid_through": "2026-04-11",
+  "status": "Closed",
+  "season": "Winter Chinook",
+  "opening": "April 1 - April 30, 2026 (open Wed- Sat)",
+  "kind": "sub",
+  "source_page": "https://wdfw.wa.gov/fishing/reports/creel/seasonal"
+ },
+ {
+  "fishery": "Puget Sound Chinook",
+  "area": "Marine Area 11",
+  "criteria": "Sublegal Encounters",
+  "limit": 887,
+  "taken": 670,
+  "percent": 0.76,
+  "valid_through": "2026-04-11",
+  "status": "Closed",
+  "season": "Winter Chinook",
+  "opening": "April 1 - April 30, 2026 (open Wed- Sat)",
+  "kind": "sub",
+  "source_page": "https://wdfw.wa.gov/fishing/reports/creel/seasonal"
+ },
+ {
+  "fishery": "Puget Sound Chinook",
+  "area": "Marine Area 12",
+  "criteria": "",
+  "limit": "",
+  "taken": "",
+  "percent": "",
+  "valid_through": "",
+  "status": "Closed for the season",
+  "season": "Winter Chinook",
+  "opening": "",
+  "kind": "fishery",
   "source_page": "https://wdfw.wa.gov/fishing/reports/creel/seasonal"
  },
  {
@@ -117,6 +359,8 @@
   "valid_through": "",
   "status": "Closed",
   "season": "Feb. 16 only",
+  "opening": "Feb. 16 only",
+  "kind": "fishery",
   "source_page": "https://wdfw.wa.gov/fishing/reports/creel/sturgeon"
  },
  {
@@ -129,6 +373,8 @@
   "valid_through": "",
   "status": "Closed",
   "season": "Feb. 16, 22, 26, and March 3",
+  "opening": "Feb. 16, 22, 26, and March 3",
+  "kind": "fishery",
   "source_page": "https://wdfw.wa.gov/fishing/reports/creel/sturgeon"
  },
  {
@@ -141,6 +387,8 @@
   "valid_through": "",
   "status": "Closed",
   "season": "Jan. 1 - Jan. 9",
+  "opening": "Jan. 1 - Jan. 9",
+  "kind": "fishery",
   "source_page": "https://wdfw.wa.gov/fishing/reports/creel/sturgeon"
  }
 ]

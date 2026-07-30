@@ -26,11 +26,12 @@ SEASONAL_URL = 'https://wdfw.wa.gov/fishing/reports/creel/seasonal'
 STURGEON_URL = 'https://wdfw.wa.gov/fishing/reports/creel/sturgeon'
 
 FIELDS = ('fishery', 'area', 'criteria', 'limit', 'taken', 'percent',
-          'valid_through', 'status', 'season', 'source_page')
+          'valid_through', 'status', 'season', 'opening', 'kind', 'source_page')
 
 
 def record(fishery, area, **kw):
     r = {k: '' for k in FIELDS}
+    r['kind'] = 'fishery'
     r.update(fishery=fishery, area=str(area).strip(), **kw)
     return r
 
@@ -96,6 +97,7 @@ AREA_CELL = re.compile(r'^\s*\d+[A-Za-z]?\s*$|terminal|tulalip|sound|bay', re.I)
 def parse_seasonal(html_text):
     """Puget Sound Chinook encounter guidelines, summer and winter."""
     out = []
+    seen_blocks = set()
     for headings, rows in common.heading_tables(html_text):
         season = next((h for h in reversed(headings)
                        if re.search(r'chinook fishery guidelines', h, re.I)), '')
@@ -103,6 +105,7 @@ def parse_seasonal(html_text):
             continue
         col = Columns(rows[0])
         i_area = col.find(r'area')
+        i_open = col.find(r'opening|season dates|dates')
         i_crit = col.find(r'criteria')
         # order matters: the guideline column is claimed before the running total,
         # because the running total's heading is a prefix of the guideline's
@@ -114,19 +117,37 @@ def parse_seasonal(html_text):
         if i_area is None:
             continue
         for cells in rows[1:]:
-            if len(cells) < 3 or not AREA_CELL.match(cells[i_area] or ''):
+            if len(cells) != len(rows[0]) or not AREA_CELL.match(cells[i_area] or ''):
                 continue
             get = lambda i: (cells[i] if i is not None and i < len(cells) else '')
             area = cells[i_area].strip()
             label = f'Marine Area {area}' if re.fullmatch(r'\d+[A-Za-z]?', area) else area
             closed = re.search(r'closed', ' '.join(cells), re.I)
+            criteria = get(i_crit)
+            opening = get(i_open)
+            # An area's block is one fishery followed by extra measures of the same
+            # fishery — unmarked encounters, sublegal encounters. Which line comes
+            # first differs between the summer and winter tables, so the first line
+            # of a block is the fishery and the rest are its sub-measures, rather
+            # than guessing from the wording.
+            block = (label, opening)
+            kind = 'fishery' if block not in seen_blocks else 'sub'
+            seen_blocks.add(block)
+            if common.num(get(i_limit)) == '' and common.num(get(i_taken)) == '':
+                # "Closed for the 2025-2026 winter season" is written across every
+                # cell of the row; there is no guideline to track, only a season
+                # that did not happen
+                criteria, opening = '', ''
             out.append(record(
                 'Puget Sound Chinook', label,
-                criteria=get(i_crit), limit=common.num(get(i_limit)),
+                criteria=criteria, limit=common.num(get(i_limit)),
                 taken=common.num(get(i_taken)), percent=_percent(get(i_pct)),
                 valid_through=_valid_through(get(i_valid)),
-                status=get(i_status) or ('Closed' if closed else ''),
+                status=re.sub(r'closed for .*', 'Closed for the season',
+                              get(i_status) or ('Closed' if closed else ''),
+                              flags=re.I),
                 season=re.sub(r'\s*fishery guidelines\s*', '', season, flags=re.I),
+                opening=opening, kind=kind,
                 source_page=SEASONAL_URL))
     return out
 
@@ -154,6 +175,7 @@ def parse_sturgeon(html_text):
             out.append(record(
                 'Columbia River white sturgeon', cells[i_area],
                 criteria='Retention harvest', limit=common.num(get(i_limit)),
+                opening=get(i_season),
                 taken=common.num(get(i_taken)), percent=_percent(get(i_pct)),
                 status=get(i_status), season=get(i_season),
                 source_page=STURGEON_URL))

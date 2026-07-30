@@ -276,6 +276,29 @@ class TestHalibut(unittest.TestCase):
         self.assertEqual(self.effort[0]['anglers'], 1047)
 
 
+MERGED_TABLE = """
+<table>
+<tr><th>Area</th><th>Opening Date</th><th>Criteria</th><th>Guideline</th></tr>
+<tr><td rowspan="2">11</td><td>June 1</td><td>Harvest Quota</td><td>1,423</td></tr>
+<tr><td>July 23</td><td>Harvest Quota</td><td>3,379</td></tr>
+</table>
+"""
+
+
+class TestMergedCells(unittest.TestCase):
+    """A merged cell is data: WDFW's rowspan is what says the second season is
+    also Area 11, and dropping it drops an open fishery from the page."""
+
+    def test_a_rowspan_fills_the_rows_it_covers(self):
+        grid = common.table_grid(MERGED_TABLE)
+        self.assertEqual([r[0] for r in grid], ['Area', '11', '11'])
+        self.assertEqual(grid[2], ['11', 'July 23', 'Harvest Quota', '3,379'])
+
+    def test_every_row_is_the_same_width(self):
+        grid = common.table_grid(MERGED_TABLE)
+        self.assertEqual({len(r) for r in grid}, {4})
+
+
 SEASONAL_PAGE = """
 <h2>Summer Chinook fishery guidelines</h2>
 <table>
@@ -287,6 +310,10 @@ SEASONAL_PAGE = """
 <tr><td>Total Sublegal Encounters</td><td>914</td><td>38</td></tr>
 <tr><td>9</td><td>July 1</td><td>Harvest Quota</td><td>2,650</td><td>3,479</td>
 <td>July 18, 2026</td><td>131%</td><td>Closed</td></tr>
+<tr><td rowspan="2">11</td><td>June 1</td><td>Harvest Quota</td><td>1,423</td>
+<td>769</td><td>June 30, 2026</td><td>54%</td><td>Closed</td></tr>
+<tr><td>July 23</td><td>Harvest Quota</td><td>3,379</td><td>499</td>
+<td>July 26, 2026</td><td>15%</td><td>Open</td></tr>
 </table>
 """
 
@@ -305,9 +332,20 @@ class TestQuotas(unittest.TestCase):
         self.assertEqual(area9['percent'], 1.31)
         self.assertEqual(area9['status'], 'Closed')
 
-    def test_subtotal_rows_are_not_areas(self):
-        self.assertEqual({r['area'] for r in self.rows},
-                         {'Marine Area 5', 'Marine Area 9'})
+    def test_subtotal_rows_are_not_fisheries(self):
+        self.assertEqual({r['area'] for r in self.rows if r['kind'] == 'fishery'},
+                         {'Marine Area 5', 'Marine Area 9', 'Marine Area 11'})
+
+    def test_an_area_can_run_two_seasons_at_once(self):
+        # Area 11's June season closed on its end date at 54%; its July season is
+        # open. Reporting only the first would call an open fishery closed.
+        eleven = [r for r in self.rows
+                  if r['area'] == 'Marine Area 11' and r['kind'] == 'fishery']
+        self.assertEqual(len(eleven), 2)
+        by_open = {r['opening']: r for r in eleven}
+        self.assertEqual(by_open['June 1']['status'], 'Closed')
+        self.assertEqual(by_open['July 23']['status'], 'Open')
+        self.assertEqual(by_open['July 23']['percent'], 0.15)
 
     def test_the_date_is_the_estimate_not_the_fetch(self):
         area5 = [r for r in self.rows if r['area'] == 'Marine Area 5'][0]
