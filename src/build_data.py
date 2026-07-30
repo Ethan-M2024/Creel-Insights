@@ -45,6 +45,40 @@ SEASON_SLOP = 10
 BASELINE_YEARS = 3
 
 
+#: how far, in degrees of latitude, an area-placed dock may be drawn from its area's
+#: centre. Two hundred docks stacked on thirteen centroids draw as thirteen dots, so
+#: they are fanned out far enough to be distinguishable and not so far as to imply a
+#: position: about four kilometres, well inside every area.
+AREA_SPREAD = 0.038
+
+
+def _spread_area_placed(places):
+    """Fan the docks that share an area centroid around it, deterministically.
+
+    The offset is a fixed function of the place's name, so the same dock lands in the
+    same spot on every build and a reader watching the map week to week is not
+    distracted by dots wandering. It is a drawing device, not a coordinate: these
+    places stay labelled as area positions everywhere they appear.
+    """
+    import math
+    grouped = defaultdict(list)
+    for p in places.values():
+        if p.get('precision') == 'area' and p['lat'] is not None:
+            grouped[p['area']].append(p)
+    for members in grouped.values():
+        members.sort(key=lambda p: p['name'])
+        n = len(members)
+        if n < 2:
+            continue
+        for i, p in enumerate(members):
+            angle = i * 2.399963                       # golden angle, in radians
+            radius = AREA_SPREAD * math.sqrt((i + 0.5) / n)
+            lat = p['lat'] + radius * math.sin(angle)
+            lon = p['lon'] + radius * math.cos(angle) / max(0.3, math.cos(
+                math.radians(p['lat'])))
+            p['lat'], p['lon'] = round(lat, 6), round(lon, 6)
+
+
 def read_rows(path):
     import csv
     if not os.path.exists(path):
@@ -120,6 +154,27 @@ def build(catch_rows, effort_rows, place_geo, say=print):
         cell[0 if r.get('fate') == 'kept' else 1] += n
         species_seen[sp] += n
 
+    # A place is sampled in whichever area the sampler was working that day, so the
+    # area it belongs to is the one it is sampled in most, not the one it happened to
+    # appear under first.
+    area_votes = defaultdict(lambda: defaultdict(int))
+    for r in effort_rows:
+        num = area_key(r.get('catch_area'))
+        if num:
+            area_votes[(r['source'], r['location'])][num] += 1
+    centroids = geo.area_centroids()
+    for key, p in places.items():
+        votes = area_votes.get(key)
+        if votes:
+            p['area'] = max(votes.items(), key=lambda kv: kv[1])[0]
+        if p['lat'] is None and p.get('area') in centroids:
+            # no WDFW coordinate exists for this dock; the honest position is the
+            # middle of the area it reports to, said plainly rather than implied
+            p['lat'], p['lon'] = centroids[p['area']]
+            p['precision'] = 'area'
+            p['matched_to'] = f"Marine Area {p['area']}"
+    _spread_area_placed(places)
+
     species = [s for s, _ in sorted(species_seen.items(),
                                     key=lambda kv: (-kv[1], kv[0]))]
     sp_index = {s: i for i, s in enumerate(species)}
@@ -158,7 +213,7 @@ def build(catch_rows, effort_rows, place_geo, say=print):
     # carry a catch and reporting area, though, which is the unit WDFW manages the
     # fishery in — so the same arithmetic is run again over areas, and nothing that
     # cannot be placed is lost from the map, only from the point view.
-    area_catch, area_effort, area_names = by_area(catch_day, effort_day, places)
+    area_catch, area_effort, area_names = by_area(catch_rows, effort_rows)
     area_trend = trends(area_catch, area_effort, area_names, sp_index, as_of_d,
                         say=say, label='area')
 
@@ -218,38 +273,44 @@ def area_key(text):
     return m.group(1) if m else None
 
 
-def by_area(catch_day, effort_day, places):
-    """Re-tally the daily figures by catch and reporting area instead of by place."""
+def by_area(catch_rows, effort_rows):
+    """Re-tally the daily figures by catch and reporting area instead of by place.
+
+    Read from the rows rather than from the places: a ramp is sampled for several
+    areas over a season — a Sekiu dock reports Area 5 one day and Area 4 the next —
+    so pinning each place to the first area it happened to appear under would file a
+    week of Area 11 fishing under whichever area that ramp was first seen in, and
+    leave Area 11 looking empty.
+    """
     areas = {}
-    lookup = {}
-    for p in places.values():
-        num = area_key(p.get('area')) or area_key(p.get('name'))
+
+    def area_id(row):
+        num = area_key(row.get('catch_area'))
         if not num:
-            continue
+            return None
         if num not in areas:
             areas[num] = {'i': len(areas), 'name': f'Marine Area {num}',
-                          'source': 'catch area', 'region': p.get('region') or '',
-                          'water': 'marine', 'area': num,
+                          'source': 'catch area', 'region': row.get('region') or '',
+                          'water': row.get('water') or 'marine', 'area': num,
                           'lat': None, 'lon': None, 'precision': 'area'}
-        lookup[p['i']] = areas[num]['i']
+        return areas[num]['i']
 
     a_catch = defaultdict(lambda: [0, 0])
     a_effort = defaultdict(lambda: [0, 0.0, 0])
-    for (pid, sp, day), (kept, rel) in catch_day.items():
-        aid = lookup.get(pid)
+    for r in effort_rows:
+        aid = area_id(r)
         if aid is None:
             continue
-        cell = a_catch[(aid, sp, day)]
-        cell[0] += kept
-        cell[1] += rel
-    for (pid, day), (anglers, hours, interviews) in effort_day.items():
-        aid = lookup.get(pid)
-        if aid is None:
+        cell = a_effort[(aid, r['date'])]
+        cell[0] += to_int(r.get('anglers'))
+        cell[1] += to_float(r.get('angler_hours'))
+        cell[2] += to_int(r.get('interviews'))
+    for r in catch_rows:
+        aid = area_id(r)
+        if aid is None or not r['species']:
             continue
-        cell = a_effort[(aid, day)]
-        cell[0] += anglers
-        cell[1] += hours
-        cell[2] += interviews
+        cell = a_catch[(aid, r['species'], r['date'])]
+        cell[0 if r.get('fate') == 'kept' else 1] += to_int(r.get('fish'))
     return a_catch, a_effort, areas
 
 
@@ -313,21 +374,24 @@ def trends(catch_day, effort_day, places, sp_index, as_of_d, say=print,
 
         for (pid, sp), (kept, rel) in sorted(r_fish.items()):
             anglers = r_ang.get(pid, 0)
-            if anglers < MIN_ANGLERS:
+            if anglers < 1:
                 continue
             recent_cpue = kept / anglers
             prior = None
-            if p_ang.get(pid, 0) >= MIN_ANGLERS:
+            if p_ang.get(pid, 0) >= max(MIN_ANGLERS // 3, 5):
                 prior = p_fish.get((pid, sp), [0, 0])[0] / p_ang[pid]
             rates = []
             for f, a in zip(season_fish, season_ang):
-                if a.get(pid, 0) >= MIN_ANGLERS:
+                if a.get(pid, 0) >= max(MIN_ANGLERS // 3, 5):
                     # the seasonal window is widened by the slop on both sides, so
                     # its rate is scaled back to the same number of days
                     rates.append(f.get((pid, sp), [0, 0])[0] / a[pid])
             seasonal = statistics.median(rates) if rates else None
             out.append({
                 'w': window, 'p': pid, 's': sp_index[sp],
+                # a rate off a handful of anglers is a rumour, not a measurement:
+                # it is shown, but marked, and never ranked
+                'thin': 1 if anglers < MIN_ANGLERS else 0,
                 'kept': kept, 'rel': rel, 'anglers': anglers,
                 'cpue': round(recent_cpue, 4),
                 'prior': None if prior is None else round(prior, 4),

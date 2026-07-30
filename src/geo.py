@@ -162,6 +162,31 @@ def catch_areas(refresh=False, say=print):
     return out
 
 
+def area_centroids(areas=None):
+    """A representative point inside each catch and reporting area.
+
+    Two hundred Puget Sound marinas and city docks appear in no WDFW coordinate
+    dataset, and leaving them off the map hides most of the sound's fishing. Each one
+    does report the area it was sampled in, so it is drawn at that area's centre and
+    labelled as an area position — the honest statement being "somewhere in Area 10",
+    not a false precision about which dock.
+    """
+    areas = areas if areas is not None else catch_areas()
+    grouped = {}
+    for a in areas:
+        m = re.match(r'(\d+(?:\.\d+)?)', a.get('code') or '')
+        if not m:
+            continue
+        grouped.setdefault(m.group(1), []).extend(a['rings'])
+    out = {}
+    for number, rings in grouped.items():
+        biggest = max(rings, key=len)
+        lons = [p[0] for p in biggest]
+        lats = [p[1] for p in biggest]
+        out[number] = (round(sum(lats) / len(lats), 6), round(sum(lons) / len(lons), 6))
+    return out
+
+
 def _thin(ring, tolerance=0.001):
     kept = [ring[0]]
     for x, y in ring[1:-1]:

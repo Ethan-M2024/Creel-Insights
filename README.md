@@ -59,10 +59,16 @@ in August is not flagged as news every August. Dot size is how many anglers were
 interviewed, so a red dot with a big footprint is a real signal and a small one is a
 hint.
 
+Every place that reported fishing in the window is on the map — not only the ones
+with a solid sample. A rate resting on fewer than 30 anglers is drawn faded and
+labelled thin, and is never ranked in the lists beside the map, because at that
+sample size one lucky boat moves it by half. Docks that appear in no WDFW coordinate
+dataset — most of the Puget Sound marinas — are drawn as rings inside the catch area
+they report to, spread around its centre so they can be told apart, and every one of
+them says so on hover. Rings are areas; filled dots are surveyed positions.
+
 **Where has it cooled off?** The same comparison, run the other way, with the places
-that have dropped furthest listed beside the map. A place is only scored when at
-least 30 anglers were interviewed in the window — below that a catch rate is one
-lucky boat.
+that have dropped furthest listed beside the map.
 
 **Is this week different from last?** Switch the comparison to the fortnight just
 past and the map answers a shorter question: what changed since the last report.
@@ -173,8 +179,10 @@ Run it yourself against the data already in the repository, with no network acce
 python3 run.py --check
 ```
 
-Where a location cannot be matched to WDFW coordinates it is left off the map rather
-than placed approximately, and the dashboard names it. The one deliberate exception is
+Where a location cannot be matched to WDFW coordinates but does report a catch and
+reporting area, it is drawn inside that area and marked as an area position — never
+as a surveyed point. Where it has neither, it stays off the map, and the dashboard
+names it. The one deliberate exception is
 a short list of fixed places that exist in no WDFW point dataset — the ocean
 management areas, the Columbia's fishery sections, the pikeminnow check stations.
 Those are hand-placed once, in `src/geo.py`, and every one is labelled *approximate*

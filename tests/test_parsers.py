@@ -343,11 +343,19 @@ class TestTrendArithmetic(unittest.TestCase):
         self.assertEqual(row['season'], 0.2)          # 2 fish per 10 anglers
         self.assertEqual(row['anglers'], 140)
 
-    def test_a_thin_window_is_not_scored(self):
+    def test_a_thin_window_is_marked_rather_than_hidden(self):
+        # every place that reported fishing belongs on the map; the ones resting on
+        # a handful of anglers are flagged so nothing ranks them
         thin_effort = {k: [1, 0.0, 1] for k in self.effort}
         rows = build_data.trends(self.catch, thin_effort, {}, {'Chinook': 0},
                                  self.today, say=lambda *a, **k: None)
-        self.assertEqual(rows, [])
+        self.assertTrue(rows)
+        self.assertTrue(all(r['thin'] == 1 for r in rows))
+
+    def test_a_solid_window_is_not_marked_thin(self):
+        rows = build_data.trends(self.catch, self.effort, {}, {'Chinook': 0},
+                                 self.today, say=lambda *a, **k: None)
+        self.assertTrue(all(r['thin'] == 0 for r in rows))
 
 
 if __name__ == '__main__':

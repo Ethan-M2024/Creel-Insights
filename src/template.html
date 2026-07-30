@@ -524,7 +524,7 @@ function areaRowsForWindow() {
     out.push({
       pid: aid, place: a, name: a.name, source: a.source,
       anglers: t.anglers, kept: t.kept, rel: t.rel, cpue: t.cpue,
-      season: t.season, prior: t.prior, years: t.season_years,
+      season: t.season, prior: t.prior, years: t.season_years, thin: !!t.thin,
       dseason: change(t.cpue, t.season), dprior: change(t.cpue, t.prior),
       rings: AREA_SHAPES.get(a.area) || [],
     });
@@ -545,7 +545,7 @@ function rowsForWindow() {
     out.push({
       pid, place: p, name: p.name, source: p.source,
       anglers: t.anglers, kept: t.kept, rel: t.rel, cpue: t.cpue,
-      season: t.season, prior: t.prior, years: t.season_years,
+      season: t.season, prior: t.prior, years: t.season_years, thin: !!t.thin,
       dseason: change(t.cpue, t.season), dprior: change(t.cpue, t.prior),
     });
   }
@@ -672,23 +672,44 @@ function drawMap() {
   rows.sort((a, b) => b.anglers - a.anglers);
   for (const row of rows) {
     const [x, y] = project(row.place.lon, row.place.lat, cssW, cssH);
-    const r = 3.2 + 11 * Math.sqrt(row.anglers / maxAnglers);
+    const r = 2.6 + 11 * Math.sqrt(row.anglers / maxAnglers);
+    const selected = state.place === row.pid;
+    const areaPlaced = row.place.precision === 'area';
     ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI * 2);
-    ctx.fillStyle = colourFor(row);
-    ctx.globalAlpha = 0.86; ctx.fill(); ctx.globalAlpha = 1;
-    ctx.lineWidth = state.place === row.pid ? 2.4 : 0.9;
-    ctx.strokeStyle = state.place === row.pid ? getVar('--ink') : getVar('--surface');
-    ctx.stroke();
+    if (areaPlaced) {
+      // no coordinate exists for this dock, only the area it reports to: drawn as a
+      // ring so it never reads as a surveyed point
+      ctx.globalAlpha = row.thin ? 0.5 : 0.9;
+      ctx.lineWidth = 2;
+      ctx.strokeStyle = colourFor(row);
+      ctx.stroke();
+      ctx.globalAlpha = 1;
+    } else {
+      ctx.fillStyle = colourFor(row);
+      ctx.globalAlpha = row.thin ? 0.4 : 0.86;
+      ctx.fill();
+      ctx.globalAlpha = 1;
+      ctx.lineWidth = selected ? 2.4 : 0.9;
+      ctx.strokeStyle = selected ? getVar('--ink') : getVar('--surface');
+      ctx.stroke();
+    }
+    if (selected) {
+      ctx.beginPath(); ctx.arc(x, y, r + 3, 0, Math.PI * 2);
+      ctx.lineWidth = 1.6; ctx.strokeStyle = getVar('--ink'); ctx.stroke();
+    }
     plotted.push({ x, y, r, row });
   }
 
-  const scored = rowsForWindow().length;
+  const scored = rowsForWindow();
+  const solid = rows.filter(r => !r.thin).length;
   document.getElementById('map-note').textContent =
-    `${rows.length} places with at least ${META.min_anglers} anglers interviewed in the ` +
-    `${state.window} days to ${dayLabel(META.as_of)}. Dot size is how many anglers.` +
-    (scored > rows.length
-      ? ` ${scored - rows.length} more — mostly Puget Sound marinas and city docks, which ` +
-        `appear in no WDFW coordinate dataset — are in the tables and in the catch area view.`
+    `Every one of the ${rows.length} places that reported ${SPECIES[state.species]} ` +
+    `fishing in the ${state.window} days to ${dayLabel(META.as_of)}. Dot size is ` +
+    `anglers interviewed; ${rows.length - solid} of these rest on fewer than ` +
+    `${META.min_anglers} anglers and are drawn faded. ` +
+    (scored.length > rows.length
+      ? `${scored.length - rows.length} ${scored.length - rows.length === 1 ? 'other has' : 'others have'} ` +
+        `no coordinates and no catch area, and appear in the tables only.`
       : '');
 }
 
@@ -754,7 +775,11 @@ canvas.addEventListener('mousemove', ev => {
     (r.season !== null ? ` &middot; <span class="k">season normal</span> ${rate(r.season)}` : '') +
     `<br><span class="k">vs. season</span> ${pct(r.dseason)}` +
     ` &middot; <span class="k">vs. prior</span> ${pct(r.dprior)}` +
-    (r.place.precision === 'approximate' ? '<br><span class="k">position approximate</span>' : '');
+    (r.thin ? `<br><span class="k">thin sample: under ${META.min_anglers} anglers</span>` : '') +
+    (r.place.precision === 'area'
+      ? '<br><span class="k">shown at the centre of its catch area</span>'
+      : r.place.precision === 'approximate'
+        ? '<br><span class="k">position approximate</span>' : '');
   const holder = document.getElementById('map-holder').getBoundingClientRect();
   tip.style.left = Math.min(holder.width - 250, p.x + 14) + 'px';
   tip.style.top = Math.max(0, p.y - 10) + 'px';
@@ -778,7 +803,7 @@ function currentRows() {
 }
 
 function renderMovers() {
-  const rows = currentRows().filter(r => r.dseason !== null && r.anglers >= META.min_anglers);
+  const rows = currentRows().filter(r => r.dseason !== null && !r.thin);
   const up = rows.filter(r => r.kept > 0).sort((a, b) => b.dseason - a.dseason).slice(0, 8);
   const down = rows.filter(r => (r.season || 0) > 0.05).sort((a, b) => a.dseason - b.dseason).slice(0, 8);
   document.getElementById('movers-up').innerHTML = moverTable(up);
@@ -929,7 +954,7 @@ function renderPlaces() {
   const tbody = document.querySelector('#places-table tbody');
   tbody.innerHTML = rows.map(r => `
     <tr data-pid="${r.pid}">
-      <td>${escapeHtml(r.name)}${r.place.region ? `<br><span class="k" style="color:var(--ink-3)">${escapeHtml(r.place.region)}</span>` : ''}</td>
+      <td>${escapeHtml(r.name)}${r.thin ? ' <span class="pill">thin</span>' : ''}${r.place.region ? `<br><span class="k" style="color:var(--ink-3)">${escapeHtml(r.place.region)}</span>` : ''}</td>
       <td><span class="pill">${escapeHtml(r.source)}</span></td>
       <td class="num">${fmt(r.anglers)}</td>
       <td class="num">${fmt(r.kept)}</td>
@@ -1273,7 +1298,8 @@ function renderLegend() {
     <span><span class="sw" style="background:var(--steady)"></span>about the same</span>
     <span><span class="sw" style="background:var(--cool)"></span>down</span>
     <span><span class="sw" style="background:var(--cold)"></span>down by half or more</span>
-    <span style="color:var(--ink-3)">Dot size is anglers interviewed.</span>`;
+    <span><span class="sw" style="border:2px solid var(--steady);background:none"></span>placed at its catch area</span>
+    <span style="color:var(--ink-3)">Dot size is anglers; faded means fewer than ${META.min_anglers} anglers behind the rate.</span>`;
 }
 
 init();
