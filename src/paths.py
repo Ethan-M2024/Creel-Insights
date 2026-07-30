@@ -25,6 +25,8 @@ EFFORT = os.path.join(DATA, 'creel_effort.csv.gz')
 #: fisheries tracked against a ceiling rather than counted: encounter guidelines
 #: and harvest quotas, which are not catch and are not stored as if they were
 QUOTAS = os.path.join(DATA, 'quotas.json')
+#: emergency rule changes, which is what actually opens and closes water
+RULES = os.path.join(DATA, 'rules.json')
 MANIFEST = os.path.join(DATA, 'manifest.json')
 PAYLOAD = os.path.join(DATA, 'dashboard_data.json')
 PLACE_GEO = os.path.join(DATA, 'place_geo.json')        # location -> lat/lon

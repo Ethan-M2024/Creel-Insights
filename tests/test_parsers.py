@@ -24,6 +24,7 @@ import pikeminnow     # noqa: E402
 import southwest      # noqa: E402
 import halibut       # noqa: E402
 import quotas        # noqa: E402
+import rules         # noqa: E402
 import build_data     # noqa: E402
 
 
@@ -353,6 +354,40 @@ class TestQuotas(unittest.TestCase):
 
     def test_numeric_dates_parse_too(self):
         self.assertEqual(quotas._valid_through('04/11/26'), '2026-04-11')
+
+
+RULE_PAGE = """
+<div><p>Action: No more than one hatchery Chinook may be retained as part of the
+salmon daily limit. Effective dates: Aug. 1 - Sept. 30, 2026. Species affected:
+Chinook salmon. Location: Waters of Commencement Bay in Marine Area 11.
+Reason for action : Aligns rules with the rest of Marine Area 11.</p></div>
+"""
+
+
+class TestEmergencyRules(unittest.TestCase):
+    def setUp(self):
+        self.rule = rules.parse(RULE_PAGE, title='Commencement Bay salmon fishery',
+                                url='/x', published='2026-07-01')
+
+    def test_labelled_fields_are_read(self):
+        self.assertTrue(self.rule['action'].startswith('No more than one hatchery'))
+        self.assertEqual(self.rule['species'], 'Chinook salmon')
+
+    def test_the_area_is_picked_out_of_the_location(self):
+        self.assertEqual(self.rule['areas'], ['11'])
+
+    def test_the_end_date_is_the_end_of_the_range(self):
+        self.assertEqual(self.rule['ends'], '2026-09-30')
+
+    def test_an_open_ended_rule_has_no_end(self):
+        self.assertEqual(rules._ends('Immediately, until further notice'), '')
+
+    def test_a_start_date_is_not_an_end_date(self):
+        # "July 9, 2026, until further notice" is a rule still in force; reading its
+        # single date as an end would show it as expired
+        self.assertEqual(rules._ends('July 9, 2026, until further notice'), '')
+        self.assertEqual(rules._ends('July 18 - 31, 2026'), '2026-07-31')
+        self.assertEqual(rules._ends('Aug. 1 - Sept. 30, 2026'), '2026-09-30')
 
 
 class TestTrendArithmetic(unittest.TestCase):

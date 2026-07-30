@@ -133,19 +133,21 @@ def parse_seasonal(html_text):
             block = (label, opening)
             kind = 'fishery' if block not in seen_blocks else 'sub'
             seen_blocks.add(block)
-            if common.num(get(i_limit)) == '' and common.num(get(i_taken)) == '':
+            no_fishery = (common.num(get(i_limit)) == ''
+                          and common.num(get(i_taken)) == '')
+            if no_fishery:
                 # "Closed for the 2025-2026 winter season" is written across every
-                # cell of the row; there is no guideline to track, only a season
-                # that did not happen
+                # cell of the row. There is no guideline to track, only a season
+                # that was not run — which is not the same as the area being shut,
+                # and is worded so nobody reads it that way
                 criteria, opening = '', ''
             out.append(record(
                 'Puget Sound Chinook', label,
                 criteria=criteria, limit=common.num(get(i_limit)),
                 taken=common.num(get(i_taken)), percent=_percent(get(i_pct)),
                 valid_through=_valid_through(get(i_valid)),
-                status=re.sub(r'closed for .*', 'Closed for the season',
-                              get(i_status) or ('Closed' if closed else ''),
-                              flags=re.I),
+                status=('No such fishery this season' if no_fishery else
+                        (get(i_status) or ('Closed' if closed else ''))),
                 season=re.sub(r'\s*fishery guidelines\s*', '', season, flags=re.I),
                 opening=opening, kind=kind,
                 source_page=SEASONAL_URL))

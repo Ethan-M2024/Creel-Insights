@@ -1,9 +1,9 @@
 {
- "built": "2026-07-30T21:46:03+00:00",
+ "built": "2026-07-30T21:57:10+00:00",
  "quota_records": 28,
  "sha256": {
-  "creel_effort": "1e1e35be69fb5b6e0c6057ecfee47bf972738c812ee242b98e0550aa27c25307",
-  "creel_rows": "55effe42edb2646a322462689b052b3de3139b9f2caed25adf832ec3af1d6a97"
+  "creel_effort": "b46780f2e5c3060d89f32806965cfce6ad7209dfa6ca8d6ae1b03570aa58d359",
+  "creel_rows": "bae42b84bec0af253de0c6ead14a5af4d04aa471f65eb5290d66d386a243eb63"
  },
  "sources": {
   "buoy10": {
@@ -24,7 +24,7 @@
   },
   "creel-database": {
    "catch_rows": 113173,
-   "effort_rows": 159932,
+   "effort_rows": 159929,
    "first": "1973-05-17",
    "label": "WDFW creel database (statewide)",
    "last": "2026-07-29",
@@ -39,11 +39,11 @@
    "locations": 4
   },
   "ocean-quota": {
-   "catch_rows": 1464,
-   "effort_rows": 515,
+   "catch_rows": 1476,
+   "effort_rows": 519,
    "first": "2016-07-01",
    "label": "Ocean sport salmon quota report",
-   "last": "2026-07-13",
+   "last": "2026-07-20",
    "locations": 4
   },
   "pikeminnow": {
