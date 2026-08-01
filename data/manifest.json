@@ -1,9 +1,9 @@
 {
- "built": "2026-07-31T16:51:25+00:00",
+ "built": "2026-08-01T16:06:00+00:00",
  "quota_records": 42,
  "sha256": {
-  "creel_effort": "1956557252dc52f46dd61d9ea161d191d76636d5b657010a41f99e35d6ea50a9",
-  "creel_rows": "94b08339579715893050e08ef895c1b90c735bf8900801742b17136c35d4c5ed"
+  "creel_effort": "2b157beff4d5e7126c6185e8b0e8a495574d8e98da999eaf5bab0e6641a08054",
+  "creel_rows": "c3fa0bde515cfbf24fc16287cd24172efc9cc78878bb76918672c5f1c5345100"
  },
  "sources": {
   "buoy10": {
@@ -55,11 +55,11 @@
    "locations": 29
   },
   "puget-ramp": {
-   "catch_rows": 330183,
-   "effort_rows": 47169,
+   "catch_rows": 330400,
+   "effort_rows": 47200,
    "first": "2013-01-02",
    "label": "Puget Sound ramp creel",
-   "last": "2026-07-30",
+   "last": "2026-07-31",
    "locations": 218
   },
   "willapa": {
