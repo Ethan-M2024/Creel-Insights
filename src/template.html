@@ -150,6 +150,20 @@ input[type="search"] { min-width: 230px; }
 
 #map-holder { position: relative; }
 canvas { display: block; width: 100%; height: auto; border-radius: 8px; }
+/* Zoom controls sit over the map rather than beside it, so the map keeps its full
+   width on a phone, where the pinch gesture is the one people reach for anyway. */
+#map-zoom {
+  position: absolute; top: 8px; right: 8px; display: flex; flex-direction: column;
+  gap: 4px;
+}
+#map-zoom button {
+  width: 30px; height: 30px; padding: 0; font-size: 15px; line-height: 1;
+  background: var(--surface); color: var(--ink-2); border: 1px solid var(--rule);
+  border-radius: 7px; cursor: pointer;
+}
+#map-zoom button:hover { color: var(--ink); border-color: var(--axis); }
+#map-zoom button[disabled] { opacity: .45; cursor: default; }
+#map-zoom .reset { font-size: 11px; letter-spacing: .02em; }
 #tip {
   position: absolute; pointer-events: none; opacity: 0; transition: opacity .1s;
   background: var(--surface); border: 1px solid var(--rule); border-radius: 8px;
@@ -280,6 +294,12 @@ ul.checks li { padding: 4px 0; border-bottom: 1px solid var(--grid); }
       <div id="map-holder">
         <canvas id="map" width="900" height="760" role="img" aria-label="Map of Washington creel locations"></canvas>
         <div id="tip"></div>
+        <div id="map-zoom">
+          <button type="button" id="zoom-in" title="Zoom in" aria-label="Zoom in">+</button>
+          <button type="button" id="zoom-out" title="Zoom out" aria-label="Zoom out">&minus;</button>
+          <button type="button" class="reset" id="zoom-reset" title="Whole state"
+                  aria-label="Reset the map to the whole state">all</button>
+        </div>
       </div>
       <div class="legend" id="map-legend"></div>
     </div>
@@ -671,6 +691,14 @@ const canvas = document.getElementById('map');
 const ctx = canvas.getContext('2d');
 let plotted = [];                       // what is currently drawn, for hit testing
 
+/* How far the map is zoomed in, and where it has been dragged to. Puget Sound holds
+   most of the places in a tenth of the state's width, so at the whole-state zoom the
+   ramps around Seattle land on top of one another; this is what lets them be pulled
+   apart. Everything is stored in CSS pixels of the drawn map, and applied after the
+   projection, so the geography itself never has to be reprojected. */
+const view = { k: 1, x: 0, y: 0 };
+const MAX_ZOOM = 14;
+
 function project(lon, lat, w, h) {
   /* Equirectangular, with longitude squeezed by the cosine of the middle latitude
      so Washington is not stretched sideways. Enough for a state-sized map, and it
@@ -679,7 +707,36 @@ function project(lon, lat, w, h) {
   const spanX = (BOX.east - BOX.west) * k, spanY = BOX.north - BOX.south;
   const scale = Math.min(w / spanX, h / spanY);
   const ox = (w - spanX * scale) / 2, oy = (h - spanY * scale) / 2;
-  return [ox + (lon - BOX.west) * k * scale, oy + (BOX.north - lat) * scale];
+  const x = ox + (lon - BOX.west) * k * scale;
+  const y = oy + (BOX.north - lat) * scale;
+  return [x * view.k + view.x, y * view.k + view.y];
+}
+
+function clampView(w, h) {
+  /* The map may be dragged until its edge reaches the middle of the frame and no
+     further, so it can never be pushed off screen entirely and lost. */
+  view.k = Math.min(MAX_ZOOM, Math.max(1, view.k));
+  const slack = view.k === 1 ? 0 : 0.5;
+  view.x = Math.min(w * slack, Math.max(w - w * view.k - w * slack, view.x));
+  view.y = Math.min(h * slack, Math.max(h - h * view.k - h * slack, view.y));
+}
+
+function zoomAt(factor, px, py) {
+  const w = canvas.clientWidth || 900, h = canvas.clientHeight || 760;
+  const before = view.k;
+  view.k = Math.min(MAX_ZOOM, Math.max(1, view.k * factor));
+  const applied = view.k / before;
+  // hold whatever is under the cursor still while the scale changes around it
+  view.x = px - (px - view.x) * applied;
+  view.y = py - (py - view.y) * applied;
+  if (view.k === 1) { view.x = 0; view.y = 0; }
+  clampView(w, h);
+  drawMap();
+}
+
+function resetView() {
+  view.k = 1; view.x = 0; view.y = 0;
+  drawMap();
 }
 
 function drawMap() {
@@ -690,6 +747,8 @@ function drawMap() {
   canvas.style.height = cssH + 'px';
   ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
   ctx.clearRect(0, 0, cssW, cssH);
+  clampView(cssW, cssH);          // a window resize can leave the pan out of bounds
+  syncZoomButtons();
 
   ctx.fillStyle = getVar('--water');
   ctx.fillRect(0, 0, cssW, cssH);
@@ -827,10 +886,107 @@ function hit(ev) {
   return best;
 }
 
+/* ------------------------------------------------------- zooming and panning */
+
+function syncZoomButtons() {
+  document.getElementById('zoom-in').disabled = view.k >= MAX_ZOOM - 1e-6;
+  document.getElementById('zoom-out').disabled = view.k <= 1 + 1e-6;
+  document.getElementById('zoom-reset').disabled = view.k <= 1 + 1e-6;
+}
+
+function canvasPoint(ev) {
+  const rect = canvas.getBoundingClientRect();
+  return [ev.clientX - rect.left, ev.clientY - rect.top];
+}
+
+const centreOfCanvas = () => [(canvas.clientWidth || 900) / 2,
+                              (canvas.clientHeight || 760) / 2];
+
+document.getElementById('zoom-in').onclick = () => zoomAt(1.6, ...centreOfCanvas());
+document.getElementById('zoom-out').onclick = () => zoomAt(1 / 1.6, ...centreOfCanvas());
+document.getElementById('zoom-reset').onclick = resetView;
+
+canvas.addEventListener('wheel', ev => {
+  ev.preventDefault();
+  const [x, y] = canvasPoint(ev);
+  zoomAt(Math.exp(-ev.deltaY * 0.0022), x, y);
+}, { passive: false });
+
+canvas.addEventListener('dblclick', ev => {
+  const [x, y] = canvasPoint(ev);
+  zoomAt(ev.shiftKey ? 1 / 2 : 2, x, y);
+});
+
+/* A drag pans and must not also count as picking a place, so a press only selects
+   if the pointer barely moved between going down and coming up. */
+let drag = null, draggedBy = 0;
+canvas.addEventListener('pointerdown', ev => {
+  if (ev.button !== 0 && ev.pointerType === 'mouse') return;
+  const [x, y] = canvasPoint(ev);
+  drag = { x, y, ox: view.x, oy: view.y, moved: 0, id: ev.pointerId };
+  canvas.setPointerCapture(ev.pointerId);
+});
+canvas.addEventListener('pointermove', ev => {
+  if (!drag || ev.pointerId !== drag.id) return;
+  const [x, y] = canvasPoint(ev);
+  drag.moved = Math.max(drag.moved, Math.hypot(x - drag.x, y - drag.y));
+  if (view.k === 1 && drag.moved < 4) return;      // nothing to pan at full extent
+  view.x = drag.ox + (x - drag.x);
+  view.y = drag.oy + (y - drag.y);
+  clampView(canvas.clientWidth || 900, canvas.clientHeight || 760);
+  canvas.style.cursor = view.k > 1 ? 'grabbing' : 'default';
+  tip.style.opacity = 0;
+  drawMap();
+});
+for (const end of ['pointerup', 'pointercancel']) {
+  canvas.addEventListener(end, ev => {
+    if (drag && ev.pointerId === drag.id) {
+      canvas.style.cursor = 'default';
+      draggedBy = drag.moved;
+      drag = null;
+    }
+  });
+}
+
+/* Two fingers on a phone: the distance between them is the zoom. */
+const touches = new Map();
+let pinch = 0;
+canvas.addEventListener('touchstart', ev => {
+  for (const t of ev.changedTouches) touches.set(t.identifier, t);
+  if (touches.size === 2) pinch = touchSpread(ev);
+}, { passive: true });
+canvas.addEventListener('touchmove', ev => {
+  if (ev.touches.length !== 2) return;
+  ev.preventDefault();
+  const spread = touchSpread(ev);
+  if (pinch > 0 && spread > 0) {
+    const rect = canvas.getBoundingClientRect();
+    const mx = (ev.touches[0].clientX + ev.touches[1].clientX) / 2 - rect.left;
+    const my = (ev.touches[0].clientY + ev.touches[1].clientY) / 2 - rect.top;
+    zoomAt(spread / pinch, mx, my);
+  }
+  pinch = spread;
+}, { passive: false });
+for (const end of ['touchend', 'touchcancel']) {
+  canvas.addEventListener(end, ev => {
+    for (const t of ev.changedTouches) touches.delete(t.identifier);
+    if (touches.size < 2) pinch = 0;
+  }, { passive: true });
+}
+function touchSpread(ev) {
+  const [a, b] = ev.touches;
+  return a && b ? Math.hypot(a.clientX - b.clientX, a.clientY - b.clientY) : 0;
+}
+
 const tip = document.getElementById('tip');
 canvas.addEventListener('mousemove', ev => {
+  if (drag) return;                     // mid-pan: no tooltip, no cursor fighting
   const p = hit(ev);
-  if (!p) { tip.style.opacity = 0; canvas.style.cursor = 'default'; return; }
+  if (!p) {
+    tip.style.opacity = 0;
+    canvas.style.cursor = view.k > 1 ? 'grab' : 'default';
+    return;
+  }
   canvas.style.cursor = 'pointer';
   const r = p.row;
   tip.innerHTML =
@@ -856,6 +1012,7 @@ canvas.addEventListener('mousemove', ev => {
 });
 canvas.addEventListener('mouseleave', () => { tip.style.opacity = 0; });
 canvas.addEventListener('click', ev => {
+  if (draggedBy > 4) { draggedBy = 0; return; }   // that press was a pan, not a pick
   const p = hit(ev);
   if (p) selectPlace(p.row.pid);
 });
@@ -1421,7 +1578,7 @@ function renderLegend() {
   if (state.metric === 'rate') {
     el.innerHTML = `<span><span class="sw" style="background:var(--surface-2);border:1px solid var(--axis)"></span>few fish per angler</span>
       <span><span class="sw" style="background:var(--hot)"></span>many</span>
-      <span style="color:var(--ink-3)">Dot size is anglers interviewed.</span>`;
+      <span style="color:var(--ink-3)">Dot size is anglers interviewed. Scroll or pinch to zoom, drag to pan.</span>`;
     return;
   }
   el.innerHTML = `
@@ -1431,7 +1588,7 @@ function renderLegend() {
     <span><span class="sw" style="background:var(--cool)"></span>down</span>
     <span><span class="sw" style="background:var(--cold)"></span>down by half or more</span>
     <span><span class="sw" style="border:2px solid var(--steady);background:none"></span>placed at its catch area</span>
-    <span style="color:var(--ink-3)">Dot size is anglers; faded means fewer than ${META.min_anglers} anglers behind the rate.</span>`;
+    <span style="color:var(--ink-3)">Dot size is anglers; faded means fewer than ${META.min_anglers} anglers behind the rate. Scroll or pinch to zoom, drag to pan.</span>`;
 }
 
 init();
