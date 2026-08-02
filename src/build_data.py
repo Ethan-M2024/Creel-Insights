@@ -223,6 +223,10 @@ def build(catch_rows, effort_rows, place_geo, say=print):
     area_catch, area_effort, area_names = by_area(catch_rows, effort_rows)
     area_trend = trends(area_catch, area_effort, area_names, sp_index, as_of_d,
                         say=say, label='area')
+    # the whole record by area as well, so switching to the area view does not
+    # quietly drop back to the last eight weeks
+    area_lifetime, area_span = totals(area_catch, area_effort, sp_index, say=say,
+                                      label='area')
 
     # ------------------------------------------------------------- seasonality
     season = seasonality(catch_day, effort_day, sp_index, as_of_d)
@@ -260,8 +264,10 @@ def build(catch_rows, effort_rows, place_geo, say=print):
         'lifetime': lifetime,
         'area_trend': area_trend,
         'area_places': [
-            {k: v for k, v in a.items() if k != 'i'}
+            dict({k: v for k, v in a.items() if k != 'i'},
+                 **area_span.get(a['i'], {}))
             for a in sorted(area_names.values(), key=lambda a: a['i'])],
+        'area_lifetime': area_lifetime,
         'season': season,
         # every species, not just the year's biggest: the species tab lets a reader
         # pick any of the fifty-one, and a truncated list would draw them as zero
@@ -323,7 +329,7 @@ def by_area(catch_rows, effort_rows):
     return a_catch, a_effort, areas
 
 
-def totals(catch_day, effort_day, sp_index, say=print):
+def totals(catch_day, effort_day, sp_index, say=print, label='place'):
     """Every place and species over the whole record, however long ago it was fished.
 
     Returns the per-place-species totals and, separately, each place's span and
@@ -359,7 +365,8 @@ def totals(catch_day, effort_day, sp_index, say=print):
             'first': cell['first'] if cell['first'] != '9999' else '',
             'last': cell['last'],
         }
-    say(f'   whole record: {len(rows):,} place-species totals across {len(span)} places')
+    say(f'   whole record: {len(rows):,} {label}-species totals across '
+        f'{len(span)} {label}s')
     return rows, span
 
 

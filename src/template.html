@@ -542,6 +542,12 @@ for (const t of (DATA.lifetime || [])) {
   LIFETIME.get(t.p).set(t.s, t);
 }
 
+const AREA_LIFETIME = new Map();
+for (const t of (DATA.area_lifetime || [])) {
+  if (!AREA_LIFETIME.has(t.p)) AREA_LIFETIME.set(t.p, new Map());
+  AREA_LIFETIME.get(t.p).set(t.s, t);
+}
+
 const state = {
   tab: 'map',
   mode: 'place',
@@ -568,10 +574,8 @@ const dayLabel = iso => new Date(iso + 'T12:00:00Z').toLocaleDateString('en-US',
 /* ------------------------------------------------------------------ helpers */
 
 function areaRowsForWindow() {
-  // areas are only scored per window; the whole-record view falls back to the
-  // widest one rather than silently drawing nothing
-  const w = state.window === 'all' ? META.windows[META.windows.length - 1] : state.window;
-  const byArea = AREA_TREND.get(w) || new Map();
+  if (state.window === 'all') return areaLifetimeRows();
+  const byArea = AREA_TREND.get(state.window) || new Map();
   const out = [];
   for (const [aid, bySp] of byArea) {
     const t = bySp.get(state.species);
@@ -589,26 +593,54 @@ function areaRowsForWindow() {
   return out;
 }
 
+/* Every place WDFW has ever sampled, whether or not it produced this species.
+   Walking the places rather than the catch totals is deliberate: a ramp fished for
+   thirty years that never gave up a halibut is a fact about that ramp, and dropping
+   it would quietly turn "the whole record" into "the whole record, where they caught
+   something". Those places carry a zero and say when they were last sampled. */
 function lifetimeRows() {
   const out = [];
-  for (const [pid, bySp] of LIFETIME) {
-    const t = bySp.get(state.species);
-    if (!t) continue;
-    const p = PLACES[pid];
-    if (state.water && p.water !== state.water) continue;
-    if (state.region && p.region !== state.region) continue;
-    if (state.source && p.source !== state.source) continue;
+  PLACES.forEach((p, pid) => {
+    if (!p.anglers && !LIFETIME.has(pid)) return;   // never sampled at all
+    if (state.water && p.water !== state.water) return;
+    if (state.region && p.region !== state.region) return;
+    if (state.source && p.source !== state.source) return;
+    const t = (LIFETIME.get(pid) || new Map()).get(state.species);
     const anglers = p.anglers || 0;
+    const kept = t ? t.kept : 0;
     out.push({
       pid, place: p, name: p.name, source: p.source,
-      anglers, kept: t.kept, rel: t.rel,
-      cpue: anglers ? t.kept / anglers : 0,
+      anglers, kept, rel: t ? t.rel : 0,
+      cpue: anglers ? kept / anglers : 0,
       season: null, prior: null, years: 0,
       thin: anglers < META.min_anglers,
+      neverCaught: !t,
       dseason: null, dprior: null,
-      first: t.first, last: t.last,
+      first: t ? t.first : p.first, last: t ? t.last : p.last,
     });
-  }
+  });
+  return out;
+}
+
+function areaLifetimeRows() {
+  const out = [];
+  AREA_PLACES.forEach((a, aid) => {
+    if (state.water && a.water !== state.water) return;
+    const t = (AREA_LIFETIME.get(aid) || new Map()).get(state.species);
+    const anglers = a.anglers || 0;
+    const kept = t ? t.kept : 0;
+    out.push({
+      pid: aid, place: a, name: a.name, source: a.source,
+      anglers, kept, rel: t ? t.rel : 0,
+      cpue: anglers ? kept / anglers : 0,
+      season: null, prior: null, years: 0,
+      thin: anglers < META.min_anglers,
+      neverCaught: !t,
+      dseason: null, dprior: null,
+      first: t ? t.first : a.first, last: t ? t.last : a.last,
+      rings: AREA_SHAPES.get(a.area) || [],
+    });
+  });
   return out;
 }
 
@@ -828,9 +860,10 @@ function drawMap() {
       `no catch area, and appear in the tables only.`
     : '';
   document.getElementById('map-note').textContent = state.window === 'all'
-    ? `Every one of the ${rows.length} places that has ever reported ` +
+    ? `Every one of the ${rows.length} places WDFW has ever sampled for ` +
       `${SPECIES[state.species]}, over the whole record — ${META.first.slice(0, 4)} to ` +
-      `${META.as_of.slice(0, 4)}, including waters no longer surveyed. Dot size is ` +
+      `${META.as_of.slice(0, 4)}, including waters no longer surveyed and the ` +
+      `${rows.filter(r => r.neverCaught).length} that never produced one. Dot size is ` +
       `lifetime anglers interviewed; colour is fish kept per angler. ${tail}`
     : `Every one of the ${rows.length} places that reported ${SPECIES[state.species]} ` +
       `fishing in the ${state.window} days to ${dayLabel(META.as_of)}. Dot size is ` +
@@ -860,9 +893,11 @@ function drawAreas(cssW, cssH) {
   const drawn = new Set(rows.map(r => r.place.area));
   const missing = areaRowsForWindow().filter(r => !drawn.has(r.place.area))
     .map(r => r.name);
+  const period = state.window === 'all'
+    ? `over the whole record, ${META.first.slice(0, 4)} to ${META.as_of.slice(0, 4)}`
+    : `over the ${state.window} days to ${dayLabel(META.as_of)}`;
   document.getElementById('map-note').textContent =
-    `${rows.length} catch and reporting areas over the ${state.window} days to ` +
-    `${dayLabel(META.as_of)}, every ramp in each one pooled.` +
+    `${rows.length} catch and reporting areas ${period}, every ramp in each one pooled.` +
     (missing.length ? ` ${missing.join(', ')} report catch but have no published outline, and are in the tables only.` : '');
 }
 
@@ -1218,8 +1253,10 @@ function renderPlaces() {
     tr.addEventListener('click', () => { selectPlace(Number(tr.dataset.pid)); showTab('map'); });
   }
   document.getElementById('places-note').textContent = state.window === 'all'
-    ? `${rows.length} places have reported ${SPECIES[state.species]} at some point in ` +
-      `the whole record, ${META.first.slice(0, 4)} to ${META.as_of.slice(0, 4)}.`
+    ? `Every one of the ${rows.length} places sampled over the whole record, ` +
+      `${META.first.slice(0, 4)} to ${META.as_of.slice(0, 4)}, including the ` +
+      `${rows.filter(r => r.neverCaught).length} that never reported ` +
+      `${SPECIES[state.species]}.`
     : `${rows.length} places, ${SPECIES[state.species]}, ${state.window} days to ${dayLabel(META.as_of)}.`;
   state._placeRows = rows;
 }
