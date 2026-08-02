@@ -67,6 +67,59 @@ BOAT = re.compile(rf'\b({COUNT})\s+boats?\s*/\s*({COUNT})\s+(?:rods?|anglers?)',
 BOAT_NONE = re.compile(r'no boat (?:effort|anglers)', re.I)
 NO_EFFORT = re.compile(r'^\s*no (?:effort|angler)', re.I)
 
+#: WDFW have written the same water four ways across seven seasons — "Sec 6
+#: (Kalama)", "Section 6 (Kalama)", even "Section 6 Section 6 (Kalama)" — and each
+#: spelling was becoming a separate place with its own history. A mainstem section is
+#: identified by its number and nothing else; a tributary by its river, with the reach
+#: kept when the report names one, because above and below a bridge are genuinely
+#: different fishing.
+SECTION = re.compile(r'^Sec(?:tion)?\.?\s*(\d+)\b(?:\s*Sec(?:tion)?\.?\s*\d+\b)?'
+                     r'\s*\(?([^)]*)\)?', re.I)
+
+#: section number -> the name WDFW settled on, so a label does not change with
+#: whichever wording a given week's report happened to use
+SECTION_NAMES = {
+    '1': 'Bonneville', '2': 'Camas/Washougal', '3': 'I-5 Area', '4': 'Vancouver',
+    '5': 'Woodland', '6': 'Kalama', '7': 'Cowlitz', '8': 'Longview',
+    '9': 'Cathlamet', '10': 'Cathlamet/Chinook/Deep River',
+}
+
+#: tributary spellings that mean one water
+TRIBUTARY = (
+    (r'cowlitz.*(?:above|upstream)', 'Cowlitz River (above I-5)'),
+    (r'cowlitz.*(?:below|downstream)', 'Cowlitz River (below I-5)'),
+    (r'^above the i-?5', 'Cowlitz River (above I-5)'),
+    (r'^cowlitz', 'Cowlitz River'),
+    (r'klickitat.*above', 'Klickitat River (above Fisher Hill)'),
+    (r'klickitat.*below', 'Klickitat River (below Fisher Hill)'),
+    (r'^klickitat', 'Klickitat River'),
+    (r'drano|little white salmon', 'Drano Lake'),
+    (r'wind river above', 'Wind River (above Shipherd Falls)'),
+    (r'wind river mouth', 'Wind River (mouth)'),
+    (r'^wind river', 'Wind River'),
+    (r'north fork lewis', 'North Fork Lewis River'),
+    (r'east fork lewis', 'East Fork Lewis River'),
+    (r'^lewis river', 'Lewis River'),
+    (r'washougal.*slough', 'Washougal River (Slough)'),
+    (r'^washougal', 'Washougal River'),
+    (r'^elochoman', 'Elochoman River'),
+)
+
+
+def canonical_place(name):
+    """One name per water, whatever the week's report called it."""
+    text = re.sub(r'\s+', ' ', str(name or '')).strip()
+    m = SECTION.match(text)
+    if m:
+        number = m.group(1)
+        return f'Section {number} ({SECTION_NAMES.get(number, m.group(2).strip())})'
+    low = text.lower()
+    for pattern, canonical in TRIBUTARY:
+        if re.search(pattern, low):
+            return canonical
+    return text
+
+
 VERB = re.compile(r'\b(kept|retained|harvested|released|releasing)\b', re.I)
 
 #: a paragraph starts with a place name followed by an em dash
@@ -197,7 +250,7 @@ def paragraphs(text):
         m = PLACE.match(line)
         if not m:
             continue
-        place = re.sub(r'\s+', ' ', m.group('place')).strip(' .')
+        place = canonical_place(re.sub(r'\s+', ' ', m.group('place')).strip(' .'))
         body = line[m.end():].strip()
         if not place or NOT_CREEL.search(body[:120]):
             continue

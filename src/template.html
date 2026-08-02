@@ -334,6 +334,7 @@ ul.checks li { padding: 4px 0; border-bottom: 1px solid var(--grid); }
           <th data-k="cpue">Per angler</th>
           <th data-k="dseason">vs. season</th>
           <th data-k="dprior">vs. prior</th>
+          <th data-k="last">Last seen</th>
         </tr></thead>
         <tbody></tbody>
       </table>
@@ -512,6 +513,15 @@ for (const a of (DATA.areas || [])) {
   AREA_SHAPES.get(m[1]).push(...a.rings);
 }
 
+/* The whole record: every place and species WDFW ever counted, however long ago.
+   The trend windows answer "what is happening now", which by construction hides
+   every place that is out of season, closed, or no longer surveyed. */
+const LIFETIME = new Map();
+for (const t of (DATA.lifetime || [])) {
+  if (!LIFETIME.has(t.p)) LIFETIME.set(t.p, new Map());
+  LIFETIME.get(t.p).set(t.s, t);
+}
+
 const state = {
   tab: 'map',
   mode: 'place',
@@ -538,7 +548,10 @@ const dayLabel = iso => new Date(iso + 'T12:00:00Z').toLocaleDateString('en-US',
 /* ------------------------------------------------------------------ helpers */
 
 function areaRowsForWindow() {
-  const byArea = AREA_TREND.get(state.window) || new Map();
+  // areas are only scored per window; the whole-record view falls back to the
+  // widest one rather than silently drawing nothing
+  const w = state.window === 'all' ? META.windows[META.windows.length - 1] : state.window;
+  const byArea = AREA_TREND.get(w) || new Map();
   const out = [];
   for (const [aid, bySp] of byArea) {
     const t = bySp.get(state.species);
@@ -556,7 +569,31 @@ function areaRowsForWindow() {
   return out;
 }
 
+function lifetimeRows() {
+  const out = [];
+  for (const [pid, bySp] of LIFETIME) {
+    const t = bySp.get(state.species);
+    if (!t) continue;
+    const p = PLACES[pid];
+    if (state.water && p.water !== state.water) continue;
+    if (state.region && p.region !== state.region) continue;
+    if (state.source && p.source !== state.source) continue;
+    const anglers = p.anglers || 0;
+    out.push({
+      pid, place: p, name: p.name, source: p.source,
+      anglers, kept: t.kept, rel: t.rel,
+      cpue: anglers ? t.kept / anglers : 0,
+      season: null, prior: null, years: 0,
+      thin: anglers < META.min_anglers,
+      dseason: null, dprior: null,
+      first: t.first, last: t.last,
+    });
+  }
+  return out;
+}
+
 function rowsForWindow() {
+  if (state.window === 'all') return lifetimeRows();
   const byPlace = TREND.get(state.window) || new Map();
   const out = [];
   for (const [pid, bySp] of byPlace) {
@@ -587,7 +624,7 @@ function change(now, before) {
 }
 
 function colourFor(row) {
-  if (state.metric === 'rate') {
+  if (state.metric === 'rate' || state.window === 'all') {
     const scale = Math.max(0.01, quantile(currentRows().map(r => r.cpue), 0.9));
     const v = Math.min(1, row.cpue / scale);
     return mix(getVar('--surface-2'), getVar('--hot'), Math.pow(v, 0.65));
@@ -726,15 +763,20 @@ function drawMap() {
 
   const scored = rowsForWindow();
   const solid = rows.filter(r => !r.thin).length;
-  document.getElementById('map-note').textContent =
-    `Every one of the ${rows.length} places that reported ${SPECIES[state.species]} ` +
-    `fishing in the ${state.window} days to ${dayLabel(META.as_of)}. Dot size is ` +
-    `anglers interviewed; ${rows.length - solid} of these rest on fewer than ` +
-    `${META.min_anglers} anglers and are drawn faded. ` +
-    (scored.length > rows.length
-      ? `${scored.length - rows.length} ${scored.length - rows.length === 1 ? 'other has' : 'others have'} ` +
-        `no coordinates and no catch area, and appear in the tables only.`
-      : '');
+  const missing = scored.length - rows.length;
+  const tail = missing
+    ? `${missing} ${missing === 1 ? 'other has' : 'others have'} no coordinates and ` +
+      `no catch area, and appear in the tables only.`
+    : '';
+  document.getElementById('map-note').textContent = state.window === 'all'
+    ? `Every one of the ${rows.length} places that has ever reported ` +
+      `${SPECIES[state.species]}, over the whole record — ${META.first.slice(0, 4)} to ` +
+      `${META.as_of.slice(0, 4)}, including waters no longer surveyed. Dot size is ` +
+      `lifetime anglers interviewed; colour is fish kept per angler. ${tail}`
+    : `Every one of the ${rows.length} places that reported ${SPECIES[state.species]} ` +
+      `fishing in the ${state.window} days to ${dayLabel(META.as_of)}. Dot size is ` +
+      `anglers interviewed; ${rows.length - solid} of these rest on fewer than ` +
+      `${META.min_anglers} anglers and are drawn faded. ${tail}`;
 }
 
 function drawAreas(cssW, cssH) {
@@ -795,6 +837,7 @@ canvas.addEventListener('mousemove', ev => {
     `<b>${escapeHtml(r.name)}</b>` +
     `<span class="k">${escapeHtml(r.place.region || r.source)}</span><br>` +
     `${fmt(r.kept)} kept from ${fmt(r.anglers)} anglers<br>` +
+    (r.first ? `<span class="k">${r.first.slice(0, 4)}–${r.last.slice(0, 4)}</span><br>` : '') +
     `<span class="k">per angler</span> ${rate(r.cpue)}` +
     (r.season !== null ? ` &middot; <span class="k">season normal</span> ${rate(r.season)}` : '') +
     `<br><span class="k">vs. season</span> ${pct(r.dseason)}` +
@@ -802,6 +845,8 @@ canvas.addEventListener('mousemove', ev => {
     (r.thin ? `<br><span class="k">thin sample: under ${META.min_anglers} anglers</span>` : '') +
     (r.place.precision === 'area'
       ? '<br><span class="k">shown at the centre of its catch area</span>'
+      : r.place.precision === 'locality'
+        ? `<br><span class="k">shown at ${escapeHtml(r.place.matched_to)}, next door</span>`
       : r.place.precision === 'approximate'
         ? '<br><span class="k">position approximate</span>' : '');
   const holder = document.getElementById('map-holder').getBoundingClientRect();
@@ -827,16 +872,38 @@ function currentRows() {
 }
 
 function renderMovers() {
+  const heading = document.querySelector('#movers h2');
+  const note = document.querySelector('#movers p.note');
+  const sub = document.querySelector('#movers h3');
+  if (state.window === 'all') {
+    // there is no "before" to compare a lifetime total against, so the lists become
+    // best and busiest rather than pretending to a trend
+    const rows = currentRows().filter(r => !r.thin && r.kept > 0);
+    heading.textContent = 'Best over the whole record';
+    note.textContent = 'Fish kept per angler across every year this place was sampled.';
+    sub.textContent = 'Most anglers interviewed';
+    document.getElementById('movers-up').innerHTML =
+      moverTable([...rows].sort((a, b) => b.cpue - a.cpue).slice(0, 8));
+    document.getElementById('movers-down').innerHTML =
+      moverTable([...rows].sort((a, b) => b.anglers - a.anglers).slice(0, 8));
+    wireMoverRows();
+    return;
+  }
+  heading.textContent = state.mode === 'area' ? 'Areas heating up' : 'Heating up';
+  note.textContent = 'Catch per angler against the same weeks in previous years.';
+  sub.textContent = 'Cooled off';
   const rows = currentRows().filter(r => r.dseason !== null && !r.thin);
   const up = rows.filter(r => r.kept > 0).sort((a, b) => b.dseason - a.dseason).slice(0, 8);
   const down = rows.filter(r => (r.season || 0) > 0.05).sort((a, b) => a.dseason - b.dseason).slice(0, 8);
   document.getElementById('movers-up').innerHTML = moverTable(up);
   document.getElementById('movers-down').innerHTML = moverTable(down);
+  wireMoverRows();
+}
+
+function wireMoverRows() {
   for (const tr of document.querySelectorAll('#movers tbody tr')) {
     tr.addEventListener('click', () => selectPlace(Number(tr.dataset.pid)));
   }
-  document.querySelector('#movers h2').textContent =
-    state.mode === 'area' ? 'Areas heating up' : 'Heating up';
 }
 
 function moverTable(rows) {
@@ -844,8 +911,10 @@ function moverTable(rows) {
   return '<table><tbody>' + rows.map(r => `
     <tr data-pid="${r.pid}">
       <td>${escapeHtml(r.name)}<br><span class="pill">${escapeHtml(r.source)}</span></td>
-      <td class="num">${rate(r.cpue)}<br><span class="k" style="color:var(--ink-3)">was ${rate(r.season)}</span></td>
-      <td class="num ${r.dseason > 0 ? 'up' : r.dseason < 0 ? 'down' : 'flat'}">${pct(r.dseason)}</td>
+      <td class="num">${rate(r.cpue)}<br><span class="k" style="color:var(--ink-3)">${
+        r.season === null ? fmt(r.anglers) + ' anglers' : 'was ' + rate(r.season)}</span></td>
+      <td class="num ${r.dseason > 0 ? 'up' : r.dseason < 0 ? 'down' : 'flat'}">${
+        r.dseason === null ? fmt(r.kept) : pct(r.dseason)}</td>
     </tr>`).join('') + '</tbody></table>';
 }
 
@@ -986,12 +1055,15 @@ function renderPlaces() {
       <td class="num">${rate(r.cpue)}</td>
       <td class="num ${cls(r.dseason)}">${pct(r.dseason)}</td>
       <td class="num ${cls(r.dprior)}">${pct(r.dprior)}</td>
+      <td class="num">${r.last ? r.last : '—'}</td>
     </tr>`).join('');
   for (const tr of tbody.querySelectorAll('tr')) {
     tr.addEventListener('click', () => { selectPlace(Number(tr.dataset.pid)); showTab('map'); });
   }
-  document.getElementById('places-note').textContent =
-    `${rows.length} places, ${SPECIES[state.species]}, ${state.window} days to ${dayLabel(META.as_of)}.`;
+  document.getElementById('places-note').textContent = state.window === 'all'
+    ? `${rows.length} places have reported ${SPECIES[state.species]} at some point in ` +
+      `the whole record, ${META.first.slice(0, 4)} to ${META.as_of.slice(0, 4)}.`
+    : `${rows.length} places, ${SPECIES[state.species]}, ${state.window} days to ${dayLabel(META.as_of)}.`;
   state._placeRows = rows;
 }
 
@@ -1177,10 +1249,11 @@ function renderSources() {
 
   const un = DATA.unplaced || [];
   document.getElementById('unplaced-note').textContent = un.length
-    ? `${un.length} of ${PLACES.length} location names could not be matched to WDFW ` +
-      `coordinates and are absent from the map, though their numbers are in every table: ` +
-      un.slice(0, 12).join(', ') + (un.length > 12 ? '…' : '')
-    : 'Every location in the record has coordinates.';
+    ? `${un.length} of ${PLACES.length} places have no coordinates — no WDFW dataset ` +
+      `names them, they report no catch area, and no single placed site shares their ` +
+      `locality. They are absent from the map and present in every table: ` +
+      un.slice(0, 10).join(', ') + (un.length > 10 ? '…' : '')
+    : 'Every place in the record has coordinates.';
   document.getElementById('min-anglers').textContent = META.min_anglers;
 }
 
@@ -1264,10 +1337,11 @@ function init() {
 
   const seg = document.getElementById('f-window');
   seg.innerHTML = META.windows.map(w =>
-    `<button data-v="${w}" aria-pressed="${w === state.window}">${w} days</button>`).join('');
+    `<button data-v="${w}" aria-pressed="${w === state.window}">${w} days</button>`).join('') +
+    '<button data-v="all" aria-pressed="false">whole record</button>';
   seg.addEventListener('click', ev => {
     const b = ev.target.closest('button'); if (!b) return;
-    state.window = Number(b.dataset.v);
+    state.window = b.dataset.v === 'all' ? 'all' : Number(b.dataset.v);
     for (const other of seg.querySelectorAll('button')) {
       other.setAttribute('aria-pressed', String(other === b));
     }

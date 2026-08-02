@@ -193,6 +193,14 @@ class TestPikeminnow(unittest.TestCase):
         self.assertEqual(self.catch[0]['fish'], 1833)
         self.assertEqual(self.effort[0]['anglers'], 139)
 
+    def test_a_closed_week_is_the_same_station(self):
+        # "Bingen Closed" was becoming a second station, splitting one history
+        # between the weeks it was open and the weeks it was not
+        self.assertEqual(pikeminnow.clean_station('Bingen Closed'), 'Bingen')
+        self.assertEqual(pikeminnow.clean_station('Cascade Locks-closed'),
+                         'Cascade Locks')
+        self.assertEqual(pikeminnow.clean_station('Stevenson'), 'Stevenson')
+
     def test_totals_row_is_dropped(self):
         self.assertNotIn('Totals', [r['location'] for r in self.effort])
 
@@ -236,6 +244,25 @@ class TestSouthwest(unittest.TestCase):
     def test_sturgeon_size_words_are_one_species(self):
         sturgeon = sum(r['fish'] for r in self.catch if r['species'] == 'Sturgeon')
         self.assertEqual(sturgeon, 6)
+
+    def test_one_name_per_water(self):
+        # WDFW have written the same section four ways across seven seasons; each
+        # spelling was becoming a separate place with its own split history
+        for written in ('Sec 6 (Kalama)', 'Section 6 (Kalama)',
+                        'Section 6 Section 6 (Kalama)', 'Sec. 6 (Kalama)'):
+            self.assertEqual(southwest.canonical_place(written), 'Section 6 (Kalama)')
+
+    def test_a_reach_is_not_merged_away(self):
+        # above and below a bridge are genuinely different fishing, so they stay apart
+        above = southwest.canonical_place('Cowlitz River Above the I-5 Br')
+        below = southwest.canonical_place('Cowlitz River I-5 Br downstream')
+        self.assertEqual(above, 'Cowlitz River (above I-5)')
+        self.assertEqual(below, 'Cowlitz River (below I-5)')
+        self.assertNotEqual(above, below)
+
+    def test_an_alias_for_one_water(self):
+        self.assertEqual(southwest.canonical_place('Little White Salmon (Drano Lake)'),
+                         'Drano Lake')
 
     def test_reported_zero_effort_is_kept(self):
         cowlitz = [r for r in self.effort if r['location'] == 'Section 7 (Cowlitz)']

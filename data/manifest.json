@@ -1,9 +1,9 @@
 {
- "built": "2026-08-02T16:06:02+00:00",
+ "built": "2026-08-02T22:19:12+00:00",
  "quota_records": 42,
  "sha256": {
-  "creel_effort": "edfe06ef8c979da82b4fc2c28c27ccaa5e13937763c6f63d8a6d4d97c9e17959",
-  "creel_rows": "4f30295c73f32ffa890ae38f0cb1f1d56d868ec5e35a8141fb7d30c6410a17f7"
+  "creel_effort": "7feb735b7c3df5b5a72148c14f72504acef5dbaf32f63edf322c55ee0c538088",
+  "creel_rows": "2a3c66c66a252f7b3be31798c8ec176a599a10d3ccebfa8bda070880a8d6fa97"
  },
  "sources": {
   "buoy10": {
@@ -20,11 +20,11 @@
    "first": "2019-01-14",
    "label": "Columbia River and tributary report",
    "last": "2026-07-20",
-   "locations": 61
+   "locations": 35
   },
   "creel-database": {
    "catch_rows": 113173,
-   "effort_rows": 159932,
+   "effort_rows": 159929,
    "first": "1973-05-17",
    "label": "WDFW creel database (statewide)",
    "last": "2026-07-29",
@@ -52,14 +52,14 @@
    "first": "2017-05-01",
    "label": "Northern pikeminnow sport reward",
    "last": "2026-04-20",
-   "locations": 29
+   "locations": 25
   },
   "puget-ramp": {
-   "catch_rows": 330652,
-   "effort_rows": 47236,
+   "catch_rows": 330659,
+   "effort_rows": 47237,
    "first": "2013-01-02",
    "label": "Puget Sound ramp creel",
-   "last": "2026-08-01",
+   "last": "2026-08-02",
    "locations": 218
   },
   "willapa": {

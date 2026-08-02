@@ -6,6 +6,10 @@ module keeps three tiers apart and records which one each location came from:
     exact       a WDFW dataset gives the coordinates outright — the water body
                 centroid table, or the water access site layer
     matched     a ramp name in a creel table was matched to a WDFW access site
+    locality    no dataset names this dock, but exactly one placed site shares its
+                locality — "Blaine Marina" beside "Blaine Ramp". Drawn at the
+                neighbour, which is right to within a few hundred metres and is
+                labelled as the neighbour's position, never as the dock's own
     approximate a fixed place with no dataset behind it (the mouth of the Columbia,
                 an ocean management area) hand-placed once, marked as approximate
 
@@ -17,6 +21,7 @@ import os
 import re
 import sys
 import urllib.parse
+from collections import defaultdict
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), 'sources'))
@@ -37,6 +42,11 @@ CATCH_AREA = ('https://services3.arcgis.com/NJJAMXTzj98caILi/arcgis/rest/service
 APPROXIMATE = {
     # ocean and coastal fisheries
     'Buoy 10': (46.2450, -123.9500),
+    # halibut subareas: the centre of the water each quota covers, not a port
+    'Puget Sound halibut': (48.1200, -122.7800),
+    'North coast halibut (Neah Bay, La Push)': (48.1500, -125.0000),
+    'South coast halibut (Westport)': (46.8000, -124.5000),
+    'Columbia River halibut (incl. Oregon)': (46.2000, -124.3000),
     'Willapa Bay (Area 2.1)': (46.5300, -123.9200),
     'Columbia River ocean area (incl. Oregon)': (46.2000, -124.2000),
     'Westport (Marine Area 2)': (46.8900, -124.3000),
@@ -62,9 +72,24 @@ APPROXIMATE = {
     'Bingen': (45.7150, -121.4680), 'The Dalles': (45.6070, -121.1780),
     'Giles French': (45.7220, -120.6960), 'Umatilla': (45.9170, -119.3420),
     'Columbia Point': (46.2660, -119.2660), 'Vernita': (46.6360, -119.7160),
-    "Lyon's Ferry": (46.5900, -118.2200), 'Boyer Park': (46.5840, -117.4780),
+    "Lyon's Ferry": (46.5900, -118.2200), 'Lyons Ferry': (46.5900, -118.2200),
+    'Boyer Park': (46.5840, -117.4780),
     'Greenbelt': (46.4200, -117.0300), 'Hood Park': (46.2140, -119.0200),
     'Sand Station': (45.9200, -119.2100), 'Roosevelt': (45.8500, -120.3400),
+    'Stevenson': (45.6980, -121.8830), 'Windust': (46.5300, -118.5800),
+    'Swallows': (46.4230, -117.0600), 'Scappoose Bay': (45.8300, -122.8200),
+    # Columbia tributary reaches the weekly report names but no dataset locates
+    'Cowlitz River (above I-5)': (46.1600, -122.8600),
+    'Cowlitz River (below I-5)': (46.1000, -122.9300),
+    'Klickitat River (above Fisher Hill)': (45.7400, -121.1800),
+    'Klickitat River (below Fisher Hill)': (45.7050, -121.1700),
+    'Wind River (mouth)': (45.7200, -121.7900),
+    'Wind River (above Shipherd Falls)': (45.7600, -121.7900),
+    'Washougal River (Slough)': (45.5800, -122.3700),
+    'Lewis River Mainstem': (45.8600, -122.7300),
+    'John Day Pool': (45.7200, -120.6900),
+    'Bonneville Pool': (45.6900, -121.5000),
+    'The Dalles Pool': (45.6100, -121.1300),
 }
 
 
@@ -271,9 +296,30 @@ def build(locations, *, water_bodies=None, sites=None, lakes=None, say=print):
                             'precision': 'exact', 'matched_to': name}
                 continue
         unplaced.append(loc)
-    say(f'   placed {len(out)} of {len(out) + len(unplaced)} locations '
-        f'({len(unplaced)} without coordinates)')
-    return out, unplaced
+
+    # Second pass: a dock no dataset names, beside exactly one that it does. The
+    # locality is the leading word of the name — Blaine, Edmonds, Kingston — and it
+    # is only used when one placed site claims it, so an ambiguous locality still
+    # leaves the dock off the map rather than guessing between two.
+    by_locality = defaultdict(set)
+    for name, rec in out.items():
+        token = normalise(name).split()
+        if token:
+            by_locality[token[0]].add((rec['lat'], rec['lon'], name))
+    still = []
+    for loc in unplaced:
+        token = normalise(loc).split()
+        siblings = by_locality.get(token[0]) if token else None
+        if siblings and len(siblings) == 1:
+            lat, lon, neighbour = next(iter(siblings))
+            out[loc] = {'lat': lat, 'lon': lon, 'precision': 'locality',
+                        'matched_to': neighbour}
+        else:
+            still.append(loc)
+
+    say(f'   placed {len(out)} of {len(out) + len(still)} locations '
+        f'({len(still)} without coordinates)')
+    return out, still
 
 
 if __name__ == '__main__':

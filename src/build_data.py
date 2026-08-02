@@ -204,6 +204,13 @@ def build(catch_rows, effort_rows, place_geo, say=print):
             w[0] += anglers
             w[1] += hours
 
+    # ------------------------------------------------------------- lifetime
+    # The trend windows answer "what is happening now", which by construction leaves
+    # out every place that is out of season, closed, or no longer surveyed — most of
+    # the record. This is the whole record instead: one row per place per species,
+    # over every year it was ever sampled, so nothing WDFW counted is invisible.
+    lifetime, place_span = totals(catch_day, effort_day, sp_index, say=say)
+
     # ------------------------------------------------------------- trends
     trend = trends(catch_day, effort_day, places, sp_index, as_of_d, say=say)
 
@@ -244,11 +251,13 @@ def build(catch_rows, effort_rows, place_geo, say=print):
             'total_anglers': sum(v[0] for v in effort_day.values()),
         },
         'places': [
-            {k: v for k, v in p.items() if k != 'i'}
+            dict({k: v for k, v in p.items() if k != 'i'},
+                 **place_span.get(p['i'], {}))
             for p in sorted(places.values(), key=lambda p: p['i'])],
         'weekly': _pack(weekly, weekly_effort),
         'monthly': _pack(monthly, monthly_effort),
         'trend': trend,
+        'lifetime': lifetime,
         'area_trend': area_trend,
         'area_places': [
             {k: v for k, v in a.items() if k != 'i'}
@@ -312,6 +321,46 @@ def by_area(catch_rows, effort_rows):
         cell = a_catch[(aid, r['species'], r['date'])]
         cell[0 if r.get('fate') == 'kept' else 1] += to_int(r.get('fish'))
     return a_catch, a_effort, areas
+
+
+def totals(catch_day, effort_day, sp_index, say=print):
+    """Every place and species over the whole record, however long ago it was fished.
+
+    Returns the per-place-species totals and, separately, each place's span and
+    lifetime effort — the second is what lets the map show a place that has not been
+    surveyed since 2015 without pretending it is current.
+    """
+    per_place = defaultdict(lambda: {'anglers': 0, 'hours': 0.0, 'days': 0,
+                                     'first': '9999', 'last': ''})
+    for (pid, day), (anglers, hours, _interviews) in effort_day.items():
+        cell = per_place[pid]
+        cell['anglers'] += anglers
+        cell['hours'] += hours
+        cell['days'] += 1
+        cell['first'] = min(cell['first'], day)
+        cell['last'] = max(cell['last'], day)
+
+    per_species = defaultdict(lambda: [0, 0, '9999', ''])
+    for (pid, sp, day), (kept, rel) in catch_day.items():
+        cell = per_species[(pid, sp_index[sp])]
+        cell[0] += kept
+        cell[1] += rel
+        cell[2] = min(cell[2], day)
+        cell[3] = max(cell[3], day)
+
+    rows = [{'p': pid, 's': sp, 'kept': k, 'rel': r, 'first': first, 'last': last}
+            for (pid, sp), (k, r, first, last) in sorted(per_species.items())]
+
+    span = {}
+    for pid, cell in per_place.items():
+        span[pid] = {
+            'anglers': cell['anglers'], 'days': cell['days'],
+            'hours': round(cell['hours'], 1),
+            'first': cell['first'] if cell['first'] != '9999' else '',
+            'last': cell['last'],
+        }
+    say(f'   whole record: {len(rows):,} place-species totals across {len(span)} places')
+    return rows, span
 
 
 def _pack(catch, effort):
@@ -445,7 +494,11 @@ def main(say=print):
 
     payload = build(catch_rows, effort_rows, placed, say=say)
     payload['areas'] = geo.catch_areas(say=say)
-    payload['unplaced'] = sorted(unplaced)
+    # what the reader cares about is which places are missing from the map, not
+    # which names failed the first matching pass — most of those are later placed
+    # from their catch area
+    payload['unplaced'] = sorted(
+        p['name'] for p in payload['places'] if p.get('lat') is None)
     if os.path.exists(paths.OUTLINE):
         with open(paths.OUTLINE, encoding='utf-8') as f:
             payload['outline'] = json.load(f)

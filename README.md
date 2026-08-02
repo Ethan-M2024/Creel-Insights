@@ -59,6 +59,13 @@ in August is not flagged as news every August. Dot size is how many anglers were
 interviewed, so a red dot with a big footprint is a real signal and a small one is a
 hint.
 
+The window control also has a **whole record** setting. The other settings answer
+"what is happening now", which by construction leaves out every place that is out of
+season, closed, or no longer surveyed — most of the record. Whole record puts all of
+it on the map at once: every place WDFW have ever counted that species at, back to
+1973, sized by lifetime anglers and coloured by fish per angler, with the years each
+place was sampled on hover. For Chinook that is 232 places rather than 56.
+
 Every place that reported fishing in the window is on the map — not only the ones
 with a solid sample. A rate resting on fewer than 30 anglers is drawn faded and
 labelled thin, and is never ranked in the lists beside the map, because at that
@@ -170,6 +177,22 @@ by however many species they caught, and every rate downstream would be wrong.
 The counts behind every rate travel with it — kept, released, anglers, and how many
 past years the seasonal baseline had to work with — so you can see what any number
 rests on rather than taking it on faith.
+
+---
+
+## One place, one name
+
+WDFW's wording drifts between seasons, and taking it literally splits a place's
+history in half. The Columbia weekly report has written the same water as *Sec 6
+(Kalama)*, *Section 6 (Kalama)* and once *Section 6 Section 6 (Kalama)*; the
+pikeminnow report writes *Bingen* on the weeks the station is open and *Bingen
+Closed* on the weeks it is not. Each spelling was becoming a separate place with its
+own partial record.
+
+Names are now canonicalised at the parser: a mainstem section is identified by its
+number, a tributary by its river. Reaches are kept apart — above and below the I-5
+bridge on the Cowlitz are genuinely different fishing, and merging them would be the
+opposite mistake.
 
 ---
 

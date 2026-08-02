@@ -49,10 +49,10 @@
 "matched_to": "Bogachiel River"
 },
 "Bonneville Pool": {
-"lat": 45.7147,
-"lon": -121.5774,
-"precision": "exact",
-"matched_to": "Bonneville Pool Reservoir"
+"lat": 45.69,
+"lon": -121.5,
+"precision": "approximate",
+"matched_to": "Bonneville Pool"
 },
 "Boston Harbor Ramp/Marina": {
 "lat": 47.139651,
@@ -138,6 +138,12 @@
 "precision": "approximate",
 "matched_to": "Columbia Point"
 },
+"Columbia River halibut (incl. Oregon)": {
+"lat": 46.2,
+"lon": -124.3,
+"precision": "approximate",
+"matched_to": "Columbia River halibut (incl. Oregon)"
+},
 "Columbia River ocean area (incl. Oregon)": {
 "lat": 46.2,
 "lon": -124.2,
@@ -156,35 +162,17 @@
 "precision": "exact",
 "matched_to": "Cowlitz River"
 },
-"Cowlitz River (I-5 Bridge downstream)": {
-"lat": 46.4921,
-"lon": -122.6951,
-"precision": "exact",
-"matched_to": "Cowlitz River"
+"Cowlitz River (above I-5)": {
+"lat": 46.16,
+"lon": -122.86,
+"precision": "approximate",
+"matched_to": "Cowlitz River (above I-5)"
 },
-"Cowlitz River (I-5 Bridge upstream)": {
-"lat": 46.4921,
-"lon": -122.6951,
-"precision": "exact",
-"matched_to": "Cowlitz River"
-},
-"Cowlitz River Above the I-5 Br": {
-"lat": 46.4921,
-"lon": -122.6951,
-"precision": "exact",
-"matched_to": "Cowlitz River"
-},
-"Cowlitz River I-5 Br downstream": {
-"lat": 46.4921,
-"lon": -122.6951,
-"precision": "exact",
-"matched_to": "Cowlitz River"
-},
-"Cowlitz River above the I-5 Br": {
-"lat": 46.4921,
-"lon": -122.6951,
-"precision": "exact",
-"matched_to": "Cowlitz River"
+"Cowlitz River (below I-5)": {
+"lat": 46.1,
+"lon": -122.93,
+"precision": "approximate",
+"matched_to": "Cowlitz River (below I-5)"
 },
 "Davis Lake": {
 "lat": 46.541317,
@@ -209,12 +197,6 @@
 "lon": -122.590743,
 "precision": "exact",
 "matched_to": "East Fork Lewis River"
-},
-"Elochoman": {
-"lat": 46.2218,
-"lon": -123.3367,
-"precision": "exact",
-"matched_to": "Elochoman River"
 },
 "Elochoman River": {
 "lat": 46.2218,
@@ -307,10 +289,10 @@
 "matched_to": "Icehouse Lake"
 },
 "John Day Pool": {
-"lat": 45.7838,
-"lon": -120.0861,
-"precision": "exact",
-"matched_to": "John Day Pool Reservoir"
+"lat": 45.72,
+"lon": -120.69,
+"precision": "approximate",
+"matched_to": "John Day Pool"
 },
 "Kalama": {
 "lat": 46.007,
@@ -330,35 +312,23 @@
 "precision": "matched",
 "matched_to": "Kenmore"
 },
-"Klickitat": {
-"lat": 45.7383,
-"lon": -121.2317,
-"precision": "exact",
-"matched_to": "Klickitat River"
-},
 "Klickitat River": {
 "lat": 45.7383,
 "lon": -121.2317,
 "precision": "exact",
 "matched_to": "Klickitat River"
 },
-"Klickitat River (above Fisher Hill Bridge)": {
-"lat": 45.7383,
-"lon": -121.2317,
-"precision": "exact",
-"matched_to": "Klickitat River"
+"Klickitat River (above Fisher Hill)": {
+"lat": 45.74,
+"lon": -121.18,
+"precision": "approximate",
+"matched_to": "Klickitat River (above Fisher Hill)"
 },
-"Klickitat River (below Fisher Hill Bridge)": {
-"lat": 45.7383,
-"lon": -121.2317,
-"precision": "exact",
-"matched_to": "Klickitat River"
-},
-"Klickitat River below Fisher Hill Bridge": {
-"lat": 45.7383,
-"lon": -121.2317,
-"precision": "exact",
-"matched_to": "Klickitat River"
+"Klickitat River (below Fisher Hill)": {
+"lat": 45.705,
+"lon": -121.17,
+"precision": "approximate",
+"matched_to": "Klickitat River (below Fisher Hill)"
 },
 "Klineline Pond": {
 "lat": 45.707843,
@@ -407,6 +377,12 @@
 "lon": -118.22,
 "precision": "approximate",
 "matched_to": "Lyon's Ferry"
+},
+"Lyons Ferry": {
+"lat": 46.59,
+"lon": -118.22,
+"precision": "approximate",
+"matched_to": "Lyons Ferry"
 },
 "Maryhill Pond": {
 "lat": 45.680727,
@@ -486,6 +462,12 @@
 "precision": "exact",
 "matched_to": "North Fork Lewis River"
 },
+"North coast halibut (Neah Bay, La Push)": {
+"lat": 48.15,
+"lon": -125.0,
+"precision": "approximate",
+"matched_to": "North coast halibut (Neah Bay, La Push)"
+},
 "Pleasant Harbor Boat Ramp (WDFW)": {
 "lat": 47.659756,
 "lon": -122.921589,
@@ -515,6 +497,12 @@
 "lon": -122.851242,
 "precision": "matched",
 "matched_to": "Point Whitney"
+},
+"Puget Sound halibut": {
+"lat": 48.12,
+"lon": -122.78,
+"precision": "approximate",
+"matched_to": "Puget Sound halibut"
 },
 "Puyallup River": {
 "lat": 47.0892,
@@ -588,17 +576,17 @@
 "precision": "exact",
 "matched_to": "Sauk River"
 },
+"Scappoose Bay": {
+"lat": 45.83,
+"lon": -122.82,
+"precision": "approximate",
+"matched_to": "Scappoose Bay"
+},
 "Section 1 (Bonneville)": {
 "lat": 45.64,
 "lon": -121.94,
 "precision": "approximate",
 "matched_to": "Section 1 (Bonneville)"
-},
-"Section 10 (Cathlamet)": {
-"lat": 46.24,
-"lon": -123.6,
-"precision": "approximate",
-"matched_to": "Section 10 (Cathlamet)"
 },
 "Section 2 (Camas/Washougal)": {
 "lat": 45.58,
@@ -720,6 +708,12 @@
 "precision": "exact",
 "matched_to": "South Lewis County Park Pond"
 },
+"South coast halibut (Westport)": {
+"lat": 46.8,
+"lon": -124.5,
+"precision": "approximate",
+"matched_to": "South coast halibut (Westport)"
+},
 "Spearfish Lake": {
 "lat": 45.628006,
 "lon": -121.130818,
@@ -731,6 +725,12 @@
 "lon": -122.53444,
 "precision": "matched",
 "matched_to": "Steilacoom Lake"
+},
+"Stevenson": {
+"lat": 45.698,
+"lon": -121.883,
+"precision": "approximate",
+"matched_to": "Stevenson"
 },
 "Stillaguamish River": {
 "lat": 48.2013,
@@ -749,6 +749,12 @@
 "lon": -122.056081,
 "precision": "exact",
 "matched_to": "Stillaguamish River - South Fork"
+},
+"Swallows": {
+"lat": 46.423,
+"lon": -117.06,
+"precision": "approximate",
+"matched_to": "Swallows"
 },
 "Swift Power Canal": {
 "lat": 46.057838,
@@ -775,10 +781,10 @@
 "matched_to": "The Dalles"
 },
 "The Dalles Pool": {
-"lat": 45.6508,
-"lon": -120.9306,
-"precision": "exact",
-"matched_to": "The Dalles Pool Reservoir"
+"lat": 45.61,
+"lon": -121.13,
+"precision": "approximate",
+"matched_to": "The Dalles Pool"
 },
 "Tokul Creek": {
 "lat": 47.5565,
@@ -853,10 +859,10 @@
 "matched_to": "Washougal River"
 },
 "Washougal River (Slough)": {
-"lat": 45.607323,
-"lon": -122.342803,
-"precision": "exact",
-"matched_to": "Washougal River"
+"lat": 45.58,
+"lon": -122.37,
+"precision": "approximate",
+"matched_to": "Washougal River (Slough)"
 },
 "Westport (Marine Area 2)": {
 "lat": 46.89,
@@ -900,27 +906,68 @@
 "precision": "exact",
 "matched_to": "Wind River"
 },
-"Wind River Mouth": {
-"lat": 45.7272,
-"lon": -121.7946,
-"precision": "exact",
-"matched_to": "Wind River"
+"Wind River (above Shipherd Falls)": {
+"lat": 45.76,
+"lon": -121.79,
+"precision": "approximate",
+"matched_to": "Wind River (above Shipherd Falls)"
 },
-"Wind River above Shipherd Falls": {
-"lat": 45.7272,
-"lon": -121.7946,
-"precision": "exact",
-"matched_to": "Wind River"
+"Wind River (mouth)": {
+"lat": 45.72,
+"lon": -121.79,
+"precision": "approximate",
+"matched_to": "Wind River (mouth)"
+},
+"Windust": {
+"lat": 46.53,
+"lon": -118.58,
+"precision": "approximate",
+"matched_to": "Windust"
 },
 "Wynoochee River": {
 "lat": 47.011169,
 "lon": -123.662532,
 "precision": "exact",
 "matched_to": "Wynoochee River"
+},
+"East Bay Marina/Ramp (Oly. Isle)": {
+"lat": 45.814362,
+"lon": -122.590743,
+"precision": "locality",
+"matched_to": "East Fork Lewis River"
+},
+"Hood Canal Bridge Pier": {
+"lat": 46.214,
+"lon": -119.02,
+"precision": "locality",
+"matched_to": "Hood Park"
+},
+"Hood Canal Marina (Union)": {
+"lat": 46.214,
+"lon": -119.02,
+"precision": "locality",
+"matched_to": "Hood Park"
+},
+"John Wayne Marina": {
+"lat": 45.72,
+"lon": -120.69,
+"precision": "locality",
+"matched_to": "John Day Pool"
+},
+"John Wayne Marina Docks": {
+"lat": 45.72,
+"lon": -120.69,
+"precision": "locality",
+"matched_to": "John Day Pool"
+},
+"Skokomish Tide Flats": {
+"lat": 47.30921,
+"lon": -123.176238,
+"precision": "locality",
+"matched_to": "Skokomish Ramp"
 }
 },
 "unplaced": [
-"Above the I-5 Br",
 "Allyn Dock/Pier",
 "Allyn Public Ramp",
 "Arcadia Ramp",
@@ -933,7 +980,6 @@
 "Bellingham Ramp Squalicum Harbor",
 "Bellingham-6th St Ramp",
 "Big Beef Beach",
-"Bingen Closed",
 "Blaine Marina",
 "Blaine Public Dock",
 "Blaine Ramp",
@@ -950,10 +996,8 @@
 "Camano Island State Park Public Ramp",
 "Cap Sante Moorage & Sling",
 "Carlyon Beach Marina",
-"Cascade Locks-closed",
 "Chico Creek Shore",
 "Cline Spit Ramp",
-"Columbia River halibut (incl. Oregon)",
 "Commencement Bay Marina Services (Foss Hrb Mrna)",
 "Concrete Dock",
 "Cornet Bay Marina",
@@ -974,7 +1018,6 @@
 "Dungeness Bay Public Ramp",
 "Dupont Shore (Path from Dupont City Hall to shore)",
 "Eagle Harbor Waterfront Park",
-"East Bay Marina/Ramp (Oly. Isle)",
 "Ebey Waterfront Park (near Marysville Public Ramp)",
 "Ediz Hook, Port Angeles Public Ramp",
 "Edmonds Boat Basin (Public Sling)",
@@ -1009,16 +1052,11 @@
 "Hartstene Point Ramp",
 "Hartstine Is. Ramp (aka Latimer's Landing)",
 "Home Public Ramp",
-"Hood Canal Bridge Pier",
-"Hood Canal Marina (Union)",
-"Hood Park Closed",
 "Hoodsport Marina",
 "Hoodsport Shore",
 "Horsehead Bay Ramp",
 "Illahee State Park Pier",
 "Joemma Beach Ramp",
-"John Wayne Marina",
-"John Wayne Marina Docks",
 "John's Creek",
 "Kennedy Creek Mouth",
 "Keyport Ramp",
@@ -1026,22 +1064,18 @@
 "Keystone Spit State Park (West)",
 "Kingston Marina",
 "Kingston Public Ramp",
-"Klickitat below Fisher Hill Bridge",
 "Kline Spit Ramp",
 "LaConner Ramp",
 "Lagoon Point Ramp and Beach",
 "Landover",
 "Les Davis Pier",
 "Lewis River",
-"Lewis River Mainstem",
 "Lilliwaup Beach Launch",
 "Limpet Road Access",
-"Little White Salmon (Drano Lake)",
 "Longbranch Marina",
 "Longbranch Public Ramp",
 "Luhr Beach Ramp",
 "Luhr Beach Shore",
-"Lyons Ferry Closed",
 "Magnuson Park (Lk. Washington)",
 "Manchester Public Ramp",
 "Maplegrove Ramp, Camano Is",
@@ -1060,7 +1094,6 @@
 "Narrows Marina (Boathouse and Rental) (Private)",
 "Narrows Park (aka Narrows Properties Park)",
 "Narrows Ramp",
-"North coast halibut (Neah Bay, La Push)",
 "Oak Bay Beach Ramp",
 "Oak Harbor Marina & Public Ramp",
 "Olalla Public Ramp",
@@ -1093,7 +1126,6 @@
 "Potlatch State Park, Hood Canal Ramp",
 "Poulsbo Ramp/Marina",
 "Priest Point Park",
-"Puget Sound halibut",
 "Quilcene Bay Ramp",
 "Quilcene Tide Flats",
 "Redondo Pier",
@@ -1104,40 +1136,21 @@
 "Saltwater Park Ramp (Hood Canal Rmp Tacoma Light)",
 "San Juan County Park Ramp, San Juan Is",
 "Sandy Point Marina/Ramp",
-"Scappoose Bay",
-"Sec 1 (Bonneville)",
-"Sec 10 (Cathlamet)",
-"Sec 10 (Cathlamet/ Deep R./ Chinook)",
-"Sec 10 (Chinook/Deep River/Cathlamet)",
-"Sec 10 (Chinook/Deep River/Elochoman)",
-"Sec 2 (Camas/Washougal)",
-"Sec 3 (I-5 area)",
-"Sec 4 (Vancouver)",
-"Sec 5 (Woodland)",
-"Sec 6 (Kalama)",
-"Sec 7 (Cowlitz)",
-"Sec 7 (Longview)",
-"Sec 8 (Longview)",
-"Sec 9 (Cathlamet)",
-"Section 6 Section 6 (Kalama)",
+"Section 10 (Cathlamet/Chinook/Deep River)",
 "Shaw Moorage, Shaw Is",
 "Shilshole Marina",
 "Shilshole Public Ramp",
 "Shilshole Shore",
 "Shipyard Cove Marina & Ramp",
 "Silverdale Waterfront Ramp",
-"Skokomish Tide Flats",
 "Skyline Marina/Sling (Flounder Bay)",
 "Snug Harbor Moorage/Ramp, San Juan Is.",
 "Solo Point (Tatsolo Pt-Ft Lewis) Rm",
 "Solo Point Shore",
 "South Allyn Shore (Sherewood Creek)",
 "South Beach, San Juan Is",
-"South coast halibut (Westport)",
 "Steamboat Island Bridge",
-"Stevenson",
 "Summertide Resort",
-"Swallows",
 "Swan Town/East Bay Marina/Ramp (Oly. Isle)",
 "Swinomish Channel Ramp",
 "Tacoma Outboard Association",
@@ -1154,8 +1167,6 @@
 "Wauna Ramp",
 "Wauna Shore",
 "Wildcat Cove Ramp, Larrabee State Park",
-"Windust",
-"Windust Closed",
 "Wollochet Bay Public Ramp",
 "Zittels Marina"
 ]

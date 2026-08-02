@@ -68,7 +68,7 @@ def parse(text):
         hit = ROW.match(line.strip())
         if not hit:
             continue
-        station = hit.group('station').strip()
+        station = clean_station(hit.group('station'))
         if station.lower().startswith('total'):
             continue              # the report's own sum, recomputed downstream
         effort_rows.append(common.effort(
@@ -78,6 +78,14 @@ def parse(text):
             start, SOURCE, station, SPECIES, common.num(hit.group('total')),
             fate='kept', region=REGION, water=FRESH))
     return catch_rows, effort_rows
+
+
+#: A station that was shut that week is printed "Bingen Closed", and the word was
+#: becoming part of its name — one station on the map twice, its history split
+#: between the weeks it was open and the weeks it was not.
+def clean_station(raw):
+    name = re.sub(r'[\s-]*\bclosed\b\s*$', '', str(raw or '').strip(), flags=re.I)
+    return re.sub(r'\s+', ' ', name).strip(" -'")
 
 
 def read_pdf(path):
@@ -146,8 +154,8 @@ def parse_positional(path):
 
     catch_rows, effort_rows = [], []
     for row in rows:
-        name = ' '.join(w['text'] for w in row
-                        if w['x0'] < 200 and len(w['text']) > 1).strip()
+        name = clean_station(' '.join(w['text'] for w in row
+                                      if w['x0'] < 200 and len(w['text']) > 1))
         if not name or name.lower().startswith(('station', 'total', 'week', 'gear',
                                                 'definition', 'for the')):
             continue
