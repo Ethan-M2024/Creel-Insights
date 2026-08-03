@@ -165,7 +165,7 @@ So each place is compared **against itself, at the same point in the season**:
 
 | | |
 |---|---|
-| **recent** | fish per angler over the last 14, 28 or 56 days of data, or the whole record |
+| **recent** | fish per angler over the last 7, 14, 28 or 56 days of data, or the whole record |
 | **prior** | the same length of window immediately before it |
 | **seasonal** | the median of the same calendar window in each of the last three years |
 
@@ -181,6 +181,10 @@ denominator — an angler who fished forty minutes and one who fished all day ar
 the same measurement — and comes from the start and end times on the interviews. Four
 fifths of the interview database records them; the weekly reports never do, so those
 places are drawn grey on that basis and say why rather than reading as zero.
+
+A **Happening window** tab puts all five side by side, one row per place, so a run
+building or fading shows up as a row that climbs or falls from left to right rather
+than as a leaderboard that rearranges itself when you change a filter.
 
 Kept and released are carried through all three windows separately, and a **Count**
 switch picks which one the map, the lists and the charts are reading: what anglers took

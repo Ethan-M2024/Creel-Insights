@@ -37,8 +37,10 @@ import geo
 MIN_ANGLERS = 30
 #: how many days of history the weekly series carries; older years drop to monthly
 WEEKLY_YEARS = 4
-#: the windows the dashboard lets a reader switch between
-WINDOWS = (14, 28, 56)
+#: the windows the dashboard lets a reader switch between. Seven days is the one an
+#: angler asks about — what happened this past week — and is short enough that most
+#: places fall below the angler threshold and are marked thin rather than ranked.
+WINDOWS = (7, 14, 28, 56)
 #: how far either side of the calendar window last year's comparison may look
 SEASON_SLOP = 10
 #: baseline years to look back over

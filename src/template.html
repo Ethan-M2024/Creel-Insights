@@ -195,7 +195,10 @@ td.num { font-family: var(--mono); font-variant-numeric: tabular-nums; }
   text-transform: uppercase; border: 1px solid var(--axis); border-radius: 4px;
   padding: 1px 5px; color: var(--ink-3);
 }
-.scroll { max-height: 460px; overflow-y: auto; overflow-x: auto; }
+.scroll { max-height: 460px; overflow-y: auto; overflow-x: auto; margin-bottom: 12px; }
+/* the last row of a scrolled table sat directly against the note below it and
+   read as if the two were one line */
+.scroll + .note { border-top: 1px solid var(--rule); padding-top: 10px; }
 .meter {
   display: inline-block; width: 90px; height: 8px; border-radius: 4px;
   background: var(--surface-2); border: 1px solid var(--rule); overflow: hidden;
@@ -241,6 +244,7 @@ ul.checks li { padding: 4px 0; border-bottom: 1px solid var(--grid); }
 
 <nav class="tabs" role="tablist">
   <button role="tab" id="tab-map" aria-selected="true">Heat map</button>
+  <button role="tab" id="tab-window">Happening window</button>
   <button role="tab" id="tab-places">Places</button>
   <button role="tab" id="tab-species">Species</button>
   <button role="tab" id="tab-quotas">Quotas</button>
@@ -338,6 +342,46 @@ ul.checks li { padding: 4px 0; border-bottom: 1px solid var(--grid); }
 </section>
 
 <!-- --------------------------------------------------------------- places -->
+<section class="panel" id="panel-window" hidden>
+  <div class="controls">
+    <div class="field">
+      <label for="f-species4">Species</label>
+      <select id="f-species4"></select>
+    </div>
+    <div class="field">
+      <label>Count</label>
+      <div class="seg" id="f-fate4">
+        <button data-v="kept" aria-pressed="true">Kept</button>
+        <button data-v="released" aria-pressed="false">Released</button>
+        <button data-v="both" aria-pressed="false">Everything</button>
+      </div>
+    </div>
+    <div class="field">
+      <label>Per</label>
+      <div class="seg" id="f-basis4">
+        <button data-v="angler" aria-pressed="true">Angler</button>
+        <button data-v="hour" aria-pressed="false">Angler-hour</button>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <h2>How it shifts as the window shortens</h2>
+    <p class="note" id="window-note"></p>
+    <div class="scroll">
+      <table id="window-table">
+        <thead><tr id="window-head"></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+    <p class="note" id="window-legend">A cell is the catch rate over that window,
+      ending on the same day. Reading a row left to right is reading the season
+      tightening down to this past week: a place whose rate climbs as the window
+      shortens is turning on now, one that falls has already had its run. Rates
+      resting on fewer than <b class="min-anglers"></b> anglers are marked
+      <span class="pill">thin</span> — over seven days most places are.</p>
+  </div>
+</section>
+
 <section class="panel" id="panel-places" hidden>
   <div class="controls">
     <div class="field">
@@ -604,7 +648,9 @@ const state = {
   // database times its trips, so the hour basis covers part of the state — the
   // places without it say so rather than being quietly dropped to zero.
   basis: 'angler',
-  window: META.windows[1] || META.windows[0],
+  // opens on 28 days: long enough that most places clear the angler threshold,
+  // short enough to still be about this season rather than the last one
+  window: META.windows.includes(28) ? 28 : META.windows[0],
   metric: 'season',
   water: '',
   region: '',
@@ -1211,14 +1257,40 @@ function renderMovers() {
     wireMoverRows();
     return;
   }
-  heading.textContent = state.mode === 'area' ? 'Areas heating up' : 'Heating up';
-  note.textContent = 'Catch per angler against the same weeks in previous years.';
+  const per = state.basis === 'hour' ? 'angler-hour' : 'angler';
+  const areaWord = state.mode === 'area' ? 'Areas ' : '';
+
+  /* The lists answer whatever the map is coloured by. Ranking by last year's
+     comparison while the map is coloured by the raw rate put two different answers
+     side by side and left the reader to notice. */
+  if (state.metric === 'rate') {
+    const rows = currentRows().filter(r => !r.thin && r.cpue !== null);
+    heading.textContent = `${areaWord}Fishing best right now`;
+    note.textContent = `Fish ${fateWord()} per ${per}, over the last ${state.window} days.`;
+    sub.textContent = 'Most anglers interviewed';
+    document.getElementById('movers-up').innerHTML =
+      moverTable([...rows].sort((a, b) => b.cpue - a.cpue).slice(0, 8));
+    document.getElementById('movers-down').innerHTML =
+      moverTable([...rows].sort((a, b) => (b.anglers || 0) - (a.anglers || 0)).slice(0, 8));
+    wireMoverRows();
+    return;
+  }
+
+  const againstPrior = state.metric === 'prior';
+  const delta = r => againstPrior ? r.dprior : r.dseason;
+  const baseline = r => againstPrior ? r.prior : r.season;
+  heading.textContent = `${areaWord}Heating up`;
+  note.textContent = againstPrior
+    ? `Fish ${fateWord()} per ${per}, against the ${state.window} days just before.`
+    : `Fish ${fateWord()} per ${per}, against the same weeks in previous years.`;
   sub.textContent = 'Cooled off';
-  const rows = currentRows().filter(r => r.dseason !== null && !r.thin);
-  const up = rows.filter(r => r.fish > 0).sort((a, b) => b.dseason - a.dseason).slice(0, 8);
-  const down = rows.filter(r => (r.season || 0) > 0.05).sort((a, b) => a.dseason - b.dseason).slice(0, 8);
-  document.getElementById('movers-up').innerHTML = moverTable(up);
-  document.getElementById('movers-down').innerHTML = moverTable(down);
+  const rows = currentRows().filter(r => delta(r) !== null && !r.thin);
+  const up = rows.filter(r => r.fish > 0)
+    .sort((a, b) => delta(b) - delta(a)).slice(0, 8);
+  const down = rows.filter(r => (baseline(r) || 0) > 0.05)
+    .sort((a, b) => delta(a) - delta(b)).slice(0, 8);
+  document.getElementById('movers-up').innerHTML = moverTable(up, delta, baseline);
+  document.getElementById('movers-down').innerHTML = moverTable(down, delta, baseline);
   wireMoverRows();
 }
 
@@ -1228,15 +1300,18 @@ function wireMoverRows() {
   }
 }
 
-function moverTable(rows) {
+function moverTable(rows, delta = r => r.dseason, baseline = r => r.season) {
   if (!rows.length) return '<p class="note">Nothing clears the angler threshold here yet.</p>';
   return '<table><tbody>' + rows.map(r => `
     <tr data-pid="${r.pid}">
       <td>${escapeHtml(r.name)}<br><span class="pill">${escapeHtml(r.source)}</span></td>
       <td class="num">${rate(r.cpue)}<br><span class="k" style="color:var(--ink-3)">${
-        r.season === null ? fmt(r.anglers) + ' anglers' : 'was ' + rate(r.season)}</span></td>
-      <td class="num ${r.dseason > 0 ? 'up' : r.dseason < 0 ? 'down' : 'flat'}">${
-        r.dseason === null ? fmt(r.fish) : pct(r.dseason)}</td>
+        baseline(r) === null || baseline(r) === undefined
+          ? fmt(state.basis === 'hour' ? r.hours : r.anglers) +
+            (state.basis === 'hour' ? ' angler-hours' : ' anglers')
+          : 'was ' + rate(baseline(r))}</span></td>
+      <td class="num ${delta(r) > 0 ? 'up' : delta(r) < 0 ? 'down' : 'flat'}">${
+        delta(r) === null || delta(r) === undefined ? fmt(r.fish) : pct(delta(r))}</td>
     </tr>`).join('') + '</tbody></table>';
 }
 
@@ -1355,6 +1430,72 @@ function weeklyChart(series) {
 }
 
 /* ------------------------------------------------------------------ places */
+
+/* One row per place, one column per window, all ending on the same day. The map
+   answers "where" for a single window; this answers "when", which is the question a
+   reader has when they switch between 7 days and the whole record and watch the
+   leaderboard rearrange itself. */
+function renderWindowShift() {
+  const windows = META.windows;
+  const longest = windows[windows.length - 1];
+  const per = state.basis === 'hour' ? 'angler-hour' : 'angler';
+
+  const rowsByWindow = new Map();
+  const saved = state.window;
+  for (const w of windows) {
+    state.window = w;
+    rowsByWindow.set(w, new Map(rowsForWindow().map(r => [r.pid, r])));
+  }
+  state.window = 'all';
+  const lifetime = new Map(rowsForWindow().map(r => [r.pid, r]));
+  state.window = saved;
+
+  const rows = [...rowsByWindow.get(longest).keys()].map(pid => {
+    const cells = windows.map(w => rowsByWindow.get(w).get(pid) || null);
+    const shortest = cells[0], widest = cells[cells.length - 1];
+    const shift = (shortest && widest && widest.cpue > 0.02
+      && shortest.cpue !== null && widest.cpue !== null)
+      ? shortest.cpue / widest.cpue - 1 : null;
+    return { pid, cells, shift, life: lifetime.get(pid) || null,
+             anglers: widest ? widest.anglers : 0,
+             name: widest ? widest.name : '',
+             source: widest ? widest.source : '' };
+  }).filter(r => r.name)
+    .sort((a, b) => (b.anglers || 0) - (a.anglers || 0))
+    .slice(0, 60);
+
+  document.getElementById('window-head').innerHTML =
+    '<th>Place</th>' + windows.map(w => `<th class="num">${w} days</th>`).join('') +
+    '<th class="num">Whole record</th><th class="num">Shift</th>';
+
+  document.querySelector('#window-table tbody').innerHTML = rows.map(r => `
+    <tr data-pid="${r.pid}">
+      <td>${escapeHtml(r.name)}<br><span class="pill">${escapeHtml(r.source)}</span></td>
+      ${r.cells.map(c => `<td class="num">${
+        !c || c.cpue === null ? '<span style="color:var(--ink-3)">&mdash;</span>'
+          : `${rate(c.cpue)}${c.thin ? ' <span class="pill">thin</span>' : ''}` +
+            `<br><span class="k" style="color:var(--ink-3)">${fmt(
+              state.basis === 'hour' ? c.hours : c.anglers)}</span>`}</td>`).join('')}
+      <td class="num">${r.life && r.life.cpue !== null ? rate(r.life.cpue)
+        : '<span style="color:var(--ink-3)">&mdash;</span>'}</td>
+      <td class="num ${r.shift === null ? 'flat' : r.shift > 0.15 ? 'up'
+        : r.shift < -0.15 ? 'down' : 'flat'}">${
+        r.shift === null ? '&mdash;' : pct(r.shift)}</td>
+    </tr>`).join('');
+
+  for (const tr of document.querySelectorAll('#window-table tbody tr')) {
+    tr.addEventListener('click', () => {
+      selectPlace(Number(tr.dataset.pid));
+      showTab('map');
+    });
+  }
+
+  document.getElementById('window-note').textContent =
+    `${SPECIES[state.species]} ${fateWord()} per ${per}, for the ${rows.length} ` +
+    `places with the most effort in the ${longest} days to ` +
+    `${dayLabel(META.as_of)}. Shift is the ${windows[0]}-day rate against the ` +
+    `${longest}-day one.`;
+}
 
 function renderPlaces() {
   const q = state.search.trim().toLowerCase();
@@ -1626,11 +1767,12 @@ function renderFreshness(manifest) {
 
 function showTab(name) {
   state.tab = name;
-  for (const t of ['map', 'places', 'species', 'quotas', 'sources']) {
+  for (const t of ['map', 'window', 'places', 'species', 'quotas', 'sources']) {
     document.getElementById('panel-' + t).hidden = t !== name;
     document.getElementById('tab-' + t).setAttribute('aria-selected', String(t === name));
   }
   if (name === 'map') { drawMap(); renderMovers(); renderLegend(); }
+  if (name === 'window') renderWindowShift();
   if (name === 'places') renderPlaces();
   if (name === 'species') renderSpecies();
   if (name === 'quotas') renderQuotas();
@@ -1645,13 +1787,13 @@ function fillSpeciesSelects() {
     `<option value="${i}"${i === state.species ? ' selected' : ''}>${escapeHtml(SPECIES[i])}</option>`).join('')}</optgroup>
     <optgroup label="Everything else">${SPECIES.map((s, i) => headline.includes(i) ? '' :
       `<option value="${i}">${escapeHtml(s)}</option>`).join('')}</optgroup>`;
-  for (const id of ['f-species', 'f-species2', 'f-species3']) {
+  for (const id of ['f-species', 'f-species2', 'f-species3', 'f-species4']) {
     const el = document.getElementById(id);
     el.innerHTML = group;
     el.value = String(state.species);
     el.addEventListener('change', () => {
       state.species = Number(el.value);
-      for (const other of ['f-species', 'f-species2', 'f-species3']) {
+      for (const other of ['f-species', 'f-species2', 'f-species3', 'f-species4']) {
         document.getElementById(other).value = String(state.species);
       }
       refresh();
@@ -1661,6 +1803,7 @@ function fillSpeciesSelects() {
 
 function refresh() {
   if (state.tab === 'map') { drawMap(); renderMovers(); renderDetail(); renderLegend(); }
+  if (state.tab === 'window') renderWindowShift();
   if (state.tab === 'places') renderPlaces();
   if (state.tab === 'species') renderSpecies();
 }
@@ -1672,6 +1815,12 @@ function init() {
     `Latest report: <b>${dayLabel(META.as_of)}</b>.`;
   document.getElementById('built-stamp').textContent =
     'Built ' + META.built.replace('T', ' ').replace('+00:00', ' UTC') + '.';
+
+  // the threshold is quoted in prose on three tabs; fill every one of them at load
+  // rather than when a tab happens to be opened
+  for (const el of document.querySelectorAll('.min-anglers')) {
+    el.textContent = META.min_anglers;
+  }
 
   fillSpeciesSelects();
 
@@ -1717,8 +1866,8 @@ function init() {
       });
     }
   };
-  syncSwitch(['f-basis', 'f-basis2'], 'basis');
-  syncSwitch(['f-fate', 'f-fate2', 'f-fate3'], 'fate');
+  syncSwitch(['f-basis', 'f-basis2', 'f-basis4'], 'basis');
+  syncSwitch(['f-fate', 'f-fate2', 'f-fate3', 'f-fate4'], 'fate');
 
   const metric = document.getElementById('f-metric');
   metric.addEventListener('click', ev => {
@@ -1731,7 +1880,7 @@ function init() {
       season: 'Where it is picking up', prior: 'What changed in the last fortnight',
       rate: 'Where the fish are, right now',
     }[state.metric];
-    drawMap(); renderLegend();
+    drawMap(); renderLegend(); renderMovers();
   });
 
   const region = document.getElementById('f-region');
@@ -1764,7 +1913,7 @@ function init() {
     });
   }
 
-  for (const t of ['map', 'places', 'species', 'quotas', 'sources']) {
+  for (const t of ['map', 'window', 'places', 'species', 'quotas', 'sources']) {
     document.getElementById('tab-' + t).addEventListener('click', () => showTab(t));
   }
 
