@@ -1,9 +1,9 @@
 {
- "built": "2026-08-03T04:59:41+00:00",
+ "built": "2026-08-03T17:13:37+00:00",
  "quota_records": 42,
  "sha256": {
-  "creel_effort": "a7662fe425ecc961a496bb8e1bef52d3d6031504b482fa536dc974988d9c4af9",
-  "creel_rows": "5cce1e5be80269da02ebd9194c6eff98c1adc2beea5df22c0b16d644ba439c57"
+  "creel_effort": "96acb573074697cd6cfdd57e594b284f46fb92ca26a6e36e414d4fb1341a5e83",
+  "creel_rows": "031f31222a05cb9ed9350a6456dd988b77a6bd0d031f99367967b54cedab9f08"
  },
  "sources": {
   "buoy10": {
@@ -55,8 +55,8 @@
    "locations": 43
   },
   "puget-ramp": {
-   "catch_rows": 330946,
-   "effort_rows": 47278,
+   "catch_rows": 331009,
+   "effort_rows": 47287,
    "first": "2013-01-02",
    "label": "Puget Sound ramp creel",
    "last": "2026-08-02",
