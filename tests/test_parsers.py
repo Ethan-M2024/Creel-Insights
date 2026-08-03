@@ -24,6 +24,7 @@ import pikeminnow     # noqa: E402
 import southwest      # noqa: E402
 import halibut       # noqa: E402
 import quotas        # noqa: E402
+import socrata       # noqa: E402
 import build_data     # noqa: E402
 
 
@@ -203,6 +204,85 @@ class TestPikeminnow(unittest.TestCase):
 
     def test_totals_row_is_dropped(self):
         self.assertNotIn('Totals', [r['location'] for r in self.effort])
+
+
+#: the 2015 layout: four weekly columns instead of five, and the incidental catch
+#: printed beside the pikeminnow. WDFW cut the rate short here rather than rounding
+#: it — 60 fish to 41 anglers is printed 1.4, not 1.5.
+PIKEMINNOW_2015 = """Northern Pikeminnow Sport-Reward Fishery 2015
+DRAFT WEEKLY FIELD ACTIVITY REPORT
+May 1 - May 3, 2015 Weekly Year-to-Date Weekly Incidental Catch
+Station Effort Tags Total Fish CPUE Effort Tags Total Fish CPUE SMB WAL CC/CF/BH AMS WS YP
+Willow Grove 41 0 60 1.4 41 0 60 1.4 1 0 1 0 0 7
+Rainier 20 0 15 0.8 20 0 15 0.8 0 0 0 0 0 2
+"""
+
+#: 2024 rounds the same figure up, prints a stray space before the comma, and adds a
+#: column of opening dates
+PIKEMINNOW_2024 = """Northern Pikeminnow Sport-Reward Fishery 2024
+June 24 - June 30 , 2024 Week 26
+Station Opens Effort Tags Total NPM CPUE Effort Tags Total NPM CPUE
+Cathlamet 96 0 1,004 1,004 10.5 581 0 5,361 5,361 9.2
+"""
+
+
+class TestAnglerHours(unittest.TestCase):
+    """The interview times, which are the only clock in any of these reports."""
+
+    def test_a_time_without_a_date_is_still_a_time(self):
+        # read as timestamps they all failed, and every angler-hour came out zero
+        self.assertAlmostEqual(socrata._clock('07:53:00'), 7 + 53 / 60, places=4)
+        self.assertIsNone(socrata._clock('not a time'))
+        self.assertIsNone(socrata._clock(''))
+
+    def test_hours_are_multiplied_by_the_anglers_on_the_trip(self):
+        row = {'fishing_start_time': '06:00:00', 'fishing_end_time': '09:00:00',
+               'angler_count': '2'}
+        self.assertEqual(socrata._hours(row), 6.0)
+
+    def test_a_trip_past_midnight(self):
+        row = {'fishing_start_time': '22:00:00', 'fishing_end_time': '01:00:00',
+               'angler_count': '1'}
+        self.assertEqual(socrata._hours(row), 3.0)
+
+    def test_a_keying_slip_is_left_blank(self):
+        row = {'fishing_start_time': '13:00:00', 'fishing_end_time': '02:00:00',
+               'angler_count': '1'}
+        self.assertEqual(socrata._hours(row), '')
+
+
+class TestPikeminnowLayouts(unittest.TestCase):
+    """Eleven seasons, seventeen column layouts, one arithmetic check."""
+
+    def test_a_four_column_week_is_read(self):
+        catch, effort = pikeminnow.parse(PIKEMINNOW_2015)
+        self.assertEqual(effort[0]['anglers'], 41)
+        npm = [r for r in catch if r['species'] == 'Northern pikeminnow']
+        self.assertEqual(npm[0]['fish'], 60)
+
+    def test_incidental_catch_is_kept_as_its_own_species(self):
+        catch, _ = pikeminnow.parse(PIKEMINNOW_2015)
+        got = {(r['location'], r['species']): r['fish'] for r in catch}
+        self.assertEqual(got[('Willow Grove', 'Yellow perch')], 7)
+        self.assertEqual(got[('Willow Grove', 'Smallmouth bass')], 1)
+        self.assertEqual(got[('Willow Grove', 'Catfish')], 1)
+        self.assertNotIn(('Willow Grove', 'Walleye'), got)    # a zero is not a catch
+
+    def test_a_truncated_rate_still_matches(self):
+        # 60 / 41 is 1.46, printed 1.4; demanding a rounded match dropped the row
+        self.assertTrue(pikeminnow.matches_rate(60 / 41, 1.4, 1))
+        self.assertTrue(pikeminnow.matches_rate(1004 / 96, 10.5, 1))
+        self.assertFalse(pikeminnow.matches_rate(0 / 41, 1.4, 1))
+
+    def test_a_stray_space_before_the_comma(self):
+        _catch, effort = pikeminnow.parse(PIKEMINNOW_2024)
+        self.assertEqual(effort[0]['date'], '2024-06-24')
+        self.assertEqual(effort[0]['anglers'], 96)
+
+    def test_a_single_day_report_has_a_date(self):
+        text = PIKEMINNOW_2015.replace('May 1 - May 3, 2015', 'May 1, 2016')
+        _catch, effort = pikeminnow.parse(text)
+        self.assertEqual(effort[0]['date'], '2016-05-01')
 
 
 SOUTHWEST_TEXT = """Date: July 13, 2026

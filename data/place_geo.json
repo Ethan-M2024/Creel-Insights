@@ -378,11 +378,11 @@
 "precision": "approximate",
 "matched_to": "Lyon's Ferry"
 },
-"Lyons Ferry": {
-"lat": 46.59,
-"lon": -118.22,
-"precision": "approximate",
-"matched_to": "Lyons Ferry"
+"Maryhill": {
+"lat": 45.680727,
+"lon": -120.831683,
+"precision": "exact",
+"matched_to": "Maryhill Pond"
 },
 "Maryhill Pond": {
 "lat": 45.680727,
@@ -930,6 +930,18 @@
 "precision": "exact",
 "matched_to": "Wynoochee River"
 },
+"Bingen Aug.": {
+"lat": 45.715,
+"lon": -121.468,
+"precision": "locality",
+"matched_to": "Bingen"
+},
+"Bingen May": {
+"lat": 45.715,
+"lon": -121.468,
+"precision": "locality",
+"matched_to": "Bingen"
+},
 "East Bay Marina/Ramp (Oly. Isle)": {
 "lat": 45.814362,
 "lon": -122.590743,
@@ -948,6 +960,18 @@
 "precision": "locality",
 "matched_to": "Hood Park"
 },
+"Hood Park Opens Sep": {
+"lat": 46.214,
+"lon": -119.02,
+"precision": "locality",
+"matched_to": "Hood Park"
+},
+"Hood Park Reopens Sept": {
+"lat": 46.214,
+"lon": -119.02,
+"precision": "locality",
+"matched_to": "Hood Park"
+},
 "John Wayne Marina": {
 "lat": 45.72,
 "lon": -120.69,
@@ -960,11 +984,77 @@
 "precision": "locality",
 "matched_to": "John Day Pool"
 },
+"Lyons Ferry Closes Aug": {
+"lat": 46.59,
+"lon": -118.22,
+"precision": "locality",
+"matched_to": "Lyon's Ferry"
+},
+"Lyons Ferry Opened June": {
+"lat": 46.59,
+"lon": -118.22,
+"precision": "locality",
+"matched_to": "Lyon's Ferry"
+},
+"Lyons Ferry Opens June": {
+"lat": 46.59,
+"lon": -118.22,
+"precision": "locality",
+"matched_to": "Lyon's Ferry"
+},
 "Skokomish Tide Flats": {
 "lat": 47.30921,
 "lon": -123.176238,
 "precision": "locality",
 "matched_to": "Skokomish Ramp"
+},
+"Vernita Aug.": {
+"lat": 46.636,
+"lon": -119.716,
+"precision": "locality",
+"matched_to": "Vernita"
+},
+"Vernita Closed May 31st": {
+"lat": 46.636,
+"lon": -119.716,
+"precision": "locality",
+"matched_to": "Vernita"
+},
+"Vernita Opens Sep": {
+"lat": 46.636,
+"lon": -119.716,
+"precision": "locality",
+"matched_to": "Vernita"
+},
+"Vernita Reopens Sept": {
+"lat": 46.636,
+"lon": -119.716,
+"precision": "locality",
+"matched_to": "Vernita"
+},
+"Windust Closes Aug": {
+"lat": 46.53,
+"lon": -118.58,
+"precision": "locality",
+"matched_to": "Windust"
+},
+"Windust July": {
+"lat": 46.53,
+"lon": -118.58,
+"precision": "locality",
+"matched_to": "Windust"
+},
+"Windust Opened June": {
+"lat": 46.53,
+"lon": -118.58,
+"precision": "locality",
+"matched_to": "Windust"
+},
+"Windust Opens June": {
+"lat": 46.53,
+"lon": -118.58,
+"precision": "locality",
+"matched_to": "Windust"
 }
 },
 "unplaced": [
@@ -996,6 +1086,8 @@
 "Camano Island State Park Public Ramp",
 "Cap Sante Moorage & Sling",
 "Carlyon Beach Marina",
+"Cascade Locks May",
+"Cascade Locks Opens July",
 "Chico Creek Shore",
 "Cline Spit Ramp",
 "Commencement Bay Marina Services (Foss Hrb Mrna)",
@@ -1121,6 +1213,7 @@
 "Port Townsend Boat Haven Ramp",
 "Port of Friday Harbor Marina, San Juan Is",
 "Port of Shelton Ramp",
+"PortCo (Marine Park)",
 "Possession Point Bait Co.",
 "Possession Point State Park",
 "Potlatch State Park, Hood Canal Ramp",

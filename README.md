@@ -125,7 +125,7 @@ read here.
 | Willapa Bay (Marine Area 2.1) | HTML | 2018 to now | management-week interviews and catch, clipped and unmarked kept apart |
 | Ocean sport quota report | HTML | 2016 to now | weekly anglers and salmon for Columbia, Westport, La Push, Neah Bay |
 | Recreational bottomfish and halibut | HTML | current season | weekly halibut, anglers and average weight for four coastal subareas |
-| Pikeminnow Sport-Reward Fishery | PDF tables | 2019 to now | weekly registered anglers and fish per check station |
+| Pikeminnow Sport-Reward Fishery | PDF tables | 2014 to now | weekly registered anglers, pikeminnow, and the incidental catch of six other species per check station |
 | Seasonal salmon guidelines and quotas | HTML | current seasons | Puget Sound Chinook encounters against the guideline that closes each area |
 | White sturgeon | HTML | current season | Columbia pool harvest against its guideline |
 
@@ -165,9 +165,23 @@ So each place is compared **against itself, at the same point in the season**:
 
 | | |
 |---|---|
-| **recent** | fish kept per angler over the last 14, 28 or 56 days of data |
+| **recent** | fish per angler over the last 14, 28 or 56 days of data, or the whole record |
 | **prior** | the same length of window immediately before it |
 | **seasonal** | the median of the same calendar window in each of the last three years |
+
+Rates are measured two ways. **Per angler** covers every source. **Per angler-hour**
+divides by the time those anglers were actually fishing, which is the honest
+denominator — an angler who fished forty minutes and one who fished all day are not
+the same measurement — and comes from the start and end times on the interviews. Four
+fifths of the interview database records them; the weekly reports never do, so those
+places are drawn grey on that basis and say why rather than reading as zero.
+
+Kept and released are carried through all three windows separately, and a **Count**
+switch picks which one the map, the lists and the charts are reading: what anglers took
+home, what they put back, or everything they caught. It matters more than it sounds.
+A catch-and-release steelhead river reports almost nothing in the kept column, and
+read on kept alone it looks dead — statewide, steelhead over the whole record are
+24,224 kept against 16,178 released.
 
 Effort and catch live in separate tables (`data/creel_effort.csv.gz` and
 `data/creel_rows.csv.gz`) because one interview counts anglers once and their fish

@@ -74,19 +74,51 @@ def fetch_all(dataset, *, order=':id', refresh=False, say=print):
     return rows
 
 
-def _hours(row):
-    """Hours fished, when the interview recorded both ends of the trip."""
-    a, b = row.get('fishing_start_time'), row.get('fishing_end_time')
-    if not a or not b:
-        return ''
+def _clock(value):
+    """One of WDFW's time fields as hours past midnight.
+
+    They are written "07:53:00", with no date attached, which is why reading them as
+    timestamps failed on every row and left every angler-hour at zero.
+    """
+    parts = str(value or '').strip().split('T')[-1].split(':')
+    if len(parts) < 2:
+        return None
     try:
-        t0 = datetime.fromisoformat(a.replace('Z', ''))
-        t1 = datetime.fromisoformat(b.replace('Z', ''))
+        h, m = int(parts[0]), int(parts[1])
+        sec = int(float(parts[2])) if len(parts) > 2 else 0
     except ValueError:
+        return None
+    if not (0 <= h < 24 and 0 <= m < 60):
+        return None
+    return h + m / 60 + sec / 3600
+
+
+def _hours(row):
+    """Angler-hours: how long the trip had been running, times the anglers on it.
+
+    Four fifths of the interviews record both ends of the trip, and it is the only
+    place in any of these reports that says how long the fishing took. Catch per
+    angler cannot tell a fish an hour from a fish a day; catch per angler-hour can.
+
+    A trip that ends before it starts ran past midnight, and is read that way only
+    when the result is a plausible session — anything longer is a keying slip, and is
+    left blank rather than guessed at.
+    """
+    t0 = _clock(row.get('fishing_start_time'))
+    t1 = _clock(row.get('fishing_end_time'))
+    if t0 is None or t1 is None:
         return ''
-    h = (t1 - t0).total_seconds() / 3600
-    # a negative or absurd span is a data-entry slip, not a 30-hour trip
-    return round(h, 2) if 0 < h <= 24 else ''
+    span = t1 - t0
+    if span < 0:
+        span += 24
+        if span > 12:
+            return ''
+    if not 0 < span <= 24:
+        return ''
+    anglers = common.num(row.get('angler_count'))
+    if not isinstance(anglers, int) or anglers <= 0:
+        anglers = 1
+    return round(span * anglers, 2)
 
 
 def _water(project, water_body):

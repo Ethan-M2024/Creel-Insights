@@ -233,8 +233,10 @@ def build(catch_rows, effort_rows, place_geo, say=print):
 
     # ------------------------------------------------------------- totals
     by_year = defaultdict(lambda: defaultdict(int))
+    by_year_rel = defaultdict(lambda: defaultdict(int))
     for (pid, sp, day), (kept, rel) in catch_day.items():
         by_year[day[:4]][sp] += kept
+        by_year_rel[day[:4]][sp] += rel
     effort_year = defaultdict(int)
     for (pid, day), (anglers, _h, _i) in effort_day.items():
         effort_year[day[:4]] += anglers
@@ -273,6 +275,10 @@ def build(catch_rows, effort_rows, place_geo, say=print):
         # pick any of the fifty-one, and a truncated list would draw them as zero
         'years': {y: {sp: n for sp, n in sorted(v.items()) if n}
                   for y, v in sorted(by_year.items())},
+        # released as well as kept, so the species tab can answer what was caught
+        # rather than only what was taken home
+        'years_released': {y: {sp: n for sp, n in sorted(v.items()) if n}
+                           for y, v in sorted(by_year_rel.items())},
         'year_anglers': dict(sorted(effort_year.items())),
     }
     return payload
@@ -388,18 +394,27 @@ def _pack(catch, effort):
 
 
 def _window_totals(catch_day, effort_day, start, end):
-    """Fish and anglers between two dates, per place and per place-species."""
+    """Fish, anglers and angler-hours between two dates, per place and species."""
     fish = defaultdict(lambda: [0, 0])
     anglers = defaultdict(int)
-    for (pid, day), (a, _h, _i) in effort_day.items():
+    hours = defaultdict(float)
+    for (pid, day), (a, h, _i) in effort_day.items():
         if start <= day <= end:
             anglers[pid] += a
+            hours[pid] += h
     for (pid, sp, day), (kept, rel) in catch_day.items():
         if start <= day <= end:
             cell = fish[(pid, sp)]
             cell[0] += kept
             cell[1] += rel
-    return fish, anglers
+    return fish, anglers, hours
+
+
+#: how many angler-hours a place must have behind it before a per-hour rate is
+#: reported. Only the interview database times its trips, so a place fed by the
+#: weekly reports alone has none of these and is left blank rather than divided by
+#: an hour count that is really a zero.
+MIN_HOURS = 20
 
 
 def trends(catch_day, effort_day, places, sp_index, as_of_d, say=print,
@@ -412,11 +427,13 @@ def trends(catch_day, effort_day, places, sp_index, as_of_d, say=print,
         prior_start = (as_of_d - timedelta(days=2 * window - 1)).isoformat()
         prior_end = (as_of_d - timedelta(days=window)).isoformat()
 
-        r_fish, r_ang = _window_totals(catch_day, effort_day, recent_start, recent_end)
-        p_fish, p_ang = _window_totals(catch_day, effort_day, prior_start, prior_end)
+        r_fish, r_ang, r_hrs = _window_totals(
+            catch_day, effort_day, recent_start, recent_end)
+        p_fish, p_ang, p_hrs = _window_totals(
+            catch_day, effort_day, prior_start, prior_end)
 
         # the same calendar window in each of the previous few years
-        season_fish, season_ang = [], []
+        season_fish, season_ang, season_hrs = [], [], []
         for back in range(1, BASELINE_YEARS + 1):
             try:
                 anchor = as_of_d.replace(year=as_of_d.year - back)
@@ -424,36 +441,78 @@ def trends(catch_day, effort_day, places, sp_index, as_of_d, say=print,
                 anchor = as_of_d.replace(year=as_of_d.year - back, day=28)
             s = (anchor - timedelta(days=window - 1 + SEASON_SLOP)).isoformat()
             e = (anchor + timedelta(days=SEASON_SLOP)).isoformat()
-            f, a = _window_totals(catch_day, effort_day, s, e)
+            f, a, h = _window_totals(catch_day, effort_day, s, e)
             season_fish.append(f)
             season_ang.append(a)
+            season_hrs.append(h)
 
         for (pid, sp), (kept, rel) in sorted(r_fish.items()):
             anglers = r_ang.get(pid, 0)
             if anglers < 1:
                 continue
-            recent_cpue = kept / anglers
-            prior = None
-            if p_ang.get(pid, 0) >= max(MIN_ANGLERS // 3, 5):
-                prior = p_fish.get((pid, sp), [0, 0])[0] / p_ang[pid]
-            rates = []
-            for f, a in zip(season_fish, season_ang):
-                if a.get(pid, 0) >= max(MIN_ANGLERS // 3, 5):
-                    # the seasonal window is widened by the slop on both sides, so
-                    # its rate is scaled back to the same number of days
-                    rates.append(f.get((pid, sp), [0, 0])[0] / a[pid])
-            seasonal = statistics.median(rates) if rates else None
-            out.append({
+            hours = r_hrs.get(pid, 0.0)
+            # Kept and released are carried through the comparisons separately, not
+            # summed here: on a river running catch-and-release the released fish are
+            # the whole fishery, and a reader who asks for them must get a baseline
+            # measured the same way rather than one built out of the kept column.
+            # The same goes for the two ways of measuring effort: an angler-hour and
+            # an angler are different denominators, and mixing them across a
+            # comparison would put a change in one down to the other.
+            def rate(fish_at, effort_at, floor):
+                """The four rates for one window: kept and released, per unit."""
+                if effort_at < floor:
+                    return None, None
+                pair = fish_at.get((pid, sp), [0, 0])
+                return pair[0] / effort_at, pair[1] / effort_at
+
+            enough_anglers = max(MIN_ANGLERS // 3, 5)
+            prior, prior_rel = rate(p_fish, p_ang.get(pid, 0), enough_anglers)
+            prior_h, prior_hr = rate(p_fish, p_hrs.get(pid, 0.0), MIN_HOURS)
+
+            rates, rates_rel, rates_h, rates_hr = [], [], [], []
+            for f, a, h in zip(season_fish, season_ang, season_hrs):
+                # the seasonal window is widened by the slop on both sides, so its
+                # rate is the same shape as the recent one, just measured wider
+                k, r = rate(f, a.get(pid, 0), enough_anglers)
+                if k is not None:
+                    rates.append(k)
+                    rates_rel.append(r)
+                kh, rh = rate(f, h.get(pid, 0.0), MIN_HOURS)
+                if kh is not None:
+                    rates_h.append(kh)
+                    rates_hr.append(rh)
+
+            def median_or_none(values):
+                return round(statistics.median(values), 4) if values else None
+
+            row = {
                 'w': window, 'p': pid, 's': sp_index[sp],
                 # a rate off a handful of anglers is a rumour, not a measurement:
                 # it is shown, but marked, and never ranked
                 'thin': 1 if anglers < MIN_ANGLERS else 0,
                 'kept': kept, 'rel': rel, 'anglers': anglers,
-                'cpue': round(recent_cpue, 4),
+                'cpue': round(kept / anglers, 4),
+                'cpue_r': round(rel / anglers, 4),
                 'prior': None if prior is None else round(prior, 4),
-                'season': None if seasonal is None else round(seasonal, 4),
+                'prior_r': None if prior_rel is None else round(prior_rel, 4),
+                'season': median_or_none(rates),
+                'season_r': median_or_none(rates_rel),
                 'season_years': len(rates),
-            })
+            }
+            if hours >= MIN_HOURS:
+                # only the interview database times its trips, so most places have
+                # no hours at all and simply carry none of these
+                row.update({
+                    'hours': round(hours, 1),
+                    'cph': round(kept / hours, 4),
+                    'cph_r': round(rel / hours, 4),
+                    'prior_h': None if prior_h is None else round(prior_h, 4),
+                    'prior_hr': None if prior_hr is None else round(prior_hr, 4),
+                    'season_h': median_or_none(rates_h),
+                    'season_hr': median_or_none(rates_hr),
+                    'season_years_h': len(rates_h),
+                })
+            out.append(row)
     say(f'   scored {len(out):,} {label}-species-window trends')
     return out
 
@@ -470,15 +529,22 @@ def seasonality(catch_day, effort_day, sp_index, as_of_d, years=5):
     for (pid, day), (a, _h, _i) in effort_day.items():
         if day >= since:
             anglers[_isoweek(day)] += a
-    for (pid, sp, day), (k, _r) in catch_day.items():
+    released = defaultdict(int)
+    for (pid, sp, day), (k, r) in catch_day.items():
         if day >= since:
             kept[(sp_index[sp], _isoweek(day))] += k
+            released[(sp_index[sp], _isoweek(day))] += r
     out = defaultdict(lambda: [0] * 53)
+    out_rel = defaultdict(lambda: [0] * 53)
     for (sp, wk), n in kept.items():
         if 1 <= wk <= 53:
             out[sp][wk - 1] = n
+    for (sp, wk), n in released.items():
+        if 1 <= wk <= 53:
+            out_rel[sp][wk - 1] = n
     return {'weeks': list(range(1, 54)),
             'kept': {str(sp): v for sp, v in out.items()},
+            'released': {str(sp): v for sp, v in out_rel.items()},
             'anglers': [anglers.get(w, 0) for w in range(1, 54)]}
 
 

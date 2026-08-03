@@ -259,6 +259,21 @@ ul.checks li { padding: 4px 0; border-bottom: 1px solid var(--grid); }
       <div class="seg" id="f-window"></div>
     </div>
     <div class="field">
+      <label>Count</label>
+      <div class="seg" id="f-fate">
+        <button data-v="kept" aria-pressed="true">Kept</button>
+        <button data-v="released" aria-pressed="false">Released</button>
+        <button data-v="both" aria-pressed="false">Everything caught</button>
+      </div>
+    </div>
+    <div class="field">
+      <label>Per</label>
+      <div class="seg" id="f-basis">
+        <button data-v="angler" aria-pressed="true">Angler</button>
+        <button data-v="hour" aria-pressed="false">Angler-hour</button>
+      </div>
+    </div>
+    <div class="field">
       <label>Colour by</label>
       <div class="seg" id="f-metric">
         <button data-v="season" aria-pressed="true">vs. same weeks last years</button>
@@ -380,7 +395,8 @@ ul.checks li { padding: 4px 0; border-bottom: 1px solid var(--grid); }
     </div>
     <div class="card">
       <h2>When it is caught</h2>
-      <p class="note">Fish kept by week of the year, across the last five seasons.</p>
+      <p class="note" id="season-note">Fish kept by week of the year, across the last
+        five seasons.</p>
       <div id="season-chart"></div>
       <h3>Best places in the window</h3>
       <div id="species-top"></div>
@@ -552,6 +568,14 @@ const state = {
   tab: 'map',
   mode: 'place',
   species: SPECIES.indexOf(META.headline_species[0] || SPECIES[0]),
+  // which fish count: what anglers took home, what they put back, or both.
+  // A steelhead river that is catch-and-release reports almost no kept fish,
+  // and reading it on the kept column alone says the fishing is dead.
+  fate: 'kept',
+  // per angler, or per hour those anglers actually fished. Only the interview
+  // database times its trips, so the hour basis covers part of the state — the
+  // places without it say so rather than being quietly dropped to zero.
+  basis: 'angler',
   window: META.windows[1] || META.windows[0],
   metric: 'season',
   water: '',
@@ -573,6 +597,34 @@ const dayLabel = iso => new Date(iso + 'T12:00:00Z').toLocaleDateString('en-US',
 
 /* ------------------------------------------------------------------ helpers */
 
+/* One place's numbers under the fate the reader has chosen. Kept and released are
+   stored separately everywhere, so switching between them is arithmetic here rather
+   than a different query. */
+/* Every rate is stored twice, once per angler and once per angler-hour, and each of
+   those twice again for kept and released. These pick the one being asked for. */
+function trendRate(t, which) {
+  const hour = state.basis === 'hour';
+  const map = {
+    now: hour ? ['cph', 'cph_r'] : ['cpue', 'cpue_r'],
+    prior: hour ? ['prior_h', 'prior_hr'] : ['prior', 'prior_r'],
+    season: hour ? ['season_h', 'season_hr'] : ['season', 'season_r'],
+  }[which];
+  if (hour && t.hours === undefined) return null;   // this place never timed a trip
+  return rateFate(t[map[0]], t[map[1]]);
+}
+
+function fishFate(kept, rel) {
+  return state.fate === 'kept' ? kept : state.fate === 'released' ? rel : kept + rel;
+}
+function rateFate(k, r) {
+  if (state.fate === 'kept') return k;
+  if (state.fate === 'released') return r;
+  return (k === null || k === undefined) && (r === null || r === undefined)
+    ? null : (k || 0) + (r || 0);
+}
+const fateWord = () => state.fate === 'kept' ? 'kept'
+  : state.fate === 'released' ? 'released' : 'caught';
+
 function areaRowsForWindow() {
   if (state.window === 'all') return areaLifetimeRows();
   const byArea = AREA_TREND.get(state.window) || new Map();
@@ -584,9 +636,14 @@ function areaRowsForWindow() {
     if (state.water && a.water !== state.water) continue;
     out.push({
       pid: aid, place: a, name: a.name, source: a.source,
-      anglers: t.anglers, kept: t.kept, rel: t.rel, cpue: t.cpue,
-      season: t.season, prior: t.prior, years: t.season_years, thin: !!t.thin,
-      dseason: change(t.cpue, t.season), dprior: change(t.cpue, t.prior),
+      anglers: t.anglers, kept: t.kept, rel: t.rel, hours: t.hours ?? null,
+      fish: fishFate(t.kept, t.rel),
+      cpue: trendRate(t, 'now'),
+      season: trendRate(t, 'season'), prior: trendRate(t, 'prior'),
+      years: state.basis === 'hour' ? (t.season_years_h || 0) : t.season_years,
+      thin: !!t.thin,
+      dseason: change(trendRate(t, 'now'), trendRate(t, 'season')),
+      dprior: change(trendRate(t, 'now'), trendRate(t, 'prior')),
       rings: AREA_SHAPES.get(a.area) || [],
     });
   }
@@ -607,11 +664,15 @@ function lifetimeRows() {
     if (state.source && p.source !== state.source) return;
     const t = (LIFETIME.get(pid) || new Map()).get(state.species);
     const anglers = p.anglers || 0;
+    const hours = p.hours || 0;
     const kept = t ? t.kept : 0;
     out.push({
       pid, place: p, name: p.name, source: p.source,
-      anglers, kept, rel: t ? t.rel : 0,
-      cpue: anglers ? kept / anglers : 0,
+      anglers, kept, rel: t ? t.rel : 0, hours: hours || null,
+      fish: fishFate(kept, t ? t.rel : 0),
+      cpue: state.basis === 'hour'
+        ? (hours ? fishFate(kept, t ? t.rel : 0) / hours : null)
+        : (anglers ? fishFate(kept, t ? t.rel : 0) / anglers : 0),
       season: null, prior: null, years: 0,
       thin: anglers < META.min_anglers,
       neverCaught: !t,
@@ -628,11 +689,15 @@ function areaLifetimeRows() {
     if (state.water && a.water !== state.water) return;
     const t = (AREA_LIFETIME.get(aid) || new Map()).get(state.species);
     const anglers = a.anglers || 0;
+    const hours = a.hours || 0;
     const kept = t ? t.kept : 0;
     out.push({
       pid: aid, place: a, name: a.name, source: a.source,
-      anglers, kept, rel: t ? t.rel : 0,
-      cpue: anglers ? kept / anglers : 0,
+      anglers, kept, rel: t ? t.rel : 0, hours: hours || null,
+      fish: fishFate(kept, t ? t.rel : 0),
+      cpue: state.basis === 'hour'
+        ? (hours ? fishFate(kept, t ? t.rel : 0) / hours : null)
+        : (anglers ? fishFate(kept, t ? t.rel : 0) / anglers : 0),
       season: null, prior: null, years: 0,
       thin: anglers < META.min_anglers,
       neverCaught: !t,
@@ -657,9 +722,14 @@ function rowsForWindow() {
     if (state.source && p.source !== state.source) continue;
     out.push({
       pid, place: p, name: p.name, source: p.source,
-      anglers: t.anglers, kept: t.kept, rel: t.rel, cpue: t.cpue,
-      season: t.season, prior: t.prior, years: t.season_years, thin: !!t.thin,
-      dseason: change(t.cpue, t.season), dprior: change(t.cpue, t.prior),
+      anglers: t.anglers, kept: t.kept, rel: t.rel, hours: t.hours ?? null,
+      fish: fishFate(t.kept, t.rel),
+      cpue: trendRate(t, 'now'),
+      season: trendRate(t, 'season'), prior: trendRate(t, 'prior'),
+      years: state.basis === 'hour' ? (t.season_years_h || 0) : t.season_years,
+      thin: !!t.thin,
+      dseason: change(trendRate(t, 'now'), trendRate(t, 'season')),
+      dprior: change(trendRate(t, 'now'), trendRate(t, 'prior')),
     });
   }
   return out;
@@ -676,6 +746,9 @@ function change(now, before) {
 }
 
 function colourFor(row) {
+  // a place with no timed trips has no per-hour rate at all; it is drawn in the
+  // no-reading grey rather than coloured as if it had caught nothing
+  if (row.cpue === null || row.cpue === undefined) return getVar('--surface-2');
   if (state.metric === 'rate' || state.window === 'all') {
     const scale = Math.max(0.01, quantile(currentRows().map(r => r.cpue), 0.9));
     const v = Math.min(1, row.cpue / scale);
@@ -854,6 +927,11 @@ function drawMap() {
 
   const scored = rowsForWindow();
   const solid = rows.filter(r => !r.thin).length;
+  const untimed = state.basis === 'hour'
+    ? rows.filter(r => r.cpue === null).length : 0;
+  const hourTail = untimed
+    ? ` ${untimed} of them are drawn grey: their reports count anglers but never ` +
+      `timed a trip, so they have no per-hour rate.` : '';
   const missing = scored.length - rows.length;
   const tail = missing
     ? `${missing} ${missing === 1 ? 'other has' : 'others have'} no coordinates and ` +
@@ -864,11 +942,12 @@ function drawMap() {
       `${SPECIES[state.species]}, over the whole record — ${META.first.slice(0, 4)} to ` +
       `${META.as_of.slice(0, 4)}, including waters no longer surveyed and the ` +
       `${rows.filter(r => r.neverCaught).length} that never produced one. Dot size is ` +
-      `lifetime anglers interviewed; colour is fish kept per angler. ${tail}`
+      `lifetime anglers interviewed; colour is fish ${fateWord()} per ` +
+      `${state.basis === 'hour' ? 'angler-hour' : 'angler'}.${hourTail} ${tail}`
     : `Every one of the ${rows.length} places that reported ${SPECIES[state.species]} ` +
       `fishing in the ${state.window} days to ${dayLabel(META.as_of)}. Dot size is ` +
       `anglers interviewed; ${rows.length - solid} of these rest on fewer than ` +
-      `${META.min_anglers} anglers and are drawn faded. ${tail}`;
+      `${META.min_anglers} anglers and are drawn faded.${hourTail} ${tail}`;
 }
 
 function drawAreas(cssW, cssH) {
@@ -1027,9 +1106,13 @@ canvas.addEventListener('mousemove', ev => {
   tip.innerHTML =
     `<b>${escapeHtml(r.name)}</b>` +
     `<span class="k">${escapeHtml(r.place.region || r.source)}</span><br>` +
-    `${fmt(r.kept)} kept from ${fmt(r.anglers)} anglers<br>` +
+    `${fmt(r.fish)} ${fateWord()} from ${fmt(r.anglers)} anglers<br>` +
     (r.first ? `<span class="k">${r.first.slice(0, 4)}–${r.last.slice(0, 4)}</span><br>` : '') +
-    `<span class="k">per angler</span> ${rate(r.cpue)}` +
+    (state.basis === 'hour'
+      ? (r.hours ? `<span class="k">${fmt(r.hours)} angler-hours</span><br>` : '')
+      : '') +
+    `<span class="k">per ${state.basis === 'hour' ? 'angler-hour' : 'angler'}</span> ` +
+    `${r.cpue === null ? 'no timed trips' : rate(r.cpue)}` +
     (r.season !== null ? ` &middot; <span class="k">season normal</span> ${rate(r.season)}` : '') +
     `<br><span class="k">vs. season</span> ${pct(r.dseason)}` +
     ` &middot; <span class="k">vs. prior</span> ${pct(r.dprior)}` +
@@ -1070,9 +1153,9 @@ function renderMovers() {
   if (state.window === 'all') {
     // there is no "before" to compare a lifetime total against, so the lists become
     // best and busiest rather than pretending to a trend
-    const rows = currentRows().filter(r => !r.thin && r.kept > 0);
+    const rows = currentRows().filter(r => !r.thin && r.fish > 0);
     heading.textContent = 'Best over the whole record';
-    note.textContent = 'Fish kept per angler across every year this place was sampled.';
+    note.textContent = `Fish ${fateWord()} per ${state.basis === 'hour' ? 'angler-hour' : 'angler'} across every year this place was sampled.`;
     sub.textContent = 'Most anglers interviewed';
     document.getElementById('movers-up').innerHTML =
       moverTable([...rows].sort((a, b) => b.cpue - a.cpue).slice(0, 8));
@@ -1085,7 +1168,7 @@ function renderMovers() {
   note.textContent = 'Catch per angler against the same weeks in previous years.';
   sub.textContent = 'Cooled off';
   const rows = currentRows().filter(r => r.dseason !== null && !r.thin);
-  const up = rows.filter(r => r.kept > 0).sort((a, b) => b.dseason - a.dseason).slice(0, 8);
+  const up = rows.filter(r => r.fish > 0).sort((a, b) => b.dseason - a.dseason).slice(0, 8);
   const down = rows.filter(r => (r.season || 0) > 0.05).sort((a, b) => a.dseason - b.dseason).slice(0, 8);
   document.getElementById('movers-up').innerHTML = moverTable(up);
   document.getElementById('movers-down').innerHTML = moverTable(down);
@@ -1106,7 +1189,7 @@ function moverTable(rows) {
       <td class="num">${rate(r.cpue)}<br><span class="k" style="color:var(--ink-3)">${
         r.season === null ? fmt(r.anglers) + ' anglers' : 'was ' + rate(r.season)}</span></td>
       <td class="num ${r.dseason > 0 ? 'up' : r.dseason < 0 ? 'down' : 'flat'}">${
-        r.dseason === null ? fmt(r.kept) : pct(r.dseason)}</td>
+        r.dseason === null ? fmt(r.fish) : pct(r.dseason)}</td>
     </tr>`).join('') + '</tbody></table>';
 }
 
@@ -1181,10 +1264,10 @@ function renderDetail() {
     : weeklyFor(pid, state.species)).slice(-60);
   const stats = t ? `
     <div class="stat-row">
-      <div class="stat"><div class="v">${rate(t.cpue)}</div><div class="l">${escapeHtml(SPECIES[state.species])} per angler, last ${state.window} days</div></div>
-      <div class="stat"><div class="v">${fmt(t.kept)}</div><div class="l">kept</div></div>
+      <div class="stat"><div class="v">${trendRate(t, 'now') === null ? '—' : rate(trendRate(t, 'now'))}</div><div class="l">${escapeHtml(SPECIES[state.species])} ${fateWord()} per ${state.basis === 'hour' ? 'angler-hour' : 'angler'}, last ${state.window} days</div></div>
+      <div class="stat"><div class="v">${fmt(fishFate(t.kept, t.rel))}</div><div class="l">${fateWord()}</div></div>
       <div class="stat"><div class="v">${fmt(t.anglers)}</div><div class="l">anglers</div></div>
-      <div class="stat"><div class="v ${t.season === null ? 'flat' : change(t.cpue, t.season) > 0 ? 'up' : 'down'}">${pct(change(t.cpue, t.season))}</div><div class="l">vs. the same weeks in ${t.season_years || 0} past years</div></div>
+      <div class="stat"><div class="v ${trendRate(t, 'season') === null ? 'flat' : change(trendRate(t, 'now'), trendRate(t, 'season')) > 0 ? 'up' : 'down'}">${pct(change(trendRate(t, 'now'), trendRate(t, 'season')))}</div><div class="l">vs. the same weeks in ${(state.basis === 'hour' ? t.season_years_h : t.season_years) || 0} past years</div></div>
     </div>` : '<p class="note">This place has no scored window for that species.</p>';
 
   body.innerHTML = stats + weeklyChart(series);
@@ -1193,23 +1276,24 @@ function renderDetail() {
 function weeklyChart(series) {
   if (!series.length) return '<p class="note">No weekly detail in the last four years.</p>';
   const W = 460, H = 190, padL = 34, padR = 10, padT = 10, padB = 22;
-  const maxKept = Math.max(1, ...series.map(([, v]) => v.kept));
-  const maxCpue = Math.max(0.01, ...series.map(([, v]) => v.anglers ? v.kept / v.anglers : 0));
+  const fishIn = v => fishFate(v.kept, v.rel);
+  const maxKept = Math.max(1, ...series.map(([, v]) => fishIn(v)));
+  const maxCpue = Math.max(0.01, ...series.map(([, v]) => v.anglers ? fishIn(v) / v.anglers : 0));
   const bw = (W - padL - padR) / series.length;
   let bars = '', line = '', prev = null;
   series.forEach(([week, v], i) => {
     const x = padL + i * bw;
-    const h = (H - padT - padB) * (v.kept / maxKept);
-    bars += `<rect class="bar" x="${x.toFixed(1)}" y="${(H - padB - h).toFixed(1)}" width="${Math.max(1, bw - 1).toFixed(1)}" height="${h.toFixed(1)}"><title>${week}: ${v.kept} kept, ${v.anglers} anglers</title></rect>`;
+    const h = (H - padT - padB) * (fishIn(v) / maxKept);
+    bars += `<rect class="bar" x="${x.toFixed(1)}" y="${(H - padB - h).toFixed(1)}" width="${Math.max(1, bw - 1).toFixed(1)}" height="${h.toFixed(1)}"><title>${week}: ${v.kept} kept, ${v.rel} released, ${v.anglers} anglers</title></rect>`;
     if (v.anglers) {
-      const y = H - padB - (H - padT - padB) * ((v.kept / v.anglers) / maxCpue);
+      const y = H - padB - (H - padT - padB) * ((fishIn(v) / v.anglers) / maxCpue);
       const px = x + bw / 2;
       line += prev === null ? `M${px.toFixed(1)},${y.toFixed(1)}` : `L${px.toFixed(1)},${y.toFixed(1)}`;
       prev = y;
     }
   });
   const first = series[0][0], last = series[series.length - 1][0];
-  return `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Weekly kept fish and catch per angler">
+  return `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Weekly fish ${fateWord()} and catch per angler">
     <g class="axis">
       <line x1="${padL}" y1="${H - padB}" x2="${W - padR}" y2="${H - padB}"></line>
       <text x="${padL}" y="${H - 6}">${first}</text>
@@ -1219,8 +1303,8 @@ function weeklyChart(series) {
     </g>
     ${bars}<path class="line" d="${line}"></path>
   </svg>
-  <p class="note">Bars are fish kept each week; the line is fish per angler, peaking at
-    ${rate(maxCpue)}.</p>`;
+  <p class="note">Bars are fish ${fateWord()} each week; the line is fish per angler,
+    peaking at ${rate(maxCpue)}.</p>`;
 }
 
 /* ------------------------------------------------------------------ places */
@@ -1266,12 +1350,12 @@ const cls = d => d === null ? 'flat' : d > 0.15 ? 'up' : d < -0.15 ? 'down' : 'f
 function exportPlaces() {
   const rows = state._placeRows || [];
   const head = ['place', 'source', 'region', 'water', 'species', 'window_days',
-    'as_of', 'anglers', 'kept', 'released', 'kept_per_angler',
+    'as_of', 'anglers', 'kept', 'released', 'counted', 'counted_per_angler',
     'season_normal_per_angler', 'change_vs_season', 'change_vs_prior', 'lat', 'lon'];
   const lines = [head.join(',')];
   for (const r of rows) {
     lines.push([r.name, r.source, r.place.region, r.place.water, SPECIES[state.species],
-      state.window, META.as_of, r.anglers, r.kept, r.rel, r.cpue, r.season,
+      state.window, META.as_of, r.anglers, r.kept, r.rel, r.fish, r.cpue, r.season,
       r.dseason === null ? '' : r.dseason.toFixed(3),
       r.dprior === null ? '' : r.dprior.toFixed(3),
       r.place.lat ?? '', r.place.lon ?? '']
@@ -1292,13 +1376,18 @@ function exportPlaces() {
 
 function renderSpecies() {
   const sp = SPECIES[state.species];
+  const released = DATA.years_released || {};
   const years = Object.entries(DATA.years)
-    .map(([y, byS]) => [y, byS[sp] || 0])
+    .map(([y, byS]) => [y, fishFate(byS[sp] || 0, (released[y] || {})[sp] || 0)])
     .filter(([y]) => y >= '1998');
-  document.getElementById('year-chart').innerHTML = barChart(years, 'fish kept');
-  const weeks = (DATA.season.kept[String(state.species)] || []).slice();
+  document.getElementById('year-chart').innerHTML = barChart(years, `fish ${fateWord()}`);
+  const seasonKept = DATA.season.kept[String(state.species)] || [];
+  const seasonRel = (DATA.season.released || {})[String(state.species)] || [];
+  const weeks = seasonKept.map((n, i) => fishFate(n, seasonRel[i] || 0));
   document.getElementById('season-chart').innerHTML = weekChart(weeks);
-  const top = currentRows().filter(r => r.kept > 0)
+  document.getElementById('season-note').textContent =
+    `Fish ${fateWord()} by week of the year, across the last five seasons.`;
+  const top = currentRows().filter(r => r.fish > 0)
     .sort((a, b) => b.cpue - a.cpue).slice(0, 10);
   document.getElementById('species-top').innerHTML = top.length ? `
     <table><tbody>${top.map(r => `
@@ -1514,7 +1603,7 @@ function fillSpeciesSelects() {
 }
 
 function refresh() {
-  if (state.tab === 'map') { drawMap(); renderMovers(); renderDetail(); }
+  if (state.tab === 'map') { drawMap(); renderMovers(); renderDetail(); renderLegend(); }
   if (state.tab === 'places') renderPlaces();
   if (state.tab === 'species') renderSpecies();
 }
@@ -1548,6 +1637,26 @@ function init() {
     state.mode = b.dataset.v;
     state.place = null;
     for (const other of mode.querySelectorAll('button')) {
+      other.setAttribute('aria-pressed', String(other === b));
+    }
+    refresh();
+  });
+
+  const basis = document.getElementById('f-basis');
+  basis.addEventListener('click', ev => {
+    const b = ev.target.closest('button'); if (!b) return;
+    state.basis = b.dataset.v;
+    for (const other of basis.querySelectorAll('button')) {
+      other.setAttribute('aria-pressed', String(other === b));
+    }
+    refresh();
+  });
+
+  const fate = document.getElementById('f-fate');
+  fate.addEventListener('click', ev => {
+    const b = ev.target.closest('button'); if (!b) return;
+    state.fate = b.dataset.v;
+    for (const other of fate.querySelectorAll('button')) {
       other.setAttribute('aria-pressed', String(other === b));
     }
     refresh();
@@ -1613,7 +1722,7 @@ function init() {
 function renderLegend() {
   const el = document.getElementById('map-legend');
   if (state.metric === 'rate') {
-    el.innerHTML = `<span><span class="sw" style="background:var(--surface-2);border:1px solid var(--axis)"></span>few fish per angler</span>
+    el.innerHTML = `<span><span class="sw" style="background:var(--surface-2);border:1px solid var(--axis)"></span>few fish ${fateWord()} per ${state.basis === 'hour' ? 'angler-hour' : 'angler'}</span>
       <span><span class="sw" style="background:var(--hot)"></span>many</span>
       <span style="color:var(--ink-3)">Dot size is anglers interviewed. Scroll or pinch to zoom, drag to pan.</span>`;
     return;

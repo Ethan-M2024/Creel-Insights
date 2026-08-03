@@ -4,12 +4,19 @@ Anglers are paid per pikeminnow removed from the Columbia and Snake, and every w
 of the season WDFW publishes a one-page field report: registered anglers, fish
 turned in, and catch per angler at each of about twenty check stations.
 
-The page holds every weekly report back to 2019, in two layouts. Through 2024 it is a
-fixed-width text table, read off the line — pdfplumber's table finder merges those
-columns into a single cell. From 2025 the columns were reordered and a rotated
-watermark was laid over them, which breaks "154" into "1 54" in the extracted text,
-so those seasons are read from the position of every word on the page instead and
-checked against the report's own catch-per-angler figure.
+The page holds every weekly report back to 2014, and seventeen different column
+layouts across those years: four numbers a row or ten, an opening-date column that
+comes and goes, and six seasons that also count the incidental catch — smallmouth
+bass, walleye, catfish, shad, sturgeon, perch — beside the pikeminnow.
+
+Matching a layout to a year was never going to hold, so no row is read by position.
+Every report states catch per angler, and that figure is the check: the effort and
+the fish are whichever pair of columns divide into it. A row that cannot be made to
+agree with the report's own arithmetic is left out rather than guessed at.
+
+From 2025 a rotated watermark sits over the table, which breaks "154" into "1 54" in
+the extracted text, so those seasons are read from the position of every word on the
+page instead — checked the same way.
 """
 import os
 import re
@@ -29,19 +36,30 @@ SOURCE = 'pikeminnow'
 REGION = 'Columbia River'
 SPECIES = 'Northern pikeminnow'
 
-#: station, then five weekly figures and five year-to-date ones. Only the weekly
-#: half is stored: the year-to-date column is a running sum of it, and keeping both
-#: would let a reader add the same fish twice.
-ROW = re.compile(
-    r'^(?P<station>[A-Za-z][A-Za-z .\'\-]+?)\s+'
-    r'(?P<effort>[\d,]+)\s+(?P<tags>[\d,]+)\s+(?P<npm>[\d,]+)\s+'
-    r'(?P<total>[\d,]+)\s+(?P<cpue>[\d.]+)\s+'
-    r'(?P<yeffort>[\d,]+)\s+(?P<ytags>[\d,]+)\s+(?P<ynpm>[\d,]+)\s+'
-    r'(?P<ytotal>[\d,]+)\s+(?P<ycpue>[\d.]+)\s*$')
+#: a data line: a station name, then the week's figures and the year-to-date ones.
+#: Only the weekly half is kept — the year-to-date column is a running sum of it, and
+#: storing both would let a reader add the same fish twice.
+DATA_LINE = re.compile(r'^(?P<station>[A-Za-z][A-Za-z0-9 ./\'\(\)\-]*?)\s+(?P<rest>[\d,.\-$ ]+)$')
 
+#: the incidental catch columns, which six of the seasons print beside the
+#: pikeminnow. The report gives a count and not a fate, so these are recorded as
+#: caught rather than claimed to have been taken home.
+#: The names are the ones the rest of the data already uses — "Shad", not "American
+#: shad"; "Sturgeon", not "White sturgeon" — so a species picked on the dashboard
+#: gathers every report of it rather than splitting into near-duplicates.
+INCIDENTAL = {
+    'SMB': 'Smallmouth bass', 'LMB': 'Largemouth bass', 'WAL': 'Walleye',
+    'YP': 'Yellow perch', 'WS': 'Sturgeon', 'AMS': 'Shad',
+    'CC/CF/BH': 'Catfish', 'CC/CF': 'Catfish', 'CC': 'Channel catfish',
+}
+
+#: "May 1 - May 4, 2014", "June 24 - June 30 , 2024", and — for the weeks a season
+#: opened mid-week — the bare "May 1, 2016". The stray space before the comma is
+#: WDFW's, and cost eight reports until it was allowed for.
 PERIOD = re.compile(
     r'([A-Z][a-z]{2,8})\.?\s+(\d{1,2})\s*[-–]\s*(?:([A-Z][a-z]{2,8})\.?\s+)?'
-    r'(\d{1,2}),?\s*(\d{4})')
+    r'(\d{1,2})\s*,?\s*(\d{4})')
+SINGLE_DAY = re.compile(r'^\s*([A-Z][a-z]{2,8})\.?\s+(\d{1,2})\s*,?\s*(20\d{2})\b', re.M)
 
 
 def discover(say=print):
@@ -55,28 +73,115 @@ def discover(say=print):
     return links
 
 
+def incidental_codes(text):
+    """The incidental-catch column headings, in the order the report prints them."""
+    for line in text.splitlines():
+        if line.strip().startswith('Station') and 'CPUE' in line:
+            tail = line.strip().split('CPUE')[-1].split()
+            return [t for t in tail if t in INCIDENTAL]
+    return []
+
+
+def read_numbers(rest):
+    """The numbers on a data line, as (value, was_decimal) pairs.
+
+    A dash stands for a column with nothing in it, and is dropped rather than read as
+    a zero: the two mean different things and only one of them is in the report. Each
+    number carries how many decimal places it was printed to, which is what tells the
+    row reader how exact the report's own rate is.
+    """
+    out = []
+    for token in rest.split():
+        if token in ('-', '--', '–', '$'):
+            continue
+        try:
+            clean = token.replace(',', '').replace('$', '')
+            decimals = len(clean.split('.')[1]) if '.' in clean else 0
+            out.append((float(clean), '.' in clean, decimals))
+        except ValueError:
+            return []
+    return out
+
+
+def split_row(numbers):
+    """Effort and fish for the week, found by dividing into the reported rate.
+
+    The first decimal on the line is the week's catch per angler, and the columns to
+    its left are that week's counts in some order that changed five times in eleven
+    years. Effort is the first of them; the fish are whichever column divides into the
+    rate. If nothing does, the line is not returned at all.
+    """
+    first_rate = next((i for i, (_v, dec, _d) in enumerate(numbers) if dec), None)
+    if first_rate is None or first_rate < 2:
+        return None
+    cpue, decimals = numbers[first_rate][0], numbers[first_rate][2]
+    ints = [v for v, dec, _d in numbers[:first_rate] if not dec]
+    if len(ints) < 2:
+        return None
+    effort = int(ints[0])
+    if effort <= 0:
+        return None
+    for value in reversed(ints[1:]):
+        if matches_rate(value / effort, cpue, decimals):
+            return effort, int(value), first_rate
+    return None
+
+
+def matches_rate(computed, printed, decimals):
+    """Does this column, over the effort, give the rate the report printed?
+
+    Some seasons round the rate and others cut it short — 60 fish to 41 anglers is
+    printed 1.4 in 2014 and would be 1.5 in 2024 — so both readings are accepted, at
+    the precision the report actually used. Anything looser starts matching the tag
+    column by accident.
+    """
+    scale = 10 ** decimals
+    rounded = round(computed, decimals)
+    truncated = int(computed * scale) / scale
+    eps = 1e-9
+    return abs(rounded - printed) < eps or abs(truncated - printed) < eps
+
+
 def parse(text):
     """Return (catch rows, effort rows) for one weekly report."""
     m = PERIOD.search(text)
-    if not m:
-        return [], []
-    start = common.parse_day(f'{m.group(1)} {m.group(2)}', m.group(5))
+    if m:
+        start = common.parse_day(f'{m.group(1)} {m.group(2)}', m.group(5))
+    else:
+        one = SINGLE_DAY.search(text)
+        start = common.parse_day(f'{one.group(1)} {one.group(2)}',
+                                 one.group(3)) if one else None
     if not start:
         return [], []
+    codes = incidental_codes(text)
     catch_rows, effort_rows = [], []
     for line in text.splitlines():
-        hit = ROW.match(line.strip())
+        hit = DATA_LINE.match(line.strip())
         if not hit:
             continue
         station = clean_station(hit.group('station'))
-        if station.lower().startswith('total'):
+        if not station or station.lower().startswith(('total', 'week', 'grand')):
             continue              # the report's own sum, recomputed downstream
+        numbers = read_numbers(hit.group('rest'))
+        found = split_row(numbers)
+        if not found:
+            continue
+        effort, fish, rate_at = found
         effort_rows.append(common.effort(
-            start, SOURCE, station, anglers=common.num(hit.group('effort')),
-            region=REGION, water=FRESH))
+            start, SOURCE, station, anglers=effort, region=REGION, water=FRESH))
         catch_rows.append(common.catch(
-            start, SOURCE, station, SPECIES, common.num(hit.group('total')),
+            start, SOURCE, station, SPECIES, fish,
             fate='kept', region=REGION, water=FRESH))
+        # the year-to-date block repeats the weekly one and ends in its own rate;
+        # anything past that is the incidental catch, in heading order
+        if codes:
+            after = [v for v, dec, _d in numbers[rate_at + 1:] if not dec]
+            tail = after[-len(codes):] if len(after) >= len(codes) else []
+            for code, count in zip(codes, tail):
+                if count:
+                    catch_rows.append(common.catch(
+                        start, SOURCE, station, INCIDENTAL[code], int(count),
+                        fate='released', region=REGION, water=FRESH))
     return catch_rows, effort_rows
 
 
