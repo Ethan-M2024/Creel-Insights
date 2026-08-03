@@ -278,7 +278,7 @@ ul.checks li { padding: 4px 0; border-bottom: 1px solid var(--grid); }
       <div class="seg" id="f-metric">
         <button data-v="season" aria-pressed="true">vs. same weeks last years</button>
         <button data-v="prior">vs. weeks just before</button>
-        <button data-v="rate">catch per angler</button>
+        <button data-v="rate" id="metric-rate">catch per angler</button>
       </div>
     </div>
     <div class="field">
@@ -352,6 +352,21 @@ ul.checks li { padding: 4px 0; border-bottom: 1px solid var(--grid); }
       <label for="f-source">Source</label>
       <select id="f-source"></select>
     </div>
+    <div class="field">
+      <label>Count</label>
+      <div class="seg" id="f-fate2">
+        <button data-v="kept" aria-pressed="true">Kept</button>
+        <button data-v="released" aria-pressed="false">Released</button>
+        <button data-v="both" aria-pressed="false">Everything</button>
+      </div>
+    </div>
+    <div class="field">
+      <label>Per</label>
+      <div class="seg" id="f-basis2">
+        <button data-v="angler" aria-pressed="true">Angler</button>
+        <button data-v="hour" aria-pressed="false">Angler-hour</button>
+      </div>
+    </div>
     <div class="spacer"></div>
     <button class="ghost" id="export-places">Download CSV</button>
   </div>
@@ -363,13 +378,13 @@ ul.checks li { padding: 4px 0; border-bottom: 1px solid var(--grid); }
         <thead><tr>
           <th data-k="name">Place</th>
           <th data-k="source">Source</th>
-          <th data-k="anglers">Anglers</th>
+          <th data-k="anglers" id="th-effort">Anglers</th>
           <th data-k="kept">Kept</th>
           <th data-k="rel">Released</th>
-          <th data-k="cpue">Per angler</th>
+          <th data-k="cpue" id="th-rate">Per angler</th>
           <th data-k="dseason">vs. season</th>
           <th data-k="dprior">vs. prior</th>
-          <th data-k="last">Last seen</th>
+          <th data-k="last">Last sampled</th>
         </tr></thead>
         <tbody></tbody>
       </table>
@@ -384,10 +399,18 @@ ul.checks li { padding: 4px 0; border-bottom: 1px solid var(--grid); }
       <label for="f-species3">Species</label>
       <select id="f-species3"></select>
     </div>
+    <div class="field">
+      <label>Count</label>
+      <div class="seg" id="f-fate3">
+        <button data-v="kept" aria-pressed="true">Kept</button>
+        <button data-v="released" aria-pressed="false">Released</button>
+        <button data-v="both" aria-pressed="false">Everything</button>
+      </div>
+    </div>
   </div>
   <div class="layout">
     <div class="card">
-      <h2>Kept by year</h2>
+      <h2 id="year-title">Kept by year</h2>
       <p class="note">Every fish this species contributed to the record, by the year it
         was counted. Years before a source began are lower because the record is, not
         because the fishing was.</p>
@@ -456,7 +479,7 @@ ul.checks li { padding: 4px 0; border-bottom: 1px solid var(--grid); }
   <div class="layout">
     <div class="card">
       <h2>What was read</h2>
-      <p class="note">Seven WDFW publications, in four formats. Each row is what that
+      <p class="note">Eight WDFW publications, in four formats. Each row is what that
         source contributed to this build.</p>
       <div class="scroll"><table id="sources-table">
         <thead><tr><th>Source</th><th>First</th><th>Last</th><th>Places</th><th>Species rows</th></tr></thead>
@@ -484,8 +507,13 @@ ul.checks li { padding: 4px 0; border-bottom: 1px solid var(--grid); }
         Every figure is parsed from a WDFW report and nothing is estimated. Catch and
         effort are kept in separate tables, because one interview counts anglers once
         and their fish once per species; folding them together would inflate every
-        catch-per-angler figure. Catch rates are only shown where at least
-        <b id="min-anglers"></b> anglers were interviewed in the window.
+        catch-per-angler figure. Every place that reported fishing is shown, but a
+        rate resting on fewer than <b id="min-anglers"></b> anglers is marked
+        <span class="pill">thin</span>, drawn faded, and never ranked in the heating
+        and cooling lists — one lucky boat moves a six-angler rate by half. Where a
+        report records whether a fish was fin-clipped, that split is carried too:
+        hatchery and wild are not the same fish to a biologist, and under
+        mark-selective rules they are not the same fish to an angler either.
       </p>
     </div>
     <div class="card">
@@ -591,6 +619,7 @@ const fmt = n => (n === null || n === undefined || Number.isNaN(n)) ? '—'
   : (Math.round(n * 100) / 100).toLocaleString('en-US');
 const rate = n => (n === null || n === undefined) ? '—' : n.toFixed(2);
 const pct = n => (n === null || n === undefined) ? '—'
+  : n === FROM_NOTHING ? 'from none'
   : (n > 0 ? '+' : '') + Math.round(n * 100) + '%';
 const dayLabel = iso => new Date(iso + 'T12:00:00Z').toLocaleDateString('en-US',
   { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC' });
@@ -637,6 +666,8 @@ function areaRowsForWindow() {
     out.push({
       pid: aid, place: a, name: a.name, source: a.source,
       anglers: t.anglers, kept: t.kept, rel: t.rel, hours: t.hours ?? null,
+      kept_h: t.kept_h || 0, kept_w: t.kept_w || 0,
+      rel_h: t.rel_h || 0, rel_w: t.rel_w || 0,
       fish: fishFate(t.kept, t.rel),
       cpue: trendRate(t, 'now'),
       season: trendRate(t, 'season'), prior: trendRate(t, 'prior'),
@@ -669,6 +700,8 @@ function lifetimeRows() {
     out.push({
       pid, place: p, name: p.name, source: p.source,
       anglers, kept, rel: t ? t.rel : 0, hours: hours || null,
+      kept_h: (t && t.kept_h) || 0, kept_w: (t && t.kept_w) || 0,
+      rel_h: (t && t.rel_h) || 0, rel_w: (t && t.rel_w) || 0,
       fish: fishFate(kept, t ? t.rel : 0),
       cpue: state.basis === 'hour'
         ? (hours ? fishFate(kept, t ? t.rel : 0) / hours : null)
@@ -694,6 +727,8 @@ function areaLifetimeRows() {
     out.push({
       pid: aid, place: a, name: a.name, source: a.source,
       anglers, kept, rel: t ? t.rel : 0, hours: hours || null,
+      kept_h: (t && t.kept_h) || 0, kept_w: (t && t.kept_w) || 0,
+      rel_h: (t && t.rel_h) || 0, rel_w: (t && t.rel_w) || 0,
       fish: fishFate(kept, t ? t.rel : 0),
       cpue: state.basis === 'hour'
         ? (hours ? fishFate(kept, t ? t.rel : 0) / hours : null)
@@ -723,6 +758,8 @@ function rowsForWindow() {
     out.push({
       pid, place: p, name: p.name, source: p.source,
       anglers: t.anglers, kept: t.kept, rel: t.rel, hours: t.hours ?? null,
+      kept_h: t.kept_h || 0, kept_w: t.kept_w || 0,
+      rel_h: t.rel_h || 0, rel_w: t.rel_w || 0,
       fish: fishFate(t.kept, t.rel),
       cpue: trendRate(t, 'now'),
       season: trendRate(t, 'season'), prior: trendRate(t, 'prior'),
@@ -739,11 +776,18 @@ function rowsForWindow() {
    doubling. Below a tenth of a fish per angler both sides are effectively zero,
    and the honest answer is that nothing is happening either way. */
 function change(now, before) {
+  if (now === null || now === undefined) return null;
   if (before === null || before === undefined) return null;
   if (before < 0.02 && now < 0.02) return 0;
-  if (before < 0.02) return now > 0.05 ? 2 : 0;
+  // dividing by a baseline of nearly zero produces a number with no meaning; the
+  // honest reading is that this place was not catching them before and is now
+  if (before < 0.02) return now > 0.05 ? FROM_NOTHING : 0;
   return now / before - 1;
 }
+
+/* A rise off a baseline of nothing, kept as its own value so it can be said in
+   words instead of printed as a percentage that only looks precise. */
+const FROM_NOTHING = Infinity;
 
 function colourFor(row) {
   // a place with no timed trips has no per-hour rate at all; it is drawn in the
@@ -1116,6 +1160,9 @@ canvas.addEventListener('mousemove', ev => {
     (r.season !== null ? ` &middot; <span class="k">season normal</span> ${rate(r.season)}` : '') +
     `<br><span class="k">vs. season</span> ${pct(r.dseason)}` +
     ` &middot; <span class="k">vs. prior</span> ${pct(r.dprior)}` +
+    (r.kept_h + r.kept_w + r.rel_h + r.rel_w
+      ? `<br><span class="k">of these ${fmt(fishFate(r.kept_h, r.rel_h))} clipped, ` +
+        `${fmt(fishFate(r.kept_w, r.rel_w))} unclipped</span>` : '') +
     (r.thin ? `<br><span class="k">thin sample: under ${META.min_anglers} anglers</span>` : '') +
     (r.place.precision === 'area'
       ? '<br><span class="k">shown at the centre of its catch area</span>'
@@ -1320,18 +1367,23 @@ function renderPlaces() {
     if (typeof av === 'string') return dir * av.localeCompare(bv);
     return dir * ((av === null ? -Infinity : av) - (bv === null ? -Infinity : bv));
   });
+  const hourly = state.basis === 'hour';
+  document.getElementById('th-rate').textContent =
+    hourly ? 'Per angler-hour' : 'Per angler';
+  document.getElementById('th-effort').textContent =
+    hourly ? 'Angler-hours' : 'Anglers';
   const tbody = document.querySelector('#places-table tbody');
   tbody.innerHTML = rows.map(r => `
     <tr data-pid="${r.pid}">
       <td>${escapeHtml(r.name)}${r.thin ? ' <span class="pill">thin</span>' : ''}${r.place.region ? `<br><span class="k" style="color:var(--ink-3)">${escapeHtml(r.place.region)}</span>` : ''}</td>
       <td><span class="pill">${escapeHtml(r.source)}</span></td>
-      <td class="num">${fmt(r.anglers)}</td>
-      <td class="num">${fmt(r.kept)}</td>
+      <td class="num">${fmt(hourly ? r.hours : r.anglers)}</td>
+      <td class="num">${fmt(r.kept)}${r.kept_h ? `<br><span class="k" style="color:var(--ink-3)">${fmt(r.kept_h)} clipped</span>` : ''}</td>
       <td class="num">${fmt(r.rel)}</td>
-      <td class="num">${rate(r.cpue)}</td>
+      <td class="num">${r.cpue === null ? '<span style="color:var(--ink-3)">no timed trips</span>' : rate(r.cpue)}</td>
       <td class="num ${cls(r.dseason)}">${pct(r.dseason)}</td>
       <td class="num ${cls(r.dprior)}">${pct(r.dprior)}</td>
-      <td class="num">${r.last ? r.last : '—'}</td>
+      <td class="num">${r.last || r.place.last || '—'}</td>
     </tr>`).join('');
   for (const tr of tbody.querySelectorAll('tr')) {
     tr.addEventListener('click', () => { selectPlace(Number(tr.dataset.pid)); showTab('map'); });
@@ -1381,19 +1433,24 @@ function renderSpecies() {
     .map(([y, byS]) => [y, fishFate(byS[sp] || 0, (released[y] || {})[sp] || 0)])
     .filter(([y]) => y >= '1998');
   document.getElementById('year-chart').innerHTML = barChart(years, `fish ${fateWord()}`);
+  document.getElementById('year-title').textContent =
+    `${fateWord().charAt(0).toUpperCase()}${fateWord().slice(1)} by year`;
   const seasonKept = DATA.season.kept[String(state.species)] || [];
   const seasonRel = (DATA.season.released || {})[String(state.species)] || [];
   const weeks = seasonKept.map((n, i) => fishFate(n, seasonRel[i] || 0));
   document.getElementById('season-chart').innerHTML = weekChart(weeks);
   document.getElementById('season-note').textContent =
     `Fish ${fateWord()} by week of the year, across the last five seasons.`;
-  const top = currentRows().filter(r => r.fish > 0)
-    .sort((a, b) => b.cpue - a.cpue).slice(0, 10);
+  // a rate off five anglers tops any leaderboard by luck alone, so the thin ones
+  // are shown last and labelled rather than mixed in as if they were measurements
+  const scored = currentRows().filter(r => r.fish > 0 && r.cpue !== null);
+  const top = [...scored].sort((a, b) =>
+    (a.thin === b.thin) ? b.cpue - a.cpue : (a.thin ? 1 : -1)).slice(0, 10);
   document.getElementById('species-top').innerHTML = top.length ? `
     <table><tbody>${top.map(r => `
-      <tr data-pid="${r.pid}"><td>${escapeHtml(r.name)}</td>
+      <tr data-pid="${r.pid}"><td>${escapeHtml(r.name)}${r.thin ? ' <span class="pill">thin</span>' : ''}</td>
       <td class="num">${rate(r.cpue)}</td>
-      <td class="num" style="color:var(--ink-3)">${fmt(r.anglers)} anglers</td></tr>`).join('')}
+      <td class="num" style="color:var(--ink-3)">${fmt(state.basis === 'hour' ? r.hours : r.anglers)} ${state.basis === 'hour' ? 'angler-hours' : 'anglers'}</td></tr>`).join('')}
     </tbody></table>` : '<p class="note">No place clears the angler threshold for this species right now.</p>';
   for (const tr of document.querySelectorAll('#species-top tr')) {
     tr.addEventListener('click', () => { selectPlace(Number(tr.dataset.pid)); showTab('map'); });
@@ -1573,7 +1630,7 @@ function showTab(name) {
     document.getElementById('panel-' + t).hidden = t !== name;
     document.getElementById('tab-' + t).setAttribute('aria-selected', String(t === name));
   }
-  if (name === 'map') drawMap();
+  if (name === 'map') { drawMap(); renderMovers(); renderLegend(); }
   if (name === 'places') renderPlaces();
   if (name === 'species') renderSpecies();
   if (name === 'quotas') renderQuotas();
@@ -1642,25 +1699,26 @@ function init() {
     refresh();
   });
 
-  const basis = document.getElementById('f-basis');
-  basis.addEventListener('click', ev => {
-    const b = ev.target.closest('button'); if (!b) return;
-    state.basis = b.dataset.v;
-    for (const other of basis.querySelectorAll('button')) {
-      other.setAttribute('aria-pressed', String(other === b));
+  /* The same two switches appear on three tabs. They are one setting, so every
+     copy is wired to it and they are all pressed together — a reader who asks for
+     released fish on the map does not want the table to answer about kept ones. */
+  const syncSwitch = (ids, key) => {
+    const groups = ids.map(id => document.getElementById(id)).filter(Boolean);
+    for (const group of groups) {
+      group.addEventListener('click', ev => {
+        const b = ev.target.closest('button'); if (!b) return;
+        state[key] = b.dataset.v;
+        for (const g of groups) {
+          for (const other of g.querySelectorAll('button')) {
+            other.setAttribute('aria-pressed', String(other.dataset.v === state[key]));
+          }
+        }
+        refresh();
+      });
     }
-    refresh();
-  });
-
-  const fate = document.getElementById('f-fate');
-  fate.addEventListener('click', ev => {
-    const b = ev.target.closest('button'); if (!b) return;
-    state.fate = b.dataset.v;
-    for (const other of fate.querySelectorAll('button')) {
-      other.setAttribute('aria-pressed', String(other === b));
-    }
-    refresh();
-  });
+  };
+  syncSwitch(['f-basis', 'f-basis2'], 'basis');
+  syncSwitch(['f-fate', 'f-fate2', 'f-fate3'], 'fate');
 
   const metric = document.getElementById('f-metric');
   metric.addEventListener('click', ev => {
@@ -1720,6 +1778,8 @@ function init() {
 }
 
 function renderLegend() {
+  document.getElementById('metric-rate').textContent =
+    `catch per ${state.basis === 'hour' ? 'angler-hour' : 'angler'}`;
   const el = document.getElementById('map-legend');
   if (state.metric === 'rate') {
     el.innerHTML = `<span><span class="sw" style="background:var(--surface-2);border:1px solid var(--axis)"></span>few fish ${fateWord()} per ${state.basis === 'hour' ? 'angler-hour' : 'angler'}</span>
@@ -1734,6 +1794,8 @@ function renderLegend() {
     <span><span class="sw" style="background:var(--cool)"></span>down</span>
     <span><span class="sw" style="background:var(--cold)"></span>down by half or more</span>
     <span><span class="sw" style="border:2px solid var(--steady);background:none"></span>placed at its catch area</span>
+    ${state.basis === 'hour'
+      ? '<span><span class="sw" style="background:var(--surface-2);border:1px dashed var(--axis)"></span>no timed trips, so no rate</span>' : ''}
     <span style="color:var(--ink-3)">Dot size is anglers; faded means fewer than ${META.min_anglers} anglers behind the rate. Scroll or pinch to zoom, drag to pan.</span>`;
 }
 

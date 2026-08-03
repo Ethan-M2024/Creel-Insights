@@ -143,6 +143,11 @@ def build(catch_rows, effort_rows, place_geo, say=print):
         cell[2] += to_int(r.get('interviews'))
 
     catch_day = defaultdict(lambda: [0, 0])             # kept, released
+    # Where the report says whether the fish was clipped, that is kept alongside.
+    # It is the difference between a fishery and a closed one under mark-selective
+    # rules — an unclipped Chinook goes back — and WDFW record it on a third of the
+    # fish, so it is carried rather than averaged away.
+    origin_day = defaultdict(lambda: [0, 0, 0, 0])   # kept H, kept W, rel H, rel W
     species_seen = defaultdict(int)
     for r in catch_rows:
         pid = place_id(r)
@@ -150,8 +155,13 @@ def build(catch_rows, effort_rows, place_geo, say=print):
         if not sp:
             continue
         n = to_int(r.get('fish'))
+        kept = r.get('fate') == 'kept'
         cell = catch_day[(pid, sp, r['date'])]
-        cell[0 if r.get('fate') == 'kept' else 1] += n
+        cell[0 if kept else 1] += n
+        origin = r.get('origin')
+        if origin in ('hatchery', 'wild'):
+            slot = (0 if kept else 2) + (0 if origin == 'hatchery' else 1)
+            origin_day[(pid, sp, r['date'])][slot] += n
         species_seen[sp] += n
 
     # A place is sampled in whichever area the sampler was working that day, so the
@@ -209,10 +219,12 @@ def build(catch_rows, effort_rows, place_geo, say=print):
     # out every place that is out of season, closed, or no longer surveyed — most of
     # the record. This is the whole record instead: one row per place per species,
     # over every year it was ever sampled, so nothing WDFW counted is invisible.
-    lifetime, place_span = totals(catch_day, effort_day, sp_index, say=say)
+    lifetime, place_span = totals(catch_day, effort_day, sp_index, say=say,
+                                  origin_day=origin_day)
 
     # ------------------------------------------------------------- trends
-    trend = trends(catch_day, effort_day, places, sp_index, as_of_d, say=say)
+    trend = trends(catch_day, effort_day, places, sp_index, as_of_d, say=say,
+                   origin_day=origin_day)
 
     # ------------------------------------------------------------- by area
     # Two hundred of the Puget Sound ramps are marinas and city docks that appear in
@@ -335,7 +347,8 @@ def by_area(catch_rows, effort_rows):
     return a_catch, a_effort, areas
 
 
-def totals(catch_day, effort_day, sp_index, say=print, label='place'):
+def totals(catch_day, effort_day, sp_index, say=print, label='place',
+           origin_day=None):
     """Every place and species over the whole record, however long ago it was fished.
 
     Returns the per-place-species totals and, separately, each place's span and
@@ -360,8 +373,17 @@ def totals(catch_day, effort_day, sp_index, say=print, label='place'):
         cell[2] = min(cell[2], day)
         cell[3] = max(cell[3], day)
 
-    rows = [{'p': pid, 's': sp, 'kept': k, 'rel': r, 'first': first, 'last': last}
-            for (pid, sp), (k, r, first, last) in sorted(per_species.items())]
+    by_name = _origin_totals(origin_day, '0000', '9999')
+    marks = {(pid, sp_index[name]): v for (pid, name), v in by_name.items()
+             if name in sp_index}
+    rows = []
+    for (pid, sp), (k, r, first, last) in sorted(per_species.items()):
+        row = {'p': pid, 's': sp, 'kept': k, 'rel': r, 'first': first, 'last': last}
+        found = marks.get((pid, sp))
+        if found:
+            row.update({'kept_h': found[0], 'kept_w': found[1],
+                        'rel_h': found[2], 'rel_w': found[3]})
+        rows.append(row)
 
     span = {}
     for pid, cell in per_place.items():
@@ -417,8 +439,19 @@ def _window_totals(catch_day, effort_day, start, end):
 MIN_HOURS = 20
 
 
+def _origin_totals(origin_day, start, end):
+    """Clipped and unclipped fish between two dates, per place and species."""
+    out = defaultdict(lambda: [0, 0, 0, 0])
+    for (pid, sp, day), counts in (origin_day or {}).items():
+        if start <= day <= end:
+            cell = out[(pid, sp)]
+            for i, n in enumerate(counts):
+                cell[i] += n
+    return {k: v for k, v in out.items() if any(v)}
+
+
 def trends(catch_day, effort_day, places, sp_index, as_of_d, say=print,
-           label='place'):
+           label='place', origin_day=None):
     """Score every place and species for whether it is picking up or falling off."""
     out = []
     for window in WINDOWS:
@@ -429,6 +462,7 @@ def trends(catch_day, effort_day, places, sp_index, as_of_d, say=print,
 
         r_fish, r_ang, r_hrs = _window_totals(
             catch_day, effort_day, recent_start, recent_end)
+        r_origin = _origin_totals(origin_day, recent_start, recent_end)
         p_fish, p_ang, p_hrs = _window_totals(
             catch_day, effort_day, prior_start, prior_end)
 
@@ -499,6 +533,12 @@ def trends(catch_day, effort_day, places, sp_index, as_of_d, say=print,
                 'season_r': median_or_none(rates_rel),
                 'season_years': len(rates),
             }
+            marks = r_origin.get((pid, sp))
+            if marks:
+                # clipped and unclipped, as counted; the rest of the fish simply
+                # were not checked, and are left out rather than assumed either way
+                row.update({'kept_h': marks[0], 'kept_w': marks[1],
+                            'rel_h': marks[2], 'rel_w': marks[3]})
             if hours >= MIN_HOURS:
                 # only the interview database times its trips, so most places have
                 # no hours at all and simply carry none of these

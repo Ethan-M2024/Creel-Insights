@@ -169,6 +169,12 @@ So each place is compared **against itself, at the same point in the season**:
 | **prior** | the same length of window immediately before it |
 | **seasonal** | the median of the same calendar window in each of the last three years |
 
+Where a report says whether a fish was fin-clipped, that is carried through as well
+— 74,792 fish across the record. Hatchery and wild are not the same animal to a
+biologist, and under mark-selective rules they are not the same fish to an angler
+either, so the clipped share travels with the count in the tooltips, the tables and
+the export rather than being averaged into one number.
+
 Rates are measured two ways. **Per angler** covers every source. **Per angler-hour**
 divides by the time those anglers were actually fishing, which is the honest
 denominator — an angler who fished forty minutes and one who fished all day are not
