@@ -215,6 +215,96 @@ def load(refresh=False, say=print):
                                                          by_interview)
 
 
+#: how far back the day-by-day slice runs. The whole-record summaries answer "what
+#: is this place like"; the slice answers "what has it been like lately", and 120
+#: days covers every trend window the dashboard offers with room to spare.
+RECENT_DAYS = 120
+
+
+def _recent(interviews, catches, by_interview, band_of, target_of, status_of):
+    """The same field notes, kept day by day for the recent past.
+
+    A reader who has asked for the last seven days should be told about the last
+    seven days, not handed a fifty-year average with the same heading. Only the
+    recent slice is carried at this resolution — the whole record at day level would
+    be most of the payload, and nobody is asking what gear worked in 1994.
+    """
+    from datetime import date, timedelta
+    days = [(r.get('event_date') or '')[:10] for r in interviews]
+    latest = max((d for d in days if d), default='')
+    if not latest:
+        return {}
+    cutoff = (date.fromisoformat(latest) - timedelta(days=RECENT_DAYS)).isoformat()
+
+    size = defaultdict(list)
+    gear = defaultdict(lambda: defaultdict(int))
+    hour_parties = defaultdict(lambda: defaultdict(int))     # water|day -> band
+    hour_hits = defaultdict(lambda: defaultdict(int))        # water|species|day
+    seat = defaultdict(lambda: defaultdict(lambda: [0, 0]))
+    trips = defaultdict(lambda: [0, 0])
+    target = defaultdict(lambda: [0, 0])
+    seat_of = {}
+
+    for r in interviews:
+        day = (r.get('event_date') or '')[:10]
+        wb = r.get('water_body') or ''
+        iid = r.get('interview_id')
+        if not iid or not wb or day < cutoff:
+            continue
+        kind = (r.get('angler_type') or '').strip()
+        if kind in ('Bank', 'Boat'):
+            seat_of[iid] = kind
+            seat[f'{wb}|{day}'][kind][0] += 1
+        if iid in status_of:
+            trips[f'{wb}|{day}'][0 if status_of[iid] == 'complete' else 1] += 1
+        if iid in target_of:
+            cell = target[f'{wb}|{common.species(target_of[iid])}|{day}']
+            cell[0] += 1
+            cell[1] += max(0, common.num(r.get('angler_count')) or 0)
+        if iid in band_of:
+            hour_parties[f'{wb}|{day}'][band_of[iid]] += 1
+
+    hit_species, hit_seat = set(), set()
+    for r in catches:
+        iid = r.get('interview_id')
+        day = (r.get('event_date') or '')[:10]
+        place = by_interview.get(iid)
+        wb = r.get('water_body') or (place[1] if place else '')
+        sp = common.species(r.get('species'))
+        if not wb or not sp or day < cutoff:
+            continue
+        cm = r.get('fork_length_cm')
+        if cm:
+            try:
+                value = float(cm)
+            except ValueError:
+                value = 0
+            if 5 <= value <= 200:
+                size[f'{wb}|{sp}|{day}'].append(round(value, 1))
+        kind = (r.get('gear_type') or '').strip()
+        if kind and kind.lower() not in ('unk', 'na', 'unknown'):
+            gear[f'{wb}|{sp}|{day}'][kind] += common.num(r.get('fish_count')) or 1
+        if iid in band_of and (iid, sp) not in hit_species:
+            hit_species.add((iid, sp))
+            hour_hits[f'{wb}|{sp}|{day}'][band_of[iid]] += 1
+        if iid in seat_of and (iid, wb) not in hit_seat:
+            hit_seat.add((iid, wb))
+            seat[f'{wb}|{day}'][seat_of[iid]][1] += 1
+
+    return {
+        'from': cutoff,
+        'size': dict(size),
+        'gear': {k: dict(v) for k, v in gear.items()},
+        # parties are per water and band, whatever anyone was fishing for; the fish
+        # are per species, so the two are kept in separate tables and divided later
+        'hour_parties': {k: dict(v) for k, v in hour_parties.items()},
+        'hour_hits': {k: dict(v) for k, v in hour_hits.items()},
+        'seat': {k: {b: v for b, v in kinds.items()} for k, kinds in seat.items()},
+        'trips': dict(trips),
+        'target': dict(target),
+    }
+
+
 #: when a trip started, grouped the way anyone talks about a fishing day
 HOUR_BANDS = (('first light', 0, 7), ('morning', 7, 10), ('midday', 10, 14),
               ('afternoon', 14, 18), ('evening', 18, 24))
@@ -334,7 +424,8 @@ def detail(interviews, catches, by_interview):
         return round(values[min(len(values) - 1, int(q * len(values)))], 1)
 
     out = {'size': {}, 'gear': {}, 'seat': {}, 'hour': {}, 'target': {},
-           'trips': {}}
+           'trips': {}, 'recent': _recent(interviews, catches, by_interview,
+                                          band_of, target_of, status_of)}
     for (wb, sp, band), (parties, hits) in hours.items():
         if parties >= 20:
             out['hour'].setdefault(f'{wb}|{sp}', {})[band] = {

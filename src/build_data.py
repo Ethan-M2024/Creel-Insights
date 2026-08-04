@@ -772,11 +772,30 @@ def detail_by_place(places, sp_index, effort_day=None, say=print):
         weekday[pid][date.fromisoformat(day).weekday()] += anglers
     crowd = {str(pid): counts for pid, counts in weekday.items() if sum(counts) >= 200}
 
+    # the same notes day by day for the recent past, so a reader who asks for the
+    # last seven days is answered about the last seven days
+    recent = {'from': (raw.get('recent') or {}).get('from', '')}
+    for table in ('size', 'gear', 'hour_hits', 'target'):
+        moved = {}
+        for key, value in ((raw.get('recent') or {}).get(table) or {}).items():
+            name, species, day = key.split('|')
+            if species in sp_index:
+                for pid in by_name.get(name, ()):
+                    moved[f'{pid}|{sp_index[species]}|{day}'] = value
+        recent[table] = moved
+    for table in ('hour_parties', 'seat', 'trips'):
+        moved = {}
+        for key, value in ((raw.get('recent') or {}).get(table) or {}).items():
+            name, day = key.split('|')
+            for pid in by_name.get(name, ()):
+                moved[f'{pid}|{day}'] = value
+        recent[table] = moved
+
     say(f'   detail: {len(size)} size, {len(gear)} gear, {len(seat)} bank-or-boat, '
         f'{len(hour)} by time of day, {len(target)} directed effort, '
-        f'{len(crowd)} weekday profiles')
+        f'{len(crowd)} weekday profiles, day by day since {recent.get("from") or "—"}')
     return {'size': size, 'gear': gear, 'seat': seat, 'hour': hour,
-            'target': target, 'trips': trips, 'crowd': crowd}
+            'target': target, 'trips': trips, 'crowd': crowd, 'recent': recent}
 
 
 def coverage(places, catch_day, effort_day, say=print):

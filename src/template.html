@@ -1531,23 +1531,115 @@ function renderDetail() {
    it is the answer to "how big do they run here, what were they caught on, and does
    the bank do as well as the boat", which is the part of a creel card an angler
    would read first and no dashboard shows at all. */
+/* The day-by-day slice, summed over whatever window the reader has asked for. It
+   only reaches back a few months, so an older window falls back to the whole record
+   and says so rather than answering a different question under the same heading. */
+function windowDays() {
+  if (state.window === 'all') return null;
+  const end = new Date(META.as_of + 'T12:00:00Z');
+  const days = [];
+  for (let i = 0; i < state.window; i++) {
+    const d = new Date(end);
+    d.setUTCDate(d.getUTCDate() - i);
+    days.push(d.toISOString().slice(0, 10));
+  }
+  const from = (DATA.detail?.recent || {}).from || '9999';
+  return days.every(d => d >= from) ? days : null;
+}
+
+function windowNotes(pid, days) {
+  const r = (DATA.detail || {}).recent || {};
+  if (!days) return null;
+  const key = day => `${pid}|${state.species}|${day}`;
+  const size = [];
+  const gear = {};
+  const target = [0, 0];
+  const hourParties = {}, hourHits = {};
+  const seat = {};
+  const trips = [0, 0];
+  for (const day of days) {
+    for (const cm of (r.size || {})[key(day)] || []) size.push(cm);
+    for (const [kind, n] of Object.entries((r.gear || {})[key(day)] || {})) {
+      gear[kind] = (gear[kind] || 0) + n;
+    }
+    const t = (r.target || {})[key(day)];
+    if (t) { target[0] += t[0]; target[1] += t[1]; }
+    for (const [band, n] of Object.entries((r.hour_parties || {})[`${pid}|${day}`] || {})) {
+      hourParties[band] = (hourParties[band] || 0) + n;
+    }
+    for (const [band, n] of Object.entries((r.hour_hits || {})[key(day)] || {})) {
+      hourHits[band] = (hourHits[band] || 0) + n;
+    }
+    for (const [kind, v] of Object.entries((r.seat || {})[`${pid}|${day}`] || {})) {
+      const cell = seat[kind] || (seat[kind] = { parties: 0, with_fish: 0 });
+      cell.parties += v[0];
+      cell.with_fish += v[1];
+    }
+    const tr = (r.trips || {})[`${pid}|${day}`];
+    if (tr) { trips[0] += tr[0]; trips[1] += tr[1]; }
+  }
+  const quantile = (values, q) => {
+    const v = [...values].sort((a, b) => a - b);
+    return v[Math.min(v.length - 1, Math.floor(q * v.length))];
+  };
+  const hour = {};
+  for (const [band, parties] of Object.entries(hourParties)) {
+    hour[band] = { parties, with_fish: hourHits[band] || 0 };
+  }
+  return {
+    size: size.length >= 5 ? {
+      n: size.length, mean: +(size.reduce((a, b) => a + b, 0) / size.length).toFixed(1),
+      p25: quantile(size, 0.25), p50: quantile(size, 0.5),
+      p75: quantile(size, 0.75), max: Math.max(...size),
+    } : null,
+    gear: Object.values(gear).reduce((a, b) => a + b, 0) >= 5
+      ? Object.fromEntries(Object.entries(gear).sort((a, b) => b[1] - a[1]).slice(0, 6))
+      : null,
+    hour: Object.values(hour).some(v => v.parties >= 5) ? hour : null,
+    seat: Object.values(seat).some(v => v.parties >= 5) ? seat : null,
+    target: target[0] >= 5 ? { parties: target[0], anglers: target[1] } : null,
+    trips: trips[0] + trips[1] >= 5
+      ? { complete: trips[0], incomplete: trips[1] } : null,
+  };
+}
+
 function fieldNotes(pid) {
   const d = DATA.detail || {};
   const key = `${pid}|${state.species}`;
-  const size = (d.size || {})[key];
-  const gear = (d.gear || {})[key];
-  const seat = (d.seat || {})[String(pid)];
-  const hour = (d.hour || {})[key];
-  const target = (d.target || {})[key];
-  const trips = (d.trips || {})[String(pid)];
+  const days = windowDays();
+  const win = windowNotes(pid, days);
+  const windowed = f => win && win[f];
+  const period = win
+    ? `the ${state.window} days to ${dayLabel(META.as_of)}`
+    : 'the whole record';
+  const size = windowed('size') || (d.size || {})[key];
+  const gear = windowed('gear') || (d.gear || {})[key];
+  const seat = windowed('seat') || (d.seat || {})[String(pid)];
+  const hour = windowed('hour') || (d.hour || {})[key];
+  const target = windowed('target') || (d.target || {})[key];
+  const trips = windowed('trips') || (d.trips || {})[String(pid)];
   const crowd = (d.crowd || {})[String(pid)];
   const mix = speciesMix(pid);
+  const from = f => (windowed(f) ? period : 'the whole record');
   if (!size && !gear && !seat && !hour && !target && !crowd && !mix) return '';
 
   const inches = cm => (cm / 2.54).toFixed(0);
+  const anyWindowed = win && Object.values(win).some(Boolean);
   let out = '<div class="field-notes">';
+  if (state.window !== 'all') {
+    out += `<p class="note">Each note below is labelled with the period it covers. ` +
+      (days
+        ? (anyWindowed
+            ? `Where the samplers wrote down enough in ${period}, that is what is
+               shown; the rest fall back to the whole record.`
+            : `Nothing was measured here in ${period} — too few interviews — so these
+               are the whole record.`)
+        : `The day-by-day detail only reaches back to
+           ${dayLabel((DATA.detail?.recent || {}).from || META.as_of)}, so a window
+           that starts earlier is answered from the whole record.`) + '</p>';
+  }
   if (size) {
-    out += `<h3>How big they run</h3>
+    out += `<h3>How big they run <span class="pill">${from('size')}</span></h3>
       <p class="note">Half the ${escapeHtml(SPECIES[state.species])} measured here
         were between ${size.p25} and ${size.p75} cm
         (${inches(size.p25)}–${inches(size.p75)} in) fork length; the median was
@@ -1556,7 +1648,8 @@ function fieldNotes(pid) {
   }
   if (gear) {
     const total = Object.values(gear).reduce((a, b) => a + b, 0);
-    out += '<h3>What caught them</h3><table><tbody>' +
+    out += `<h3>What caught them <span class="pill">${from('gear')}</span></h3>` +
+      '<table><tbody>' +
       Object.entries(gear).map(([kind, n]) => `
         <tr><td>${escapeHtml(kind)}</td>
         <td class="num">${fmt(n)}</td>
@@ -1568,7 +1661,7 @@ function fieldNotes(pid) {
     const rows = bands.filter(b => hour[b] && hour[b].parties >= 20);
     if (rows.length > 1) {
       const best = Math.max(...rows.map(b => hour[b].with_fish / hour[b].parties));
-      out += `<h3>When the fishing was done</h3>
+      out += `<h3>When the fishing was done <span class="pill">${from('hour')}</span></h3>
         <p class="note">Share of parties that had
           ${escapeHtml(SPECIES[state.species])} aboard, by the time of day they
           started. A party is counted once, in the band it set out in.</p>
@@ -1588,15 +1681,16 @@ function fieldNotes(pid) {
       <tr><td>${label}</td>
       <td class="num">${asPercent(v.with_fish / v.parties)}</td>
       <td class="num" style="color:var(--ink-3)">of ${fmt(v.parties)} parties</td></tr>` : '';
-    out += '<h3>Bank or boat</h3><p class="note">Share of interviewed parties that ' +
-      'caught something, any species, over the whole record.</p>' +
+    out += `<h3>Bank or boat <span class="pill">${from('seat')}</span></h3>` +
+      '<p class="note">Share of interviewed parties that caught something, any ' +
+      `species, over ${from('seat')}.</p>` +
       '<table><tbody>' + line('Bank', seat.Bank) + line('Boat', seat.Boat) +
       '</tbody></table>';
   }
   if (target) {
     const row = LIFETIME.get(pid)?.get(state.species);
     const fish = row ? fishFate(row.kept, row.rel) : 0;
-    out += `<h3>Who was fishing for them</h3>
+    out += `<h3>Who was fishing for them <span class="pill">${from('target')}</span></h3>
       <p class="note">${fmt(target.parties)} parties, ${fmt(target.anglers)} anglers,
         told the sampler they were after ${escapeHtml(SPECIES[state.species])} here` +
       (fish && target.anglers
@@ -1610,7 +1704,7 @@ function fieldNotes(pid) {
     const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
     const peak = Math.max(...crowd);
     const total = crowd.reduce((a, b) => a + b, 0);
-    out += `<h3>When everyone else goes</h3>
+    out += `<h3>When everyone else goes <span class="pill">the whole record</span></h3>
       <p class="note">Anglers interviewed by day of the week, over the whole record —
         ${fmt(total)} in all.</p><table><tbody>` +
       crowd.map((n, i) => `<tr><td>${days[i]}</td>
@@ -1619,8 +1713,10 @@ function fieldNotes(pid) {
         <td class="num">${fmt(n)}</td></tr>`).join('') + '</tbody></table>';
   }
   if (mix) {
-    out += `<h3>What else is caught here</h3>
-      <p class="note">Every species this place has reported, over the whole record.</p>
+    out += `<h3>What else is caught here <span class="pill">${
+        state.window === 'all' ? 'the whole record' : period}</span></h3>
+      <p class="note">Every species this place reported over ${
+        state.window === 'all' ? 'the whole record' : period}.</p>
       <table><tbody>` + mix.map(m => `
         <tr><td>${escapeHtml(m.name)}</td><td class="num">${fmt(m.fish)}</td>
         <td class="num" style="color:var(--ink-3)">${m.share}%</td></tr>`).join('') +
@@ -1638,7 +1734,11 @@ function fieldNotes(pid) {
 /* Every species a place has ever reported, biggest first. A reader looking at a
    Chinook map still wants to know that the river is full of pinks in August. */
 function speciesMix(pid) {
-  const bySpecies = LIFETIME.get(pid);
+  // in a window the trend rows already hold every species scored at this place, so
+  // the mix follows the window without another table
+  const bySpecies = state.window === 'all'
+    ? LIFETIME.get(pid)
+    : (state.mode === 'area' ? AREA_TREND : TREND).get(state.window)?.get(pid);
   if (!bySpecies) return null;
   const rows = [...bySpecies.entries()]
     .map(([sp, t]) => ({ name: SPECIES[sp], fish: t.kept + t.rel }))

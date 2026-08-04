@@ -309,6 +309,49 @@ class TestFieldNotes(unittest.TestCase):
         self.assertEqual(size['n'], 39)
 
 
+class TestRecentSlice(unittest.TestCase):
+    """The day-by-day slice that lets a short window answer for itself."""
+
+    def slice_of(self, days_back):
+        from datetime import date, timedelta
+        day = (date(2026, 8, 1) - timedelta(days=days_back)).isoformat()
+        interviews = [{'interview_id': f'{days_back}-{i}', 'event_date': day,
+                       'water_body': 'Ash Lake', 'angler_count': '1',
+                       'angler_type': 'Bank', 'trip_status': 'Complete',
+                       'fishing_start_time': '06:30:00',
+                       'target_species': 'Rainbow Trout'} for i in range(6)]
+        interviews.append({'interview_id': 'anchor', 'event_date': '2026-08-01',
+                           'water_body': 'Ash Lake', 'angler_count': '1'})
+        catch = [{'interview_id': f'{days_back}-{i}', 'event_date': day,
+                  'water_body': 'Ash Lake', 'species': 'Rainbow Trout',
+                  'fate': 'Kept', 'fish_count': '1', 'fork_length_cm': '32',
+                  'gear_type': 'Bait'} for i in range(6)]
+        real = socrata.fetch_all
+        socrata.fetch_all = lambda dataset, **kw: (
+            interviews if dataset == socrata.INTERVIEWS else catch)
+        try:
+            return socrata.load(say=lambda *a: None)[3]['recent']
+        finally:
+            socrata.fetch_all = real
+
+    def test_a_recent_day_is_kept_day_by_day(self):
+        recent = self.slice_of(3)
+        key = 'Ash Lake|Rainbow trout|2026-07-29'
+        self.assertEqual(len(recent['size'][key]), 6)
+        self.assertEqual(recent['gear'][key], {'Bait': 6})
+
+    def test_an_old_day_is_left_to_the_whole_record(self):
+        recent = self.slice_of(400)
+        self.assertFalse(any('2025' in k for k in recent['size']))
+
+    def test_parties_and_fish_are_kept_in_separate_tables(self):
+        # parties are per water and band whatever they were fishing for; the fish
+        # are per species, and dividing one by the other is the whole point
+        recent = self.slice_of(3)
+        self.assertIn('Ash Lake|2026-07-29', recent['hour_parties'])
+        self.assertIn('Ash Lake|Rainbow trout|2026-07-29', recent['hour_hits'])
+
+
 class TestTimeOfDay(unittest.TestCase):
     """A party counts once, in the band it set out in."""
 

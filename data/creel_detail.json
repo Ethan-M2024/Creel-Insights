@@ -9718,6 +9718,7734 @@
 }
 }
 },
+"recent": {
+"from": "2026-03-31",
+"gear": {
+"Calawah River|Steelhead|2026-03-31": {
+"Gear": 1
+},
+"Cascade River|Bull trout|2026-06-18": {
+"Lure": 2
+},
+"Cascade River|Chinook|2026-05-22": {
+"Bait-Lure": 1
+},
+"Cascade River|Chinook|2026-05-23": {
+"Bait-Lure": 1
+},
+"Cascade River|Chinook|2026-05-24": {
+"Bait-Jig": 1,
+"Bait-Lure": 1
+},
+"Cascade River|Chinook|2026-06-03": {
+"Bait-Lure": 1
+},
+"Cascade River|Chinook|2026-06-10": {
+"Bait-Lure": 1
+},
+"Cascade River|Chinook|2026-06-11": {
+"Lure": 1
+},
+"Cascade River|Chinook|2026-06-12": {
+"Bait-Lure": 3
+},
+"Cascade River|Chinook|2026-06-13": {
+"Bait-Lure": 2,
+"Lure": 2
+},
+"Cascade River|Chinook|2026-06-27": {
+"Lure": 2
+},
+"Cascade River|Chinook|2026-07-11": {
+"Lure": 2
+},
+"Cascade River|Dolly Varden|2026-05-22": {
+"Lure": 5
+},
+"Cascade River|Dolly Varden|2026-06-03": {
+"Bait-Lure": 1
+},
+"Cascade River|Largescale Sucker|2026-06-06": {
+"Lure": 1
+},
+"Cascade River|Rainbow trout|2026-06-25": {
+"Bait-Lure": 1
+},
+"Cascade River|Steelhead|2026-06-12": {
+"Bait-Lure": 1
+},
+"Cascade River|Whitefish|2026-05-22": {
+"Lure": 1
+},
+"Cascade River|Whitefish|2026-05-23": {
+"Bait-Lure": 1
+},
+"Cascade River|Whitefish|2026-06-11": {
+"Lure": 1
+},
+"Hoh River|Steelhead|2026-03-31": {
+"Fly": 2,
+"Gear": 25,
+"Lure": 2
+},
+"Hoh River|Whitefish|2026-03-31": {
+"Gear": 4
+},
+"Nooksack River - North Fork|Bull trout|2026-05-23": {
+"Bait": 3,
+"Lure": 1
+},
+"Nooksack River - North Fork|Bull trout|2026-05-26": {
+"Lure": 4
+},
+"Nooksack River - North Fork|Bull trout|2026-05-27": {
+"Bait": 6,
+"Bait-Lure": 5
+},
+"Nooksack River - North Fork|Bull trout|2026-05-30": {
+"Bait": 1,
+"Bait-Lure": 3,
+"Fly": 1,
+"Lure": 1
+},
+"Nooksack River - North Fork|Bull trout|2026-06-02": {
+"Bait": 3,
+"Bait-Lure": 1,
+"Lure": 2
+},
+"Nooksack River - North Fork|Bull trout|2026-06-05": {
+"Bait": 2
+},
+"Nooksack River - North Fork|Bull trout|2026-06-07": {
+"Bait": 1,
+"Lure": 1
+},
+"Nooksack River - North Fork|Bull trout|2026-06-08": {
+"Lure": 1
+},
+"Nooksack River - North Fork|Chinook|2026-05-23": {
+"Bait": 3,
+"Bait-Lure": 3
+},
+"Nooksack River - North Fork|Chinook|2026-05-24": {
+"Lure": 3
+},
+"Nooksack River - North Fork|Chinook|2026-05-25": {
+"Lure": 2
+},
+"Nooksack River - North Fork|Chinook|2026-05-26": {
+"Bait": 8
+},
+"Nooksack River - North Fork|Chinook|2026-05-27": {
+"Bait": 2,
+"Bait-Lure": 1
+},
+"Nooksack River - North Fork|Chinook|2026-05-30": {
+"Bait": 6,
+"Bait-Lure": 1
+},
+"Nooksack River - North Fork|Chinook|2026-05-31": {
+"Bait": 1,
+"Bait-Lure": 4,
+"Lure": 6
+},
+"Nooksack River - North Fork|Chinook|2026-06-01": {
+"Bait": 16,
+"Lure": 1
+},
+"Nooksack River - North Fork|Chinook|2026-06-02": {
+"Bait": 3
+},
+"Nooksack River - North Fork|Chinook|2026-06-05": {
+"Bait": 5,
+"Bait-Lure": 3,
+"Lure": 2
+},
+"Nooksack River - North Fork|Chinook|2026-06-06": {
+"Bait": 3,
+"Lure": 1
+},
+"Nooksack River - North Fork|Chinook|2026-06-07": {
+"Bait": 8,
+"Bait-Lure": 1
+},
+"Nooksack River - North Fork|Chinook|2026-06-08": {
+"Bait-Lure": 4,
+"Lure": 1
+},
+"Nooksack River - North Fork|Dolly Varden|2026-05-25": {
+"Lure": 6
+},
+"Nooksack River - North Fork|Dolly Varden|2026-05-26": {
+"Lure": 1
+},
+"Nooksack River - North Fork|Largescale Sucker|2026-05-31": {
+"Bait-Lure": 1
+},
+"Nooksack River - North Fork|Rainbow trout|2026-05-26": {
+"Bait": 1
+},
+"Nooksack River - North Fork|Steelhead|2026-05-30": {
+"Bait": 1
+},
+"Nooksack River - North Fork|Steelhead|2026-05-31": {
+"Bait-Lure": 1
+},
+"Nooksack River - North Fork|Sucker|2026-05-26": {
+"Lure": 1
+},
+"Nooksack River - North Fork|Whitefish|2026-05-25": {
+"Lure": 1
+},
+"Puyallup River|Chinook|2026-07-29": {
+"Gear": 3
+},
+"Skagit River|Brown Bullhead|2026-07-05": {
+"Bait": 1
+},
+"Skagit River|Bull trout|2026-04-20": {
+"Fly": 1
+},
+"Skagit River|Bull trout|2026-04-24": {
+"Lure": 1
+},
+"Skagit River|Bull trout|2026-04-25": {
+"Bait-Lure": 1
+},
+"Skagit River|Bull trout|2026-04-26": {
+"Fly": 4,
+"Lure": 1
+},
+"Skagit River|Bull trout|2026-04-28": {
+"Bait-Lure": 5
+},
+"Skagit River|Bull trout|2026-04-29": {
+"Lure": 2
+},
+"Skagit River|Bull trout|2026-05-17": {
+"Fly": 2
+},
+"Skagit River|Bull trout|2026-05-22": {
+"Lure": 3
+},
+"Skagit River|Bull trout|2026-05-23": {
+"Lure": 1
+},
+"Skagit River|Bull trout|2026-05-29": {
+"Bait": 1
+},
+"Skagit River|Bull trout|2026-05-31": {
+"Bait-Lure": 1,
+"Fly": 1
+},
+"Skagit River|Bull trout|2026-06-01": {
+"Fly": 4
+},
+"Skagit River|Bull trout|2026-06-11": {
+"Lure": 1
+},
+"Skagit River|Bull trout|2026-06-16": {
+"Fly": 5
+},
+"Skagit River|Bull trout|2026-06-24": {
+"Bait-Lure": 1,
+"Fly": 1
+},
+"Skagit River|Bull trout|2026-06-25": {
+"Fly": 1
+},
+"Skagit River|Bull trout|2026-06-28": {
+"Bait": 1
+},
+"Skagit River|Bull trout|2026-07-10": {
+"Fly": 1
+},
+"Skagit River|Bull trout|2026-07-12": {
+"Bait-Lure": 1
+},
+"Skagit River|Bull trout|2026-07-19": {
+"Bait-Lure": 2
+},
+"Skagit River|Chinook|2026-04-20": {
+"Bait-Lure": 1,
+"Lure": 1
+},
+"Skagit River|Chinook|2026-05-16": {
+"Bait-Lure": 6,
+"Lure": 1
+},
+"Skagit River|Chinook|2026-05-17": {
+"Bait-Lure": 1,
+"Lure": 2
+},
+"Skagit River|Chinook|2026-05-20": {
+"Lure": 1
+},
+"Skagit River|Chinook|2026-05-28": {
+"Bait-Lure": 1
+},
+"Skagit River|Chinook|2026-05-30": {
+"Bait-Lure": 1
+},
+"Skagit River|Chinook|2026-06-01": {
+"Bait-Lure": 1
+},
+"Skagit River|Chinook|2026-06-07": {
+"Bait": 1
+},
+"Skagit River|Chinook|2026-06-10": {
+"Bait-Lure": 2
+},
+"Skagit River|Chinook|2026-06-13": {
+"Bait": 1
+},
+"Skagit River|Chinook|2026-06-16": {
+"Bait-Lure": 1
+},
+"Skagit River|Chinook|2026-06-18": {
+"Jig": 1
+},
+"Skagit River|Chinook|2026-06-25": {
+"Bait-Jig": 1,
+"Bait-Lure": 1
+},
+"Skagit River|Chinook|2026-06-27": {
+"Bait": 1,
+"Bait-Lure": 1
+},
+"Skagit River|Chinook|2026-07-10": {
+"Bait-Lure": 1
+},
+"Skagit River|Chinook|2026-07-12": {
+"Bait-Lure": 3
+},
+"Skagit River|Cutthroat|2026-04-20": {
+"Fly": 3,
+"Lure": 2
+},
+"Skagit River|Cutthroat|2026-04-22": {
+"Lure": 1
+},
+"Skagit River|Cutthroat|2026-04-26": {
+"Bait-Lure": 1
+},
+"Skagit River|Cutthroat|2026-05-03": {
+"Bait-Lure": 1
+},
+"Skagit River|Cutthroat|2026-05-08": {
+"Bait": 1
+},
+"Skagit River|Cutthroat|2026-05-29": {
+"Fly": 1
+},
+"Skagit River|Cutthroat|2026-07-21": {
+"Fly": 1
+},
+"Skagit River|Cutthroat|2026-07-28": {
+"Lure": 1
+},
+"Skagit River|Dolly Varden|2026-04-24": {
+"Lure": 1
+},
+"Skagit River|Dolly Varden|2026-04-26": {
+"Bait-Lure": 1,
+"Lure": 1
+},
+"Skagit River|Dolly Varden|2026-04-28": {
+"Bait-Lure": 2,
+"Lure": 1
+},
+"Skagit River|Dolly Varden|2026-04-29": {
+"Bait-Lure": 1,
+"Lure": 5
+},
+"Skagit River|Dolly Varden|2026-05-02": {
+"Bait-Lure": 4,
+"Lure": 1
+},
+"Skagit River|Dolly Varden|2026-05-09": {
+"Lure": 1
+},
+"Skagit River|Dolly Varden|2026-05-16": {
+"Bait-Lure": 1
+},
+"Skagit River|Dolly Varden|2026-05-17": {
+"Bait": 2,
+"Bait-Lure": 4
+},
+"Skagit River|Dolly Varden|2026-05-20": {
+"Bait-Lure": 2,
+"Lure": 1
+},
+"Skagit River|Dolly Varden|2026-05-23": {
+"Bait-Lure": 3,
+"Lure": 7
+},
+"Skagit River|Dolly Varden|2026-05-29": {
+"Bait": 3
+},
+"Skagit River|Dolly Varden|2026-06-01": {
+"Bait-Lure": 8
+},
+"Skagit River|Dolly Varden|2026-06-03": {
+"Bait-Lure": 4
+},
+"Skagit River|Dolly Varden|2026-06-07": {
+"Bait-Lure": 1
+},
+"Skagit River|Dolly Varden|2026-06-10": {
+"Bait": 2
+},
+"Skagit River|Dolly Varden|2026-06-12": {
+"Bait-Lure": 8
+},
+"Skagit River|Dolly Varden|2026-06-13": {
+"Bait": 3
+},
+"Skagit River|Dolly Varden|2026-06-24": {
+"Lure": 3
+},
+"Skagit River|Dolly Varden|2026-06-27": {
+"Bait-Lure": 1
+},
+"Skagit River|Dolly Varden|2026-07-10": {
+"Lure": 4
+},
+"Skagit River|Largescale Sucker|2026-05-29": {
+"Fly": 1
+},
+"Skagit River|Largescale Sucker|2026-07-23": {
+"Bait-Lure": 1
+},
+"Skagit River|Northern pikeminnow|2026-07-11": {
+"Bait-Lure": 1
+},
+"Skagit River|Rainbow trout|2026-04-24": {
+"Lure": 1
+},
+"Skagit River|Rainbow trout|2026-04-25": {
+"Bait-Lure": 2
+},
+"Skagit River|Rainbow trout|2026-04-26": {
+"Bait-Lure": 4,
+"Fly": 2,
+"Lure": 3
+},
+"Skagit River|Rainbow trout|2026-04-29": {
+"Bait": 1
+},
+"Skagit River|Rainbow trout|2026-05-02": {
+"Bait-Lure": 4
+},
+"Skagit River|Rainbow trout|2026-05-03": {
+"Jig": 1,
+"Lure": 1
+},
+"Skagit River|Rainbow trout|2026-05-10": {
+"Bait-Lure": 1
+},
+"Skagit River|Rainbow trout|2026-05-17": {
+"Bait-Lure": 3
+},
+"Skagit River|Rainbow trout|2026-05-20": {
+"Lure": 1
+},
+"Skagit River|Rainbow trout|2026-05-23": {
+"Lure": 2
+},
+"Skagit River|Rainbow trout|2026-05-28": {
+"Bait-Lure": 2
+},
+"Skagit River|Rainbow trout|2026-05-31": {
+"Fly": 2
+},
+"Skagit River|Rainbow trout|2026-06-01": {
+"Bait-Lure": 3,
+"Fly": 3
+},
+"Skagit River|Rainbow trout|2026-06-07": {
+"Bait-Lure": 2
+},
+"Skagit River|Rainbow trout|2026-06-11": {
+"Lure": 3
+},
+"Skagit River|Rainbow trout|2026-06-12": {
+"Bait-Lure": 2
+},
+"Skagit River|Rainbow trout|2026-06-13": {
+"Bait": 5
+},
+"Skagit River|Rainbow trout|2026-06-16": {
+"Bait": 1,
+"Fly": 1
+},
+"Skagit River|Rainbow trout|2026-06-18": {
+"Bait-Lure": 2
+},
+"Skagit River|Rainbow trout|2026-06-25": {
+"Bait": 1
+},
+"Skagit River|Rainbow trout|2026-06-28": {
+"Lure": 1
+},
+"Skagit River|Rainbow trout|2026-07-05": {
+"Bait": 1
+},
+"Skagit River|Rainbow trout|2026-07-10": {
+"Bait-Lure": 1
+},
+"Skagit River|Rainbow trout|2026-07-12": {
+"Bait-Lure": 2
+},
+"Skagit River|Rainbow trout|2026-07-19": {
+"Bait-Lure": 6
+},
+"Skagit River|Salmonid - Unspecified|2026-04-20": {
+"Fly": 2,
+"Lure": 5
+},
+"Skagit River|Salmonid - Unspecified|2026-04-25": {
+"Lure": 1
+},
+"Skagit River|Salmonid - Unspecified|2026-04-26": {
+"Lure": 1
+},
+"Skagit River|Salmonid - Unspecified|2026-04-29": {
+"Lure": 1
+},
+"Skagit River|Salmonid - Unspecified|2026-05-02": {
+"Bait-Lure": 4
+},
+"Skagit River|Salmonid - Unspecified|2026-05-09": {
+"Lure": 2
+},
+"Skagit River|Sockeye|2026-06-16": {
+"Lure": 1
+},
+"Skagit River|Sockeye|2026-06-24": {
+"Bait-Lure": 2
+},
+"Skagit River|Sockeye|2026-06-25": {
+"Bait": 1,
+"Bait-Lure": 1,
+"Lure": 2
+},
+"Skagit River|Sockeye|2026-06-27": {
+"Bait-Lure": 5,
+"Lure": 1
+},
+"Skagit River|Sockeye|2026-06-28": {
+"Bait-Lure": 19
+},
+"Skagit River|Sockeye|2026-06-29": {
+"Bait-Lure": 4
+},
+"Skagit River|Sockeye|2026-07-02": {
+"Bait-Lure": 4
+},
+"Skagit River|Sockeye|2026-07-05": {
+"Bait": 2,
+"Bait-Lure": 8
+},
+"Skagit River|Sockeye|2026-07-08": {
+"Bait-Lure": 2
+},
+"Skagit River|Sockeye|2026-07-11": {
+"Bait": 1,
+"Lure": 1
+},
+"Skagit River|Sockeye|2026-07-12": {
+"Bait-Lure": 4
+},
+"Skagit River|Sockeye|2026-07-17": {
+"Bait-Lure": 3
+},
+"Skagit River|Steelhead|2026-04-24": {
+"Lure": 1
+},
+"Skagit River|Steelhead|2026-04-29": {
+"Lure": 1
+},
+"Skagit River|Steelhead|2026-05-02": {
+"Bait-Lure": 1
+},
+"Skagit River|Steelhead|2026-05-12": {
+"Lure": 1
+},
+"Skagit River|Steelhead|2026-05-16": {
+"Bait-Lure": 3,
+"Lure": 3
+},
+"Skagit River|Steelhead|2026-05-17": {
+"Bait": 6,
+"Bait-Lure": 3
+},
+"Skagit River|Steelhead|2026-05-20": {
+"Lure": 2
+},
+"Skagit River|Steelhead|2026-05-22": {
+"Lure": 1
+},
+"Skagit River|Steelhead|2026-05-23": {
+"Lure": 2
+},
+"Skagit River|Steelhead|2026-05-28": {
+"Bait-Lure": 1
+},
+"Skagit River|Steelhead|2026-06-01": {
+"Bait-Lure": 1
+},
+"Skagit River|Steelhead|2026-06-10": {
+"Bait-Lure": 1
+},
+"Skagit River|Steelhead|2026-06-28": {
+"Lure": 1
+},
+"Skagit River|Steelhead|2026-06-29": {
+"Bait": 1
+},
+"Skagit River|Steelhead|2026-07-21": {
+"Bait": 1
+},
+"Skagit River|Sturgeon|2026-04-24": {
+"Lure": 1
+},
+"Skagit River|Sturgeon|2026-05-02": {
+"Bait-Lure": 1
+},
+"Skagit River|Sturgeon|2026-07-25": {
+"Bait": 1
+},
+"Skagit River|Sucker|2026-05-30": {
+"Bait-Lure": 1
+},
+"Skagit River|Sucker|2026-06-25": {
+"Bait-Lure": 1
+},
+"Skagit River|Trout - Unspecified|2026-04-20": {
+"Lure": 2
+},
+"Skagit River|Trout - Unspecified|2026-04-24": {
+"Lure": 1
+},
+"Skagit River|Trout - Unspecified|2026-05-02": {
+"Lure": 2
+},
+"Skagit River|Whitefish|2026-05-20": {
+"Lure": 1
+},
+"Skagit River|Whitefish|2026-05-23": {
+"Lure": 4
+},
+"Skagit River|Whitefish|2026-05-31": {
+"Bait-Lure": 4,
+"Fly": 1
+},
+"Skagit River|Whitefish|2026-06-01": {
+"Bait-Lure": 2
+},
+"Skagit River|Whitefish|2026-06-03": {
+"Bait-Lure": 6
+},
+"Skagit River|Whitefish|2026-06-13": {
+"Bait-Lure": 2
+},
+"Skagit River|Whitefish|2026-06-28": {
+"Lure": 1
+},
+"Skagit River|Whitefish|2026-07-10": {
+"Fly": 1
+},
+"Sol Duc River|Chinook|2026-05-01": {
+"Bait": 4,
+"Bait-Lure": 1,
+"Gear": 6
+},
+"Sol Duc River|Chinook|2026-05-02": {
+"Bait": 10,
+"Gear": 2
+},
+"Sol Duc River|Chinook|2026-05-03": {
+"Bait": 2
+},
+"Sol Duc River|Chinook|2026-05-06": {
+"Bait": 2
+},
+"Sol Duc River|Chinook|2026-05-08": {
+"Bait": 8,
+"Bait-Lure": 2
+},
+"Sol Duc River|Chinook|2026-05-09": {
+"Bait": 3,
+"Gear": 1
+},
+"Sol Duc River|Chinook|2026-05-10": {
+"Bait": 5
+},
+"Sol Duc River|Chinook|2026-05-12": {
+"Bait": 2
+},
+"Sol Duc River|Chinook|2026-05-16": {
+"Gear": 3
+},
+"Sol Duc River|Chinook|2026-05-17": {
+"Gear": 3
+},
+"Sol Duc River|Chinook|2026-05-19": {
+"Gear": 3
+},
+"Sol Duc River|Chinook|2026-05-24": {
+"Bait": 6,
+"Bait-Lure": 5
+},
+"Sol Duc River|Chinook|2026-05-27": {
+"Bait-Lure": 3,
+"Lure": 1
+},
+"Sol Duc River|Chinook|2026-05-30": {
+"Gear": 7,
+"Multiple gear types": 1
+},
+"Sol Duc River|Chinook|2026-05-31": {
+"Gear": 6
+},
+"Sol Duc River|Coho|2026-05-30": {
+"Gear": 1
+},
+"Sol Duc River|Cutthroat|2026-03-31": {
+"Gear": 1
+},
+"Sol Duc River|Cutthroat|2026-05-01": {
+"Bait": 1,
+"Gear": 5
+},
+"Sol Duc River|Cutthroat|2026-05-02": {
+"Gear": 1
+},
+"Sol Duc River|Cutthroat|2026-05-03": {
+"Fly": 2,
+"Gear": 1
+},
+"Sol Duc River|Cutthroat|2026-05-06": {
+"Fly": 4
+},
+"Sol Duc River|Cutthroat|2026-05-08": {
+"Fly": 1,
+"Gear": 2
+},
+"Sol Duc River|Cutthroat|2026-05-09": {
+"Gear": 1
+},
+"Sol Duc River|Cutthroat|2026-05-12": {
+"Bait": 3
+},
+"Sol Duc River|Cutthroat|2026-05-17": {
+"Gear": 1
+},
+"Sol Duc River|Cutthroat|2026-05-30": {
+"Gear": 4,
+"Multiple gear types": 3
+},
+"Sol Duc River|Rainbow trout|2026-05-30": {
+"Multiple gear types": 1
+},
+"Sol Duc River|Salmonid - Unspecified|2026-05-06": {
+"Fly": 1
+},
+"Sol Duc River|Steelhead|2026-03-31": {
+"Gear": 1
+},
+"Sol Duc River|Steelhead|2026-05-01": {
+"Bait": 3,
+"Fly": 1,
+"Gear": 9
+},
+"Sol Duc River|Steelhead|2026-05-02": {
+"Bait": 2,
+"Bait-Lure": 1,
+"Gear": 3
+},
+"Sol Duc River|Steelhead|2026-05-03": {
+"Gear": 4
+},
+"Sol Duc River|Steelhead|2026-05-06": {
+"Bait-Lure": 1,
+"Gear": 3
+},
+"Sol Duc River|Steelhead|2026-05-08": {
+"Bait": 2,
+"Bait-Lure": 1
+},
+"Sol Duc River|Steelhead|2026-05-10": {
+"Bait": 2
+},
+"Sol Duc River|Steelhead|2026-05-12": {
+"Bait": 2
+},
+"Sol Duc River|Steelhead|2026-05-16": {
+"Gear": 1
+},
+"Sol Duc River|Steelhead|2026-05-30": {
+"Multiple gear types": 1
+},
+"Sol Duc River|Trout - Unspecified|2026-05-03": {
+"Gear": 2
+},
+"Sol Duc River|Whitefish|2026-05-06": {
+"Bait-Lure": 1
+}
+},
+"hour_hits": {
+"Blue Creek (Cowlitz)|Steelhead|2026-04-02": {
+"first light": 2
+},
+"Blue Creek (Cowlitz)|Steelhead|2026-04-08": {
+"afternoon": 1,
+"first light": 1,
+"midday": 1
+},
+"Blue Creek (Cowlitz)|Steelhead|2026-04-09": {
+"morning": 2
+},
+"Blue Creek (Cowlitz)|Steelhead|2026-04-12": {
+"first light": 1
+},
+"Blue Creek (Cowlitz)|Steelhead|2026-04-14": {
+"first light": 1
+},
+"Blue Creek (Cowlitz)|Steelhead|2026-04-15": {
+"midday": 1
+},
+"Blue Creek (Cowlitz)|Trout - Unspecified|2026-04-02": {
+"first light": 2,
+"morning": 1
+},
+"Calawah River|Steelhead|2026-03-31": {
+"midday": 1
+},
+"Carlisle Lake|Black Crappie|2026-04-25": {
+"midday": 1
+},
+"Carlisle Lake|Largemouth bass|2026-04-25": {
+"midday": 1
+},
+"Carlisle Lake|Rainbow trout|2026-04-25": {
+"afternoon": 2,
+"midday": 1
+},
+"Cascade River|Bull trout|2026-06-18": {
+"morning": 1
+},
+"Cascade River|Chinook|2026-05-22": {
+"midday": 1
+},
+"Cascade River|Chinook|2026-05-23": {
+"morning": 1
+},
+"Cascade River|Chinook|2026-05-24": {
+"first light": 1,
+"midday": 1
+},
+"Cascade River|Chinook|2026-06-03": {
+"first light": 1
+},
+"Cascade River|Chinook|2026-06-10": {
+"morning": 1
+},
+"Cascade River|Chinook|2026-06-11": {
+"morning": 1
+},
+"Cascade River|Chinook|2026-06-12": {
+"first light": 1
+},
+"Cascade River|Chinook|2026-06-13": {
+"first light": 2,
+"morning": 1
+},
+"Cascade River|Chinook|2026-06-20": {
+"first light": 1,
+"morning": 1
+},
+"Cascade River|Chinook|2026-06-27": {
+"first light": 1
+},
+"Cascade River|Chinook|2026-07-11": {
+"afternoon": 1,
+"morning": 1
+},
+"Cascade River|Dolly Varden|2026-05-22": {
+"first light": 4
+},
+"Cascade River|Dolly Varden|2026-06-03": {
+"first light": 1
+},
+"Cascade River|Largescale Sucker|2026-06-06": {
+"midday": 1
+},
+"Cascade River|Rainbow trout|2026-06-25": {
+"first light": 1
+},
+"Cascade River|Steelhead|2026-06-12": {
+"morning": 1
+},
+"Cascade River|Whitefish|2026-05-22": {
+"first light": 1
+},
+"Cascade River|Whitefish|2026-05-23": {
+"morning": 1
+},
+"Cascade River|Whitefish|2026-06-11": {
+"first light": 1
+},
+"Cowlitz River|Chinook|2026-04-08": {
+"first light": 1
+},
+"Cowlitz River|Chinook|2026-04-09": {
+"morning": 2
+},
+"Cowlitz River|Chinook|2026-04-12": {
+"midday": 1
+},
+"Cowlitz River|Chinook|2026-04-16": {
+"first light": 1
+},
+"Cowlitz River|Chinook|2026-04-19": {
+"first light": 1
+},
+"Cowlitz River|Chinook|2026-04-20": {
+"morning": 2
+},
+"Cowlitz River|Chinook|2026-04-27": {
+"first light": 1,
+"midday": 1,
+"morning": 1
+},
+"Cowlitz River|Chinook|2026-04-28": {
+"midday": 2,
+"morning": 1
+},
+"Cowlitz River|Chinook|2026-05-03": {
+"first light": 1,
+"morning": 1
+},
+"Cowlitz River|Chinook|2026-05-10": {
+"first light": 2
+},
+"Cowlitz River|Chinook|2026-05-11": {
+"first light": 1,
+"morning": 1
+},
+"Cowlitz River|Chinook|2026-05-13": {
+"first light": 2,
+"morning": 1
+},
+"Cowlitz River|Chinook|2026-05-14": {
+"first light": 2
+},
+"Cowlitz River|Chinook|2026-05-17": {
+"first light": 1
+},
+"Cowlitz River|Chinook|2026-05-19": {
+"morning": 1
+},
+"Cowlitz River|Chinook|2026-05-20": {
+"first light": 1
+},
+"Cowlitz River|Chinook|2026-05-31": {
+"first light": 8
+},
+"Cowlitz River|Chinook|2026-06-01": {
+"first light": 8
+},
+"Cowlitz River|Chinook|2026-06-02": {
+"first light": 4,
+"midday": 1,
+"morning": 2
+},
+"Cowlitz River|Chinook|2026-06-03": {
+"first light": 4,
+"midday": 1
+},
+"Cowlitz River|Chinook|2026-06-07": {
+"first light": 4,
+"morning": 1
+},
+"Cowlitz River|Chinook|2026-06-08": {
+"first light": 5
+},
+"Cowlitz River|Chinook|2026-06-09": {
+"first light": 5
+},
+"Cowlitz River|Chinook|2026-06-10": {
+"first light": 4
+},
+"Cowlitz River|Chinook|2026-06-11": {
+"first light": 4
+},
+"Cowlitz River|Chinook|2026-06-14": {
+"first light": 8,
+"morning": 1
+},
+"Cowlitz River|Chinook|2026-06-15": {
+"first light": 4
+},
+"Cowlitz River|Chinook|2026-06-16": {
+"first light": 1,
+"morning": 2
+},
+"Cowlitz River|Chinook|2026-06-21": {
+"first light": 9
+},
+"Cowlitz River|Chinook|2026-06-22": {
+"first light": 6
+},
+"Cowlitz River|Chinook|2026-06-23": {
+"first light": 6
+},
+"Cowlitz River|Chinook|2026-06-24": {
+"first light": 3
+},
+"Cowlitz River|Chinook|2026-06-28": {
+"first light": 5,
+"morning": 1
+},
+"Cowlitz River|Chinook|2026-06-29": {
+"first light": 2,
+"midday": 1,
+"morning": 1
+},
+"Cowlitz River|Chinook|2026-07-01": {
+"first light": 2,
+"morning": 1
+},
+"Cowlitz River|Chinook|2026-07-02": {
+"first light": 4
+},
+"Cowlitz River|Chinook|2026-07-06": {
+"first light": 1
+},
+"Cowlitz River|Chinook|2026-07-07": {
+"first light": 3
+},
+"Cowlitz River|Chinook|2026-07-08": {
+"first light": 1
+},
+"Cowlitz River|Chinook|2026-07-09": {
+"first light": 1
+},
+"Cowlitz River|Chinook|2026-07-12": {
+"first light": 2
+},
+"Cowlitz River|Chinook|2026-07-14": {
+"first light": 3,
+"morning": 1
+},
+"Cowlitz River|Chinook|2026-07-19": {
+"first light": 1
+},
+"Cowlitz River|Chinook|2026-07-22": {
+"first light": 2
+},
+"Cowlitz River|Chinook|2026-07-23": {
+"first light": 4
+},
+"Cowlitz River|Chinook|2026-07-26": {
+"first light": 2,
+"morning": 1
+},
+"Cowlitz River|Chinook|2026-07-27": {
+"first light": 1
+},
+"Cowlitz River|Chinook|2026-07-29": {
+"first light": 2
+},
+"Cowlitz River|Cutthroat|2026-04-19": {
+"morning": 1
+},
+"Cowlitz River|Cutthroat|2026-04-27": {
+"morning": 1
+},
+"Cowlitz River|Cutthroat|2026-05-06": {
+"morning": 1
+},
+"Cowlitz River|Cutthroat|2026-05-14": {
+"midday": 1
+},
+"Cowlitz River|Cutthroat|2026-06-09": {
+"morning": 1
+},
+"Cowlitz River|Cutthroat|2026-06-21": {
+"first light": 1
+},
+"Cowlitz River|Cutthroat|2026-06-24": {
+"morning": 1
+},
+"Cowlitz River|Cutthroat|2026-06-28": {
+"first light": 1
+},
+"Cowlitz River|Cutthroat|2026-07-01": {
+"morning": 1
+},
+"Cowlitz River|Cutthroat|2026-07-02": {
+"first light": 1
+},
+"Cowlitz River|Cutthroat|2026-07-07": {
+"first light": 1
+},
+"Cowlitz River|Cutthroat|2026-07-08": {
+"first light": 1
+},
+"Cowlitz River|Rainbow trout|2026-04-12": {
+"first light": 2
+},
+"Cowlitz River|Rainbow trout|2026-04-13": {
+"midday": 1
+},
+"Cowlitz River|Rainbow trout|2026-04-16": {
+"morning": 1
+},
+"Cowlitz River|Rainbow trout|2026-04-20": {
+"first light": 1
+},
+"Cowlitz River|Rainbow trout|2026-05-27": {
+"midday": 1
+},
+"Cowlitz River|Rainbow trout|2026-07-22": {
+"morning": 1
+},
+"Cowlitz River|Steelhead|2026-03-31": {
+"first light": 2
+},
+"Cowlitz River|Steelhead|2026-04-01": {
+"morning": 1
+},
+"Cowlitz River|Steelhead|2026-04-02": {
+"first light": 1,
+"morning": 2
+},
+"Cowlitz River|Steelhead|2026-04-08": {
+"morning": 1
+},
+"Cowlitz River|Steelhead|2026-04-09": {
+"first light": 1
+},
+"Cowlitz River|Steelhead|2026-04-12": {
+"morning": 2
+},
+"Cowlitz River|Steelhead|2026-04-13": {
+"morning": 1
+},
+"Cowlitz River|Steelhead|2026-04-16": {
+"first light": 1
+},
+"Cowlitz River|Steelhead|2026-04-19": {
+"first light": 1,
+"morning": 1
+},
+"Cowlitz River|Steelhead|2026-05-03": {
+"first light": 2
+},
+"Cowlitz River|Steelhead|2026-05-06": {
+"first light": 1
+},
+"Cowlitz River|Steelhead|2026-05-10": {
+"first light": 1
+},
+"Cowlitz River|Steelhead|2026-05-13": {
+"first light": 2
+},
+"Cowlitz River|Steelhead|2026-05-18": {
+"morning": 1
+},
+"Cowlitz River|Steelhead|2026-05-20": {
+"first light": 2,
+"morning": 1
+},
+"Cowlitz River|Steelhead|2026-05-21": {
+"first light": 1
+},
+"Cowlitz River|Steelhead|2026-05-26": {
+"first light": 1
+},
+"Cowlitz River|Steelhead|2026-05-27": {
+"morning": 1
+},
+"Cowlitz River|Steelhead|2026-06-02": {
+"first light": 1
+},
+"Cowlitz River|Steelhead|2026-06-07": {
+"first light": 3
+},
+"Cowlitz River|Steelhead|2026-06-08": {
+"first light": 2
+},
+"Cowlitz River|Steelhead|2026-06-10": {
+"first light": 1
+},
+"Cowlitz River|Steelhead|2026-06-11": {
+"first light": 4
+},
+"Cowlitz River|Steelhead|2026-06-12": {
+"first light": 1,
+"morning": 1
+},
+"Cowlitz River|Steelhead|2026-06-14": {
+"first light": 2
+},
+"Cowlitz River|Steelhead|2026-06-15": {
+"first light": 2
+},
+"Cowlitz River|Steelhead|2026-06-16": {
+"first light": 3,
+"morning": 2
+},
+"Cowlitz River|Steelhead|2026-06-21": {
+"first light": 4
+},
+"Cowlitz River|Steelhead|2026-06-22": {
+"first light": 3,
+"midday": 1
+},
+"Cowlitz River|Steelhead|2026-06-23": {
+"first light": 4
+},
+"Cowlitz River|Steelhead|2026-06-24": {
+"first light": 7,
+"morning": 1
+},
+"Cowlitz River|Steelhead|2026-06-28": {
+"first light": 7
+},
+"Cowlitz River|Steelhead|2026-06-29": {
+"first light": 8
+},
+"Cowlitz River|Steelhead|2026-07-01": {
+"first light": 7
+},
+"Cowlitz River|Steelhead|2026-07-02": {
+"first light": 8
+},
+"Cowlitz River|Steelhead|2026-07-06": {
+"first light": 6
+},
+"Cowlitz River|Steelhead|2026-07-07": {
+"first light": 5
+},
+"Cowlitz River|Steelhead|2026-07-08": {
+"first light": 6,
+"morning": 1
+},
+"Cowlitz River|Steelhead|2026-07-09": {
+"first light": 2,
+"morning": 1
+},
+"Cowlitz River|Steelhead|2026-07-12": {
+"first light": 9,
+"morning": 1
+},
+"Cowlitz River|Steelhead|2026-07-14": {
+"first light": 6,
+"morning": 1
+},
+"Cowlitz River|Steelhead|2026-07-19": {
+"first light": 10
+},
+"Cowlitz River|Steelhead|2026-07-20": {
+"first light": 3
+},
+"Cowlitz River|Steelhead|2026-07-22": {
+"first light": 10,
+"morning": 1
+},
+"Cowlitz River|Steelhead|2026-07-23": {
+"first light": 5,
+"midday": 1
+},
+"Cowlitz River|Steelhead|2026-07-26": {
+"first light": 13
+},
+"Cowlitz River|Steelhead|2026-07-27": {
+"first light": 4
+},
+"Cowlitz River|Steelhead|2026-07-28": {
+"first light": 8,
+"midday": 1
+},
+"Cowlitz River|Steelhead|2026-07-29": {
+"first light": 6
+},
+"Cowlitz River|Sturgeon|2026-04-15": {
+"morning": 1
+},
+"Cowlitz River|Sturgeon|2026-04-19": {
+"first light": 1
+},
+"Cowlitz River|Sturgeon|2026-05-06": {
+"first light": 1
+},
+"Cowlitz River|Sturgeon|2026-05-13": {
+"first light": 1
+},
+"Cowlitz River|Sturgeon|2026-05-17": {
+"midday": 1
+},
+"Cowlitz River|Sturgeon|2026-05-27": {
+"first light": 2,
+"morning": 1
+},
+"Cowlitz River|Sturgeon|2026-06-14": {
+"morning": 1
+},
+"Cowlitz River|Sturgeon|2026-07-02": {
+"first light": 1
+},
+"Cowlitz River|Sucker|2026-04-08": {
+"morning": 1
+},
+"Cowlitz River|Sucker|2026-04-15": {
+"morning": 1
+},
+"Cowlitz River|Sucker|2026-06-23": {
+"morning": 1
+},
+"Cowlitz River|Sucker|2026-07-01": {
+"first light": 1
+},
+"Cowlitz River|Tiger Muskie|2026-07-01": {
+"first light": 1
+},
+"Cowlitz River|Trout - Unspecified|2026-04-08": {
+"midday": 1
+},
+"Cowlitz River|Trout - Unspecified|2026-04-19": {
+"morning": 1
+},
+"Cowlitz River|Trout - Unspecified|2026-06-23": {
+"first light": 1
+},
+"Cowlitz River|Trout - Unspecified|2026-07-02": {
+"morning": 1
+},
+"Cowlitz River|Trout - Unspecified|2026-07-23": {
+"morning": 1
+},
+"Cowlitz River|Whitefish|2026-07-14": {
+"first light": 1
+},
+"Goose Lake|Rainbow trout|2026-07-11": {
+"morning": 1
+},
+"Hoh River|Steelhead|2026-03-31": {
+"midday": 1,
+"morning": 6
+},
+"Hoh River|Whitefish|2026-03-31": {
+"morning": 1
+},
+"Horsethief Lake|Carp|2026-04-25": {
+"morning": 1
+},
+"Horsethief Lake|Rainbow trout|2026-04-25": {
+"first light": 2,
+"morning": 7
+},
+"Horsethief Lake|Smallmouth bass|2026-04-25": {
+"morning": 2
+},
+"Horsethief Lake|Walleye|2026-04-25": {
+"morning": 1
+},
+"Kress Lake|Bluegill|2026-05-02": {
+"midday": 2,
+"morning": 2
+},
+"Kress Lake|Bluegill|2026-05-09": {
+"first light": 2
+},
+"Kress Lake|Bluegill|2026-05-16": {
+"midday": 1,
+"morning": 1
+},
+"Kress Lake|Bluegill|2026-05-23": {
+"midday": 2,
+"morning": 1
+},
+"Kress Lake|Bluegill|2026-05-31": {
+"afternoon": 2
+},
+"Kress Lake|Bluegill|2026-06-06": {
+"midday": 1,
+"morning": 1
+},
+"Kress Lake|Bluegill|2026-06-07": {
+"afternoon": 1,
+"midday": 3
+},
+"Kress Lake|Bluegill|2026-06-13": {
+"midday": 1
+},
+"Kress Lake|Bluegill|2026-06-20": {
+"midday": 2,
+"morning": 1
+},
+"Kress Lake|Bluegill|2026-06-27": {
+"midday": 1
+},
+"Kress Lake|Brown trout|2026-05-09": {
+"first light": 1,
+"morning": 1
+},
+"Kress Lake|Brown trout|2026-05-31": {
+"midday": 1
+},
+"Kress Lake|Largemouth bass|2026-05-02": {
+"morning": 2
+},
+"Kress Lake|Largemouth bass|2026-05-09": {
+"midday": 1,
+"morning": 1
+},
+"Kress Lake|Largemouth bass|2026-05-16": {
+"morning": 1
+},
+"Kress Lake|Largemouth bass|2026-05-23": {
+"morning": 1
+},
+"Kress Lake|Largemouth bass|2026-06-07": {
+"midday": 1
+},
+"Kress Lake|Largemouth bass|2026-06-13": {
+"midday": 2
+},
+"Kress Lake|Pumpkinseed|2026-06-13": {
+"midday": 1
+},
+"Kress Lake|Rainbow trout|2026-05-02": {
+"midday": 5,
+"morning": 3
+},
+"Kress Lake|Rainbow trout|2026-05-09": {
+"first light": 2,
+"morning": 3
+},
+"Kress Lake|Rainbow trout|2026-05-16": {
+"midday": 1,
+"morning": 1
+},
+"Kress Lake|Rainbow trout|2026-05-23": {
+"midday": 1,
+"morning": 1
+},
+"Kress Lake|Rainbow trout|2026-05-31": {
+"midday": 1
+},
+"Kress Lake|Rainbow trout|2026-06-06": {
+"midday": 1,
+"morning": 1
+},
+"Kress Lake|Rainbow trout|2026-06-13": {
+"midday": 1
+},
+"Kress Lake|Yellow perch|2026-05-23": {
+"morning": 1
+},
+"Kress Lake|Yellow perch|2026-06-13": {
+"midday": 1
+},
+"Kress Lake|Yellow perch|2026-06-20": {
+"midday": 1,
+"morning": 1
+},
+"Lacamas Lake|Bluegill|2026-05-09": {
+"morning": 1
+},
+"Lacamas Lake|Bluegill|2026-06-07": {
+"first light": 1
+},
+"Lacamas Lake|Rainbow trout|2026-06-07": {
+"morning": 1
+},
+"Lacamas Lake|Yellow perch|2026-05-09": {
+"morning": 1
+},
+"Little White Salmon - Drano Lake|Chinook|2026-04-09": {
+"afternoon": 1
+},
+"Little White Salmon - Drano Lake|Chinook|2026-04-10": {
+"first light": 2
+},
+"Little White Salmon - Drano Lake|Chinook|2026-04-14": {
+"first light": 4
+},
+"Little White Salmon - Drano Lake|Chinook|2026-04-16": {
+"first light": 6,
+"morning": 1
+},
+"Little White Salmon - Drano Lake|Chinook|2026-04-20": {
+"first light": 6,
+"midday": 1,
+"morning": 2
+},
+"Little White Salmon - Drano Lake|Chinook|2026-04-21": {
+"first light": 8,
+"morning": 3
+},
+"Little White Salmon - Drano Lake|Chinook|2026-04-25": {
+"first light": 9,
+"morning": 1
+},
+"Little White Salmon - Drano Lake|Chinook|2026-04-28": {
+"first light": 21,
+"morning": 3
+},
+"Little White Salmon - Drano Lake|Chinook|2026-04-30": {
+"afternoon": 3,
+"first light": 61,
+"midday": 3,
+"morning": 8
+},
+"Little White Salmon - Drano Lake|Chinook|2026-05-02": {
+"first light": 13
+},
+"Little White Salmon - Drano Lake|Chinook|2026-05-03": {
+"first light": 21,
+"midday": 2,
+"morning": 1
+},
+"Little White Salmon - Drano Lake|Chinook|2026-05-07": {
+"first light": 56,
+"midday": 1,
+"morning": 4
+},
+"Little White Salmon - Drano Lake|Chinook|2026-05-08": {
+"afternoon": 1,
+"first light": 40,
+"midday": 2,
+"morning": 1
+},
+"Little White Salmon - Drano Lake|Chinook|2026-05-09": {
+"first light": 16
+},
+"Little White Salmon - Drano Lake|Chinook|2026-05-10": {
+"first light": 12
+},
+"Little White Salmon - Drano Lake|Chinook|2026-05-11": {
+"first light": 21,
+"morning": 4
+},
+"Little White Salmon - Drano Lake|Chinook|2026-05-14": {
+"afternoon": 2,
+"first light": 32,
+"midday": 3,
+"morning": 2
+},
+"Little White Salmon - Drano Lake|Chinook|2026-05-19": {
+"first light": 5,
+"midday": 2,
+"morning": 1
+},
+"Little White Salmon - Drano Lake|Chinook|2026-05-21": {
+"first light": 5
+},
+"Little White Salmon - Drano Lake|Chinook|2026-05-28": {
+"first light": 1
+},
+"Little White Salmon - Drano Lake|Chinook|2026-05-29": {
+"first light": 1
+},
+"Little White Salmon - Drano Lake|Chinook|2026-05-31": {
+"first light": 2
+},
+"Little White Salmon - Drano Lake|Chinook|2026-06-01": {
+"first light": 2
+},
+"Little White Salmon - Drano Lake|Chinook|2026-07-25": {
+"first light": 3
+},
+"Little White Salmon - Drano Lake|Steelhead|2026-05-02": {
+"first light": 1
+},
+"Little White Salmon - Drano Lake|Steelhead|2026-05-14": {
+"first light": 2
+},
+"Little White Salmon - Drano Lake|Steelhead|2026-06-18": {
+"midday": 1
+},
+"Little White Salmon - Drano Lake|Steelhead|2026-06-27": {
+"morning": 1
+},
+"Little White Salmon - Drano Lake|Steelhead|2026-07-15": {
+"first light": 1
+},
+"Little White Salmon - Drano Lake|Steelhead|2026-07-25": {
+"first light": 3
+},
+"Mineral Lake|Brown trout|2026-04-25": {
+"first light": 7,
+"morning": 1
+},
+"Mineral Lake|Rainbow trout|2026-04-25": {
+"first light": 19,
+"morning": 9
+},
+"Nooksack River - North Fork|Bull trout|2026-05-23": {
+"first light": 3
+},
+"Nooksack River - North Fork|Bull trout|2026-05-26": {
+"first light": 1,
+"midday": 1
+},
+"Nooksack River - North Fork|Bull trout|2026-05-27": {
+"first light": 1,
+"midday": 2,
+"morning": 1
+},
+"Nooksack River - North Fork|Bull trout|2026-05-30": {
+"evening": 1,
+"first light": 2,
+"morning": 1
+},
+"Nooksack River - North Fork|Bull trout|2026-06-02": {
+"afternoon": 2,
+"evening": 1,
+"first light": 1,
+"morning": 1
+},
+"Nooksack River - North Fork|Bull trout|2026-06-05": {
+"first light": 1
+},
+"Nooksack River - North Fork|Bull trout|2026-06-07": {
+"first light": 1,
+"morning": 1
+},
+"Nooksack River - North Fork|Bull trout|2026-06-08": {
+"morning": 1
+},
+"Nooksack River - North Fork|Chinook|2026-05-23": {
+"afternoon": 1,
+"first light": 4
+},
+"Nooksack River - North Fork|Chinook|2026-05-24": {
+"first light": 1,
+"midday": 1
+},
+"Nooksack River - North Fork|Chinook|2026-05-25": {
+"first light": 2
+},
+"Nooksack River - North Fork|Chinook|2026-05-26": {
+"first light": 1,
+"morning": 1
+},
+"Nooksack River - North Fork|Chinook|2026-05-27": {
+"first light": 2,
+"morning": 1
+},
+"Nooksack River - North Fork|Chinook|2026-05-30": {
+"first light": 3,
+"midday": 1,
+"morning": 1
+},
+"Nooksack River - North Fork|Chinook|2026-05-31": {
+"afternoon": 1,
+"first light": 4,
+"morning": 2
+},
+"Nooksack River - North Fork|Chinook|2026-06-01": {
+"afternoon": 1,
+"first light": 6,
+"midday": 1
+},
+"Nooksack River - North Fork|Chinook|2026-06-02": {
+"afternoon": 1,
+"evening": 1,
+"first light": 1
+},
+"Nooksack River - North Fork|Chinook|2026-06-05": {
+"afternoon": 2,
+"first light": 5
+},
+"Nooksack River - North Fork|Chinook|2026-06-06": {
+"afternoon": 1,
+"first light": 2,
+"midday": 1
+},
+"Nooksack River - North Fork|Chinook|2026-06-07": {
+"afternoon": 1,
+"evening": 1,
+"first light": 1,
+"midday": 1
+},
+"Nooksack River - North Fork|Chinook|2026-06-08": {
+"first light": 1,
+"morning": 1
+},
+"Nooksack River - North Fork|Dolly Varden|2026-05-25": {
+"first light": 2,
+"morning": 1
+},
+"Nooksack River - North Fork|Dolly Varden|2026-05-26": {
+"first light": 1
+},
+"Nooksack River - North Fork|Largescale Sucker|2026-05-31": {
+"morning": 1
+},
+"Nooksack River - North Fork|Rainbow trout|2026-05-26": {
+"midday": 1
+},
+"Nooksack River - North Fork|Steelhead|2026-05-30": {
+"first light": 1
+},
+"Nooksack River - North Fork|Steelhead|2026-05-31": {
+"afternoon": 1
+},
+"Nooksack River - North Fork|Sucker|2026-05-26": {
+"evening": 1
+},
+"Nooksack River - North Fork|Whitefish|2026-05-25": {
+"morning": 1
+},
+"Puyallup River|Chinook|2026-07-29": {
+"midday": 2,
+"morning": 1
+},
+"Rowland Lake|Rainbow trout|2026-04-25": {
+"first light": 5,
+"midday": 1,
+"morning": 7
+},
+"Skagit River|Brown Bullhead|2026-07-05": {
+"first light": 1
+},
+"Skagit River|Bull trout|2026-04-20": {
+"midday": 1
+},
+"Skagit River|Bull trout|2026-04-24": {
+"midday": 1
+},
+"Skagit River|Bull trout|2026-04-25": {
+"first light": 1
+},
+"Skagit River|Bull trout|2026-04-26": {
+"midday": 1,
+"morning": 1
+},
+"Skagit River|Bull trout|2026-04-28": {
+"midday": 1
+},
+"Skagit River|Bull trout|2026-04-29": {
+"morning": 1
+},
+"Skagit River|Bull trout|2026-05-17": {
+"first light": 1
+},
+"Skagit River|Bull trout|2026-05-22": {
+"first light": 1
+},
+"Skagit River|Bull trout|2026-05-23": {
+"first light": 1
+},
+"Skagit River|Bull trout|2026-05-29": {
+"first light": 1
+},
+"Skagit River|Bull trout|2026-05-31": {
+"first light": 1,
+"morning": 1
+},
+"Skagit River|Bull trout|2026-06-01": {
+"morning": 1
+},
+"Skagit River|Bull trout|2026-06-11": {
+"afternoon": 1
+},
+"Skagit River|Bull trout|2026-06-16": {
+"morning": 1
+},
+"Skagit River|Bull trout|2026-06-24": {
+"afternoon": 1,
+"morning": 1
+},
+"Skagit River|Bull trout|2026-06-25": {
+"morning": 1
+},
+"Skagit River|Bull trout|2026-06-28": {
+"midday": 1
+},
+"Skagit River|Bull trout|2026-07-10": {
+"first light": 1
+},
+"Skagit River|Bull trout|2026-07-12": {
+"first light": 1
+},
+"Skagit River|Bull trout|2026-07-19": {
+"first light": 1
+},
+"Skagit River|Chinook|2026-04-20": {
+"midday": 1,
+"morning": 1
+},
+"Skagit River|Chinook|2026-05-16": {
+"first light": 4,
+"morning": 1
+},
+"Skagit River|Chinook|2026-05-17": {
+"first light": 2
+},
+"Skagit River|Chinook|2026-05-20": {
+"first light": 1
+},
+"Skagit River|Chinook|2026-05-28": {
+"first light": 1
+},
+"Skagit River|Chinook|2026-05-30": {
+"first light": 1
+},
+"Skagit River|Chinook|2026-06-01": {
+"first light": 1
+},
+"Skagit River|Chinook|2026-06-07": {
+"first light": 1
+},
+"Skagit River|Chinook|2026-06-10": {
+"first light": 1
+},
+"Skagit River|Chinook|2026-06-13": {
+"first light": 1
+},
+"Skagit River|Chinook|2026-06-16": {
+"morning": 1
+},
+"Skagit River|Chinook|2026-06-18": {
+"morning": 1
+},
+"Skagit River|Chinook|2026-06-25": {
+"evening": 1,
+"midday": 1
+},
+"Skagit River|Chinook|2026-06-27": {
+"first light": 1,
+"morning": 1
+},
+"Skagit River|Chinook|2026-07-10": {
+"midday": 1
+},
+"Skagit River|Chinook|2026-07-12": {
+"first light": 2,
+"morning": 1
+},
+"Skagit River|Cutthroat|2026-04-20": {
+"first light": 1,
+"midday": 1,
+"morning": 1
+},
+"Skagit River|Cutthroat|2026-04-22": {
+"midday": 1
+},
+"Skagit River|Cutthroat|2026-04-26": {
+"first light": 1
+},
+"Skagit River|Cutthroat|2026-05-03": {
+"morning": 1
+},
+"Skagit River|Cutthroat|2026-05-08": {
+"morning": 1
+},
+"Skagit River|Cutthroat|2026-05-29": {
+"first light": 1
+},
+"Skagit River|Cutthroat|2026-07-21": {
+"morning": 1
+},
+"Skagit River|Cutthroat|2026-07-28": {
+"midday": 1
+},
+"Skagit River|Dolly Varden|2026-04-24": {
+"morning": 1
+},
+"Skagit River|Dolly Varden|2026-04-26": {
+"afternoon": 1,
+"morning": 1
+},
+"Skagit River|Dolly Varden|2026-04-28": {
+"midday": 2
+},
+"Skagit River|Dolly Varden|2026-04-29": {
+"morning": 2
+},
+"Skagit River|Dolly Varden|2026-05-02": {
+"first light": 1,
+"morning": 1
+},
+"Skagit River|Dolly Varden|2026-05-09": {
+"morning": 1
+},
+"Skagit River|Dolly Varden|2026-05-16": {
+"first light": 1
+},
+"Skagit River|Dolly Varden|2026-05-17": {
+"first light": 3
+},
+"Skagit River|Dolly Varden|2026-05-20": {
+"first light": 2
+},
+"Skagit River|Dolly Varden|2026-05-23": {
+"first light": 4
+},
+"Skagit River|Dolly Varden|2026-05-29": {
+"first light": 2
+},
+"Skagit River|Dolly Varden|2026-06-01": {
+"first light": 1
+},
+"Skagit River|Dolly Varden|2026-06-03": {
+"first light": 1
+},
+"Skagit River|Dolly Varden|2026-06-07": {
+"first light": 1
+},
+"Skagit River|Dolly Varden|2026-06-10": {
+"first light": 1
+},
+"Skagit River|Dolly Varden|2026-06-12": {
+"first light": 1
+},
+"Skagit River|Dolly Varden|2026-06-13": {
+"first light": 1
+},
+"Skagit River|Dolly Varden|2026-06-21": {
+"morning": 1
+},
+"Skagit River|Dolly Varden|2026-06-24": {
+"midday": 1
+},
+"Skagit River|Dolly Varden|2026-06-27": {
+"morning": 1
+},
+"Skagit River|Dolly Varden|2026-07-10": {
+"midday": 1
+},
+"Skagit River|Largescale Sucker|2026-05-29": {
+"first light": 1
+},
+"Skagit River|Largescale Sucker|2026-07-23": {
+"afternoon": 1
+},
+"Skagit River|Northern pikeminnow|2026-07-11": {
+"first light": 1
+},
+"Skagit River|Other|2026-06-20": {
+"first light": 1
+},
+"Skagit River|Pink|2026-07-26": {
+"first light": 1
+},
+"Skagit River|Rainbow trout|2026-04-24": {
+"morning": 1
+},
+"Skagit River|Rainbow trout|2026-04-25": {
+"morning": 1
+},
+"Skagit River|Rainbow trout|2026-04-26": {
+"first light": 1,
+"morning": 2
+},
+"Skagit River|Rainbow trout|2026-04-29": {
+"first light": 1
+},
+"Skagit River|Rainbow trout|2026-05-02": {
+"first light": 1,
+"morning": 1
+},
+"Skagit River|Rainbow trout|2026-05-03": {
+"midday": 1,
+"morning": 1
+},
+"Skagit River|Rainbow trout|2026-05-10": {
+"midday": 1
+},
+"Skagit River|Rainbow trout|2026-05-17": {
+"first light": 1
+},
+"Skagit River|Rainbow trout|2026-05-20": {
+"first light": 1
+},
+"Skagit River|Rainbow trout|2026-05-23": {
+"first light": 1
+},
+"Skagit River|Rainbow trout|2026-05-28": {
+"first light": 1
+},
+"Skagit River|Rainbow trout|2026-05-31": {
+"morning": 1
+},
+"Skagit River|Rainbow trout|2026-06-01": {
+"first light": 1,
+"morning": 1
+},
+"Skagit River|Rainbow trout|2026-06-07": {
+"first light": 1
+},
+"Skagit River|Rainbow trout|2026-06-11": {
+"afternoon": 1
+},
+"Skagit River|Rainbow trout|2026-06-12": {
+"first light": 1
+},
+"Skagit River|Rainbow trout|2026-06-13": {
+"first light": 1
+},
+"Skagit River|Rainbow trout|2026-06-16": {
+"first light": 1,
+"morning": 1
+},
+"Skagit River|Rainbow trout|2026-06-18": {
+"first light": 1
+},
+"Skagit River|Rainbow trout|2026-06-25": {
+"first light": 1
+},
+"Skagit River|Rainbow trout|2026-06-28": {
+"morning": 1
+},
+"Skagit River|Rainbow trout|2026-07-05": {
+"first light": 1
+},
+"Skagit River|Rainbow trout|2026-07-10": {
+"afternoon": 1
+},
+"Skagit River|Rainbow trout|2026-07-12": {
+"first light": 2
+},
+"Skagit River|Rainbow trout|2026-07-19": {
+"midday": 1
+},
+"Skagit River|Salmonid - Unspecified|2026-04-20": {
+"midday": 1,
+"morning": 1
+},
+"Skagit River|Salmonid - Unspecified|2026-04-25": {
+"first light": 1
+},
+"Skagit River|Salmonid - Unspecified|2026-04-26": {
+"midday": 1
+},
+"Skagit River|Salmonid - Unspecified|2026-04-29": {
+"midday": 1
+},
+"Skagit River|Salmonid - Unspecified|2026-05-02": {
+"first light": 1,
+"midday": 1
+},
+"Skagit River|Salmonid - Unspecified|2026-05-09": {
+"morning": 1
+},
+"Skagit River|Sockeye|2026-06-16": {
+"midday": 1
+},
+"Skagit River|Sockeye|2026-06-20": {
+"first light": 2,
+"morning": 1
+},
+"Skagit River|Sockeye|2026-06-21": {
+"first light": 4
+},
+"Skagit River|Sockeye|2026-06-24": {
+"first light": 1
+},
+"Skagit River|Sockeye|2026-06-25": {
+"afternoon": 2,
+"first light": 2
+},
+"Skagit River|Sockeye|2026-06-27": {
+"afternoon": 1,
+"first light": 2,
+"morning": 1
+},
+"Skagit River|Sockeye|2026-06-28": {
+"first light": 4,
+"morning": 1
+},
+"Skagit River|Sockeye|2026-06-29": {
+"first light": 3
+},
+"Skagit River|Sockeye|2026-07-02": {
+"first light": 1,
+"midday": 1,
+"morning": 1
+},
+"Skagit River|Sockeye|2026-07-05": {
+"first light": 6
+},
+"Skagit River|Sockeye|2026-07-08": {
+"first light": 2
+},
+"Skagit River|Sockeye|2026-07-11": {
+"first light": 2
+},
+"Skagit River|Sockeye|2026-07-12": {
+"first light": 3
+},
+"Skagit River|Sockeye|2026-07-17": {
+"first light": 2
+},
+"Skagit River|Steelhead|2026-04-24": {
+"first light": 1
+},
+"Skagit River|Steelhead|2026-04-29": {
+"morning": 1
+},
+"Skagit River|Steelhead|2026-05-02": {
+"first light": 1
+},
+"Skagit River|Steelhead|2026-05-12": {
+"morning": 1
+},
+"Skagit River|Steelhead|2026-05-16": {
+"first light": 2,
+"morning": 1
+},
+"Skagit River|Steelhead|2026-05-17": {
+"first light": 3
+},
+"Skagit River|Steelhead|2026-05-20": {
+"first light": 1
+},
+"Skagit River|Steelhead|2026-05-22": {
+"first light": 1
+},
+"Skagit River|Steelhead|2026-05-23": {
+"first light": 2
+},
+"Skagit River|Steelhead|2026-05-28": {
+"first light": 1
+},
+"Skagit River|Steelhead|2026-06-01": {
+"morning": 1
+},
+"Skagit River|Steelhead|2026-06-10": {
+"first light": 1
+},
+"Skagit River|Steelhead|2026-06-28": {
+"first light": 1
+},
+"Skagit River|Steelhead|2026-06-29": {
+"morning": 1
+},
+"Skagit River|Steelhead|2026-07-21": {
+"midday": 1
+},
+"Skagit River|Steelhead|2026-07-26": {
+"first light": 1
+},
+"Skagit River|Sturgeon|2026-04-24": {
+"morning": 1
+},
+"Skagit River|Sturgeon|2026-05-02": {
+"midday": 1
+},
+"Skagit River|Sturgeon|2026-07-25": {
+"morning": 1
+},
+"Skagit River|Sucker|2026-05-30": {
+"first light": 1
+},
+"Skagit River|Sucker|2026-06-25": {
+"afternoon": 1
+},
+"Skagit River|Sucker|2026-07-26": {
+"first light": 1
+},
+"Skagit River|Trout - Unspecified|2026-04-20": {
+"midday": 1
+},
+"Skagit River|Trout - Unspecified|2026-04-24": {
+"afternoon": 1
+},
+"Skagit River|Trout - Unspecified|2026-05-02": {
+"first light": 1,
+"morning": 1
+},
+"Skagit River|Trout - Unspecified|2026-07-26": {
+"morning": 1
+},
+"Skagit River|Whitefish|2026-05-20": {
+"first light": 1
+},
+"Skagit River|Whitefish|2026-05-23": {
+"first light": 1
+},
+"Skagit River|Whitefish|2026-05-31": {
+"first light": 1,
+"midday": 1
+},
+"Skagit River|Whitefish|2026-06-01": {
+"first light": 1
+},
+"Skagit River|Whitefish|2026-06-03": {
+"first light": 1
+},
+"Skagit River|Whitefish|2026-06-13": {
+"first light": 1
+},
+"Skagit River|Whitefish|2026-06-28": {
+"morning": 1
+},
+"Skagit River|Whitefish|2026-07-10": {
+"morning": 1
+},
+"Sol Duc River|Chinook|2026-05-01": {
+"first light": 2,
+"midday": 1,
+"morning": 1
+},
+"Sol Duc River|Chinook|2026-05-02": {
+"first light": 2,
+"morning": 3
+},
+"Sol Duc River|Chinook|2026-05-03": {
+"first light": 1
+},
+"Sol Duc River|Chinook|2026-05-06": {
+"morning": 1
+},
+"Sol Duc River|Chinook|2026-05-08": {
+"first light": 3
+},
+"Sol Duc River|Chinook|2026-05-09": {
+"first light": 3,
+"morning": 1
+},
+"Sol Duc River|Chinook|2026-05-10": {
+"first light": 2
+},
+"Sol Duc River|Chinook|2026-05-12": {
+"first light": 1
+},
+"Sol Duc River|Chinook|2026-05-13": {
+"first light": 1
+},
+"Sol Duc River|Chinook|2026-05-16": {
+"afternoon": 1,
+"first light": 1,
+"midday": 1
+},
+"Sol Duc River|Chinook|2026-05-17": {
+"first light": 1
+},
+"Sol Duc River|Chinook|2026-05-19": {
+"first light": 2
+},
+"Sol Duc River|Chinook|2026-05-22": {
+"first light": 2,
+"morning": 1
+},
+"Sol Duc River|Chinook|2026-05-24": {
+"first light": 4,
+"morning": 1
+},
+"Sol Duc River|Chinook|2026-05-27": {
+"first light": 1,
+"morning": 1
+},
+"Sol Duc River|Chinook|2026-05-30": {
+"afternoon": 1,
+"first light": 2,
+"morning": 2
+},
+"Sol Duc River|Chinook|2026-05-31": {
+"first light": 1,
+"morning": 1
+},
+"Sol Duc River|Coho|2026-05-30": {
+"afternoon": 1
+},
+"Sol Duc River|Cutthroat|2026-03-31": {
+"morning": 1
+},
+"Sol Duc River|Cutthroat|2026-05-01": {
+"first light": 3
+},
+"Sol Duc River|Cutthroat|2026-05-02": {
+"morning": 1
+},
+"Sol Duc River|Cutthroat|2026-05-03": {
+"midday": 1,
+"morning": 1
+},
+"Sol Duc River|Cutthroat|2026-05-06": {
+"midday": 1
+},
+"Sol Duc River|Cutthroat|2026-05-08": {
+"midday": 1,
+"morning": 1
+},
+"Sol Duc River|Cutthroat|2026-05-09": {
+"first light": 1
+},
+"Sol Duc River|Cutthroat|2026-05-12": {
+"first light": 1
+},
+"Sol Duc River|Cutthroat|2026-05-17": {
+"first light": 1
+},
+"Sol Duc River|Cutthroat|2026-05-30": {
+"afternoon": 1,
+"morning": 2
+},
+"Sol Duc River|Rainbow trout|2026-05-30": {
+"morning": 1
+},
+"Sol Duc River|Salmonid - Unspecified|2026-05-06": {
+"midday": 1
+},
+"Sol Duc River|Steelhead|2026-03-31": {
+"morning": 2
+},
+"Sol Duc River|Steelhead|2026-05-01": {
+"first light": 4,
+"morning": 2
+},
+"Sol Duc River|Steelhead|2026-05-02": {
+"first light": 1,
+"morning": 2
+},
+"Sol Duc River|Steelhead|2026-05-03": {
+"first light": 1
+},
+"Sol Duc River|Steelhead|2026-05-06": {
+"first light": 2
+},
+"Sol Duc River|Steelhead|2026-05-08": {
+"first light": 2
+},
+"Sol Duc River|Steelhead|2026-05-10": {
+"first light": 2
+},
+"Sol Duc River|Steelhead|2026-05-12": {
+"first light": 2
+},
+"Sol Duc River|Steelhead|2026-05-13": {
+"first light": 1
+},
+"Sol Duc River|Steelhead|2026-05-16": {
+"first light": 1
+},
+"Sol Duc River|Steelhead|2026-05-30": {
+"morning": 1
+},
+"Sol Duc River|Trout - Unspecified|2026-05-03": {
+"midday": 1
+},
+"Sol Duc River|Whitefish|2026-05-06": {
+"first light": 1
+},
+"Spearfish Lake|Rainbow trout|2026-04-25": {
+"first light": 4,
+"midday": 2,
+"morning": 7
+},
+"Swofford Pond|Bluegill|2026-05-02": {
+"morning": 1
+},
+"Swofford Pond|Bluegill|2026-05-23": {
+"morning": 2
+},
+"Swofford Pond|Bluegill|2026-06-06": {
+"first light": 1
+},
+"Swofford Pond|Bluegill|2026-06-13": {
+"first light": 1,
+"morning": 1
+},
+"Swofford Pond|Bluegill|2026-06-20": {
+"first light": 1,
+"morning": 3
+},
+"Swofford Pond|Channel catfish|2026-06-06": {
+"first light": 1
+},
+"Swofford Pond|Largemouth bass|2026-05-23": {
+"first light": 1
+},
+"Swofford Pond|Largemouth bass|2026-06-06": {
+"first light": 1
+},
+"Swofford Pond|Rainbow trout|2026-05-02": {
+"morning": 1
+},
+"Swofford Pond|Rainbow trout|2026-05-16": {
+"morning": 1
+},
+"Swofford Pond|Rainbow trout|2026-05-23": {
+"morning": 3
+},
+"Swofford Pond|Rainbow trout|2026-06-20": {
+"first light": 1,
+"morning": 1
+}
+},
+"hour_parties": {
+"Blue Creek (Cowlitz)|2026-04-01": {
+"morning": 1
+},
+"Blue Creek (Cowlitz)|2026-04-02": {
+"first light": 4,
+"midday": 1,
+"morning": 2
+},
+"Blue Creek (Cowlitz)|2026-04-08": {
+"afternoon": 1,
+"first light": 1,
+"midday": 3
+},
+"Blue Creek (Cowlitz)|2026-04-09": {
+"first light": 2,
+"midday": 1,
+"morning": 4
+},
+"Blue Creek (Cowlitz)|2026-04-12": {
+"first light": 1
+},
+"Blue Creek (Cowlitz)|2026-04-14": {
+"first light": 2,
+"morning": 1
+},
+"Blue Creek (Cowlitz)|2026-04-15": {
+"midday": 2
+},
+"Bogachiel River|2026-03-31": {
+"first light": 1,
+"midday": 3,
+"morning": 1
+},
+"Calawah River|2026-03-31": {
+"midday": 1
+},
+"Carlisle Lake|2026-04-25": {
+"afternoon": 6,
+"midday": 6
+},
+"Cascade River|2026-05-22": {
+"first light": 9,
+"midday": 1,
+"morning": 4
+},
+"Cascade River|2026-05-23": {
+"afternoon": 1,
+"first light": 3,
+"midday": 1,
+"morning": 3
+},
+"Cascade River|2026-05-24": {
+"afternoon": 1,
+"first light": 2,
+"midday": 6,
+"morning": 2
+},
+"Cascade River|2026-06-03": {
+"first light": 6,
+"morning": 6
+},
+"Cascade River|2026-06-06": {
+"first light": 3,
+"midday": 1,
+"morning": 2
+},
+"Cascade River|2026-06-10": {
+"first light": 6,
+"morning": 5
+},
+"Cascade River|2026-06-11": {
+"first light": 1,
+"morning": 3
+},
+"Cascade River|2026-06-12": {
+"first light": 4,
+"midday": 1,
+"morning": 2
+},
+"Cascade River|2026-06-13": {
+"afternoon": 1,
+"first light": 6,
+"morning": 2
+},
+"Cascade River|2026-06-18": {
+"first light": 3,
+"morning": 2
+},
+"Cascade River|2026-06-20": {
+"first light": 3,
+"midday": 2,
+"morning": 1
+},
+"Cascade River|2026-06-24": {
+"midday": 1
+},
+"Cascade River|2026-06-25": {
+"first light": 1
+},
+"Cascade River|2026-06-27": {
+"first light": 2,
+"midday": 2,
+"morning": 2
+},
+"Cascade River|2026-07-02": {
+"afternoon": 1,
+"midday": 1
+},
+"Cascade River|2026-07-04": {
+"midday": 1,
+"morning": 1
+},
+"Cascade River|2026-07-08": {
+"morning": 1
+},
+"Cascade River|2026-07-11": {
+"afternoon": 2,
+"morning": 1
+},
+"Cowlitz River|2026-03-31": {
+"first light": 3,
+"morning": 7
+},
+"Cowlitz River|2026-04-01": {
+"first light": 6,
+"midday": 2,
+"morning": 8
+},
+"Cowlitz River|2026-04-02": {
+"first light": 1,
+"morning": 3
+},
+"Cowlitz River|2026-04-07": {
+"first light": 3,
+"midday": 6,
+"morning": 8
+},
+"Cowlitz River|2026-04-08": {
+"first light": 1,
+"midday": 4,
+"morning": 3
+},
+"Cowlitz River|2026-04-09": {
+"first light": 7,
+"midday": 8,
+"morning": 15
+},
+"Cowlitz River|2026-04-12": {
+"first light": 11,
+"midday": 3,
+"morning": 9
+},
+"Cowlitz River|2026-04-13": {
+"midday": 1,
+"morning": 1
+},
+"Cowlitz River|2026-04-14": {
+"first light": 1,
+"morning": 1
+},
+"Cowlitz River|2026-04-15": {
+"first light": 2,
+"midday": 6,
+"morning": 7
+},
+"Cowlitz River|2026-04-16": {
+"first light": 5,
+"midday": 6,
+"morning": 13
+},
+"Cowlitz River|2026-04-19": {
+"afternoon": 1,
+"first light": 15,
+"midday": 10,
+"morning": 11
+},
+"Cowlitz River|2026-04-20": {
+"first light": 6,
+"morning": 13
+},
+"Cowlitz River|2026-04-21": {
+"midday": 1,
+"morning": 4
+},
+"Cowlitz River|2026-04-22": {
+"first light": 5,
+"morning": 4
+},
+"Cowlitz River|2026-04-27": {
+"first light": 7,
+"midday": 5,
+"morning": 13
+},
+"Cowlitz River|2026-04-28": {
+"first light": 6,
+"midday": 7,
+"morning": 6
+},
+"Cowlitz River|2026-05-01": {
+"morning": 3
+},
+"Cowlitz River|2026-05-03": {
+"first light": 20,
+"morning": 13
+},
+"Cowlitz River|2026-05-04": {
+"first light": 3,
+"midday": 3,
+"morning": 6
+},
+"Cowlitz River|2026-05-06": {
+"first light": 10,
+"midday": 2,
+"morning": 12
+},
+"Cowlitz River|2026-05-10": {
+"first light": 10,
+"midday": 1,
+"morning": 13
+},
+"Cowlitz River|2026-05-11": {
+"first light": 7,
+"midday": 1,
+"morning": 7
+},
+"Cowlitz River|2026-05-12": {
+"first light": 2,
+"morning": 1
+},
+"Cowlitz River|2026-05-13": {
+"first light": 11,
+"midday": 1,
+"morning": 9
+},
+"Cowlitz River|2026-05-14": {
+"first light": 16,
+"midday": 5,
+"morning": 7
+},
+"Cowlitz River|2026-05-17": {
+"first light": 12,
+"midday": 8,
+"morning": 14
+},
+"Cowlitz River|2026-05-18": {
+"midday": 3,
+"morning": 3
+},
+"Cowlitz River|2026-05-19": {
+"first light": 2,
+"midday": 5,
+"morning": 2
+},
+"Cowlitz River|2026-05-20": {
+"first light": 9,
+"midday": 3,
+"morning": 7
+},
+"Cowlitz River|2026-05-21": {
+"first light": 3,
+"midday": 4,
+"morning": 1
+},
+"Cowlitz River|2026-05-26": {
+"first light": 3,
+"midday": 6,
+"morning": 4
+},
+"Cowlitz River|2026-05-27": {
+"first light": 5,
+"midday": 7,
+"morning": 3
+},
+"Cowlitz River|2026-05-31": {
+"first light": 23,
+"midday": 6,
+"morning": 8
+},
+"Cowlitz River|2026-06-01": {
+"first light": 15,
+"midday": 3,
+"morning": 8
+},
+"Cowlitz River|2026-06-02": {
+"first light": 8,
+"midday": 4,
+"morning": 8
+},
+"Cowlitz River|2026-06-03": {
+"first light": 10,
+"midday": 5,
+"morning": 6
+},
+"Cowlitz River|2026-06-07": {
+"first light": 24,
+"midday": 3,
+"morning": 11
+},
+"Cowlitz River|2026-06-08": {
+"first light": 18,
+"midday": 2,
+"morning": 5
+},
+"Cowlitz River|2026-06-09": {
+"first light": 7,
+"midday": 1,
+"morning": 4
+},
+"Cowlitz River|2026-06-10": {
+"first light": 9,
+"morning": 4
+},
+"Cowlitz River|2026-06-11": {
+"first light": 17,
+"midday": 3,
+"morning": 5
+},
+"Cowlitz River|2026-06-12": {
+"first light": 1,
+"midday": 6,
+"morning": 2
+},
+"Cowlitz River|2026-06-14": {
+"first light": 16,
+"midday": 1,
+"morning": 3
+},
+"Cowlitz River|2026-06-15": {
+"first light": 11,
+"morning": 8
+},
+"Cowlitz River|2026-06-16": {
+"first light": 7,
+"midday": 1,
+"morning": 7
+},
+"Cowlitz River|2026-06-21": {
+"first light": 20,
+"midday": 6,
+"morning": 5
+},
+"Cowlitz River|2026-06-22": {
+"first light": 17,
+"midday": 2,
+"morning": 10
+},
+"Cowlitz River|2026-06-23": {
+"first light": 14,
+"midday": 2,
+"morning": 7
+},
+"Cowlitz River|2026-06-24": {
+"first light": 15,
+"midday": 2,
+"morning": 5
+},
+"Cowlitz River|2026-06-28": {
+"first light": 20,
+"midday": 1,
+"morning": 6
+},
+"Cowlitz River|2026-06-29": {
+"first light": 16,
+"midday": 9,
+"morning": 3
+},
+"Cowlitz River|2026-07-01": {
+"first light": 15,
+"midday": 2,
+"morning": 4
+},
+"Cowlitz River|2026-07-02": {
+"first light": 21,
+"midday": 4,
+"morning": 7
+},
+"Cowlitz River|2026-07-06": {
+"first light": 13,
+"midday": 1,
+"morning": 9
+},
+"Cowlitz River|2026-07-07": {
+"first light": 10,
+"midday": 2,
+"morning": 5
+},
+"Cowlitz River|2026-07-08": {
+"first light": 11,
+"midday": 2,
+"morning": 7
+},
+"Cowlitz River|2026-07-09": {
+"first light": 3,
+"midday": 5,
+"morning": 2
+},
+"Cowlitz River|2026-07-12": {
+"first light": 19,
+"midday": 3,
+"morning": 6
+},
+"Cowlitz River|2026-07-13": {
+"first light": 1,
+"midday": 1
+},
+"Cowlitz River|2026-07-14": {
+"first light": 13,
+"midday": 1,
+"morning": 7
+},
+"Cowlitz River|2026-07-19": {
+"first light": 24,
+"midday": 6,
+"morning": 5
+},
+"Cowlitz River|2026-07-20": {
+"first light": 7,
+"morning": 5
+},
+"Cowlitz River|2026-07-22": {
+"first light": 16,
+"morning": 4
+},
+"Cowlitz River|2026-07-23": {
+"first light": 10,
+"midday": 5,
+"morning": 4
+},
+"Cowlitz River|2026-07-26": {
+"first light": 23,
+"midday": 1,
+"morning": 6
+},
+"Cowlitz River|2026-07-27": {
+"first light": 6,
+"midday": 2,
+"morning": 3
+},
+"Cowlitz River|2026-07-28": {
+"first light": 17,
+"midday": 2,
+"morning": 2
+},
+"Cowlitz River|2026-07-29": {
+"first light": 10,
+"midday": 3,
+"morning": 6
+},
+"Dickey River|2026-03-31": {
+"morning": 1
+},
+"Goose Lake|2026-07-11": {
+"morning": 2
+},
+"Hoh River|2026-03-31": {
+"first light": 3,
+"midday": 2,
+"morning": 13
+},
+"Horsethief Lake|2026-04-25": {
+"first light": 2,
+"midday": 3,
+"morning": 9
+},
+"Kress Lake|2026-05-02": {
+"midday": 7,
+"morning": 3
+},
+"Kress Lake|2026-05-09": {
+"first light": 2,
+"midday": 5,
+"morning": 4
+},
+"Kress Lake|2026-05-16": {
+"midday": 2,
+"morning": 2
+},
+"Kress Lake|2026-05-23": {
+"midday": 9,
+"morning": 1
+},
+"Kress Lake|2026-05-31": {
+"afternoon": 3,
+"midday": 3
+},
+"Kress Lake|2026-06-06": {
+"midday": 4,
+"morning": 1
+},
+"Kress Lake|2026-06-07": {
+"afternoon": 5,
+"midday": 4
+},
+"Kress Lake|2026-06-13": {
+"midday": 4
+},
+"Kress Lake|2026-06-20": {
+"midday": 7,
+"morning": 1
+},
+"Kress Lake|2026-06-27": {
+"midday": 4
+},
+"Lacamas Lake|2026-05-09": {
+"morning": 4
+},
+"Lacamas Lake|2026-05-31": {
+"first light": 1,
+"morning": 2
+},
+"Lacamas Lake|2026-06-07": {
+"first light": 2,
+"morning": 3
+},
+"Little White Salmon - Drano Lake|2026-04-09": {
+"afternoon": 3,
+"midday": 2
+},
+"Little White Salmon - Drano Lake|2026-04-10": {
+"first light": 6,
+"morning": 4
+},
+"Little White Salmon - Drano Lake|2026-04-14": {
+"first light": 10,
+"morning": 3
+},
+"Little White Salmon - Drano Lake|2026-04-16": {
+"first light": 21,
+"morning": 4
+},
+"Little White Salmon - Drano Lake|2026-04-19": {
+"first light": 8,
+"morning": 3
+},
+"Little White Salmon - Drano Lake|2026-04-20": {
+"afternoon": 2,
+"first light": 9,
+"midday": 5,
+"morning": 7
+},
+"Little White Salmon - Drano Lake|2026-04-21": {
+"first light": 16,
+"midday": 2,
+"morning": 9
+},
+"Little White Salmon - Drano Lake|2026-04-25": {
+"afternoon": 2,
+"first light": 34,
+"midday": 5,
+"morning": 5
+},
+"Little White Salmon - Drano Lake|2026-04-28": {
+"first light": 39,
+"midday": 2,
+"morning": 10
+},
+"Little White Salmon - Drano Lake|2026-04-30": {
+"afternoon": 13,
+"first light": 71,
+"midday": 7,
+"morning": 14
+},
+"Little White Salmon - Drano Lake|2026-05-02": {
+"first light": 34,
+"midday": 1,
+"morning": 1
+},
+"Little White Salmon - Drano Lake|2026-05-03": {
+"afternoon": 5,
+"first light": 30,
+"midday": 9,
+"morning": 5
+},
+"Little White Salmon - Drano Lake|2026-05-07": {
+"first light": 76,
+"midday": 4,
+"morning": 14
+},
+"Little White Salmon - Drano Lake|2026-05-08": {
+"afternoon": 6,
+"first light": 45,
+"midday": 11,
+"morning": 3
+},
+"Little White Salmon - Drano Lake|2026-05-09": {
+"first light": 29,
+"midday": 8,
+"morning": 8
+},
+"Little White Salmon - Drano Lake|2026-05-10": {
+"first light": 22
+},
+"Little White Salmon - Drano Lake|2026-05-11": {
+"first light": 40,
+"midday": 1,
+"morning": 10
+},
+"Little White Salmon - Drano Lake|2026-05-14": {
+"afternoon": 3,
+"first light": 35,
+"midday": 6,
+"morning": 4
+},
+"Little White Salmon - Drano Lake|2026-05-19": {
+"first light": 7,
+"midday": 9,
+"morning": 4
+},
+"Little White Salmon - Drano Lake|2026-05-21": {
+"first light": 19,
+"midday": 1,
+"morning": 6
+},
+"Little White Salmon - Drano Lake|2026-05-28": {
+"first light": 4,
+"morning": 2
+},
+"Little White Salmon - Drano Lake|2026-05-29": {
+"first light": 3,
+"morning": 1
+},
+"Little White Salmon - Drano Lake|2026-05-31": {
+"first light": 6,
+"morning": 2
+},
+"Little White Salmon - Drano Lake|2026-06-01": {
+"first light": 3,
+"morning": 2
+},
+"Little White Salmon - Drano Lake|2026-06-11": {
+"first light": 3,
+"midday": 1,
+"morning": 2
+},
+"Little White Salmon - Drano Lake|2026-06-18": {
+"midday": 1
+},
+"Little White Salmon - Drano Lake|2026-06-22": {
+"first light": 1,
+"morning": 4
+},
+"Little White Salmon - Drano Lake|2026-06-25": {
+"afternoon": 2,
+"midday": 2
+},
+"Little White Salmon - Drano Lake|2026-06-27": {
+"first light": 1,
+"morning": 1
+},
+"Little White Salmon - Drano Lake|2026-07-08": {
+"first light": 1
+},
+"Little White Salmon - Drano Lake|2026-07-10": {
+"afternoon": 1,
+"midday": 1
+},
+"Little White Salmon - Drano Lake|2026-07-15": {
+"first light": 4,
+"midday": 1,
+"morning": 1
+},
+"Little White Salmon - Drano Lake|2026-07-18": {
+"first light": 2,
+"morning": 2
+},
+"Little White Salmon - Drano Lake|2026-07-24": {
+"morning": 2
+},
+"Little White Salmon - Drano Lake|2026-07-25": {
+"first light": 5
+},
+"Mineral Lake|2026-04-25": {
+"first light": 19,
+"midday": 2,
+"morning": 11
+},
+"Nooksack River - North Fork|2026-05-23": {
+"afternoon": 4,
+"first light": 9,
+"midday": 3,
+"morning": 4
+},
+"Nooksack River - North Fork|2026-05-24": {
+"afternoon": 5,
+"evening": 1,
+"first light": 2,
+"midday": 4,
+"morning": 3
+},
+"Nooksack River - North Fork|2026-05-25": {
+"first light": 6,
+"midday": 1,
+"morning": 6
+},
+"Nooksack River - North Fork|2026-05-26": {
+"afternoon": 5,
+"evening": 2,
+"first light": 5,
+"midday": 4,
+"morning": 2
+},
+"Nooksack River - North Fork|2026-05-27": {
+"afternoon": 2,
+"evening": 2,
+"first light": 5,
+"midday": 4,
+"morning": 2
+},
+"Nooksack River - North Fork|2026-05-30": {
+"afternoon": 6,
+"evening": 1,
+"first light": 10,
+"midday": 2,
+"morning": 4
+},
+"Nooksack River - North Fork|2026-05-31": {
+"afternoon": 4,
+"evening": 2,
+"first light": 7,
+"midday": 1,
+"morning": 5
+},
+"Nooksack River - North Fork|2026-06-01": {
+"afternoon": 5,
+"first light": 8,
+"midday": 4
+},
+"Nooksack River - North Fork|2026-06-02": {
+"afternoon": 6,
+"evening": 3,
+"first light": 5,
+"midday": 4,
+"morning": 2
+},
+"Nooksack River - North Fork|2026-06-05": {
+"afternoon": 6,
+"evening": 1,
+"first light": 9,
+"midday": 2
+},
+"Nooksack River - North Fork|2026-06-06": {
+"afternoon": 6,
+"evening": 2,
+"first light": 8,
+"midday": 3,
+"morning": 2
+},
+"Nooksack River - North Fork|2026-06-07": {
+"afternoon": 5,
+"evening": 3,
+"first light": 7,
+"midday": 8,
+"morning": 3
+},
+"Nooksack River - North Fork|2026-06-08": {
+"afternoon": 2,
+"first light": 3,
+"midday": 2,
+"morning": 4
+},
+"Puyallup River|2026-07-29": {
+"midday": 2,
+"morning": 1
+},
+"Rowland Lake|2026-04-25": {
+"first light": 5,
+"midday": 1,
+"morning": 9
+},
+"Skagit River|2026-04-20": {
+"first light": 11,
+"midday": 7,
+"morning": 13
+},
+"Skagit River|2026-04-22": {
+"first light": 1,
+"midday": 9,
+"morning": 2
+},
+"Skagit River|2026-04-24": {
+"afternoon": 9,
+"evening": 1,
+"first light": 5,
+"midday": 7,
+"morning": 5
+},
+"Skagit River|2026-04-25": {
+"first light": 7,
+"midday": 6,
+"morning": 12
+},
+"Skagit River|2026-04-26": {
+"afternoon": 6,
+"first light": 4,
+"midday": 13,
+"morning": 11
+},
+"Skagit River|2026-04-28": {
+"afternoon": 2,
+"first light": 2,
+"midday": 6,
+"morning": 2
+},
+"Skagit River|2026-04-29": {
+"afternoon": 4,
+"first light": 2,
+"midday": 5,
+"morning": 4
+},
+"Skagit River|2026-05-02": {
+"afternoon": 1,
+"first light": 3,
+"midday": 6,
+"morning": 11
+},
+"Skagit River|2026-05-03": {
+"afternoon": 1,
+"first light": 5,
+"midday": 2,
+"morning": 10
+},
+"Skagit River|2026-05-05": {
+"afternoon": 1,
+"midday": 1,
+"morning": 5
+},
+"Skagit River|2026-05-08": {
+"first light": 1,
+"midday": 3,
+"morning": 5
+},
+"Skagit River|2026-05-09": {
+"afternoon": 3,
+"first light": 2,
+"midday": 1,
+"morning": 10
+},
+"Skagit River|2026-05-10": {
+"afternoon": 1,
+"first light": 2,
+"midday": 2,
+"morning": 2
+},
+"Skagit River|2026-05-12": {
+"first light": 1,
+"midday": 2,
+"morning": 3
+},
+"Skagit River|2026-05-13": {
+"midday": 1,
+"morning": 1
+},
+"Skagit River|2026-05-16": {
+"first light": 18,
+"midday": 3,
+"morning": 6
+},
+"Skagit River|2026-05-17": {
+"first light": 11,
+"midday": 2,
+"morning": 3
+},
+"Skagit River|2026-05-20": {
+"first light": 4,
+"midday": 1,
+"morning": 3
+},
+"Skagit River|2026-05-22": {
+"afternoon": 1,
+"first light": 4,
+"midday": 3,
+"morning": 1
+},
+"Skagit River|2026-05-23": {
+"first light": 9,
+"midday": 1,
+"morning": 4
+},
+"Skagit River|2026-05-24": {
+"afternoon": 2,
+"midday": 1
+},
+"Skagit River|2026-05-28": {
+"first light": 3,
+"morning": 1
+},
+"Skagit River|2026-05-29": {
+"first light": 5,
+"morning": 3
+},
+"Skagit River|2026-05-30": {
+"first light": 1,
+"midday": 5
+},
+"Skagit River|2026-05-31": {
+"first light": 1,
+"midday": 4,
+"morning": 3
+},
+"Skagit River|2026-06-01": {
+"afternoon": 2,
+"first light": 1,
+"morning": 4
+},
+"Skagit River|2026-06-03": {
+"afternoon": 2,
+"first light": 2,
+"morning": 1
+},
+"Skagit River|2026-06-07": {
+"first light": 4,
+"midday": 1,
+"morning": 3
+},
+"Skagit River|2026-06-10": {
+"first light": 3,
+"midday": 1
+},
+"Skagit River|2026-06-11": {
+"afternoon": 1,
+"midday": 1,
+"morning": 1
+},
+"Skagit River|2026-06-12": {
+"afternoon": 2,
+"first light": 1
+},
+"Skagit River|2026-06-13": {
+"afternoon": 1,
+"first light": 2,
+"midday": 2,
+"morning": 2
+},
+"Skagit River|2026-06-16": {
+"afternoon": 2,
+"first light": 6,
+"midday": 9,
+"morning": 5
+},
+"Skagit River|2026-06-18": {
+"afternoon": 2,
+"first light": 7,
+"midday": 7,
+"morning": 10
+},
+"Skagit River|2026-06-20": {
+"first light": 7,
+"midday": 3,
+"morning": 8
+},
+"Skagit River|2026-06-21": {
+"first light": 28,
+"midday": 7,
+"morning": 7
+},
+"Skagit River|2026-06-24": {
+"afternoon": 2,
+"first light": 4,
+"midday": 3,
+"morning": 8
+},
+"Skagit River|2026-06-25": {
+"afternoon": 9,
+"evening": 3,
+"first light": 3,
+"midday": 9,
+"morning": 2
+},
+"Skagit River|2026-06-27": {
+"afternoon": 4,
+"first light": 15,
+"midday": 6,
+"morning": 8
+},
+"Skagit River|2026-06-28": {
+"afternoon": 4,
+"first light": 6,
+"midday": 8,
+"morning": 10
+},
+"Skagit River|2026-06-29": {
+"first light": 6,
+"midday": 3,
+"morning": 3
+},
+"Skagit River|2026-07-02": {
+"afternoon": 5,
+"evening": 2,
+"first light": 6,
+"midday": 7,
+"morning": 4
+},
+"Skagit River|2026-07-05": {
+"first light": 22,
+"midday": 5,
+"morning": 16
+},
+"Skagit River|2026-07-08": {
+"first light": 12,
+"midday": 2,
+"morning": 4
+},
+"Skagit River|2026-07-10": {
+"afternoon": 3,
+"first light": 7,
+"midday": 7,
+"morning": 2
+},
+"Skagit River|2026-07-11": {
+"afternoon": 4,
+"first light": 16,
+"midday": 7,
+"morning": 12
+},
+"Skagit River|2026-07-12": {
+"afternoon": 3,
+"first light": 11,
+"midday": 9,
+"morning": 9
+},
+"Skagit River|2026-07-13": {
+"afternoon": 3,
+"first light": 4,
+"midday": 2,
+"morning": 7
+},
+"Skagit River|2026-07-17": {
+"first light": 7,
+"midday": 2,
+"morning": 8
+},
+"Skagit River|2026-07-18": {
+"afternoon": 1,
+"first light": 8,
+"midday": 5,
+"morning": 6
+},
+"Skagit River|2026-07-19": {
+"first light": 12,
+"midday": 1,
+"morning": 6
+},
+"Skagit River|2026-07-21": {
+"first light": 1,
+"midday": 3,
+"morning": 2
+},
+"Skagit River|2026-07-23": {
+"afternoon": 2,
+"first light": 3,
+"midday": 1
+},
+"Skagit River|2026-07-25": {
+"afternoon": 1,
+"midday": 3,
+"morning": 6
+},
+"Skagit River|2026-07-26": {
+"afternoon": 1,
+"first light": 6,
+"midday": 4,
+"morning": 1
+},
+"Skagit River|2026-07-28": {
+"midday": 3
+},
+"Sol Duc River|2026-03-31": {
+"midday": 2,
+"morning": 2
+},
+"Sol Duc River|2026-05-01": {
+"first light": 10,
+"midday": 2,
+"morning": 2
+},
+"Sol Duc River|2026-05-02": {
+"afternoon": 3,
+"first light": 3,
+"midday": 2,
+"morning": 6
+},
+"Sol Duc River|2026-05-03": {
+"afternoon": 1,
+"first light": 2,
+"midday": 4,
+"morning": 4
+},
+"Sol Duc River|2026-05-06": {
+"afternoon": 1,
+"first light": 2,
+"midday": 3,
+"morning": 3
+},
+"Sol Duc River|2026-05-08": {
+"afternoon": 1,
+"first light": 4,
+"midday": 1,
+"morning": 2
+},
+"Sol Duc River|2026-05-09": {
+"afternoon": 3,
+"first light": 4,
+"midday": 2,
+"morning": 3
+},
+"Sol Duc River|2026-05-10": {
+"afternoon": 1,
+"first light": 4,
+"morning": 1
+},
+"Sol Duc River|2026-05-12": {
+"afternoon": 1,
+"first light": 3,
+"morning": 2
+},
+"Sol Duc River|2026-05-13": {
+"first light": 4,
+"morning": 1
+},
+"Sol Duc River|2026-05-16": {
+"afternoon": 1,
+"first light": 1,
+"midday": 2,
+"morning": 1
+},
+"Sol Duc River|2026-05-17": {
+"first light": 5,
+"midday": 1
+},
+"Sol Duc River|2026-05-19": {
+"first light": 3
+},
+"Sol Duc River|2026-05-22": {
+"first light": 3,
+"morning": 1
+},
+"Sol Duc River|2026-05-23": {
+"first light": 3
+},
+"Sol Duc River|2026-05-24": {
+"first light": 4,
+"morning": 2
+},
+"Sol Duc River|2026-05-27": {
+"first light": 1,
+"midday": 1,
+"morning": 1
+},
+"Sol Duc River|2026-05-30": {
+"afternoon": 4,
+"first light": 2,
+"midday": 5,
+"morning": 3
+},
+"Sol Duc River|2026-05-31": {
+"first light": 1,
+"midday": 3,
+"morning": 1
+},
+"Spearfish Lake|2026-04-25": {
+"first light": 4,
+"midday": 3,
+"morning": 8
+},
+"Swofford Pond|2026-05-02": {
+"morning": 2
+},
+"Swofford Pond|2026-05-16": {
+"morning": 1
+},
+"Swofford Pond|2026-05-23": {
+"first light": 1,
+"midday": 1,
+"morning": 5
+},
+"Swofford Pond|2026-06-06": {
+"first light": 1
+},
+"Swofford Pond|2026-06-13": {
+"first light": 1,
+"midday": 1,
+"morning": 2
+},
+"Swofford Pond|2026-06-20": {
+"first light": 1,
+"morning": 3
+},
+"Swofford Pond|2026-06-27": {
+"morning": 1
+}
+},
+"seat": {
+"Carlisle Lake|2026-04-25": {
+"Bank": [
+12,
+4
+]
+},
+"Goose Lake|2026-07-11": {
+"Bank": [
+2,
+1
+]
+},
+"Horsethief Lake|2026-04-25": {
+"Bank": [
+6,
+3
+],
+"Boat": [
+8,
+7
+]
+},
+"Kress Lake|2026-05-02": {
+"Bank": [
+10,
+8
+]
+},
+"Kress Lake|2026-05-09": {
+"Bank": [
+11,
+7
+]
+},
+"Kress Lake|2026-05-16": {
+"Bank": [
+4,
+3
+]
+},
+"Kress Lake|2026-05-23": {
+"Bank": [
+10,
+4
+]
+},
+"Kress Lake|2026-05-31": {
+"Bank": [
+6,
+3
+]
+},
+"Kress Lake|2026-06-06": {
+"Bank": [
+5,
+3
+]
+},
+"Kress Lake|2026-06-07": {
+"Bank": [
+9,
+4
+]
+},
+"Kress Lake|2026-06-13": {
+"Bank": [
+4,
+3
+]
+},
+"Kress Lake|2026-06-20": {
+"Bank": [
+8,
+3
+]
+},
+"Kress Lake|2026-06-27": {
+"Bank": [
+4,
+1
+]
+},
+"Lacamas Lake|2026-05-09": {
+"Bank": [
+4,
+1
+]
+},
+"Lacamas Lake|2026-05-31": {
+"Bank": [
+3,
+0
+]
+},
+"Lacamas Lake|2026-06-07": {
+"Bank": [
+5,
+2
+]
+},
+"Mineral Lake|2026-04-25": {
+"Bank": [
+7,
+4
+],
+"Boat": [
+25,
+24
+]
+},
+"Rowland Lake|2026-04-25": {
+"Bank": [
+5,
+4
+],
+"Boat": [
+10,
+9
+]
+},
+"Spearfish Lake|2026-04-25": {
+"Bank": [
+14,
+12
+],
+"Boat": [
+1,
+1
+]
+},
+"Swofford Pond|2026-05-02": {
+"Bank": [
+2,
+2
+]
+},
+"Swofford Pond|2026-05-16": {
+"Bank": [
+1,
+1
+]
+},
+"Swofford Pond|2026-05-23": {
+"Bank": [
+7,
+5
+]
+},
+"Swofford Pond|2026-06-06": {
+"Bank": [
+1,
+1
+]
+},
+"Swofford Pond|2026-06-13": {
+"Bank": [
+4,
+2
+]
+},
+"Swofford Pond|2026-06-20": {
+"Bank": [
+4,
+4
+]
+},
+"Swofford Pond|2026-06-27": {
+"Bank": [
+1,
+0
+]
+}
+},
+"size": {
+"Blue Creek (Cowlitz)|Steelhead|2026-04-02": [
+64.0,
+74.0
+],
+"Blue Creek (Cowlitz)|Steelhead|2026-04-08": [
+68.0
+],
+"Blue Creek (Cowlitz)|Steelhead|2026-04-09": [
+72.0,
+67.0,
+68.0
+],
+"Blue Creek (Cowlitz)|Steelhead|2026-04-12": [
+76.0,
+62.0
+],
+"Blue Creek (Cowlitz)|Steelhead|2026-04-15": [
+57.0
+],
+"Cascade River|Chinook|2026-05-23": [
+62.0
+],
+"Cascade River|Chinook|2026-05-24": [
+77.0
+],
+"Cascade River|Chinook|2026-06-10": [
+37.0
+],
+"Cascade River|Chinook|2026-06-11": [
+45.0
+],
+"Cascade River|Chinook|2026-06-13": [
+38.0,
+84.0
+],
+"Cascade River|Chinook|2026-06-20": [
+68.0,
+76.0
+],
+"Cascade River|Chinook|2026-06-27": [
+44.0,
+43.0
+],
+"Cascade River|Chinook|2026-07-11": [
+75.0
+],
+"Cowlitz River|Chinook|2026-04-09": [
+69.0,
+71.0
+],
+"Cowlitz River|Chinook|2026-04-12": [
+75.0
+],
+"Cowlitz River|Chinook|2026-04-16": [
+74.0
+],
+"Cowlitz River|Chinook|2026-04-19": [
+71.0
+],
+"Cowlitz River|Chinook|2026-04-20": [
+82.0,
+74.0,
+70.0
+],
+"Cowlitz River|Chinook|2026-04-27": [
+78.0,
+67.0,
+71.0,
+47.0
+],
+"Cowlitz River|Chinook|2026-04-28": [
+63.0,
+69.0,
+71.0
+],
+"Cowlitz River|Chinook|2026-05-03": [
+69.0
+],
+"Cowlitz River|Chinook|2026-05-10": [
+55.0
+],
+"Cowlitz River|Chinook|2026-05-11": [
+66.0
+],
+"Cowlitz River|Chinook|2026-05-13": [
+71.0,
+72.0,
+66.0,
+54.0
+],
+"Cowlitz River|Chinook|2026-05-14": [
+63.0,
+47.0,
+67.0
+],
+"Cowlitz River|Chinook|2026-05-17": [
+77.0
+],
+"Cowlitz River|Chinook|2026-05-19": [
+66.0
+],
+"Cowlitz River|Chinook|2026-05-20": [
+74.0
+],
+"Cowlitz River|Chinook|2026-05-31": [
+72.0,
+66.0,
+66.0,
+74.0,
+65.0,
+64.0,
+53.0,
+50.0,
+64.0,
+52.0,
+70.0,
+54.0,
+65.0,
+64.0,
+69.0,
+69.0,
+65.0,
+78.0
+],
+"Cowlitz River|Chinook|2026-06-01": [
+81.0,
+56.0,
+72.0,
+64.0,
+68.0,
+56.0,
+56.0,
+70.0,
+47.0,
+65.0,
+50.0,
+50.0,
+63.0,
+51.0,
+72.0,
+63.0,
+62.0
+],
+"Cowlitz River|Chinook|2026-06-02": [
+62.0,
+45.0,
+62.0,
+50.0,
+69.0,
+68.0,
+63.0,
+59.0,
+50.0,
+47.0,
+56.0,
+71.0
+],
+"Cowlitz River|Chinook|2026-06-03": [
+55.0,
+70.0,
+56.0,
+69.0,
+59.0,
+59.0,
+64.0,
+55.0,
+67.0
+],
+"Cowlitz River|Chinook|2026-06-07": [
+55.0,
+51.0,
+56.0,
+32.0
+],
+"Cowlitz River|Chinook|2026-06-08": [
+72.0,
+74.0,
+63.0,
+51.0,
+52.0,
+57.0,
+57.0
+],
+"Cowlitz River|Chinook|2026-06-09": [
+65.0,
+61.0,
+47.0,
+52.0,
+69.0,
+65.0,
+52.0,
+55.0,
+73.0,
+56.0,
+65.0
+],
+"Cowlitz River|Chinook|2026-06-10": [
+71.0,
+70.0,
+52.0,
+67.0,
+53.0,
+59.0,
+52.0,
+70.0,
+64.0
+],
+"Cowlitz River|Chinook|2026-06-11": [
+54.0,
+47.0,
+70.0,
+48.0,
+32.0,
+72.0
+],
+"Cowlitz River|Chinook|2026-06-14": [
+66.0,
+65.0,
+53.0,
+59.0,
+51.0,
+61.0,
+78.0,
+48.0,
+56.0
+],
+"Cowlitz River|Chinook|2026-06-15": [
+76.0
+],
+"Cowlitz River|Chinook|2026-06-16": [
+38.0
+],
+"Cowlitz River|Chinook|2026-06-21": [
+76.0,
+67.0,
+70.0,
+64.0,
+52.0,
+54.0,
+68.0,
+75.0,
+59.0,
+67.0,
+61.0
+],
+"Cowlitz River|Chinook|2026-06-22": [
+55.0,
+66.0,
+71.0,
+70.0,
+47.0
+],
+"Cowlitz River|Chinook|2026-06-23": [
+72.0,
+74.0,
+72.0,
+70.0,
+54.0,
+69.0,
+52.0
+],
+"Cowlitz River|Chinook|2026-06-24": [
+68.0,
+56.0,
+52.0
+],
+"Cowlitz River|Chinook|2026-06-28": [
+70.0,
+68.0,
+65.0,
+62.0,
+68.0,
+32.0
+],
+"Cowlitz River|Chinook|2026-06-29": [
+55.0,
+68.0,
+53.0
+],
+"Cowlitz River|Chinook|2026-07-01": [
+72.0,
+71.0,
+62.0
+],
+"Cowlitz River|Chinook|2026-07-02": [
+31.0,
+33.0,
+63.0
+],
+"Cowlitz River|Chinook|2026-07-07": [
+33.0,
+32.0
+],
+"Cowlitz River|Chinook|2026-07-08": [
+55.0,
+54.0,
+64.0,
+65.0
+],
+"Cowlitz River|Chinook|2026-07-09": [
+59.0
+],
+"Cowlitz River|Chinook|2026-07-12": [
+70.0
+],
+"Cowlitz River|Chinook|2026-07-14": [
+56.0,
+58.0,
+71.0,
+72.0,
+66.0
+],
+"Cowlitz River|Chinook|2026-07-19": [
+33.0,
+34.0
+],
+"Cowlitz River|Chinook|2026-07-23": [
+32.0,
+34.0,
+33.0,
+32.0,
+56.0,
+35.0,
+65.0
+],
+"Cowlitz River|Chinook|2026-07-26": [
+66.0,
+74.0,
+36.0,
+36.0
+],
+"Cowlitz River|Chinook|2026-07-29": [
+62.0,
+60.0,
+72.0,
+33.0
+],
+"Cowlitz River|Cutthroat|2026-06-09": [
+30.0
+],
+"Cowlitz River|Cutthroat|2026-06-24": [
+27.0
+],
+"Cowlitz River|Cutthroat|2026-07-02": [
+34.0
+],
+"Cowlitz River|Cutthroat|2026-07-07": [
+26.0
+],
+"Cowlitz River|Steelhead|2026-03-31": [
+70.0
+],
+"Cowlitz River|Steelhead|2026-04-01": [
+74.0
+],
+"Cowlitz River|Steelhead|2026-04-02": [
+60.0
+],
+"Cowlitz River|Steelhead|2026-04-09": [
+66.0
+],
+"Cowlitz River|Steelhead|2026-04-12": [
+74.0
+],
+"Cowlitz River|Steelhead|2026-04-13": [
+66.0
+],
+"Cowlitz River|Steelhead|2026-04-19": [
+72.0,
+66.0
+],
+"Cowlitz River|Steelhead|2026-05-03": [
+70.0
+],
+"Cowlitz River|Steelhead|2026-05-06": [
+74.0
+],
+"Cowlitz River|Steelhead|2026-05-18": [
+76.0
+],
+"Cowlitz River|Steelhead|2026-05-27": [
+74.0
+],
+"Cowlitz River|Steelhead|2026-06-02": [
+73.0
+],
+"Cowlitz River|Steelhead|2026-06-07": [
+75.0
+],
+"Cowlitz River|Steelhead|2026-06-08": [
+70.0,
+79.0,
+76.0
+],
+"Cowlitz River|Steelhead|2026-06-10": [
+71.0
+],
+"Cowlitz River|Steelhead|2026-06-11": [
+68.0,
+71.0,
+80.0,
+70.0
+],
+"Cowlitz River|Steelhead|2026-06-15": [
+73.0
+],
+"Cowlitz River|Steelhead|2026-06-16": [
+76.0,
+74.0,
+70.0,
+66.0,
+70.0,
+73.0,
+72.0,
+67.0
+],
+"Cowlitz River|Steelhead|2026-06-21": [
+70.0,
+67.0,
+71.0,
+67.0,
+66.0
+],
+"Cowlitz River|Steelhead|2026-06-22": [
+66.0,
+70.0,
+72.0,
+66.0,
+69.0
+],
+"Cowlitz River|Steelhead|2026-06-23": [
+70.0,
+67.0,
+72.0,
+70.0,
+71.0,
+68.0
+],
+"Cowlitz River|Steelhead|2026-06-24": [
+73.0,
+71.0,
+68.0,
+74.0,
+71.0,
+69.0,
+72.0,
+71.0,
+81.0
+],
+"Cowlitz River|Steelhead|2026-06-28": [
+74.0,
+68.0,
+71.0,
+70.0,
+74.0,
+70.0,
+71.0,
+66.0
+],
+"Cowlitz River|Steelhead|2026-06-29": [
+66.0,
+76.0,
+72.0,
+68.0,
+68.0,
+70.0,
+74.0,
+66.0,
+70.0,
+60.0,
+68.0,
+68.0,
+69.0,
+71.0
+],
+"Cowlitz River|Steelhead|2026-07-01": [
+68.0,
+66.0,
+70.0,
+72.0,
+71.0,
+70.0
+],
+"Cowlitz River|Steelhead|2026-07-02": [
+69.0,
+67.0,
+71.0,
+68.0,
+74.0,
+68.0,
+68.0,
+66.0,
+82.0,
+70.0,
+71.0,
+68.0,
+69.0,
+66.0
+],
+"Cowlitz River|Steelhead|2026-07-06": [
+70.0,
+72.0,
+69.0,
+62.0,
+67.0,
+69.0,
+70.0,
+67.0
+],
+"Cowlitz River|Steelhead|2026-07-07": [
+72.0,
+70.0,
+68.0,
+72.0,
+70.0
+],
+"Cowlitz River|Steelhead|2026-07-08": [
+70.0,
+74.0,
+67.0,
+66.0,
+72.0,
+70.0,
+68.0,
+65.0,
+69.0,
+70.0,
+66.0,
+72.0,
+69.0,
+67.0,
+65.0
+],
+"Cowlitz River|Steelhead|2026-07-09": [
+68.0,
+67.0
+],
+"Cowlitz River|Steelhead|2026-07-12": [
+68.0,
+70.0,
+68.0,
+71.0,
+71.0,
+74.0,
+74.0,
+78.0,
+71.0,
+66.0,
+67.0
+],
+"Cowlitz River|Steelhead|2026-07-14": [
+69.0,
+62.0,
+54.0,
+69.0,
+72.0,
+71.0,
+71.0,
+72.0
+],
+"Cowlitz River|Steelhead|2026-07-19": [
+80.0,
+81.0,
+66.0,
+70.0,
+67.0,
+66.0,
+69.0,
+66.0,
+71.0,
+68.0,
+70.0,
+68.0,
+66.0,
+70.0,
+80.0,
+87.0,
+76.0,
+80.0
+],
+"Cowlitz River|Steelhead|2026-07-20": [
+68.0,
+68.0,
+74.0,
+71.0
+],
+"Cowlitz River|Steelhead|2026-07-22": [
+78.0,
+72.0,
+75.0,
+77.0,
+67.0,
+70.0,
+74.0,
+64.0,
+66.0,
+81.0,
+67.0,
+65.0,
+80.0,
+70.0,
+70.0,
+66.0,
+72.0,
+65.0,
+68.0
+],
+"Cowlitz River|Steelhead|2026-07-23": [
+68.0,
+69.0,
+68.0
+],
+"Cowlitz River|Steelhead|2026-07-26": [
+67.0,
+74.0,
+71.0,
+67.0,
+70.0,
+75.0,
+65.0,
+74.0,
+68.0,
+66.0,
+64.0,
+71.0,
+71.0,
+74.0,
+66.0,
+69.0,
+65.0,
+66.0,
+71.0,
+68.0
+],
+"Cowlitz River|Steelhead|2026-07-27": [
+81.0,
+66.0,
+70.0,
+71.0,
+68.0,
+70.0,
+66.0,
+68.0,
+67.0,
+70.0
+],
+"Cowlitz River|Steelhead|2026-07-28": [
+66.0,
+68.0,
+70.0,
+74.0,
+69.0,
+71.0,
+66.0,
+74.0,
+68.0,
+68.0,
+66.0,
+82.0,
+68.0,
+74.0
+],
+"Cowlitz River|Steelhead|2026-07-29": [
+76.0,
+68.0,
+69.0,
+74.0,
+71.0,
+66.0,
+59.0
+],
+"Cowlitz River|Tiger Muskie|2026-07-01": [
+97.0
+],
+"Little White Salmon - Drano Lake|Chinook|2026-04-09": [
+58.0
+],
+"Little White Salmon - Drano Lake|Chinook|2026-04-10": [
+83.0,
+85.0,
+81.0
+],
+"Little White Salmon - Drano Lake|Chinook|2026-04-14": [
+80.0,
+84.0,
+82.0,
+88.0
+],
+"Little White Salmon - Drano Lake|Chinook|2026-04-16": [
+93.0,
+72.0,
+76.0,
+75.0
+],
+"Little White Salmon - Drano Lake|Chinook|2026-04-20": [
+74.0,
+75.0,
+86.0,
+72.0,
+74.0,
+80.0
+],
+"Little White Salmon - Drano Lake|Chinook|2026-04-21": [
+72.0,
+80.0,
+74.0,
+75.0,
+89.0,
+75.0,
+72.0
+],
+"Little White Salmon - Drano Lake|Chinook|2026-04-25": [
+72.0,
+82.0,
+83.0,
+76.0,
+90.0
+],
+"Little White Salmon - Drano Lake|Chinook|2026-04-28": [
+85.0,
+83.0,
+79.0,
+87.0,
+80.0,
+82.0,
+83.0,
+92.0,
+75.0,
+88.0,
+70.0,
+80.0,
+73.0,
+75.0,
+73.0,
+77.0,
+72.0,
+74.0,
+73.0,
+74.0,
+71.0,
+76.0,
+73.0,
+72.0,
+73.0
+],
+"Little White Salmon - Drano Lake|Chinook|2026-04-30": [
+74.0,
+83.0,
+79.0,
+71.0,
+82.0,
+85.0,
+74.0,
+81.0,
+80.0,
+82.0,
+81.0,
+76.0,
+78.0,
+77.0,
+79.0,
+70.0,
+66.0,
+78.0,
+80.0,
+77.0,
+80.0,
+76.0,
+80.0,
+82.0,
+74.0,
+79.0,
+81.0,
+75.0,
+86.0,
+75.0,
+72.0,
+73.0,
+73.0,
+76.0,
+78.0,
+80.0,
+84.0,
+81.0,
+78.0,
+83.0,
+68.0,
+76.0,
+75.0,
+79.0,
+81.0,
+82.0,
+72.0,
+81.0,
+71.0,
+78.0,
+76.0,
+76.0,
+72.0,
+75.0,
+74.0,
+70.0
+],
+"Little White Salmon - Drano Lake|Chinook|2026-05-02": [
+84.0,
+77.0,
+78.0,
+72.0,
+68.0,
+78.0,
+73.0,
+82.0,
+82.0,
+85.0,
+84.0,
+78.0,
+83.0,
+78.0,
+81.0,
+79.0,
+70.0,
+75.0,
+75.0
+],
+"Little White Salmon - Drano Lake|Chinook|2026-05-03": [
+60.0,
+79.0,
+80.0,
+75.0,
+76.0,
+71.0,
+78.0,
+74.0,
+76.0,
+78.0,
+76.0
+],
+"Little White Salmon - Drano Lake|Chinook|2026-05-07": [
+70.0,
+79.0,
+75.0,
+85.0,
+75.0,
+74.0,
+83.0,
+70.0,
+73.0,
+80.0,
+80.0,
+69.0,
+82.0,
+76.0,
+75.0,
+66.0,
+65.0,
+65.0,
+66.0,
+82.0,
+75.0,
+77.0,
+76.0,
+72.0,
+71.0,
+68.0,
+70.0,
+74.0,
+74.0,
+63.0,
+76.0,
+70.0,
+73.0,
+82.0,
+76.0,
+81.0,
+78.0,
+72.0,
+74.0,
+74.0,
+73.0,
+76.0,
+70.0,
+77.0,
+78.0,
+75.0,
+76.0,
+68.0,
+85.0,
+80.0,
+81.0,
+78.0,
+74.0,
+78.0,
+65.0,
+76.0,
+80.0,
+68.0,
+80.0,
+74.0,
+60.0,
+76.0,
+70.0,
+64.0,
+66.0,
+70.0,
+94.0,
+82.0,
+74.0,
+80.0,
+79.0,
+75.0,
+75.0,
+74.0,
+73.0,
+78.0,
+71.0,
+75.0,
+74.0,
+71.0,
+80.0,
+79.0,
+75.0,
+68.0,
+83.0,
+78.0,
+72.0,
+74.0,
+83.0,
+75.0,
+72.0,
+75.0,
+79.0,
+72.0,
+77.0,
+79.0,
+78.0,
+80.0,
+82.0,
+71.0,
+67.0,
+78.0,
+72.0,
+68.0,
+77.0,
+76.0,
+78.0,
+79.0,
+76.0,
+85.0,
+69.0,
+91.0,
+74.0,
+69.0,
+77.0,
+70.0,
+82.0,
+72.0,
+69.0,
+77.0,
+70.0,
+75.0,
+72.0,
+74.0,
+73.0,
+76.0,
+75.0,
+75.0,
+74.0,
+70.0,
+71.0,
+72.0,
+70.0,
+71.0,
+73.0,
+75.0,
+70.0
+],
+"Little White Salmon - Drano Lake|Chinook|2026-05-08": [
+76.0,
+72.0,
+74.0,
+74.0,
+72.0,
+74.0,
+68.0,
+80.0,
+84.0,
+81.0,
+82.0,
+77.0,
+68.0,
+81.0,
+68.0,
+84.0,
+77.0,
+70.0,
+77.0
+],
+"Little White Salmon - Drano Lake|Chinook|2026-05-09": [
+70.0,
+80.0,
+75.0,
+72.0,
+70.0
+],
+"Little White Salmon - Drano Lake|Chinook|2026-05-10": [
+77.0,
+75.0,
+81.0,
+73.0,
+74.0,
+76.0,
+77.0,
+85.0,
+83.0,
+77.0,
+76.0,
+80.0,
+78.0
+],
+"Little White Salmon - Drano Lake|Chinook|2026-05-11": [
+79.0,
+74.0,
+72.0,
+76.0,
+70.0,
+69.0,
+79.0,
+76.0,
+69.0,
+79.0,
+76.0,
+74.0,
+78.0,
+67.0,
+73.0,
+78.0,
+68.0,
+77.0,
+73.0,
+74.0,
+75.0,
+74.0,
+73.0,
+81.0,
+74.0,
+81.0,
+76.0,
+76.0,
+74.0,
+69.0,
+77.0,
+87.0,
+70.0
+],
+"Little White Salmon - Drano Lake|Chinook|2026-05-14": [
+65.0,
+74.0,
+72.0,
+74.0,
+76.0,
+80.0,
+74.0,
+60.0,
+76.0,
+74.0,
+77.0,
+76.0,
+68.0,
+84.0,
+74.0,
+80.0,
+79.0,
+79.0,
+80.0,
+76.0,
+72.0,
+74.0,
+75.0,
+76.0,
+78.0
+],
+"Little White Salmon - Drano Lake|Chinook|2026-05-19": [
+71.0,
+72.0,
+78.0
+],
+"Little White Salmon - Drano Lake|Chinook|2026-05-21": [
+69.0,
+45.0,
+70.0,
+75.0
+],
+"Little White Salmon - Drano Lake|Chinook|2026-05-31": [
+75.0,
+77.0
+],
+"Little White Salmon - Drano Lake|Chinook|2026-06-01": [
+80.0
+],
+"Little White Salmon - Drano Lake|Steelhead|2026-05-02": [
+79.0
+],
+"Nooksack River - North Fork|Chinook|2026-05-23": [
+80.0,
+71.0,
+65.0,
+61.0,
+72.0,
+69.0
+],
+"Nooksack River - North Fork|Chinook|2026-05-24": [
+64.0,
+66.0,
+59.0
+],
+"Nooksack River - North Fork|Chinook|2026-05-26": [
+86.0,
+76.0,
+77.0,
+73.0,
+73.0,
+70.0,
+67.0
+],
+"Nooksack River - North Fork|Chinook|2026-05-27": [
+76.0
+],
+"Nooksack River - North Fork|Chinook|2026-05-30": [
+70.0,
+74.0,
+75.0,
+72.0,
+66.0
+],
+"Nooksack River - North Fork|Chinook|2026-05-31": [
+61.0,
+58.0,
+79.0,
+72.0,
+76.0,
+79.0,
+77.0
+],
+"Nooksack River - North Fork|Chinook|2026-06-01": [
+67.0,
+67.0,
+70.0,
+86.0,
+69.0,
+62.0,
+69.0,
+58.0,
+56.0,
+61.0
+],
+"Nooksack River - North Fork|Chinook|2026-06-02": [
+63.0,
+65.0
+],
+"Nooksack River - North Fork|Chinook|2026-06-05": [
+60.0,
+75.0,
+63.0,
+78.0,
+53.0,
+54.0,
+90.0,
+94.0
+],
+"Nooksack River - North Fork|Chinook|2026-06-06": [
+77.0,
+59.0,
+64.0
+],
+"Nooksack River - North Fork|Chinook|2026-06-07": [
+84.0,
+77.0,
+85.0,
+76.0,
+87.0,
+64.0
+],
+"Nooksack River - North Fork|Chinook|2026-06-08": [
+58.0,
+79.0,
+75.0,
+59.0,
+69.0
+],
+"Puyallup River|Chinook|2026-07-29": [
+78.0,
+66.0,
+78.0
+],
+"Skagit River|Chinook|2026-05-16": [
+70.0,
+79.0,
+76.0,
+75.0,
+67.0,
+73.0
+],
+"Skagit River|Chinook|2026-05-20": [
+72.0
+],
+"Skagit River|Chinook|2026-05-30": [
+77.0
+],
+"Skagit River|Chinook|2026-06-01": [
+74.0
+],
+"Skagit River|Chinook|2026-06-10": [
+51.0,
+68.0
+],
+"Skagit River|Chinook|2026-06-18": [
+78.0
+],
+"Skagit River|Chinook|2026-06-25": [
+81.0,
+86.0
+],
+"Skagit River|Chinook|2026-06-27": [
+97.0
+],
+"Skagit River|Pink|2026-07-26": [
+42.0
+],
+"Skagit River|Sockeye|2026-06-16": [
+59.0
+],
+"Skagit River|Sockeye|2026-06-20": [
+63.0,
+46.0
+],
+"Skagit River|Sockeye|2026-06-21": [
+66.0,
+66.0,
+52.0,
+66.0,
+55.0,
+53.0,
+51.0,
+54.0
+],
+"Skagit River|Sockeye|2026-06-25": [
+64.0,
+54.0,
+65.0
+],
+"Skagit River|Sockeye|2026-06-27": [
+60.0,
+57.0,
+58.0,
+57.0,
+63.0
+],
+"Skagit River|Sockeye|2026-06-28": [
+60.0,
+62.0,
+56.0,
+51.0,
+68.0,
+55.0,
+55.0,
+54.0,
+53.0,
+50.0,
+60.0,
+65.0,
+54.0,
+57.0,
+60.0,
+55.0,
+49.0
+],
+"Skagit River|Sockeye|2026-06-29": [
+66.0,
+50.0,
+65.0,
+61.0
+],
+"Skagit River|Sockeye|2026-07-02": [
+56.0,
+50.0,
+57.0,
+53.0
+],
+"Skagit River|Sockeye|2026-07-05": [
+55.0,
+54.0,
+56.0,
+65.0,
+59.0
+],
+"Skagit River|Sockeye|2026-07-08": [
+56.0,
+57.0
+],
+"Skagit River|Sockeye|2026-07-11": [
+57.0,
+55.0
+],
+"Skagit River|Sockeye|2026-07-12": [
+55.0
+],
+"Skagit River|Sockeye|2026-07-17": [
+58.0,
+45.0,
+55.0
+],
+"Skagit River|Steelhead|2026-06-29": [
+63.0
+],
+"Skagit River|Steelhead|2026-07-21": [
+62.0
+],
+"Sol Duc River|Chinook|2026-05-01": [
+80.5,
+84.0,
+76.0,
+65.0,
+72.0,
+67.0,
+74.0,
+64.0,
+66.0
+],
+"Sol Duc River|Chinook|2026-05-02": [
+54.0,
+64.0,
+65.5,
+76.0,
+82.0,
+74.0,
+85.0,
+77.0,
+67.5
+],
+"Sol Duc River|Chinook|2026-05-03": [
+78.0
+],
+"Sol Duc River|Chinook|2026-05-06": [
+73.5,
+61.0
+],
+"Sol Duc River|Chinook|2026-05-08": [
+68.0,
+63.5,
+68.5,
+80.0,
+74.0,
+67.0,
+74.0
+],
+"Sol Duc River|Chinook|2026-05-09": [
+80.0,
+82.0
+],
+"Sol Duc River|Chinook|2026-05-10": [
+75.0
+],
+"Sol Duc River|Chinook|2026-05-12": [
+85.0,
+75.0
+],
+"Sol Duc River|Chinook|2026-05-16": [
+89.0,
+68.0,
+68.0
+],
+"Sol Duc River|Chinook|2026-05-17": [
+62.0,
+72.0,
+68.0
+],
+"Sol Duc River|Chinook|2026-05-19": [
+69.0,
+64.0,
+81.0
+],
+"Sol Duc River|Chinook|2026-05-22": [
+72.0,
+77.0,
+72.0,
+46.0,
+41.0,
+75.0
+],
+"Sol Duc River|Chinook|2026-05-24": [
+73.0,
+86.0,
+83.0,
+79.0,
+78.0,
+71.0,
+62.0,
+81.0
+],
+"Sol Duc River|Chinook|2026-05-27": [
+72.0,
+75.0,
+61.0
+],
+"Sol Duc River|Chinook|2026-05-30": [
+68.0,
+77.0,
+80.0,
+70.0
+]
+},
+"target": {
+"Blue Creek (Cowlitz)|Steelhead|2026-04-01": [
+1,
+1
+],
+"Blue Creek (Cowlitz)|Steelhead|2026-04-02": [
+7,
+8
+],
+"Blue Creek (Cowlitz)|Steelhead|2026-04-08": [
+5,
+9
+],
+"Blue Creek (Cowlitz)|Steelhead|2026-04-09": [
+7,
+10
+],
+"Blue Creek (Cowlitz)|Steelhead|2026-04-12": [
+1,
+4
+],
+"Blue Creek (Cowlitz)|Steelhead|2026-04-14": [
+3,
+6
+],
+"Blue Creek (Cowlitz)|Steelhead|2026-04-15": [
+2,
+2
+],
+"Bogachiel River|Steelhead|2026-03-31": [
+5,
+6
+],
+"Calawah River|Steelhead|2026-03-31": [
+1,
+1
+],
+"Carlisle Lake|Any species|2026-04-25": [
+1,
+2
+],
+"Carlisle Lake|Crappie|2026-04-25": [
+1,
+1
+],
+"Carlisle Lake|Rainbow trout|2026-04-25": [
+1,
+2
+],
+"Carlisle Lake|Trout|2026-04-25": [
+9,
+24
+],
+"Cascade River|Chinook|2026-05-22": [
+14,
+28
+],
+"Cascade River|Chinook|2026-05-23": [
+8,
+13
+],
+"Cascade River|Chinook|2026-05-24": [
+11,
+19
+],
+"Cascade River|Chinook|2026-06-03": [
+12,
+17
+],
+"Cascade River|Chinook|2026-06-06": [
+6,
+11
+],
+"Cascade River|Chinook|2026-06-10": [
+11,
+15
+],
+"Cascade River|Chinook|2026-06-11": [
+4,
+8
+],
+"Cascade River|Chinook|2026-06-12": [
+7,
+10
+],
+"Cascade River|Chinook|2026-06-13": [
+9,
+17
+],
+"Cascade River|Chinook|2026-06-18": [
+5,
+8
+],
+"Cascade River|Chinook|2026-06-20": [
+6,
+12
+],
+"Cascade River|Chinook|2026-06-24": [
+1,
+1
+],
+"Cascade River|Chinook|2026-06-25": [
+1,
+1
+],
+"Cascade River|Chinook|2026-06-27": [
+6,
+11
+],
+"Cascade River|Chinook|2026-07-02": [
+2,
+4
+],
+"Cascade River|Chinook|2026-07-04": [
+2,
+4
+],
+"Cascade River|Chinook|2026-07-08": [
+1,
+2
+],
+"Cascade River|Chinook|2026-07-11": [
+3,
+3
+],
+"Cowlitz River|Chinook|2026-03-31": [
+2,
+2
+],
+"Cowlitz River|Chinook|2026-04-01": [
+1,
+1
+],
+"Cowlitz River|Chinook|2026-04-07": [
+8,
+10
+],
+"Cowlitz River|Chinook|2026-04-08": [
+4,
+4
+],
+"Cowlitz River|Chinook|2026-04-09": [
+13,
+15
+],
+"Cowlitz River|Chinook|2026-04-12": [
+18,
+27
+],
+"Cowlitz River|Chinook|2026-04-14": [
+1,
+2
+],
+"Cowlitz River|Chinook|2026-04-15": [
+12,
+15
+],
+"Cowlitz River|Chinook|2026-04-16": [
+18,
+26
+],
+"Cowlitz River|Chinook|2026-04-19": [
+23,
+31
+],
+"Cowlitz River|Chinook|2026-04-20": [
+15,
+20
+],
+"Cowlitz River|Chinook|2026-04-21": [
+2,
+3
+],
+"Cowlitz River|Chinook|2026-04-22": [
+9,
+9
+],
+"Cowlitz River|Chinook|2026-04-27": [
+21,
+27
+],
+"Cowlitz River|Chinook|2026-04-28": [
+16,
+24
+],
+"Cowlitz River|Chinook|2026-05-01": [
+3,
+5
+],
+"Cowlitz River|Chinook|2026-05-03": [
+26,
+46
+],
+"Cowlitz River|Chinook|2026-05-04": [
+9,
+13
+],
+"Cowlitz River|Chinook|2026-05-06": [
+17,
+21
+],
+"Cowlitz River|Chinook|2026-05-10": [
+20,
+30
+],
+"Cowlitz River|Chinook|2026-05-11": [
+13,
+19
+],
+"Cowlitz River|Chinook|2026-05-12": [
+3,
+5
+],
+"Cowlitz River|Chinook|2026-05-13": [
+19,
+23
+],
+"Cowlitz River|Chinook|2026-05-14": [
+24,
+29
+],
+"Cowlitz River|Chinook|2026-05-17": [
+28,
+43
+],
+"Cowlitz River|Chinook|2026-05-18": [
+6,
+7
+],
+"Cowlitz River|Chinook|2026-05-19": [
+9,
+13
+],
+"Cowlitz River|Chinook|2026-05-20": [
+18,
+26
+],
+"Cowlitz River|Chinook|2026-05-21": [
+8,
+10
+],
+"Cowlitz River|Chinook|2026-05-26": [
+9,
+9
+],
+"Cowlitz River|Chinook|2026-05-27": [
+10,
+13
+],
+"Cowlitz River|Chinook|2026-05-31": [
+32,
+55
+],
+"Cowlitz River|Chinook|2026-06-01": [
+23,
+29
+],
+"Cowlitz River|Chinook|2026-06-02": [
+19,
+32
+],
+"Cowlitz River|Chinook|2026-06-03": [
+20,
+28
+],
+"Cowlitz River|Chinook|2026-06-07": [
+23,
+28
+],
+"Cowlitz River|Chinook|2026-06-08": [
+21,
+27
+],
+"Cowlitz River|Chinook|2026-06-09": [
+10,
+13
+],
+"Cowlitz River|Chinook|2026-06-10": [
+10,
+13
+],
+"Cowlitz River|Chinook|2026-06-11": [
+15,
+24
+],
+"Cowlitz River|Chinook|2026-06-14": [
+13,
+16
+],
+"Cowlitz River|Chinook|2026-06-15": [
+11,
+12
+],
+"Cowlitz River|Chinook|2026-06-16": [
+6,
+13
+],
+"Cowlitz River|Chinook|2026-06-21": [
+12,
+16
+],
+"Cowlitz River|Chinook|2026-06-22": [
+14,
+21
+],
+"Cowlitz River|Chinook|2026-06-23": [
+9,
+14
+],
+"Cowlitz River|Chinook|2026-06-24": [
+4,
+4
+],
+"Cowlitz River|Chinook|2026-06-28": [
+11,
+14
+],
+"Cowlitz River|Chinook|2026-06-29": [
+7,
+7
+],
+"Cowlitz River|Chinook|2026-07-01": [
+5,
+9
+],
+"Cowlitz River|Chinook|2026-07-02": [
+5,
+7
+],
+"Cowlitz River|Chinook|2026-07-06": [
+4,
+5
+],
+"Cowlitz River|Chinook|2026-07-07": [
+1,
+1
+],
+"Cowlitz River|Chinook|2026-07-08": [
+4,
+5
+],
+"Cowlitz River|Chinook|2026-07-09": [
+2,
+4
+],
+"Cowlitz River|Chinook|2026-07-12": [
+6,
+6
+],
+"Cowlitz River|Chinook|2026-07-14": [
+6,
+8
+],
+"Cowlitz River|Chinook|2026-07-19": [
+5,
+7
+],
+"Cowlitz River|Chinook|2026-07-22": [
+1,
+1
+],
+"Cowlitz River|Chinook|2026-07-23": [
+5,
+7
+],
+"Cowlitz River|Chinook|2026-07-26": [
+4,
+9
+],
+"Cowlitz River|Chinook|2026-07-28": [
+1,
+1
+],
+"Cowlitz River|Chinook|2026-07-29": [
+2,
+4
+],
+"Cowlitz River|Steelhead|2026-03-31": [
+8,
+10
+],
+"Cowlitz River|Steelhead|2026-04-01": [
+15,
+19
+],
+"Cowlitz River|Steelhead|2026-04-02": [
+4,
+5
+],
+"Cowlitz River|Steelhead|2026-04-07": [
+9,
+10
+],
+"Cowlitz River|Steelhead|2026-04-08": [
+3,
+3
+],
+"Cowlitz River|Steelhead|2026-04-09": [
+17,
+26
+],
+"Cowlitz River|Steelhead|2026-04-12": [
+5,
+9
+],
+"Cowlitz River|Steelhead|2026-04-13": [
+2,
+2
+],
+"Cowlitz River|Steelhead|2026-04-14": [
+1,
+1
+],
+"Cowlitz River|Steelhead|2026-04-15": [
+3,
+3
+],
+"Cowlitz River|Steelhead|2026-04-16": [
+6,
+8
+],
+"Cowlitz River|Steelhead|2026-04-19": [
+14,
+17
+],
+"Cowlitz River|Steelhead|2026-04-20": [
+4,
+6
+],
+"Cowlitz River|Steelhead|2026-04-21": [
+3,
+4
+],
+"Cowlitz River|Steelhead|2026-04-27": [
+4,
+5
+],
+"Cowlitz River|Steelhead|2026-04-28": [
+3,
+3
+],
+"Cowlitz River|Steelhead|2026-05-03": [
+7,
+7
+],
+"Cowlitz River|Steelhead|2026-05-04": [
+3,
+3
+],
+"Cowlitz River|Steelhead|2026-05-06": [
+7,
+7
+],
+"Cowlitz River|Steelhead|2026-05-10": [
+4,
+5
+],
+"Cowlitz River|Steelhead|2026-05-11": [
+2,
+2
+],
+"Cowlitz River|Steelhead|2026-05-13": [
+2,
+2
+],
+"Cowlitz River|Steelhead|2026-05-14": [
+4,
+4
+],
+"Cowlitz River|Steelhead|2026-05-17": [
+5,
+8
+],
+"Cowlitz River|Steelhead|2026-05-20": [
+1,
+1
+],
+"Cowlitz River|Steelhead|2026-05-26": [
+3,
+5
+],
+"Cowlitz River|Steelhead|2026-05-27": [
+4,
+6
+],
+"Cowlitz River|Steelhead|2026-05-31": [
+4,
+6
+],
+"Cowlitz River|Steelhead|2026-06-01": [
+3,
+7
+],
+"Cowlitz River|Steelhead|2026-06-02": [
+1,
+1
+],
+"Cowlitz River|Steelhead|2026-06-03": [
+1,
+1
+],
+"Cowlitz River|Steelhead|2026-06-07": [
+13,
+31
+],
+"Cowlitz River|Steelhead|2026-06-08": [
+4,
+14
+],
+"Cowlitz River|Steelhead|2026-06-09": [
+1,
+1
+],
+"Cowlitz River|Steelhead|2026-06-10": [
+3,
+3
+],
+"Cowlitz River|Steelhead|2026-06-11": [
+10,
+24
+],
+"Cowlitz River|Steelhead|2026-06-12": [
+9,
+19
+],
+"Cowlitz River|Steelhead|2026-06-14": [
+6,
+18
+],
+"Cowlitz River|Steelhead|2026-06-15": [
+8,
+18
+],
+"Cowlitz River|Steelhead|2026-06-16": [
+9,
+26
+],
+"Cowlitz River|Steelhead|2026-06-21": [
+19,
+42
+],
+"Cowlitz River|Steelhead|2026-06-22": [
+14,
+27
+],
+"Cowlitz River|Steelhead|2026-06-23": [
+13,
+31
+],
+"Cowlitz River|Steelhead|2026-06-24": [
+17,
+51
+],
+"Cowlitz River|Steelhead|2026-06-28": [
+15,
+44
+],
+"Cowlitz River|Steelhead|2026-06-29": [
+21,
+55
+],
+"Cowlitz River|Steelhead|2026-07-01": [
+15,
+30
+],
+"Cowlitz River|Steelhead|2026-07-02": [
+26,
+54
+],
+"Cowlitz River|Steelhead|2026-07-06": [
+19,
+43
+],
+"Cowlitz River|Steelhead|2026-07-07": [
+15,
+34
+],
+"Cowlitz River|Steelhead|2026-07-08": [
+16,
+45
+],
+"Cowlitz River|Steelhead|2026-07-09": [
+8,
+11
+],
+"Cowlitz River|Steelhead|2026-07-12": [
+21,
+62
+],
+"Cowlitz River|Steelhead|2026-07-13": [
+1,
+2
+],
+"Cowlitz River|Steelhead|2026-07-14": [
+15,
+33
+],
+"Cowlitz River|Steelhead|2026-07-19": [
+30,
+75
+],
+"Cowlitz River|Steelhead|2026-07-20": [
+12,
+22
+],
+"Cowlitz River|Steelhead|2026-07-22": [
+19,
+67
+],
+"Cowlitz River|Steelhead|2026-07-23": [
+14,
+25
+],
+"Cowlitz River|Steelhead|2026-07-26": [
+26,
+67
+],
+"Cowlitz River|Steelhead|2026-07-27": [
+11,
+26
+],
+"Cowlitz River|Steelhead|2026-07-28": [
+20,
+49
+],
+"Cowlitz River|Steelhead|2026-07-29": [
+17,
+34
+],
+"Cowlitz River|Sturgeon|2026-05-17": [
+1,
+2
+],
+"Cowlitz River|Sturgeon|2026-06-14": [
+1,
+3
+],
+"Cowlitz River|Trout|2026-04-08": [
+1,
+1
+],
+"Cowlitz River|Trout|2026-05-26": [
+1,
+1
+],
+"Cowlitz River|Trout|2026-05-27": [
+1,
+3
+],
+"Cowlitz River|Trout|2026-05-31": [
+1,
+2
+],
+"Cowlitz River|Trout|2026-06-07": [
+2,
+3
+],
+"Cowlitz River|Trout|2026-06-09": [
+1,
+1
+],
+"Cowlitz River|Trout|2026-06-22": [
+1,
+1
+],
+"Cowlitz River|Trout|2026-06-23": [
+1,
+2
+],
+"Cowlitz River|Trout|2026-06-24": [
+1,
+1
+],
+"Cowlitz River|Trout|2026-06-28": [
+1,
+1
+],
+"Cowlitz River|Trout|2026-07-01": [
+1,
+1
+],
+"Cowlitz River|Trout|2026-07-02": [
+1,
+1
+],
+"Cowlitz River|Trout|2026-07-07": [
+1,
+1
+],
+"Cowlitz River|Trout|2026-07-12": [
+1,
+1
+],
+"Cowlitz River|Trout|2026-07-13": [
+1,
+1
+],
+"Dickey River|Steelhead|2026-03-31": [
+1,
+1
+],
+"Goose Lake|Trout|2026-07-11": [
+2,
+8
+],
+"Hoh River|Steelhead|2026-03-31": [
+18,
+31
+],
+"Horsethief Lake|Any species|2026-04-25": [
+3,
+6
+],
+"Horsethief Lake|Rainbow trout|2026-04-25": [
+11,
+32
+],
+"Kress Lake|Any species|2026-05-02": [
+3,
+11
+],
+"Kress Lake|Any species|2026-05-09": [
+2,
+4
+],
+"Kress Lake|Any species|2026-05-16": [
+1,
+1
+],
+"Kress Lake|Any species|2026-05-23": [
+3,
+8
+],
+"Kress Lake|Any species|2026-05-31": [
+2,
+6
+],
+"Kress Lake|Any species|2026-06-07": [
+1,
+2
+],
+"Kress Lake|Any species|2026-06-13": [
+1,
+1
+],
+"Kress Lake|Any species|2026-06-20": [
+2,
+4
+],
+"Kress Lake|Any species|2026-06-27": [
+1,
+3
+],
+"Kress Lake|Bass|2026-05-09": [
+2,
+4
+],
+"Kress Lake|Bass|2026-05-23": [
+1,
+2
+],
+"Kress Lake|Bass|2026-05-31": [
+2,
+4
+],
+"Kress Lake|Bass|2026-06-06": [
+3,
+10
+],
+"Kress Lake|Bass|2026-06-07": [
+2,
+5
+],
+"Kress Lake|Bass|2026-06-13": [
+2,
+2
+],
+"Kress Lake|Bass|2026-06-20": [
+3,
+5
+],
+"Kress Lake|Bass|2026-06-27": [
+1,
+2
+],
+"Kress Lake|Catfish|2026-05-23": [
+1,
+2
+],
+"Kress Lake|Rainbow trout|2026-05-23": [
+1,
+2
+],
+"Kress Lake|Rainbow trout|2026-05-31": [
+1,
+1
+],
+"Kress Lake|Trout|2026-05-02": [
+7,
+17
+],
+"Kress Lake|Trout|2026-05-09": [
+7,
+14
+],
+"Kress Lake|Trout|2026-05-16": [
+3,
+7
+],
+"Kress Lake|Trout|2026-05-23": [
+4,
+13
+],
+"Kress Lake|Trout|2026-05-31": [
+1,
+2
+],
+"Kress Lake|Trout|2026-06-06": [
+2,
+6
+],
+"Kress Lake|Trout|2026-06-07": [
+6,
+13
+],
+"Kress Lake|Trout|2026-06-13": [
+1,
+2
+],
+"Kress Lake|Trout|2026-06-20": [
+3,
+5
+],
+"Kress Lake|Trout|2026-06-27": [
+2,
+4
+],
+"Lacamas Lake|Any species|2026-05-09": [
+1,
+3
+],
+"Lacamas Lake|Any species|2026-06-07": [
+2,
+4
+],
+"Lacamas Lake|Carp|2026-05-09": [
+1,
+1
+],
+"Lacamas Lake|Trout|2026-05-09": [
+2,
+5
+],
+"Lacamas Lake|Trout|2026-05-31": [
+3,
+4
+],
+"Lacamas Lake|Trout|2026-06-07": [
+3,
+5
+],
+"Little White Salmon - Drano Lake|Salmonid|2026-04-09": [
+5,
+10
+],
+"Little White Salmon - Drano Lake|Salmonid|2026-04-10": [
+10,
+21
+],
+"Little White Salmon - Drano Lake|Salmonid|2026-04-14": [
+13,
+33
+],
+"Little White Salmon - Drano Lake|Salmonid|2026-04-16": [
+25,
+41
+],
+"Little White Salmon - Drano Lake|Salmonid|2026-04-19": [
+11,
+29
+],
+"Little White Salmon - Drano Lake|Salmonid|2026-04-20": [
+23,
+55
+],
+"Little White Salmon - Drano Lake|Salmonid|2026-04-21": [
+27,
+50
+],
+"Little White Salmon - Drano Lake|Salmonid|2026-04-25": [
+46,
+143
+],
+"Little White Salmon - Drano Lake|Salmonid|2026-04-28": [
+51,
+108
+],
+"Little White Salmon - Drano Lake|Salmonid|2026-04-30": [
+105,
+319
+],
+"Little White Salmon - Drano Lake|Salmonid|2026-05-02": [
+36,
+81
+],
+"Little White Salmon - Drano Lake|Salmonid|2026-05-03": [
+49,
+154
+],
+"Little White Salmon - Drano Lake|Salmonid|2026-05-07": [
+94,
+240
+],
+"Little White Salmon - Drano Lake|Salmonid|2026-05-08": [
+65,
+207
+],
+"Little White Salmon - Drano Lake|Salmonid|2026-05-09": [
+45,
+109
+],
+"Little White Salmon - Drano Lake|Salmonid|2026-05-10": [
+22,
+47
+],
+"Little White Salmon - Drano Lake|Salmonid|2026-05-11": [
+51,
+119
+],
+"Little White Salmon - Drano Lake|Salmonid|2026-05-14": [
+48,
+173
+],
+"Little White Salmon - Drano Lake|Salmonid|2026-05-19": [
+20,
+43
+],
+"Little White Salmon - Drano Lake|Salmonid|2026-05-21": [
+26,
+50
+],
+"Little White Salmon - Drano Lake|Salmonid|2026-05-28": [
+6,
+14
+],
+"Little White Salmon - Drano Lake|Salmonid|2026-05-29": [
+4,
+12
+],
+"Little White Salmon - Drano Lake|Salmonid|2026-05-31": [
+8,
+20
+],
+"Little White Salmon - Drano Lake|Salmonid|2026-06-01": [
+5,
+14
+],
+"Little White Salmon - Drano Lake|Salmonid|2026-06-11": [
+6,
+11
+],
+"Little White Salmon - Drano Lake|Salmonid|2026-06-18": [
+1,
+2
+],
+"Little White Salmon - Drano Lake|Salmonid|2026-06-22": [
+5,
+9
+],
+"Little White Salmon - Drano Lake|Salmonid|2026-06-25": [
+4,
+9
+],
+"Little White Salmon - Drano Lake|Salmonid|2026-06-27": [
+2,
+4
+],
+"Little White Salmon - Drano Lake|Salmonid|2026-07-08": [
+1,
+2
+],
+"Little White Salmon - Drano Lake|Salmonid|2026-07-10": [
+2,
+4
+],
+"Little White Salmon - Drano Lake|Salmonid|2026-07-15": [
+6,
+12
+],
+"Little White Salmon - Drano Lake|Salmonid|2026-07-18": [
+4,
+8
+],
+"Little White Salmon - Drano Lake|Salmonid|2026-07-24": [
+2,
+4
+],
+"Little White Salmon - Drano Lake|Salmonid|2026-07-25": [
+5,
+14
+],
+"Mineral Lake|Trout|2026-04-25": [
+32,
+77
+],
+"Nooksack River - North Fork|Chinook|2026-05-23": [
+19,
+45
+],
+"Nooksack River - North Fork|Chinook|2026-05-24": [
+15,
+34
+],
+"Nooksack River - North Fork|Chinook|2026-05-25": [
+13,
+24
+],
+"Nooksack River - North Fork|Chinook|2026-05-26": [
+18,
+26
+],
+"Nooksack River - North Fork|Chinook|2026-05-27": [
+15,
+22
+],
+"Nooksack River - North Fork|Chinook|2026-05-30": [
+23,
+50
+],
+"Nooksack River - North Fork|Chinook|2026-05-31": [
+19,
+41
+],
+"Nooksack River - North Fork|Chinook|2026-06-01": [
+17,
+28
+],
+"Nooksack River - North Fork|Chinook|2026-06-02": [
+20,
+34
+],
+"Nooksack River - North Fork|Chinook|2026-06-05": [
+18,
+27
+],
+"Nooksack River - North Fork|Chinook|2026-06-06": [
+21,
+36
+],
+"Nooksack River - North Fork|Chinook|2026-06-07": [
+26,
+41
+],
+"Nooksack River - North Fork|Chinook|2026-06-08": [
+11,
+17
+],
+"Nooksack River - North Fork|Other|2026-05-23": [
+1,
+1
+],
+"Puyallup River|Chinook|2026-07-29": [
+3,
+5
+],
+"Rowland Lake|Trout|2026-04-25": [
+15,
+34
+],
+"Skagit River|Bull trout|2026-05-08": [
+1,
+1
+],
+"Skagit River|Bull trout|2026-06-18": [
+1,
+1
+],
+"Skagit River|Bull trout|2026-06-24": [
+2,
+3
+],
+"Skagit River|Bull trout|2026-06-28": [
+1,
+3
+],
+"Skagit River|Bull trout|2026-07-10": [
+1,
+1
+],
+"Skagit River|Chinook|2026-04-20": [
+31,
+52
+],
+"Skagit River|Chinook|2026-04-22": [
+12,
+18
+],
+"Skagit River|Chinook|2026-04-24": [
+27,
+51
+],
+"Skagit River|Chinook|2026-04-25": [
+25,
+55
+],
+"Skagit River|Chinook|2026-04-26": [
+34,
+62
+],
+"Skagit River|Chinook|2026-04-28": [
+12,
+17
+],
+"Skagit River|Chinook|2026-04-29": [
+15,
+20
+],
+"Skagit River|Chinook|2026-05-02": [
+20,
+31
+],
+"Skagit River|Chinook|2026-05-03": [
+18,
+37
+],
+"Skagit River|Chinook|2026-05-05": [
+7,
+12
+],
+"Skagit River|Chinook|2026-05-08": [
+8,
+14
+],
+"Skagit River|Chinook|2026-05-09": [
+16,
+27
+],
+"Skagit River|Chinook|2026-05-10": [
+7,
+12
+],
+"Skagit River|Chinook|2026-05-12": [
+6,
+11
+],
+"Skagit River|Chinook|2026-05-13": [
+2,
+4
+],
+"Skagit River|Chinook|2026-05-16": [
+27,
+57
+],
+"Skagit River|Chinook|2026-05-17": [
+16,
+36
+],
+"Skagit River|Chinook|2026-05-20": [
+8,
+11
+],
+"Skagit River|Chinook|2026-05-22": [
+9,
+14
+],
+"Skagit River|Chinook|2026-05-23": [
+14,
+32
+],
+"Skagit River|Chinook|2026-05-24": [
+3,
+5
+],
+"Skagit River|Chinook|2026-05-28": [
+4,
+10
+],
+"Skagit River|Chinook|2026-05-29": [
+8,
+12
+],
+"Skagit River|Chinook|2026-05-30": [
+6,
+12
+],
+"Skagit River|Chinook|2026-05-31": [
+8,
+19
+],
+"Skagit River|Chinook|2026-06-01": [
+7,
+14
+],
+"Skagit River|Chinook|2026-06-03": [
+5,
+12
+],
+"Skagit River|Chinook|2026-06-07": [
+8,
+18
+],
+"Skagit River|Chinook|2026-06-10": [
+3,
+7
+],
+"Skagit River|Chinook|2026-06-11": [
+3,
+6
+],
+"Skagit River|Chinook|2026-06-12": [
+3,
+6
+],
+"Skagit River|Chinook|2026-06-13": [
+7,
+18
+],
+"Skagit River|Chinook|2026-06-18": [
+3,
+4
+],
+"Skagit River|Chinook|2026-06-20": [
+1,
+2
+],
+"Skagit River|Chinook|2026-06-21": [
+2,
+2
+],
+"Skagit River|Chinook|2026-06-25": [
+4,
+4
+],
+"Skagit River|Chinook|2026-06-27": [
+3,
+5
+],
+"Skagit River|Chinook|2026-06-28": [
+3,
+4
+],
+"Skagit River|Chinook|2026-07-02": [
+1,
+2
+],
+"Skagit River|Chinook|2026-07-05": [
+3,
+5
+],
+"Skagit River|Chinook|2026-07-11": [
+2,
+9
+],
+"Skagit River|Chinook|2026-07-12": [
+1,
+1
+],
+"Skagit River|Chinook|2026-07-13": [
+1,
+1
+],
+"Skagit River|Other|2026-05-02": [
+1,
+1
+],
+"Skagit River|Other|2026-06-16": [
+1,
+2
+],
+"Skagit River|Other|2026-07-13": [
+2,
+6
+],
+"Skagit River|Other|2026-07-19": [
+2,
+2
+],
+"Skagit River|Other|2026-07-25": [
+1,
+5
+],
+"Skagit River|Other|2026-07-28": [
+1,
+1
+],
+"Skagit River|Rainbow trout|2026-06-10": [
+1,
+2
+],
+"Skagit River|Rainbow trout|2026-06-16": [
+3,
+6
+],
+"Skagit River|Rainbow trout|2026-06-25": [
+1,
+2
+],
+"Skagit River|Rainbow trout|2026-06-27": [
+2,
+3
+],
+"Skagit River|Rainbow trout|2026-06-28": [
+2,
+3
+],
+"Skagit River|Rainbow trout|2026-07-02": [
+1,
+2
+],
+"Skagit River|Rainbow trout|2026-07-05": [
+1,
+1
+],
+"Skagit River|Rainbow trout|2026-07-10": [
+2,
+5
+],
+"Skagit River|Rainbow trout|2026-07-13": [
+1,
+1
+],
+"Skagit River|Rainbow trout|2026-07-21": [
+1,
+1
+],
+"Skagit River|Rainbow trout|2026-07-26": [
+1,
+2
+],
+"Skagit River|Sockeye|2026-06-16": [
+18,
+41
+],
+"Skagit River|Sockeye|2026-06-18": [
+22,
+38
+],
+"Skagit River|Sockeye|2026-06-20": [
+17,
+34
+],
+"Skagit River|Sockeye|2026-06-21": [
+40,
+77
+],
+"Skagit River|Sockeye|2026-06-24": [
+15,
+26
+],
+"Skagit River|Sockeye|2026-06-25": [
+21,
+34
+],
+"Skagit River|Sockeye|2026-06-27": [
+28,
+54
+],
+"Skagit River|Sockeye|2026-06-28": [
+22,
+39
+],
+"Skagit River|Sockeye|2026-06-29": [
+12,
+16
+],
+"Skagit River|Sockeye|2026-07-02": [
+22,
+37
+],
+"Skagit River|Sockeye|2026-07-05": [
+39,
+74
+],
+"Skagit River|Sockeye|2026-07-08": [
+18,
+27
+],
+"Skagit River|Sockeye|2026-07-10": [
+16,
+26
+],
+"Skagit River|Sockeye|2026-07-11": [
+37,
+60
+],
+"Skagit River|Sockeye|2026-07-12": [
+31,
+57
+],
+"Skagit River|Sockeye|2026-07-13": [
+12,
+17
+],
+"Skagit River|Sockeye|2026-07-17": [
+17,
+28
+],
+"Skagit River|Sockeye|2026-07-18": [
+20,
+35
+],
+"Skagit River|Sockeye|2026-07-19": [
+17,
+28
+],
+"Skagit River|Sockeye|2026-07-21": [
+5,
+7
+],
+"Skagit River|Sockeye|2026-07-23": [
+6,
+10
+],
+"Skagit River|Sockeye|2026-07-25": [
+9,
+17
+],
+"Skagit River|Sockeye|2026-07-26": [
+11,
+17
+],
+"Skagit River|Sockeye|2026-07-28": [
+2,
+3
+],
+"Sol Duc River|Chinook|2026-05-01": [
+14,
+25
+],
+"Sol Duc River|Chinook|2026-05-02": [
+13,
+30
+],
+"Sol Duc River|Chinook|2026-05-03": [
+9,
+20
+],
+"Sol Duc River|Chinook|2026-05-06": [
+8,
+11
+],
+"Sol Duc River|Chinook|2026-05-08": [
+7,
+15
+],
+"Sol Duc River|Chinook|2026-05-09": [
+11,
+24
+],
+"Sol Duc River|Chinook|2026-05-10": [
+5,
+9
+],
+"Sol Duc River|Chinook|2026-05-12": [
+6,
+10
+],
+"Sol Duc River|Chinook|2026-05-13": [
+5,
+11
+],
+"Sol Duc River|Chinook|2026-05-16": [
+5,
+9
+],
+"Sol Duc River|Chinook|2026-05-17": [
+6,
+11
+],
+"Sol Duc River|Chinook|2026-05-19": [
+3,
+4
+],
+"Sol Duc River|Chinook|2026-05-22": [
+4,
+8
+],
+"Sol Duc River|Chinook|2026-05-23": [
+3,
+6
+],
+"Sol Duc River|Chinook|2026-05-24": [
+6,
+12
+],
+"Sol Duc River|Chinook|2026-05-27": [
+3,
+7
+],
+"Sol Duc River|Chinook|2026-05-30": [
+14,
+26
+],
+"Sol Duc River|Chinook|2026-05-31": [
+5,
+11
+],
+"Sol Duc River|Other|2026-05-02": [
+1,
+1
+],
+"Sol Duc River|Other|2026-05-03": [
+2,
+5
+],
+"Sol Duc River|Other|2026-05-06": [
+1,
+3
+],
+"Sol Duc River|Other|2026-05-08": [
+1,
+2
+],
+"Sol Duc River|Other|2026-05-09": [
+1,
+1
+],
+"Sol Duc River|Other|2026-05-10": [
+1,
+1
+],
+"Sol Duc River|Steelhead|2026-03-31": [
+3,
+4
+],
+"Sol Duc River|Trout|2026-03-31": [
+1,
+2
+],
+"Spearfish Lake|Any species|2026-04-25": [
+1,
+1
+],
+"Spearfish Lake|Rainbow trout|2026-04-25": [
+2,
+4
+],
+"Spearfish Lake|Trout|2026-04-25": [
+12,
+30
+],
+"Swofford Pond|Any species|2026-05-23": [
+2,
+7
+],
+"Swofford Pond|Any species|2026-06-20": [
+1,
+2
+],
+"Swofford Pond|Bass|2026-06-27": [
+1,
+2
+],
+"Swofford Pond|Bluegill|2026-05-02": [
+1,
+1
+],
+"Swofford Pond|Bluegill|2026-06-20": [
+1,
+4
+],
+"Swofford Pond|Catfish|2026-06-06": [
+1,
+5
+],
+"Swofford Pond|Crappie|2026-06-13": [
+3,
+6
+],
+"Swofford Pond|Trout|2026-05-02": [
+1,
+3
+],
+"Swofford Pond|Trout|2026-05-16": [
+1,
+1
+],
+"Swofford Pond|Trout|2026-05-23": [
+5,
+16
+],
+"Swofford Pond|Trout|2026-06-13": [
+1,
+1
+],
+"Swofford Pond|Trout|2026-06-20": [
+2,
+5
+]
+},
+"trips": {
+"Blue Creek (Cowlitz)|2026-04-01": [
+0,
+1
+],
+"Blue Creek (Cowlitz)|2026-04-02": [
+0,
+7
+],
+"Blue Creek (Cowlitz)|2026-04-08": [
+0,
+5
+],
+"Blue Creek (Cowlitz)|2026-04-09": [
+0,
+7
+],
+"Blue Creek (Cowlitz)|2026-04-12": [
+0,
+1
+],
+"Blue Creek (Cowlitz)|2026-04-14": [
+0,
+3
+],
+"Blue Creek (Cowlitz)|2026-04-15": [
+0,
+2
+],
+"Bogachiel River|2026-03-31": [
+3,
+2
+],
+"Calawah River|2026-03-31": [
+1,
+0
+],
+"Carlisle Lake|2026-04-25": [
+1,
+11
+],
+"Cascade River|2026-05-22": [
+3,
+11
+],
+"Cascade River|2026-05-23": [
+1,
+7
+],
+"Cascade River|2026-05-24": [
+4,
+7
+],
+"Cascade River|2026-06-03": [
+2,
+10
+],
+"Cascade River|2026-06-06": [
+3,
+3
+],
+"Cascade River|2026-06-10": [
+0,
+11
+],
+"Cascade River|2026-06-11": [
+1,
+3
+],
+"Cascade River|2026-06-12": [
+3,
+4
+],
+"Cascade River|2026-06-13": [
+5,
+4
+],
+"Cascade River|2026-06-18": [
+5,
+0
+],
+"Cascade River|2026-06-20": [
+1,
+5
+],
+"Cascade River|2026-06-24": [
+0,
+1
+],
+"Cascade River|2026-06-25": [
+1,
+0
+],
+"Cascade River|2026-06-27": [
+4,
+2
+],
+"Cascade River|2026-07-02": [
+1,
+1
+],
+"Cascade River|2026-07-04": [
+1,
+1
+],
+"Cascade River|2026-07-08": [
+0,
+1
+],
+"Cascade River|2026-07-11": [
+0,
+3
+],
+"Cowlitz River|2026-03-31": [
+0,
+10
+],
+"Cowlitz River|2026-04-01": [
+1,
+15
+],
+"Cowlitz River|2026-04-02": [
+2,
+2
+],
+"Cowlitz River|2026-04-07": [
+0,
+17
+],
+"Cowlitz River|2026-04-08": [
+1,
+7
+],
+"Cowlitz River|2026-04-09": [
+2,
+28
+],
+"Cowlitz River|2026-04-12": [
+2,
+21
+],
+"Cowlitz River|2026-04-13": [
+0,
+2
+],
+"Cowlitz River|2026-04-14": [
+0,
+2
+],
+"Cowlitz River|2026-04-15": [
+1,
+14
+],
+"Cowlitz River|2026-04-16": [
+0,
+24
+],
+"Cowlitz River|2026-04-19": [
+5,
+32
+],
+"Cowlitz River|2026-04-20": [
+2,
+17
+],
+"Cowlitz River|2026-04-21": [
+1,
+4
+],
+"Cowlitz River|2026-04-22": [
+0,
+9
+],
+"Cowlitz River|2026-04-27": [
+5,
+20
+],
+"Cowlitz River|2026-04-28": [
+0,
+19
+],
+"Cowlitz River|2026-05-01": [
+1,
+2
+],
+"Cowlitz River|2026-05-03": [
+6,
+27
+],
+"Cowlitz River|2026-05-04": [
+1,
+11
+],
+"Cowlitz River|2026-05-06": [
+1,
+23
+],
+"Cowlitz River|2026-05-10": [
+1,
+23
+],
+"Cowlitz River|2026-05-11": [
+1,
+14
+],
+"Cowlitz River|2026-05-12": [
+0,
+3
+],
+"Cowlitz River|2026-05-13": [
+1,
+20
+],
+"Cowlitz River|2026-05-14": [
+3,
+25
+],
+"Cowlitz River|2026-05-17": [
+5,
+29
+],
+"Cowlitz River|2026-05-18": [
+1,
+5
+],
+"Cowlitz River|2026-05-19": [
+0,
+9
+],
+"Cowlitz River|2026-05-20": [
+2,
+17
+],
+"Cowlitz River|2026-05-21": [
+0,
+8
+],
+"Cowlitz River|2026-05-26": [
+1,
+12
+],
+"Cowlitz River|2026-05-27": [
+2,
+13
+],
+"Cowlitz River|2026-05-31": [
+3,
+34
+],
+"Cowlitz River|2026-06-01": [
+1,
+25
+],
+"Cowlitz River|2026-06-02": [
+0,
+20
+],
+"Cowlitz River|2026-06-03": [
+2,
+19
+],
+"Cowlitz River|2026-06-07": [
+8,
+30
+],
+"Cowlitz River|2026-06-08": [
+4,
+21
+],
+"Cowlitz River|2026-06-09": [
+1,
+11
+],
+"Cowlitz River|2026-06-10": [
+0,
+13
+],
+"Cowlitz River|2026-06-11": [
+5,
+20
+],
+"Cowlitz River|2026-06-12": [
+2,
+7
+],
+"Cowlitz River|2026-06-14": [
+6,
+14
+],
+"Cowlitz River|2026-06-15": [
+6,
+13
+],
+"Cowlitz River|2026-06-16": [
+9,
+6
+],
+"Cowlitz River|2026-06-21": [
+9,
+22
+],
+"Cowlitz River|2026-06-22": [
+6,
+23
+],
+"Cowlitz River|2026-06-23": [
+11,
+12
+],
+"Cowlitz River|2026-06-24": [
+12,
+10
+],
+"Cowlitz River|2026-06-28": [
+11,
+16
+],
+"Cowlitz River|2026-06-29": [
+9,
+19
+],
+"Cowlitz River|2026-07-01": [
+7,
+14
+],
+"Cowlitz River|2026-07-02": [
+14,
+18
+],
+"Cowlitz River|2026-07-06": [
+12,
+11
+],
+"Cowlitz River|2026-07-07": [
+6,
+11
+],
+"Cowlitz River|2026-07-08": [
+11,
+9
+],
+"Cowlitz River|2026-07-09": [
+0,
+10
+],
+"Cowlitz River|2026-07-12": [
+10,
+18
+],
+"Cowlitz River|2026-07-13": [
+0,
+2
+],
+"Cowlitz River|2026-07-14": [
+8,
+13
+],
+"Cowlitz River|2026-07-19": [
+15,
+20
+],
+"Cowlitz River|2026-07-20": [
+5,
+7
+],
+"Cowlitz River|2026-07-22": [
+14,
+6
+],
+"Cowlitz River|2026-07-23": [
+4,
+15
+],
+"Cowlitz River|2026-07-26": [
+15,
+15
+],
+"Cowlitz River|2026-07-27": [
+7,
+4
+],
+"Cowlitz River|2026-07-28": [
+14,
+7
+],
+"Cowlitz River|2026-07-29": [
+7,
+12
+],
+"Dickey River|2026-03-31": [
+1,
+0
+],
+"Goose Lake|2026-07-11": [
+0,
+2
+],
+"Hoh River|2026-03-31": [
+13,
+5
+],
+"Horsethief Lake|2026-04-25": [
+10,
+4
+],
+"Kress Lake|2026-05-02": [
+0,
+10
+],
+"Kress Lake|2026-05-09": [
+0,
+11
+],
+"Kress Lake|2026-05-16": [
+0,
+4
+],
+"Kress Lake|2026-05-23": [
+0,
+10
+],
+"Kress Lake|2026-05-31": [
+2,
+4
+],
+"Kress Lake|2026-06-06": [
+1,
+4
+],
+"Kress Lake|2026-06-07": [
+1,
+8
+],
+"Kress Lake|2026-06-13": [
+0,
+4
+],
+"Kress Lake|2026-06-20": [
+0,
+8
+],
+"Kress Lake|2026-06-27": [
+0,
+4
+],
+"Lacamas Lake|2026-05-09": [
+0,
+4
+],
+"Lacamas Lake|2026-05-31": [
+1,
+2
+],
+"Lacamas Lake|2026-06-07": [
+0,
+5
+],
+"Little White Salmon - Drano Lake|2026-04-09": [
+5,
+0
+],
+"Little White Salmon - Drano Lake|2026-04-10": [
+10,
+0
+],
+"Little White Salmon - Drano Lake|2026-04-14": [
+13,
+0
+],
+"Little White Salmon - Drano Lake|2026-04-16": [
+20,
+5
+],
+"Little White Salmon - Drano Lake|2026-04-19": [
+8,
+3
+],
+"Little White Salmon - Drano Lake|2026-04-20": [
+19,
+4
+],
+"Little White Salmon - Drano Lake|2026-04-21": [
+24,
+3
+],
+"Little White Salmon - Drano Lake|2026-04-25": [
+42,
+4
+],
+"Little White Salmon - Drano Lake|2026-04-28": [
+35,
+16
+],
+"Little White Salmon - Drano Lake|2026-04-30": [
+91,
+14
+],
+"Little White Salmon - Drano Lake|2026-05-02": [
+16,
+20
+],
+"Little White Salmon - Drano Lake|2026-05-03": [
+37,
+12
+],
+"Little White Salmon - Drano Lake|2026-05-07": [
+72,
+22
+],
+"Little White Salmon - Drano Lake|2026-05-08": [
+56,
+9
+],
+"Little White Salmon - Drano Lake|2026-05-09": [
+33,
+12
+],
+"Little White Salmon - Drano Lake|2026-05-10": [
+13,
+9
+],
+"Little White Salmon - Drano Lake|2026-05-11": [
+40,
+11
+],
+"Little White Salmon - Drano Lake|2026-05-14": [
+48,
+0
+],
+"Little White Salmon - Drano Lake|2026-05-19": [
+18,
+2
+],
+"Little White Salmon - Drano Lake|2026-05-21": [
+23,
+3
+],
+"Little White Salmon - Drano Lake|2026-05-28": [
+6,
+0
+],
+"Little White Salmon - Drano Lake|2026-05-29": [
+4,
+0
+],
+"Little White Salmon - Drano Lake|2026-05-31": [
+7,
+1
+],
+"Little White Salmon - Drano Lake|2026-06-01": [
+3,
+2
+],
+"Little White Salmon - Drano Lake|2026-06-11": [
+5,
+1
+],
+"Little White Salmon - Drano Lake|2026-06-18": [
+1,
+0
+],
+"Little White Salmon - Drano Lake|2026-06-22": [
+5,
+0
+],
+"Little White Salmon - Drano Lake|2026-06-25": [
+3,
+1
+],
+"Little White Salmon - Drano Lake|2026-06-27": [
+2,
+0
+],
+"Little White Salmon - Drano Lake|2026-07-08": [
+1,
+0
+],
+"Little White Salmon - Drano Lake|2026-07-10": [
+1,
+1
+],
+"Little White Salmon - Drano Lake|2026-07-15": [
+5,
+1
+],
+"Little White Salmon - Drano Lake|2026-07-18": [
+4,
+0
+],
+"Little White Salmon - Drano Lake|2026-07-24": [
+2,
+0
+],
+"Little White Salmon - Drano Lake|2026-07-25": [
+5,
+0
+],
+"Mineral Lake|2026-04-25": [
+26,
+6
+],
+"Nooksack River - North Fork|2026-05-23": [
+10,
+10
+],
+"Nooksack River - North Fork|2026-05-24": [
+6,
+9
+],
+"Nooksack River - North Fork|2026-05-25": [
+4,
+9
+],
+"Nooksack River - North Fork|2026-05-26": [
+6,
+12
+],
+"Nooksack River - North Fork|2026-05-27": [
+8,
+7
+],
+"Nooksack River - North Fork|2026-05-30": [
+14,
+9
+],
+"Nooksack River - North Fork|2026-05-31": [
+7,
+12
+],
+"Nooksack River - North Fork|2026-06-01": [
+8,
+9
+],
+"Nooksack River - North Fork|2026-06-02": [
+13,
+7
+],
+"Nooksack River - North Fork|2026-06-05": [
+5,
+13
+],
+"Nooksack River - North Fork|2026-06-06": [
+8,
+13
+],
+"Nooksack River - North Fork|2026-06-07": [
+11,
+15
+],
+"Nooksack River - North Fork|2026-06-08": [
+6,
+5
+],
+"Puyallup River|2026-07-29": [
+3,
+0
+],
+"Rowland Lake|2026-04-25": [
+15,
+0
+],
+"Skagit River|2026-04-20": [
+17,
+14
+],
+"Skagit River|2026-04-22": [
+4,
+8
+],
+"Skagit River|2026-04-24": [
+16,
+11
+],
+"Skagit River|2026-04-25": [
+9,
+16
+],
+"Skagit River|2026-04-26": [
+19,
+15
+],
+"Skagit River|2026-04-28": [
+5,
+7
+],
+"Skagit River|2026-04-29": [
+8,
+7
+],
+"Skagit River|2026-05-02": [
+7,
+14
+],
+"Skagit River|2026-05-03": [
+11,
+7
+],
+"Skagit River|2026-05-05": [
+4,
+3
+],
+"Skagit River|2026-05-08": [
+7,
+2
+],
+"Skagit River|2026-05-09": [
+12,
+4
+],
+"Skagit River|2026-05-10": [
+3,
+4
+],
+"Skagit River|2026-05-12": [
+5,
+1
+],
+"Skagit River|2026-05-13": [
+1,
+1
+],
+"Skagit River|2026-05-16": [
+16,
+11
+],
+"Skagit River|2026-05-17": [
+9,
+7
+],
+"Skagit River|2026-05-20": [
+4,
+4
+],
+"Skagit River|2026-05-22": [
+2,
+7
+],
+"Skagit River|2026-05-23": [
+9,
+5
+],
+"Skagit River|2026-05-24": [
+2,
+1
+],
+"Skagit River|2026-05-28": [
+3,
+1
+],
+"Skagit River|2026-05-29": [
+3,
+5
+],
+"Skagit River|2026-05-30": [
+4,
+2
+],
+"Skagit River|2026-05-31": [
+8,
+0
+],
+"Skagit River|2026-06-01": [
+3,
+4
+],
+"Skagit River|2026-06-03": [
+1,
+4
+],
+"Skagit River|2026-06-07": [
+3,
+5
+],
+"Skagit River|2026-06-10": [
+3,
+1
+],
+"Skagit River|2026-06-11": [
+3,
+0
+],
+"Skagit River|2026-06-12": [
+1,
+2
+],
+"Skagit River|2026-06-13": [
+5,
+2
+],
+"Skagit River|2026-06-16": [
+14,
+8
+],
+"Skagit River|2026-06-18": [
+19,
+7
+],
+"Skagit River|2026-06-20": [
+17,
+1
+],
+"Skagit River|2026-06-21": [
+25,
+17
+],
+"Skagit River|2026-06-24": [
+11,
+6
+],
+"Skagit River|2026-06-25": [
+9,
+17
+],
+"Skagit River|2026-06-27": [
+25,
+8
+],
+"Skagit River|2026-06-28": [
+21,
+7
+],
+"Skagit River|2026-06-29": [
+10,
+2
+],
+"Skagit River|2026-07-02": [
+16,
+8
+],
+"Skagit River|2026-07-05": [
+28,
+15
+],
+"Skagit River|2026-07-08": [
+9,
+9
+],
+"Skagit River|2026-07-10": [
+10,
+9
+],
+"Skagit River|2026-07-11": [
+14,
+25
+],
+"Skagit River|2026-07-12": [
+15,
+17
+],
+"Skagit River|2026-07-13": [
+9,
+7
+],
+"Skagit River|2026-07-17": [
+10,
+7
+],
+"Skagit River|2026-07-18": [
+12,
+8
+],
+"Skagit River|2026-07-19": [
+12,
+7
+],
+"Skagit River|2026-07-21": [
+5,
+1
+],
+"Skagit River|2026-07-23": [
+1,
+5
+],
+"Skagit River|2026-07-25": [
+6,
+4
+],
+"Skagit River|2026-07-26": [
+7,
+5
+],
+"Skagit River|2026-07-28": [
+2,
+1
+],
+"Sol Duc River|2026-03-31": [
+1,
+3
+],
+"Sol Duc River|2026-05-01": [
+9,
+5
+],
+"Sol Duc River|2026-05-02": [
+8,
+6
+],
+"Sol Duc River|2026-05-03": [
+5,
+6
+],
+"Sol Duc River|2026-05-06": [
+5,
+4
+],
+"Sol Duc River|2026-05-08": [
+3,
+5
+],
+"Sol Duc River|2026-05-09": [
+3,
+9
+],
+"Sol Duc River|2026-05-10": [
+4,
+2
+],
+"Sol Duc River|2026-05-12": [
+3,
+3
+],
+"Sol Duc River|2026-05-13": [
+3,
+2
+],
+"Sol Duc River|2026-05-16": [
+3,
+2
+],
+"Sol Duc River|2026-05-17": [
+6,
+0
+],
+"Sol Duc River|2026-05-19": [
+3,
+0
+],
+"Sol Duc River|2026-05-22": [
+4,
+0
+],
+"Sol Duc River|2026-05-23": [
+1,
+2
+],
+"Sol Duc River|2026-05-24": [
+5,
+1
+],
+"Sol Duc River|2026-05-27": [
+3,
+0
+],
+"Sol Duc River|2026-05-30": [
+9,
+5
+],
+"Sol Duc River|2026-05-31": [
+5,
+0
+],
+"Spearfish Lake|2026-04-25": [
+15,
+0
+],
+"Swofford Pond|2026-05-02": [
+0,
+2
+],
+"Swofford Pond|2026-05-16": [
+0,
+1
+],
+"Swofford Pond|2026-05-23": [
+2,
+5
+],
+"Swofford Pond|2026-06-06": [
+0,
+1
+],
+"Swofford Pond|2026-06-13": [
+0,
+4
+],
+"Swofford Pond|2026-06-20": [
+0,
+4
+],
+"Swofford Pond|2026-06-27": [
+0,
+1
+]
+}
+},
 "seat": {
 "Abernathy Creek": {
 "Bank": {

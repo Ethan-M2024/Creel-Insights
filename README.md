@@ -195,6 +195,12 @@ species rather than something else, what else gets caught there, and how many of
 interviews came from parties that had finished their trip rather than been stopped
 mid-way.
 
+Those notes follow the window. Ask for the last seven days and they answer for the
+last seven days; the day-by-day detail reaches back four months, and beyond that — or
+where too few interviews were taken to say anything — each note falls back to the
+whole record and is labelled with the period it actually covers, rather than quietly
+answering a different question under the same heading.
+
 The year chart on the species tab reads either way: **fish counted**, or **fish per
 angler interviewed**. Volume alone reads a year with more anglers as a better year,
 which is how a fishery in decline can look healthy.
