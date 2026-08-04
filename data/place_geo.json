@@ -306,12 +306,6 @@
 "precision": "exact",
 "matched_to": "Kalama River"
 },
-"Kenmore Ramp (Lk. Washington)": {
-"lat": 47.753898,
-"lon": -122.250353,
-"precision": "matched",
-"matched_to": "Kenmore"
-},
 "Klickitat River": {
 "lat": 45.7383,
 "lon": -121.2317,
@@ -768,12 +762,6 @@
 "precision": "exact",
 "matched_to": "Swofford Pond"
 },
-"Tahuya Ramp": {
-"lat": 47.567803,
-"lon": -122.83623,
-"precision": "matched",
-"matched_to": "Tahuya Lake"
-},
 "The Dalles": {
 "lat": 45.607,
 "lon": -121.178,
@@ -809,12 +797,6 @@
 "lon": -119.342,
 "precision": "approximate",
 "matched_to": "Umatilla"
-},
-"Union Ramp": {
-"lat": 47.447185,
-"lon": -122.841328,
-"precision": "matched",
-"matched_to": "Union River"
 },
 "Upper Gorge - Rock Creek": {
 "lat": 45.747671,
@@ -942,24 +924,6 @@
 "precision": "locality",
 "matched_to": "Bingen"
 },
-"East Bay Marina/Ramp (Oly. Isle)": {
-"lat": 45.814362,
-"lon": -122.590743,
-"precision": "locality",
-"matched_to": "East Fork Lewis River"
-},
-"Hood Canal Bridge Pier": {
-"lat": 46.214,
-"lon": -119.02,
-"precision": "locality",
-"matched_to": "Hood Park"
-},
-"Hood Canal Marina (Union)": {
-"lat": 46.214,
-"lon": -119.02,
-"precision": "locality",
-"matched_to": "Hood Park"
-},
 "Hood Park Opens Sep": {
 "lat": 46.214,
 "lon": -119.02,
@@ -971,18 +935,6 @@
 "lon": -119.02,
 "precision": "locality",
 "matched_to": "Hood Park"
-},
-"John Wayne Marina": {
-"lat": 45.72,
-"lon": -120.69,
-"precision": "locality",
-"matched_to": "John Day Pool"
-},
-"John Wayne Marina Docks": {
-"lat": 45.72,
-"lon": -120.69,
-"precision": "locality",
-"matched_to": "John Day Pool"
 },
 "Lyons Ferry Closes Aug": {
 "lat": 46.59,
@@ -1110,6 +1062,7 @@
 "Dungeness Bay Public Ramp",
 "Dupont Shore (Path from Dupont City Hall to shore)",
 "Eagle Harbor Waterfront Park",
+"East Bay Marina/Ramp (Oly. Isle)",
 "Ebey Waterfront Park (near Marysville Public Ramp)",
 "Ediz Hook, Port Angeles Public Ramp",
 "Edmonds Boat Basin (Public Sling)",
@@ -1144,12 +1097,17 @@
 "Hartstene Point Ramp",
 "Hartstine Is. Ramp (aka Latimer's Landing)",
 "Home Public Ramp",
+"Hood Canal Bridge Pier",
+"Hood Canal Marina (Union)",
 "Hoodsport Marina",
 "Hoodsport Shore",
 "Horsehead Bay Ramp",
 "Illahee State Park Pier",
 "Joemma Beach Ramp",
+"John Wayne Marina",
+"John Wayne Marina Docks",
 "John's Creek",
+"Kenmore Ramp (Lk. Washington)",
 "Kennedy Creek Mouth",
 "Keyport Ramp",
 "Keystone Spit State Park (East)",
@@ -1247,8 +1205,10 @@
 "Swan Town/East Bay Marina/Ramp (Oly. Isle)",
 "Swinomish Channel Ramp",
 "Tacoma Outboard Association",
+"Tahuya Ramp",
 "Termination Point Ramp",
 "Twanoh State Park",
+"Union Ramp",
 "Unknown",
 "Utsalady Ramp, Camano Is",
 "Van Riper's North",

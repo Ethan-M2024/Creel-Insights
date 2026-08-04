@@ -530,6 +530,14 @@ ul.checks li { padding: 4px 0; border-bottom: 1px solid var(--grid); }
         <thead><tr><th>Source, and where it was read from</th><th>First</th><th>Last</th><th>Places</th><th>Species rows</th></tr></thead>
         <tbody></tbody>
       </table></div>
+      <h3>Which parts of the state are in here</h3>
+      <p class="note" id="coverage-note"></p>
+      <div class="scroll"><table id="coverage-table">
+        <thead><tr><th>Region</th><th class="num">Places</th><th class="num">Anglers</th>
+        <th class="num">Fish</th><th class="num">First</th><th class="num">Last</th></tr></thead>
+        <tbody></tbody>
+      </table></div>
+
       <h3>What is not read</h3>
       <p class="note">One entry on WDFW's creel index carries no in-season data:
         <b>Sport catch reports</b>, the annual catch-record-card publications, whose
@@ -1832,6 +1840,7 @@ function renderSources() {
       <td class="num">${s.first || '—'}</td><td class="num">${s.last || '—'}</td>
       <td class="num">${fmt(s.locations)}</td><td class="num">${fmt(s.catch_rows)}</td></tr>`).join('');
 
+  renderCoverage();
   renderFreshness(man);
 
   const audit = DATA.audit;
@@ -1863,6 +1872,31 @@ const SEASONAL_SOURCES = {
   pikeminnow: 'May to September',
   halibut: 'April to July',
 };
+
+/* Eastern Washington is the question this answers. WDFW run creel surveys there —
+   Potholes in 2024, Banks Lake in 2025, both registered in their own fishery table —
+   but publish no interviews from them, so nothing east of the crest reaches this page
+   except the Columbia and Snake pikeminnow stations and the gorge sections. */
+function renderCoverage() {
+  const rows = DATA.coverage || [];
+  if (!rows.length) return;
+  document.querySelector('#coverage-table tbody').innerHTML = rows.map(r => `
+    <tr><td>${escapeHtml(r.region)}${r.east
+        ? ` <span class="pill">${r.east} east of the crest</span>` : ''}</td>
+      <td class="num">${fmt(r.places)}</td>
+      <td class="num">${fmt(r.anglers)}</td>
+      <td class="num">${fmt(r.fish)}</td>
+      <td class="num">${r.first || '—'}</td>
+      <td class="num">${r.last || '—'}</td></tr>`).join('');
+  const east = rows.reduce((a, r) => a + r.east, 0);
+  document.getElementById('coverage-note').textContent =
+    `Every survey WDFW publish interviews for is west of the Cascades or on the ` +
+    `Columbia. ${east} of the places here sit east of the crest, and all of them are ` +
+    `Columbia and Snake River pikeminnow stations or gorge sections. WDFW have run ` +
+    `eastern creel surveys — Potholes Reservoir in 2024, Banks Lake in 2025 — but ` +
+    `publish no interviews or catch from them, so no eastern lake can appear here ` +
+    `until they do.`;
+}
 
 function renderFreshness(manifest) {
   const asOf = new Date(META.as_of + 'T12:00:00Z');

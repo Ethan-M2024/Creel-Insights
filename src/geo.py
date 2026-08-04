@@ -327,8 +327,23 @@ def normalise(name):
     return re.sub(r'\s+', ' ', n).strip()
 
 
-def build(locations, *, water_bodies=None, sites=None, lakes=None, say=print):
-    """location name -> {lat, lon, precision, matched_to}, for what can be placed."""
+def _worth_matching(key):
+    """Is this name distinctive enough to claim another by containment?
+
+    One short word is not. Strip "Park" from "Hood Park" and what is left will match
+    Hood Canal, Hoodsport and anything else that starts the same way.
+    """
+    return len(key.split()) >= 2 or len(key) >= 8
+
+
+def build(locations, *, water_bodies=None, sites=None, lakes=None, regions=None,
+          say=print):
+    """location name -> {lat, lon, precision, matched_to}, for what can be placed.
+
+    ``regions`` says which part of the state each creel name was reported from. It is
+    only used to stop a dock borrowing a position from a namesake on the far side of
+    the mountains, which is how a Hood Canal marina ended up in the Snake River.
+    """
     water_bodies = water_bodies or {}
     sites = sites or access_sites(say=say)
     lakes = lakes if lakes is not None else lake_sites(say=say)
@@ -362,11 +377,14 @@ def build(locations, *, water_bodies=None, sites=None, lakes=None, say=print):
             out[loc] = {'lat': s['lat'], 'lon': s['lon'], 'precision': 'matched',
                         'matched_to': s['name']}
             continue
-        # one-sided containment, but only when it is unambiguous: "elliott bay"
-        # may match one site, never three
-        if key:
+        # One-sided containment, but only when it is unambiguous: "elliott bay" may
+        # match one site, never three. The shorter name also has to be worth
+        # matching on: "Hood Park" reduces to "hood", which claimed a Hood Canal
+        # marina two hundred miles away, so a single short word is not a match.
+        if key and _worth_matching(key):
             hits = [s for k, s in by_site.items()
-                    if k and (k.startswith(key + ' ') or key.startswith(k + ' '))]
+                    if k and _worth_matching(k)
+                    and (k.startswith(key + ' ') or key.startswith(k + ' '))]
             names = {s['name'] for s in hits}
             if len(names) == 1:
                 s = hits[0]
@@ -374,7 +392,8 @@ def build(locations, *, water_bodies=None, sites=None, lakes=None, say=print):
                             'precision': 'matched', 'matched_to': s['name']}
                 continue
             hits = [(n, r) for k, (n, r) in by_water.items()
-                    if k and (k.startswith(key + ' ') or key.startswith(k + ' '))]
+                    if k and _worth_matching(k)
+                    and (k.startswith(key + ' ') or key.startswith(k + ' '))]
             if len({n for n, _ in hits}) == 1:
                 name, rec = hits[0]
                 out[loc] = {'lat': rec['lat'], 'lon': rec['lon'],
@@ -386,6 +405,12 @@ def build(locations, *, water_bodies=None, sites=None, lakes=None, say=print):
     # locality is the leading word of the name — Blaine, Edmonds, Kingston — and it
     # is only used when one placed site claims it, so an ambiguous locality still
     # leaves the dock off the map rather than guessing between two.
+    #
+    # One word is not enough on its own. "Hood Canal Marina" and "Hood Park" share
+    # their first word and are two hundred miles apart, which put a Hood Canal dock
+    # in the Snake River; "John Wayne Marina" landed in the John Day pool the same
+    # way. So the two names must also agree on a second word, or the leading word
+    # must be a place name long enough to stand alone.
     by_locality = defaultdict(set)
     for name, rec in out.items():
         token = normalise(name).split()
@@ -397,8 +422,12 @@ def build(locations, *, water_bodies=None, sites=None, lakes=None, say=print):
         siblings = by_locality.get(token[0]) if token else None
         if siblings and len(siblings) == 1:
             lat, lon, neighbour = next(iter(siblings))
-            out[loc] = {'lat': lat, 'lon': lon, 'precision': 'locality',
-                        'matched_to': neighbour}
+            here, there = (regions or {}).get(loc), (regions or {}).get(neighbour)
+            if not here or not there or here == there:
+                out[loc] = {'lat': lat, 'lon': lon, 'precision': 'locality',
+                            'matched_to': neighbour}
+            else:
+                still.append(loc)
         else:
             still.append(loc)
 

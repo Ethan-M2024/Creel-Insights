@@ -311,6 +311,9 @@ def build(catch_rows, effort_rows, place_geo, say=print, success_rows=()):
         # rather than only what was taken home
         'years_released': {y: {sp: n for sp, n in sorted(v.items()) if n}
                            for y, v in sorted(by_year_rel.items())},
+        # which parts of the state are actually in here, so a reader looking for a
+        # water that is missing can see whether anyone surveys it at all
+        'coverage': coverage(places, catch_day, effort_day, say=say),
         'year_anglers': dict(sorted(effort_year.items())),
     }
     return payload
@@ -711,6 +714,41 @@ def trends(catch_day, effort_day, places, sp_index, as_of_d, say=print,
     return out
 
 
+#: the Cascade crest, roughly: everything east of this line is eastern Washington
+CREST = -120.7
+
+
+def coverage(places, catch_day, effort_day, say=print):
+    """What each region contributes, and which side of the mountains it is on.
+
+    WDFW publish creel interviews for ten survey projects, all of them west of the
+    Cascades or on the Columbia. Nothing is published for the eastern districts, and
+    a reader who cannot find Banks Lake deserves to be told that rather than left to
+    conclude the fishing there is bad.
+    """
+    rows = defaultdict(lambda: {'places': 0, 'anglers': 0, 'fish': 0,
+                                'first': '9999', 'last': '', 'east': 0})
+    by_pid = {}
+    for p in places.values():
+        cell = rows[p['region'] or 'Unassigned']
+        cell['places'] += 1
+        if p.get('lon') is not None and p['lon'] > CREST:
+            cell['east'] += 1
+        by_pid[p['i']] = p['region'] or 'Unassigned'
+    for (pid, day), (anglers, _h, _i) in effort_day.items():
+        cell = rows[by_pid.get(pid, 'Unassigned')]
+        cell['anglers'] += anglers
+        cell['first'] = min(cell['first'], day)
+        cell['last'] = max(cell['last'], day)
+    for (pid, _sp, _day), (kept, rel) in catch_day.items():
+        rows[by_pid.get(pid, 'Unassigned')]['fish'] += kept + rel
+    out = [dict(v, region=k, first=v['first'] if v['first'] != '9999' else '')
+           for k, v in sorted(rows.items(), key=lambda kv: -kv[1]['anglers'])]
+    say(f'   coverage: {len(out)} regions, '
+        f"{sum(r['east'] for r in out)} places east of the Cascades")
+    return out
+
+
 def seasonality(catch_day, effort_day, sp_index, as_of_d, years=5):
     """When in the year each species is actually caught, statewide.
 
@@ -755,7 +793,13 @@ def main(say=print):
     names = {r['location'] for r in catch_rows} | {r['location'] for r in effort_rows}
     import socrata
     water_bodies = socrata.water_body_geo(say=say)
-    placed, unplaced = geo.build(names, water_bodies=water_bodies, say=say)
+    # which region each name was reported from, so a dock cannot borrow a position
+    # from a namesake two hundred miles away
+    regions = {}
+    for r in catch_rows + effort_rows:
+        regions.setdefault(r['location'], r.get('region') or '')
+    placed, unplaced = geo.build(names, water_bodies=water_bodies, regions=regions,
+                                 say=say)
     with open(paths.PLACE_GEO, 'w', encoding='utf-8') as f:
         json.dump({'placed': placed, 'unplaced': sorted(unplaced)}, f, indent=0)
 

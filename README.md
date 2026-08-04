@@ -169,6 +169,16 @@ So each place is compared **against itself, at the same point in the season**:
 | **prior** | the same length of window immediately before it |
 | **seasonal** | the median of the same calendar window in each of the last three years |
 
+**Eastern Washington is missing, and that is WDFW's doing rather than an omission
+here.** They publish creel interviews for ten survey projects — Districts 11, 13, 14,
+16, 17 north and south, the Cowlitz, two Region 5 programmes and a Columbia roving
+creel — and every one of them is west of the Cascades or on the Columbia. Their own
+fishery table lists eastern surveys that have been run (Potholes Reservoir in 2024,
+Banks Lake in 2025) but no interviews or catch rows are published for them. What
+reaches this page from east of the crest is the pikeminnow reward stations on the
+mid-Columbia and Snake and the gorge river sections. The Sources tab says so, with
+the numbers.
+
 **How often anyone catches anything** is counted, not modelled. WDFW publish the
 statewide creel one interview at a time, and every fish record names the interview it
 came from, so the share of parties that went home with a fish is a matter of counting

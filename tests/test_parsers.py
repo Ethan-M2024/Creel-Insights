@@ -25,6 +25,7 @@ import southwest      # noqa: E402
 import halibut       # noqa: E402
 import quotas        # noqa: E402
 import socrata       # noqa: E402
+import geo           # noqa: E402
 import build_data     # noqa: E402
 
 
@@ -249,6 +250,29 @@ class TestAnglerHours(unittest.TestCase):
         row = {'fishing_start_time': '13:00:00', 'fishing_end_time': '02:00:00',
                'angler_count': '1'}
         self.assertEqual(socrata._hours(row), '')
+
+
+class TestLocalityMatching(unittest.TestCase):
+    """A dock borrows a neighbour's position, not a namesake's across the state."""
+
+    def build(self, regions):
+        sites = [{'name': 'Hood Park', 'lat': 46.214, 'lon': -119.02},
+                 {'name': 'Blaine Ramp', 'lat': 48.99, 'lon': -122.76}]
+        return geo.build(['Hood Canal Marina (Union)', 'Blaine Marina',
+                          'Hood Park', 'Blaine Ramp'],
+                         water_bodies={}, sites=sites, lakes=[], regions=regions,
+                         say=lambda *a: None)[0]
+
+    def test_a_namesake_in_another_region_is_refused(self):
+        placed = self.build({'Hood Canal Marina (Union)': 'Puget Sound',
+                             'Hood Park': 'Columbia River'})
+        self.assertNotIn('Hood Canal Marina (Union)', placed)
+
+    def test_a_neighbour_in_the_same_region_is_used(self):
+        placed = self.build({'Blaine Marina': 'Puget Sound',
+                             'Blaine Ramp': 'Puget Sound'})
+        self.assertEqual(placed['Blaine Marina']['matched_to'], 'Blaine Ramp')
+        self.assertEqual(placed['Blaine Marina']['lat'], 48.99)
 
 
 class TestInterviewOutcomes(unittest.TestCase):
