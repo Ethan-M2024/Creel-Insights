@@ -45,16 +45,28 @@ def say(msg, tag='  '):
     print(line, flush=True)
 
 
-#: every source, in the order they are read. The label is what the dashboard shows.
+#: every source, in the order they are read: the key used in the data, the label the
+#: dashboard shows, and the exact page or dataset it was read from. The address is
+#: carried into the manifest and printed on the page, so a reader can open the same
+#: document and check any number against it.
 SOURCES = (
-    ('creel-database', 'WDFW creel database (statewide)'),
-    ('puget-ramp', 'Puget Sound ramp creel'),
-    ('buoy10', 'Buoy 10'),
-    ('willapa', 'Willapa Bay'),
-    ('ocean-quota', 'Ocean sport salmon quota report'),
-    ('columbia-sw', 'Columbia River and tributary report'),
-    ('pikeminnow', 'Northern pikeminnow sport reward'),
-    ('halibut', 'Pacific halibut landings summary'),
+    ('creel-database', 'WDFW creel database (statewide)',
+     'https://data.wa.gov/resource/rpax-ahqm.json (interviews), '
+     'https://data.wa.gov/resource/6y4e-8ftk.json (catch)'),
+    ('puget-ramp', 'Puget Sound ramp creel',
+     'https://wdfw.wa.gov/fishing/reports/creel/puget-annual'),
+    ('buoy10', 'Buoy 10',
+     'https://wdfw.wa.gov/fishing/reports/creel/buoy10'),
+    ('willapa', 'Willapa Bay',
+     'https://wdfw.wa.gov/fishing/reports/creel/willapa-bay'),
+    ('ocean-quota', 'Ocean sport salmon quota report',
+     'https://wdfw.wa.gov/fishing/reports/creel/ocean and its archives page'),
+    ('columbia-sw', 'Columbia River and tributary report',
+     'https://wdfw.wa.gov/fishing/reports/creel/southwest (weekly PDFs)'),
+    ('pikeminnow', 'Northern pikeminnow sport reward',
+     'https://wdfw.wa.gov/fishing/reports/creel/pikeminnow (weekly PDFs)'),
+    ('halibut', 'Pacific halibut landings summary',
+     'https://wdfw.wa.gov/fishing/regulations/halibut/seasons-quotas'),
 )
 
 
@@ -130,8 +142,8 @@ def update(full=False, no_open=False):
 
     manifest = {
         'built': datetime.now(timezone.utc).isoformat(timespec='seconds'),
-        'sources': {name: dict(summary.get(name, {}), label=label)
-                    for name, label in SOURCES},
+        'sources': {name: dict(summary.get(name, {}), label=label, read_from=where)
+                    for name, label, where in SOURCES},
         'quota_records': len(quota_rows),
         'sha256': {
             'creel_rows': _sha(paths.RAW), 'creel_effort': _sha(paths.EFFORT)},

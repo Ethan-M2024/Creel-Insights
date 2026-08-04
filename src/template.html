@@ -288,8 +288,8 @@ ul.checks li { padding: 4px 0; border-bottom: 1px solid var(--grid); }
     <div class="field">
       <label>Show</label>
       <div class="seg" id="f-mode">
-        <button data-v="area" aria-pressed="true">Whole waters</button>
-        <button data-v="place" aria-pressed="false">Single places</button>
+        <button data-v="place" aria-pressed="true">Single places</button>
+        <button data-v="area" aria-pressed="false">Whole waters</button>
       </div>
     </div>
     <div class="field">
@@ -526,7 +526,7 @@ ul.checks li { padding: 4px 0; border-bottom: 1px solid var(--grid); }
       <p class="note">Eight WDFW publications, in four formats. Each row is what that
         source contributed to this build.</p>
       <div class="scroll"><table id="sources-table">
-        <thead><tr><th>Source</th><th>First</th><th>Last</th><th>Places</th><th>Species rows</th></tr></thead>
+        <thead><tr><th>Source, and where it was read from</th><th>First</th><th>Last</th><th>Places</th><th>Species rows</th></tr></thead>
         <tbody></tbody>
       </table></div>
       <h3>What is not read</h3>
@@ -633,9 +633,10 @@ for (const t of (DATA.area_lifetime || [])) {
 
 const state = {
   tab: 'map',
-  // the filled view first: a map of dots asks the reader to find the fishing, a map
-  // of shaded water tells them, and every basin and marine area is on it
-  mode: 'area',
+  // the individual ramps and rivers, which is what a reader recognises: "Ediz Hook"
+  // means something, "Marine Area 6" is an abstraction. The filled view of whole
+  // waters is a click away for the wider picture.
+  mode: 'place',
   species: SPECIES.indexOf(META.headline_species[0] || SPECIES[0]),
   // which fish count: what anglers took home, what they put back, or both.
   // A steelhead river that is catch-and-release reports almost no kept fish,
@@ -980,38 +981,83 @@ function drawMap() {
   }
 
   const rows = rowsForWindow().filter(r => r.place.lat !== null && r.place.lat !== undefined);
-  const maxAnglers = Math.max(1, ...rows.map(r => r.anglers));
   plotted = [];
+
+  /* Sizing off the single busiest place squashed everything else into specks: one
+     ocean port interviews twelve thousand anglers in a month and a good river creel
+     interviews two hundred. The scale is set by the upper quartile instead, so the
+     ordinary places are legible and the giants simply hit the ceiling. */
+  const effortOf = r => (state.basis === 'hour' ? r.hours : r.anglers) || 0;
+  const scale = Math.max(1, quantile(rows.map(effortOf), 0.75));
+  const radius = r => Math.max(3.6, Math.min(17, 3.6 + 13 * Math.sqrt(effortOf(r) / scale)));
+
   // biggest first, so a busy port never hides a quiet creek behind it
-  rows.sort((a, b) => b.anglers - a.anglers);
+  rows.sort((a, b) => effortOf(b) - effortOf(a));
   for (const row of rows) {
     const [x, y] = project(row.place.lon, row.place.lat, cssW, cssH);
-    const r = 2.6 + 11 * Math.sqrt(row.anglers / maxAnglers);
+    const r = radius(row);
     const selected = state.place === row.pid;
     const areaPlaced = row.place.precision === 'area';
+    const colour = colourFor(row);
+
+    // a white collar under every dot, so two that overlap still read as two
+    ctx.beginPath(); ctx.arc(x, y, r + 1.2, 0, Math.PI * 2);
+    ctx.fillStyle = getVar('--surface');
+    ctx.globalAlpha = 0.85; ctx.fill(); ctx.globalAlpha = 1;
+
     ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI * 2);
+    /* Three marks, and only three, so each one means one thing:
+         filled          a surveyed position with enough anglers behind the rate
+         filled, faded   the same, but the rate rests on a thin sample
+         dashed ring     no coordinate exists; drawn at the centre of its area   */
     if (areaPlaced) {
-      // no coordinate exists for this dock, only the area it reports to: drawn as a
-      // ring so it never reads as a surveyed point
-      ctx.globalAlpha = row.thin ? 0.5 : 0.9;
-      ctx.lineWidth = 2;
-      ctx.strokeStyle = colourFor(row);
+      ctx.setLineDash([3, 2.5]);
+      ctx.lineWidth = 2.2;
+      ctx.strokeStyle = colour;
+      ctx.globalAlpha = row.thin ? 0.6 : 1;
       ctx.stroke();
       ctx.globalAlpha = 1;
+      ctx.setLineDash([]);
     } else {
-      ctx.fillStyle = colourFor(row);
-      ctx.globalAlpha = row.thin ? 0.4 : 0.86;
+      ctx.fillStyle = colour;
+      ctx.globalAlpha = row.thin ? 0.5 : 1;
       ctx.fill();
       ctx.globalAlpha = 1;
-      ctx.lineWidth = selected ? 2.4 : 0.9;
-      ctx.strokeStyle = selected ? getVar('--ink') : getVar('--surface');
+      ctx.lineWidth = selected ? 2.4 : 1;
+      ctx.strokeStyle = selected ? getVar('--ink') : getVar('--axis');
+      ctx.globalAlpha = selected ? 1 : 0.4;
       ctx.stroke();
+      ctx.globalAlpha = 1;
     }
     if (selected) {
-      ctx.beginPath(); ctx.arc(x, y, r + 3, 0, Math.PI * 2);
+      ctx.beginPath(); ctx.arc(x, y, r + 4, 0, Math.PI * 2);
       ctx.lineWidth = 1.6; ctx.strokeStyle = getVar('--ink'); ctx.stroke();
     }
     plotted.push({ x, y, r, row });
+  }
+
+  /* Zoomed in, there is room for names. They are drawn for the busiest places only,
+     and only where they do not collide with a label already placed. */
+  if (view.k >= 2.5) {
+    ctx.font = '600 11px ui-sans-serif, system-ui, sans-serif';
+    ctx.textBaseline = 'middle';
+    const placed = [];
+    for (const p of [...plotted].sort((a, b) => effortOf(b.row) - effortOf(a.row))) {
+      if (placed.length >= 18) break;
+      const label = p.row.name.length > 26 ? p.row.name.slice(0, 25) + '…' : p.row.name;
+      const w = ctx.measureText(label).width;
+      const lx = p.x + p.r + 5, ly = p.y;
+      if (lx + w > cssW || lx < 0 || ly < 8 || ly > cssH - 8) continue;
+      const box = { x: lx, y: ly - 8, w, h: 16 };
+      if (placed.some(b => box.x < b.x + b.w && box.x + box.w > b.x &&
+                           box.y < b.y + b.h && box.y + box.h > b.y)) continue;
+      placed.push(box);
+      ctx.lineWidth = 3;
+      ctx.strokeStyle = getVar('--surface');
+      ctx.strokeText(label, lx, ly);
+      ctx.fillStyle = getVar('--ink-2');
+      ctx.fillText(label, lx, ly);
+    }
   }
 
   const scored = rowsForWindow();
@@ -1255,6 +1301,14 @@ canvas.addEventListener('click', ev => {
   const p = hit(ev);
   if (p) selectPlace(p.row.pid);
 });
+
+/* The address a source was read from, written out in full and made clickable. It is
+   the answer to "where did this number come from", and it belongs on the page rather
+   than in a README nobody opens. */
+function linkify(text) {
+  return escapeHtml(text).replace(/https?:\/\/[^\s,()]+/g, url =>
+    `<a href="${url}" rel="noopener">${url}</a>`);
+}
 
 function escapeHtml(s) {
   return String(s).replace(/[&<>"']/g, c =>
@@ -1741,7 +1795,9 @@ function renderSources() {
   const man = (DATA.manifest && DATA.manifest.sources) || {};
   document.querySelector('#sources-table tbody').innerHTML =
     Object.entries(man).map(([id, s]) => `
-      <tr><td>${escapeHtml(s.label || id)}<br><span class="pill">${escapeHtml(id)}</span></td>
+      <tr><td>${escapeHtml(s.label || id)}<br><span class="pill">${escapeHtml(id)}</span>${
+        s.read_from ? `<br><span class="k" style="color:var(--ink-3)">${
+          linkify(s.read_from)}</span>` : ''}</td>
       <td class="num">${s.first || '—'}</td><td class="num">${s.last || '—'}</td>
       <td class="num">${fmt(s.locations)}</td><td class="num">${fmt(s.catch_rows)}</td></tr>`).join('');
 
@@ -1969,8 +2025,8 @@ function renderLegend() {
   const how = filled
     ? `Each ${unit} is shaded by the fishing inside it; pale means nobody creeled it ` +
       `in this window.`
-    : `Dot size is anglers; faded means fewer than ${META.min_anglers} anglers behind ` +
-      `the rate.`;
+    : `Dot size is how much fishing was interviewed there; a faded dot rests on ` +
+      `fewer than ${META.min_anglers} anglers. Zoom in for names.`;
   const move = 'Scroll or pinch to zoom, drag to pan.';
 
   if (state.metric === 'rate') {
@@ -1989,7 +2045,7 @@ function renderLegend() {
     `<span>${sw('--cold')}down by half or more</span>` +
     (filled
       ? `<span>${sw('--surface-2')}not creeled in this window</span>`
-      : '<span><span class="sw" style="border:2px solid var(--steady);background:none"></span>placed at its catch area</span>') +
+      : '<span><span class="sw" style="border:2px dashed var(--steady);background:none"></span>no coordinate: drawn in its catch area</span>') +
     (state.basis === 'hour'
       ? '<span><span class="sw" style="background:var(--surface-2);border:1px dashed var(--axis)"></span>no timed trips, so no rate</span>' : '') +
     `<span style="color:var(--ink-3)">${how} ${move}</span>`;
