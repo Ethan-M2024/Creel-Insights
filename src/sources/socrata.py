@@ -215,15 +215,29 @@ def load(refresh=False, say=print):
                                                          by_interview)
 
 
-def detail(interviews, catches, by_interview):
-    """Three things the samplers write down that no dashboard shows.
+#: when a trip started, grouped the way anyone talks about a fishing day
+HOUR_BANDS = (('first light', 0, 7), ('morning', 7, 10), ('midday', 10, 14),
+              ('afternoon', 14, 18), ('evening', 18, 24))
 
-    How big the fish run, what caught them, and whether the boat or the bank did
-    better. WDFW measure a fork length on about a third of the fish, name the gear on
-    three quarters of them, and record for four interviews in ten whether the party
-    was fishing from a boat or the beach. None of it is summarised anywhere, and all
-    of it is what an angler actually wants to know before deciding how to fish a
-    place — so it is aggregated here, per water and species, over the whole record.
+
+def _band(hour):
+    for name, low, high in HOUR_BANDS:
+        if low <= hour < high:
+            return name
+    return None
+
+
+def detail(interviews, catches, by_interview):
+    """Everything the samplers write down beyond the count.
+
+    How big the fish run, what caught them, whether the boat beat the bank, what time
+    of day the parties that caught fish had started, what they were fishing for, and
+    whether they had finished their trip when they were asked. WDFW record a fork
+    length on about a third of the fish, gear on three quarters, boat-or-bank on four
+    interviews in ten, a start time on effectively all of them, a target species on
+    six in seven, and whether the trip was complete on nine in ten. None of it is
+    summarised anywhere, and all of it is what an angler wants to know before
+    deciding how and when to fish a place.
     """
     lengths = defaultdict(list)
     gear = defaultdict(lambda: defaultdict(int))
@@ -266,11 +280,71 @@ def detail(interviews, catches, by_interview):
                 hit.add((iid, wb))
                 seats[(wb, kind_of[iid])][1] += 1
 
+    # what time the fishing was done, and how it paid — a party is counted in the
+    # band it started in, which is the only clock the interview carries
+    hours = defaultdict(lambda: [0, 0])            # (water, species, band) -> parties, hits
+    band_of, target_of, status_of = {}, {}, {}
+    directed = defaultdict(lambda: [0, 0])         # (water, target) -> parties, anglers
+    trips = defaultdict(lambda: [0, 0])            # water -> complete, incomplete
+    for r in interviews:
+        iid = r.get('interview_id')
+        wb = r.get('water_body') or ''
+        if not iid or not wb:
+            continue
+        start = _clock(r.get('fishing_start_time'))
+        band = _band(int(start)) if start is not None else None
+        if band:
+            band_of[iid] = band
+        target = (r.get('target_species') or '').strip()
+        # "Target species not asked" is a record of the question, not an answer
+        if (target and target.lower() not in ('unk', 'unknown', 'na')
+                and 'not asked' not in target.lower()):
+            target_of[iid] = target
+            cell = directed[(wb, common.species(target))]
+            cell[0] += 1
+            cell[1] += max(0, common.num(r.get('angler_count')) or 0)
+        status = (r.get('trip_status') or '').strip().lower()
+        if status in ('complete', 'incomplete'):
+            status_of[iid] = status
+            trips[wb][0 if status == 'complete' else 1] += 1
+
+    seen_band, seen_species = set(), defaultdict(set)
+    for r in catches:
+        iid = r.get('interview_id')
+        place = by_interview.get(iid)
+        wb = r.get('water_body') or (place[1] if place else '')
+        sp = common.species(r.get('species'))
+        if not wb or not sp or iid not in band_of:
+            continue
+        key = (wb, sp, band_of[iid])
+        if (iid, sp) not in seen_band:
+            seen_band.add((iid, sp))
+            hours[key][1] += 1
+    # every party that fished a band, whether or not it caught the species
+    parties_by_band = defaultdict(int)
+    for iid, band in band_of.items():
+        place = by_interview.get(iid)
+        if place:
+            parties_by_band[(place[1], band)] += 1
+    for (wb, sp, band), cell in hours.items():
+        cell[0] = parties_by_band.get((wb, band), 0)
+
     def quantile(values, q):
         values = sorted(values)
         return round(values[min(len(values) - 1, int(q * len(values)))], 1)
 
-    out = {'size': {}, 'gear': {}, 'seat': {}}
+    out = {'size': {}, 'gear': {}, 'seat': {}, 'hour': {}, 'target': {},
+           'trips': {}}
+    for (wb, sp, band), (parties, hits) in hours.items():
+        if parties >= 20:
+            out['hour'].setdefault(f'{wb}|{sp}', {})[band] = {
+                'parties': parties, 'with_fish': hits}
+    for (wb, sp), (parties, anglers) in directed.items():
+        if parties >= 20:
+            out['target'][f'{wb}|{sp}'] = {'parties': parties, 'anglers': anglers}
+    for wb, (complete, incomplete) in trips.items():
+        if complete + incomplete >= 20:
+            out['trips'][wb] = {'complete': complete, 'incomplete': incomplete}
     for (wb, sp), values in lengths.items():
         if len(values) >= 20:                      # fewer than twenty says nothing
             out['size'][f'{wb}|{sp}'] = {

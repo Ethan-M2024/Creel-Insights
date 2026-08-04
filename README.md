@@ -187,6 +187,18 @@ caught them, and how the bank compares with the boat — on the Cowlitz, 24% of 
 parties caught something against 58% of boat parties, over 27,000 interviews. No
 other summary of this data shows any of it.
 
+Pick a place and the detail panel also answers **when to go**: the share of parties
+that had that species aboard by the hour they set out (Cowlitz Chinook — 16% of the
+parties that started at first light, 8% of the morning crowd, 3% at midday), which
+days of the week everyone else is on the water, who was actually fishing for that
+species rather than something else, what else gets caught there, and how many of the
+interviews came from parties that had finished their trip rather than been stopped
+mid-way.
+
+The year chart on the species tab reads either way: **fish counted**, or **fish per
+angler interviewed**. Volume alone reads a year with more anglers as a better year,
+which is how a fishery in decline can look healthy.
+
 **How often anyone catches anything** is counted, not modelled. WDFW publish the
 statewide creel one interview at a time, and every fish record names the interview it
 came from, so the share of parties that went home with a fish is a matter of counting

@@ -1658,6 +1658,8066 @@
 "Lure": 278
 }
 },
+"hour": {
+"Abernathy Creek|Chinook": {
+"midday": {
+"parties": 29,
+"with_fish": 1
+}
+},
+"Abernathy Creek|Coho": {
+"midday": {
+"parties": 29,
+"with_fish": 1
+}
+},
+"Abernathy Creek|Cutthroat": {
+"midday": {
+"parties": 29,
+"with_fish": 1
+},
+"morning": {
+"parties": 27,
+"with_fish": 1
+}
+},
+"Abernathy Creek|Steelhead": {
+"morning": {
+"parties": 27,
+"with_fish": 2
+}
+},
+"Baker Lake|Bull trout": {
+"first light": {
+"parties": 812,
+"with_fish": 4
+}
+},
+"Baker Lake|Dolly Varden": {
+"first light": {
+"parties": 812,
+"with_fish": 2
+}
+},
+"Baker Lake|Kokanee": {
+"afternoon": {
+"parties": 57,
+"with_fish": 1
+},
+"first light": {
+"parties": 812,
+"with_fish": 17
+},
+"midday": {
+"parties": 59,
+"with_fish": 1
+},
+"morning": {
+"parties": 119,
+"with_fish": 1
+}
+},
+"Baker Lake|Rainbow trout": {
+"first light": {
+"parties": 812,
+"with_fish": 2
+},
+"midday": {
+"parties": 59,
+"with_fish": 1
+},
+"morning": {
+"parties": 119,
+"with_fish": 1
+}
+},
+"Baker Lake|Sockeye": {
+"afternoon": {
+"parties": 57,
+"with_fish": 12
+},
+"first light": {
+"parties": 812,
+"with_fish": 461
+},
+"midday": {
+"parties": 59,
+"with_fish": 13
+},
+"morning": {
+"parties": 119,
+"with_fish": 34
+}
+},
+"Baker Lake|Whitefish": {
+"first light": {
+"parties": 812,
+"with_fish": 1
+}
+},
+"Battle Ground Lake|Bluegill": {
+"morning": {
+"parties": 393,
+"with_fish": 1
+}
+},
+"Battle Ground Lake|Brook Trout": {
+"afternoon": {
+"parties": 37,
+"with_fish": 2
+},
+"first light": {
+"parties": 277,
+"with_fish": 119
+},
+"midday": {
+"parties": 178,
+"with_fish": 32
+},
+"morning": {
+"parties": 393,
+"with_fish": 64
+}
+},
+"Battle Ground Lake|Brown trout": {
+"midday": {
+"parties": 178,
+"with_fish": 1
+}
+},
+"Battle Ground Lake|Coho": {
+"first light": {
+"parties": 277,
+"with_fish": 1
+},
+"morning": {
+"parties": 393,
+"with_fish": 1
+}
+},
+"Battle Ground Lake|Cutthroat": {
+"first light": {
+"parties": 277,
+"with_fish": 1
+}
+},
+"Battle Ground Lake|Largemouth bass": {
+"first light": {
+"parties": 277,
+"with_fish": 1
+},
+"midday": {
+"parties": 178,
+"with_fish": 2
+},
+"morning": {
+"parties": 393,
+"with_fish": 3
+}
+},
+"Battle Ground Lake|Northern pikeminnow": {
+"morning": {
+"parties": 393,
+"with_fish": 1
+}
+},
+"Battle Ground Lake|Rainbow trout": {
+"afternoon": {
+"parties": 37,
+"with_fish": 16
+},
+"first light": {
+"parties": 277,
+"with_fish": 265
+},
+"midday": {
+"parties": 178,
+"with_fish": 109
+},
+"morning": {
+"parties": 393,
+"with_fish": 293
+}
+},
+"Battle Ground Lake|Steelhead": {
+"midday": {
+"parties": 178,
+"with_fish": 1
+},
+"morning": {
+"parties": 393,
+"with_fish": 2
+}
+},
+"Battle Ground Lake|Sunfish - Unspecified": {
+"afternoon": {
+"parties": 37,
+"with_fish": 1
+},
+"midday": {
+"parties": 178,
+"with_fish": 3
+},
+"morning": {
+"parties": 393,
+"with_fish": 1
+}
+},
+"Blue Creek (Cowlitz)|Rainbow trout": {
+"midday": {
+"parties": 29,
+"with_fish": 1
+}
+},
+"Blue Creek (Cowlitz)|Steelhead": {
+"midday": {
+"parties": 29,
+"with_fish": 8
+},
+"morning": {
+"parties": 38,
+"with_fish": 26
+}
+},
+"Blue Creek (Cowlitz)|Trout - Unspecified": {
+"midday": {
+"parties": 29,
+"with_fish": 2
+},
+"morning": {
+"parties": 38,
+"with_fish": 1
+}
+},
+"Bogachiel River|Brown Bullhead": {
+"morning": {
+"parties": 892,
+"with_fish": 1
+}
+},
+"Bogachiel River|Chinook": {
+"afternoon": {
+"parties": 94,
+"with_fish": 2
+},
+"first light": {
+"parties": 72,
+"with_fish": 3
+},
+"midday": {
+"parties": 304,
+"with_fish": 7
+},
+"morning": {
+"parties": 892,
+"with_fish": 25
+}
+},
+"Bogachiel River|Chum": {
+"morning": {
+"parties": 892,
+"with_fish": 2
+}
+},
+"Bogachiel River|Coho": {
+"first light": {
+"parties": 72,
+"with_fish": 2
+},
+"midday": {
+"parties": 304,
+"with_fish": 12
+},
+"morning": {
+"parties": 892,
+"with_fish": 48
+}
+},
+"Bogachiel River|Cutthroat": {
+"afternoon": {
+"parties": 94,
+"with_fish": 3
+},
+"first light": {
+"parties": 72,
+"with_fish": 7
+},
+"midday": {
+"parties": 304,
+"with_fish": 10
+},
+"morning": {
+"parties": 892,
+"with_fish": 45
+}
+},
+"Bogachiel River|Largescale Sucker": {
+"morning": {
+"parties": 892,
+"with_fish": 1
+}
+},
+"Bogachiel River|Other": {
+"morning": {
+"parties": 892,
+"with_fish": 1
+}
+},
+"Bogachiel River|Pink": {
+"morning": {
+"parties": 892,
+"with_fish": 1
+}
+},
+"Bogachiel River|Rainbow trout": {
+"afternoon": {
+"parties": 94,
+"with_fish": 3
+},
+"first light": {
+"parties": 72,
+"with_fish": 1
+},
+"midday": {
+"parties": 304,
+"with_fish": 4
+},
+"morning": {
+"parties": 892,
+"with_fish": 12
+}
+},
+"Bogachiel River|Salmonid - Unspecified": {
+"first light": {
+"parties": 72,
+"with_fish": 1
+}
+},
+"Bogachiel River|Sockeye": {
+"midday": {
+"parties": 304,
+"with_fish": 4
+},
+"morning": {
+"parties": 892,
+"with_fish": 8
+}
+},
+"Bogachiel River|Steelhead": {
+"afternoon": {
+"parties": 94,
+"with_fish": 17
+},
+"first light": {
+"parties": 72,
+"with_fish": 33
+},
+"midday": {
+"parties": 304,
+"with_fish": 61
+},
+"morning": {
+"parties": 892,
+"with_fish": 270
+}
+},
+"Bogachiel River|Trout - Unspecified": {
+"morning": {
+"parties": 892,
+"with_fish": 1
+}
+},
+"Bogachiel River|Whitefish": {
+"first light": {
+"parties": 72,
+"with_fish": 3
+},
+"midday": {
+"parties": 304,
+"with_fish": 2
+},
+"morning": {
+"parties": 892,
+"with_fish": 11
+}
+},
+"Calawah River|Chinook": {
+"first light": {
+"parties": 23,
+"with_fish": 1
+},
+"midday": {
+"parties": 74,
+"with_fish": 2
+},
+"morning": {
+"parties": 189,
+"with_fish": 9
+}
+},
+"Calawah River|Coho": {
+"midday": {
+"parties": 74,
+"with_fish": 1
+},
+"morning": {
+"parties": 189,
+"with_fish": 13
+}
+},
+"Calawah River|Cutthroat": {
+"first light": {
+"parties": 23,
+"with_fish": 1
+},
+"midday": {
+"parties": 74,
+"with_fish": 4
+},
+"morning": {
+"parties": 189,
+"with_fish": 9
+}
+},
+"Calawah River|Pink": {
+"morning": {
+"parties": 189,
+"with_fish": 1
+}
+},
+"Calawah River|Rainbow trout": {
+"morning": {
+"parties": 189,
+"with_fish": 2
+}
+},
+"Calawah River|Sockeye": {
+"first light": {
+"parties": 23,
+"with_fish": 10
+},
+"morning": {
+"parties": 189,
+"with_fish": 5
+}
+},
+"Calawah River|Steelhead": {
+"first light": {
+"parties": 23,
+"with_fish": 15
+},
+"midday": {
+"parties": 74,
+"with_fish": 17
+},
+"morning": {
+"parties": 189,
+"with_fish": 77
+}
+},
+"Calawah River|Trout - Unspecified": {
+"midday": {
+"parties": 74,
+"with_fish": 1
+},
+"morning": {
+"parties": 189,
+"with_fish": 1
+}
+},
+"Calawah River|Whitefish": {
+"midday": {
+"parties": 74,
+"with_fish": 2
+},
+"morning": {
+"parties": 189,
+"with_fish": 7
+}
+},
+"Carbon River|Bull trout": {
+"first light": {
+"parties": 367,
+"with_fish": 1
+},
+"midday": {
+"parties": 531,
+"with_fish": 1
+},
+"morning": {
+"parties": 519,
+"with_fish": 1
+}
+},
+"Carbon River|Chinook": {
+"afternoon": {
+"parties": 376,
+"with_fish": 76
+},
+"evening": {
+"parties": 30,
+"with_fish": 4
+},
+"first light": {
+"parties": 367,
+"with_fish": 155
+},
+"midday": {
+"parties": 531,
+"with_fish": 65
+},
+"morning": {
+"parties": 519,
+"with_fish": 90
+}
+},
+"Carbon River|Chum": {
+"first light": {
+"parties": 367,
+"with_fish": 1
+},
+"morning": {
+"parties": 519,
+"with_fish": 1
+}
+},
+"Carbon River|Coho": {
+"afternoon": {
+"parties": 376,
+"with_fish": 39
+},
+"evening": {
+"parties": 30,
+"with_fish": 1
+},
+"first light": {
+"parties": 367,
+"with_fish": 51
+},
+"midday": {
+"parties": 531,
+"with_fish": 52
+},
+"morning": {
+"parties": 519,
+"with_fish": 81
+}
+},
+"Carbon River|Dolly Varden": {
+"first light": {
+"parties": 367,
+"with_fish": 1
+},
+"midday": {
+"parties": 531,
+"with_fish": 3
+},
+"morning": {
+"parties": 519,
+"with_fish": 3
+}
+},
+"Carbon River|Pink": {
+"afternoon": {
+"parties": 376,
+"with_fish": 65
+},
+"evening": {
+"parties": 30,
+"with_fish": 2
+},
+"first light": {
+"parties": 367,
+"with_fish": 54
+},
+"midday": {
+"parties": 531,
+"with_fish": 97
+},
+"morning": {
+"parties": 519,
+"with_fish": 100
+}
+},
+"Carbon River|Salmonid - Unspecified": {
+"midday": {
+"parties": 531,
+"with_fish": 1
+},
+"morning": {
+"parties": 519,
+"with_fish": 2
+}
+},
+"Carbon River|Trout - Unspecified": {
+"midday": {
+"parties": 531,
+"with_fish": 1
+},
+"morning": {
+"parties": 519,
+"with_fish": 1
+}
+},
+"Carbon River|Whitefish": {
+"afternoon": {
+"parties": 376,
+"with_fish": 1
+},
+"first light": {
+"parties": 367,
+"with_fish": 1
+},
+"midday": {
+"parties": 531,
+"with_fish": 1
+}
+},
+"Carlisle Lake|Black Crappie": {
+"midday": {
+"parties": 83,
+"with_fish": 1
+},
+"morning": {
+"parties": 518,
+"with_fish": 2
+}
+},
+"Carlisle Lake|Bluegill": {
+"morning": {
+"parties": 518,
+"with_fish": 1
+}
+},
+"Carlisle Lake|Brown Bullhead": {
+"first light": {
+"parties": 349,
+"with_fish": 5
+},
+"morning": {
+"parties": 518,
+"with_fish": 3
+}
+},
+"Carlisle Lake|Brown trout": {
+"first light": {
+"parties": 349,
+"with_fish": 55
+},
+"midday": {
+"parties": 83,
+"with_fish": 2
+},
+"morning": {
+"parties": 518,
+"with_fish": 65
+}
+},
+"Carlisle Lake|Bullhead - Unspecified": {
+"morning": {
+"parties": 518,
+"with_fish": 1
+}
+},
+"Carlisle Lake|Channel catfish": {
+"morning": {
+"parties": 518,
+"with_fish": 1
+}
+},
+"Carlisle Lake|Coho": {
+"first light": {
+"parties": 349,
+"with_fish": 81
+},
+"midday": {
+"parties": 83,
+"with_fish": 5
+},
+"morning": {
+"parties": 518,
+"with_fish": 68
+}
+},
+"Carlisle Lake|Crappie - Unspecified": {
+"first light": {
+"parties": 349,
+"with_fish": 1
+}
+},
+"Carlisle Lake|Largemouth bass": {
+"midday": {
+"parties": 83,
+"with_fish": 1
+},
+"morning": {
+"parties": 518,
+"with_fish": 4
+}
+},
+"Carlisle Lake|Rainbow trout": {
+"first light": {
+"parties": 349,
+"with_fish": 301
+},
+"midday": {
+"parties": 83,
+"with_fish": 42
+},
+"morning": {
+"parties": 518,
+"with_fish": 388
+}
+},
+"Carlisle Lake|White Crappie": {
+"morning": {
+"parties": 518,
+"with_fish": 1
+}
+},
+"Carlisle Lake|Yellow perch": {
+"morning": {
+"parties": 518,
+"with_fish": 1
+}
+},
+"Cascade River|Bull trout": {
+"afternoon": {
+"parties": 246,
+"with_fish": 12
+},
+"evening": {
+"parties": 43,
+"with_fish": 2
+},
+"first light": {
+"parties": 611,
+"with_fish": 23
+},
+"midday": {
+"parties": 542,
+"with_fish": 20
+},
+"morning": {
+"parties": 810,
+"with_fish": 25
+}
+},
+"Cascade River|Chinook": {
+"afternoon": {
+"parties": 246,
+"with_fish": 44
+},
+"evening": {
+"parties": 43,
+"with_fish": 4
+},
+"first light": {
+"parties": 611,
+"with_fish": 138
+},
+"midday": {
+"parties": 542,
+"with_fish": 58
+},
+"morning": {
+"parties": 810,
+"with_fish": 67
+}
+},
+"Cascade River|Chum": {
+"first light": {
+"parties": 611,
+"with_fish": 2
+},
+"midday": {
+"parties": 542,
+"with_fish": 3
+},
+"morning": {
+"parties": 810,
+"with_fish": 4
+}
+},
+"Cascade River|Coho": {
+"afternoon": {
+"parties": 246,
+"with_fish": 25
+},
+"first light": {
+"parties": 611,
+"with_fish": 83
+},
+"midday": {
+"parties": 542,
+"with_fish": 144
+},
+"morning": {
+"parties": 810,
+"with_fish": 345
+}
+},
+"Cascade River|Cutthroat": {
+"afternoon": {
+"parties": 246,
+"with_fish": 1
+},
+"evening": {
+"parties": 43,
+"with_fish": 1
+},
+"midday": {
+"parties": 542,
+"with_fish": 1
+},
+"morning": {
+"parties": 810,
+"with_fish": 1
+}
+},
+"Cascade River|Dolly Varden": {
+"afternoon": {
+"parties": 246,
+"with_fish": 3
+},
+"evening": {
+"parties": 43,
+"with_fish": 1
+},
+"first light": {
+"parties": 611,
+"with_fish": 16
+},
+"midday": {
+"parties": 542,
+"with_fish": 9
+},
+"morning": {
+"parties": 810,
+"with_fish": 16
+}
+},
+"Cascade River|Largescale Sucker": {
+"midday": {
+"parties": 542,
+"with_fish": 1
+}
+},
+"Cascade River|Other": {
+"midday": {
+"parties": 542,
+"with_fish": 1
+}
+},
+"Cascade River|Pink": {
+"afternoon": {
+"parties": 246,
+"with_fish": 5
+},
+"first light": {
+"parties": 611,
+"with_fish": 6
+},
+"midday": {
+"parties": 542,
+"with_fish": 11
+},
+"morning": {
+"parties": 810,
+"with_fish": 25
+}
+},
+"Cascade River|Rainbow trout": {
+"afternoon": {
+"parties": 246,
+"with_fish": 1
+},
+"first light": {
+"parties": 611,
+"with_fish": 2
+},
+"midday": {
+"parties": 542,
+"with_fish": 4
+},
+"morning": {
+"parties": 810,
+"with_fish": 2
+}
+},
+"Cascade River|Steelhead": {
+"afternoon": {
+"parties": 246,
+"with_fish": 2
+},
+"evening": {
+"parties": 43,
+"with_fish": 1
+},
+"midday": {
+"parties": 542,
+"with_fish": 3
+},
+"morning": {
+"parties": 810,
+"with_fish": 5
+}
+},
+"Cascade River|Sucker": {
+"afternoon": {
+"parties": 246,
+"with_fish": 1
+}
+},
+"Cascade River|Trout - Unspecified": {
+"afternoon": {
+"parties": 246,
+"with_fish": 1
+},
+"first light": {
+"parties": 611,
+"with_fish": 2
+}
+},
+"Cascade River|Whitefish": {
+"afternoon": {
+"parties": 246,
+"with_fish": 11
+},
+"evening": {
+"parties": 43,
+"with_fish": 1
+},
+"first light": {
+"parties": 611,
+"with_fish": 9
+},
+"midday": {
+"parties": 542,
+"with_fish": 7
+},
+"morning": {
+"parties": 810,
+"with_fish": 7
+}
+},
+"Chehalis River|Bass - Unspecified": {
+"midday": {
+"parties": 1187,
+"with_fish": 2
+},
+"morning": {
+"parties": 2708,
+"with_fish": 3
+}
+},
+"Chehalis River|Brown Bullhead": {
+"morning": {
+"parties": 2708,
+"with_fish": 2
+}
+},
+"Chehalis River|Carp": {
+"morning": {
+"parties": 2708,
+"with_fish": 1
+}
+},
+"Chehalis River|Chinook": {
+"afternoon": {
+"parties": 459,
+"with_fish": 13
+},
+"first light": {
+"parties": 368,
+"with_fish": 66
+},
+"midday": {
+"parties": 1187,
+"with_fish": 44
+},
+"morning": {
+"parties": 2708,
+"with_fish": 192
+}
+},
+"Chehalis River|Chum": {
+"afternoon": {
+"parties": 459,
+"with_fish": 2
+},
+"first light": {
+"parties": 368,
+"with_fish": 4
+},
+"midday": {
+"parties": 1187,
+"with_fish": 10
+},
+"morning": {
+"parties": 2708,
+"with_fish": 55
+}
+},
+"Chehalis River|Coho": {
+"afternoon": {
+"parties": 459,
+"with_fish": 77
+},
+"first light": {
+"parties": 368,
+"with_fish": 251
+},
+"midday": {
+"parties": 1187,
+"with_fish": 376
+},
+"morning": {
+"parties": 2708,
+"with_fish": 1461
+}
+},
+"Chehalis River|Cutthroat": {
+"afternoon": {
+"parties": 459,
+"with_fish": 1
+},
+"first light": {
+"parties": 368,
+"with_fish": 2
+},
+"midday": {
+"parties": 1187,
+"with_fish": 6
+},
+"morning": {
+"parties": 2708,
+"with_fish": 13
+}
+},
+"Chehalis River|Largemouth bass": {
+"afternoon": {
+"parties": 459,
+"with_fish": 1
+},
+"first light": {
+"parties": 368,
+"with_fish": 1
+},
+"morning": {
+"parties": 2708,
+"with_fish": 1
+}
+},
+"Chehalis River|Northern pikeminnow": {
+"afternoon": {
+"parties": 459,
+"with_fish": 8
+},
+"first light": {
+"parties": 368,
+"with_fish": 2
+},
+"midday": {
+"parties": 1187,
+"with_fish": 15
+},
+"morning": {
+"parties": 2708,
+"with_fish": 28
+}
+},
+"Chehalis River|Pink": {
+"morning": {
+"parties": 2708,
+"with_fish": 1
+}
+},
+"Chehalis River|Rainbow trout": {
+"afternoon": {
+"parties": 459,
+"with_fish": 3
+},
+"first light": {
+"parties": 368,
+"with_fish": 1
+},
+"midday": {
+"parties": 1187,
+"with_fish": 4
+},
+"morning": {
+"parties": 2708,
+"with_fish": 7
+}
+},
+"Chehalis River|Salmonid - Unspecified": {
+"midday": {
+"parties": 1187,
+"with_fish": 1
+},
+"morning": {
+"parties": 2708,
+"with_fish": 3
+}
+},
+"Chehalis River|Sculpin Species - Unspecified": {
+"afternoon": {
+"parties": 459,
+"with_fish": 2
+},
+"first light": {
+"parties": 368,
+"with_fish": 1
+},
+"midday": {
+"parties": 1187,
+"with_fish": 3
+},
+"morning": {
+"parties": 2708,
+"with_fish": 6
+}
+},
+"Chehalis River|Smallmouth bass": {
+"first light": {
+"parties": 368,
+"with_fish": 1
+},
+"midday": {
+"parties": 1187,
+"with_fish": 3
+},
+"morning": {
+"parties": 2708,
+"with_fish": 2
+}
+},
+"Chehalis River|Steelhead": {
+"first light": {
+"parties": 368,
+"with_fish": 1
+},
+"midday": {
+"parties": 1187,
+"with_fish": 5
+},
+"morning": {
+"parties": 2708,
+"with_fish": 15
+}
+},
+"Chehalis River|Sturgeon": {
+"afternoon": {
+"parties": 459,
+"with_fish": 1
+},
+"morning": {
+"parties": 2708,
+"with_fish": 1
+}
+},
+"Chehalis River|Sucker": {
+"afternoon": {
+"parties": 459,
+"with_fish": 3
+},
+"midday": {
+"parties": 1187,
+"with_fish": 1
+},
+"morning": {
+"parties": 2708,
+"with_fish": 12
+}
+},
+"Chehalis River|Trout - Unspecified": {
+"midday": {
+"parties": 1187,
+"with_fish": 1
+}
+},
+"Chehalis River|Unknown": {
+"afternoon": {
+"parties": 459,
+"with_fish": 2
+}
+},
+"Chehalis River|Whitefish": {
+"afternoon": {
+"parties": 459,
+"with_fish": 2
+},
+"midday": {
+"parties": 1187,
+"with_fish": 3
+},
+"morning": {
+"parties": 2708,
+"with_fish": 6
+}
+},
+"Clearwater River |Bull trout": {
+"morning": {
+"parties": 36,
+"with_fish": 1
+}
+},
+"Clearwater River |Cutthroat": {
+"morning": {
+"parties": 36,
+"with_fish": 3
+}
+},
+"Clearwater River |Steelhead": {
+"morning": {
+"parties": 36,
+"with_fish": 16
+}
+},
+"Clearwater River |Whitefish": {
+"morning": {
+"parties": 36,
+"with_fish": 4
+}
+},
+"Coldwater Lake|Cutbow": {
+"morning": {
+"parties": 26,
+"with_fish": 1
+}
+},
+"Coldwater Lake|Cutthroat": {
+"first light": {
+"parties": 42,
+"with_fish": 16
+}
+},
+"Coldwater Lake|Rainbow trout": {
+"first light": {
+"parties": 42,
+"with_fish": 39
+},
+"morning": {
+"parties": 26,
+"with_fish": 19
+}
+},
+"Coldwater Lake|Westslope Cutthroat Trout": {
+"morning": {
+"parties": 26,
+"with_fish": 1
+}
+},
+"Coweeman River|Coho": {
+"midday": {
+"parties": 102,
+"with_fish": 2
+},
+"morning": {
+"parties": 125,
+"with_fish": 5
+}
+},
+"Coweeman River|Cutthroat": {
+"morning": {
+"parties": 125,
+"with_fish": 2
+}
+},
+"Coweeman River|Steelhead": {
+"midday": {
+"parties": 102,
+"with_fish": 17
+},
+"morning": {
+"parties": 125,
+"with_fish": 29
+}
+},
+"Coweeman River|Unknown": {
+"morning": {
+"parties": 125,
+"with_fish": 2
+}
+},
+"Coweeman River|Whitefish": {
+"morning": {
+"parties": 125,
+"with_fish": 1
+}
+},
+"Cowlitz River|Carp": {
+"afternoon": {
+"parties": 507,
+"with_fish": 1
+}
+},
+"Cowlitz River|Chinook": {
+"afternoon": {
+"parties": 507,
+"with_fish": 53
+},
+"evening": {
+"parties": 143,
+"with_fish": 30
+},
+"first light": {
+"parties": 9697,
+"with_fish": 1527
+},
+"midday": {
+"parties": 5395,
+"with_fish": 185
+},
+"morning": {
+"parties": 14066,
+"with_fish": 1072
+}
+},
+"Cowlitz River|Chum": {
+"first light": {
+"parties": 9697,
+"with_fish": 4
+},
+"morning": {
+"parties": 14066,
+"with_fish": 6
+}
+},
+"Cowlitz River|Coho": {
+"afternoon": {
+"parties": 507,
+"with_fish": 6
+},
+"first light": {
+"parties": 9697,
+"with_fish": 377
+},
+"midday": {
+"parties": 5395,
+"with_fish": 166
+},
+"morning": {
+"parties": 14066,
+"with_fish": 1061
+}
+},
+"Cowlitz River|Cutthroat": {
+"afternoon": {
+"parties": 507,
+"with_fish": 3
+},
+"first light": {
+"parties": 9697,
+"with_fish": 140
+},
+"midday": {
+"parties": 5395,
+"with_fish": 69
+},
+"morning": {
+"parties": 14066,
+"with_fish": 176
+}
+},
+"Cowlitz River|Grass Carp": {
+"morning": {
+"parties": 14066,
+"with_fish": 1
+}
+},
+"Cowlitz River|Largescale Sucker": {
+"first light": {
+"parties": 9697,
+"with_fish": 1
+},
+"midday": {
+"parties": 5395,
+"with_fish": 1
+},
+"morning": {
+"parties": 14066,
+"with_fish": 2
+}
+},
+"Cowlitz River|Northern pikeminnow": {
+"first light": {
+"parties": 9697,
+"with_fish": 8
+},
+"midday": {
+"parties": 5395,
+"with_fish": 2
+},
+"morning": {
+"parties": 14066,
+"with_fish": 5
+}
+},
+"Cowlitz River|Other": {
+"first light": {
+"parties": 9697,
+"with_fish": 4
+},
+"midday": {
+"parties": 5395,
+"with_fish": 2
+},
+"morning": {
+"parties": 14066,
+"with_fish": 8
+}
+},
+"Cowlitz River|Peamouth": {
+"first light": {
+"parties": 9697,
+"with_fish": 1
+},
+"midday": {
+"parties": 5395,
+"with_fish": 2
+},
+"morning": {
+"parties": 14066,
+"with_fish": 1
+}
+},
+"Cowlitz River|Pink": {
+"first light": {
+"parties": 9697,
+"with_fish": 1
+},
+"morning": {
+"parties": 14066,
+"with_fish": 3
+}
+},
+"Cowlitz River|Rainbow trout": {
+"first light": {
+"parties": 9697,
+"with_fish": 17
+},
+"midday": {
+"parties": 5395,
+"with_fish": 14
+},
+"morning": {
+"parties": 14066,
+"with_fish": 26
+}
+},
+"Cowlitz River|Salmonid - Unspecified": {
+"first light": {
+"parties": 9697,
+"with_fish": 1
+}
+},
+"Cowlitz River|Sockeye": {
+"first light": {
+"parties": 9697,
+"with_fish": 3
+}
+},
+"Cowlitz River|Steelhead": {
+"afternoon": {
+"parties": 507,
+"with_fish": 51
+},
+"evening": {
+"parties": 143,
+"with_fish": 11
+},
+"first light": {
+"parties": 9697,
+"with_fish": 2657
+},
+"midday": {
+"parties": 5395,
+"with_fish": 320
+},
+"morning": {
+"parties": 14066,
+"with_fish": 2135
+}
+},
+"Cowlitz River|Sturgeon": {
+"afternoon": {
+"parties": 507,
+"with_fish": 1
+},
+"first light": {
+"parties": 9697,
+"with_fish": 85
+},
+"midday": {
+"parties": 5395,
+"with_fish": 16
+},
+"morning": {
+"parties": 14066,
+"with_fish": 88
+}
+},
+"Cowlitz River|Sucker": {
+"afternoon": {
+"parties": 507,
+"with_fish": 1
+},
+"first light": {
+"parties": 9697,
+"with_fish": 44
+},
+"midday": {
+"parties": 5395,
+"with_fish": 24
+},
+"morning": {
+"parties": 14066,
+"with_fish": 68
+}
+},
+"Cowlitz River|Tiger Muskie": {
+"first light": {
+"parties": 9697,
+"with_fish": 1
+}
+},
+"Cowlitz River|Trout - Unspecified": {
+"first light": {
+"parties": 9697,
+"with_fish": 18
+},
+"midday": {
+"parties": 5395,
+"with_fish": 7
+},
+"morning": {
+"parties": 14066,
+"with_fish": 21
+}
+},
+"Cowlitz River|Unknown": {
+"first light": {
+"parties": 9697,
+"with_fish": 37
+},
+"midday": {
+"parties": 5395,
+"with_fish": 6
+},
+"morning": {
+"parties": 14066,
+"with_fish": 21
+}
+},
+"Cowlitz River|Whitefish": {
+"afternoon": {
+"parties": 507,
+"with_fish": 1
+},
+"first light": {
+"parties": 9697,
+"with_fish": 25
+},
+"midday": {
+"parties": 5395,
+"with_fish": 12
+},
+"morning": {
+"parties": 14066,
+"with_fish": 67
+}
+},
+"East Fork Lewis River|Chinook": {
+"afternoon": {
+"parties": 268,
+"with_fish": 1
+},
+"first light": {
+"parties": 77,
+"with_fish": 1
+},
+"midday": {
+"parties": 926,
+"with_fish": 2
+},
+"morning": {
+"parties": 1165,
+"with_fish": 5
+}
+},
+"East Fork Lewis River|Coho": {
+"afternoon": {
+"parties": 268,
+"with_fish": 1
+},
+"midday": {
+"parties": 926,
+"with_fish": 5
+},
+"morning": {
+"parties": 1165,
+"with_fish": 20
+}
+},
+"East Fork Lewis River|Cutthroat": {
+"midday": {
+"parties": 926,
+"with_fish": 4
+},
+"morning": {
+"parties": 1165,
+"with_fish": 6
+}
+},
+"East Fork Lewis River|Northern pikeminnow": {
+"afternoon": {
+"parties": 268,
+"with_fish": 1
+},
+"evening": {
+"parties": 31,
+"with_fish": 1
+},
+"first light": {
+"parties": 77,
+"with_fish": 1
+},
+"midday": {
+"parties": 926,
+"with_fish": 1
+},
+"morning": {
+"parties": 1165,
+"with_fish": 2
+}
+},
+"East Fork Lewis River|Other": {
+"midday": {
+"parties": 926,
+"with_fish": 2
+},
+"morning": {
+"parties": 1165,
+"with_fish": 1
+}
+},
+"East Fork Lewis River|Peamouth": {
+"midday": {
+"parties": 926,
+"with_fish": 1
+}
+},
+"East Fork Lewis River|Rainbow trout": {
+"morning": {
+"parties": 1165,
+"with_fish": 1
+}
+},
+"East Fork Lewis River|Steelhead": {
+"afternoon": {
+"parties": 268,
+"with_fish": 8
+},
+"evening": {
+"parties": 31,
+"with_fish": 2
+},
+"first light": {
+"parties": 77,
+"with_fish": 12
+},
+"midday": {
+"parties": 926,
+"with_fish": 77
+},
+"morning": {
+"parties": 1165,
+"with_fish": 170
+}
+},
+"East Fork Lewis River|Sucker": {
+"afternoon": {
+"parties": 268,
+"with_fish": 3
+},
+"morning": {
+"parties": 1165,
+"with_fish": 3
+}
+},
+"East Fork Lewis River|Trout - Unspecified": {
+"afternoon": {
+"parties": 268,
+"with_fish": 1
+},
+"midday": {
+"parties": 926,
+"with_fish": 2
+},
+"morning": {
+"parties": 1165,
+"with_fish": 1
+}
+},
+"East Fork Lewis River|Unknown": {
+"midday": {
+"parties": 926,
+"with_fish": 2
+}
+},
+"East Fork Lewis River|Whitefish": {
+"first light": {
+"parties": 77,
+"with_fish": 1
+},
+"midday": {
+"parties": 926,
+"with_fish": 1
+},
+"morning": {
+"parties": 1165,
+"with_fish": 5
+}
+},
+"Elochoman River|Chum": {
+"morning": {
+"parties": 611,
+"with_fish": 3
+}
+},
+"Elochoman River|Coho": {
+"afternoon": {
+"parties": 70,
+"with_fish": 1
+},
+"evening": {
+"parties": 24,
+"with_fish": 1
+},
+"first light": {
+"parties": 57,
+"with_fish": 2
+},
+"midday": {
+"parties": 238,
+"with_fish": 5
+},
+"morning": {
+"parties": 611,
+"with_fish": 23
+}
+},
+"Elochoman River|Cutthroat": {
+"evening": {
+"parties": 24,
+"with_fish": 1
+},
+"first light": {
+"parties": 57,
+"with_fish": 1
+},
+"midday": {
+"parties": 238,
+"with_fish": 2
+},
+"morning": {
+"parties": 611,
+"with_fish": 5
+}
+},
+"Elochoman River|Northern pikeminnow": {
+"afternoon": {
+"parties": 70,
+"with_fish": 1
+}
+},
+"Elochoman River|Other": {
+"afternoon": {
+"parties": 70,
+"with_fish": 1
+}
+},
+"Elochoman River|Rainbow trout": {
+"morning": {
+"parties": 611,
+"with_fish": 1
+}
+},
+"Elochoman River|Steelhead": {
+"afternoon": {
+"parties": 70,
+"with_fish": 3
+},
+"evening": {
+"parties": 24,
+"with_fish": 10
+},
+"first light": {
+"parties": 57,
+"with_fish": 25
+},
+"midday": {
+"parties": 238,
+"with_fish": 29
+},
+"morning": {
+"parties": 611,
+"with_fish": 164
+}
+},
+"Elochoman River|Sucker": {
+"morning": {
+"parties": 611,
+"with_fish": 2
+}
+},
+"Elochoman River|Trout - Unspecified": {
+"afternoon": {
+"parties": 70,
+"with_fish": 1
+},
+"first light": {
+"parties": 57,
+"with_fish": 1
+},
+"midday": {
+"parties": 238,
+"with_fish": 1
+},
+"morning": {
+"parties": 611,
+"with_fish": 1
+}
+},
+"Ft. Borst Park Pond|Bluegill": {
+"morning": {
+"parties": 306,
+"with_fish": 9
+}
+},
+"Ft. Borst Park Pond|Carp": {
+"morning": {
+"parties": 306,
+"with_fish": 1
+}
+},
+"Ft. Borst Park Pond|Largemouth bass": {
+"first light": {
+"parties": 62,
+"with_fish": 1
+},
+"morning": {
+"parties": 306,
+"with_fish": 1
+}
+},
+"Ft. Borst Park Pond|Largescale Sucker": {
+"morning": {
+"parties": 306,
+"with_fish": 1
+}
+},
+"Ft. Borst Park Pond|Pumpkinseed": {
+"midday": {
+"parties": 89,
+"with_fish": 1
+}
+},
+"Ft. Borst Park Pond|Rainbow trout": {
+"first light": {
+"parties": 62,
+"with_fish": 57
+},
+"midday": {
+"parties": 89,
+"with_fish": 52
+},
+"morning": {
+"parties": 306,
+"with_fish": 218
+}
+},
+"Ft. Borst Park Pond|Steelhead": {
+"midday": {
+"parties": 89,
+"with_fish": 2
+},
+"morning": {
+"parties": 306,
+"with_fish": 1
+}
+},
+"Ft. Borst Park Pond|Trout - Unspecified": {
+"midday": {
+"parties": 89,
+"with_fish": 1
+}
+},
+"Ft. Borst Park Pond|Yellow perch": {
+"midday": {
+"parties": 89,
+"with_fish": 1
+}
+},
+"Germany Creek|Coho": {
+"midday": {
+"parties": 34,
+"with_fish": 1
+}
+},
+"Germany Creek|Cutthroat": {
+"midday": {
+"parties": 34,
+"with_fish": 1
+},
+"morning": {
+"parties": 46,
+"with_fish": 1
+}
+},
+"Germany Creek|Steelhead": {
+"midday": {
+"parties": 34,
+"with_fish": 7
+},
+"morning": {
+"parties": 46,
+"with_fish": 6
+}
+},
+"Germany Creek|Trout - Unspecified": {
+"morning": {
+"parties": 46,
+"with_fish": 1
+}
+},
+"Goose Lake|Brook Trout": {
+"midday": {
+"parties": 24,
+"with_fish": 2
+},
+"morning": {
+"parties": 39,
+"with_fish": 8
+}
+},
+"Goose Lake|Brown trout": {
+"midday": {
+"parties": 24,
+"with_fish": 7
+},
+"morning": {
+"parties": 39,
+"with_fish": 14
+}
+},
+"Goose Lake|Cutthroat": {
+"midday": {
+"parties": 24,
+"with_fish": 10
+},
+"morning": {
+"parties": 39,
+"with_fish": 28
+}
+},
+"Goose Lake|Rainbow trout": {
+"midday": {
+"parties": 24,
+"with_fish": 2
+},
+"morning": {
+"parties": 39,
+"with_fish": 2
+}
+},
+"Grays River|Chum": {
+"midday": {
+"parties": 87,
+"with_fish": 6
+},
+"morning": {
+"parties": 127,
+"with_fish": 8
+}
+},
+"Grays River|Coho": {
+"midday": {
+"parties": 87,
+"with_fish": 7
+},
+"morning": {
+"parties": 127,
+"with_fish": 20
+}
+},
+"Grays River|Cutthroat": {
+"midday": {
+"parties": 87,
+"with_fish": 1
+}
+},
+"Grays River|Steelhead": {
+"midday": {
+"parties": 87,
+"with_fish": 11
+},
+"morning": {
+"parties": 127,
+"with_fish": 24
+}
+},
+"Grays River|Sucker": {
+"morning": {
+"parties": 127,
+"with_fish": 1
+}
+},
+"Hoh River|Bass - Unspecified": {
+"morning": {
+"parties": 2022,
+"with_fish": 1
+}
+},
+"Hoh River|Bull trout": {
+"afternoon": {
+"parties": 165,
+"with_fish": 3
+},
+"first light": {
+"parties": 151,
+"with_fish": 7
+},
+"midday": {
+"parties": 684,
+"with_fish": 30
+},
+"morning": {
+"parties": 2022,
+"with_fish": 122
+}
+},
+"Hoh River|Chinook": {
+"afternoon": {
+"parties": 165,
+"with_fish": 1
+},
+"first light": {
+"parties": 151,
+"with_fish": 17
+},
+"midday": {
+"parties": 684,
+"with_fish": 5
+},
+"morning": {
+"parties": 2022,
+"with_fish": 63
+}
+},
+"Hoh River|Coho": {
+"afternoon": {
+"parties": 165,
+"with_fish": 1
+},
+"first light": {
+"parties": 151,
+"with_fish": 17
+},
+"midday": {
+"parties": 684,
+"with_fish": 15
+},
+"morning": {
+"parties": 2022,
+"with_fish": 90
+}
+},
+"Hoh River|Cutthroat": {
+"afternoon": {
+"parties": 165,
+"with_fish": 1
+},
+"first light": {
+"parties": 151,
+"with_fish": 4
+},
+"midday": {
+"parties": 684,
+"with_fish": 14
+},
+"morning": {
+"parties": 2022,
+"with_fish": 30
+}
+},
+"Hoh River|Dolly Varden": {
+"morning": {
+"parties": 2022,
+"with_fish": 10
+}
+},
+"Hoh River|Rainbow trout": {
+"afternoon": {
+"parties": 165,
+"with_fish": 1
+},
+"midday": {
+"parties": 684,
+"with_fish": 3
+},
+"morning": {
+"parties": 2022,
+"with_fish": 22
+}
+},
+"Hoh River|Sockeye": {
+"morning": {
+"parties": 2022,
+"with_fish": 1
+}
+},
+"Hoh River|Steelhead": {
+"afternoon": {
+"parties": 165,
+"with_fish": 12
+},
+"first light": {
+"parties": 151,
+"with_fish": 69
+},
+"midday": {
+"parties": 684,
+"with_fish": 117
+},
+"morning": {
+"parties": 2022,
+"with_fish": 696
+}
+},
+"Hoh River|Trout - Unspecified": {
+"midday": {
+"parties": 684,
+"with_fish": 1
+},
+"morning": {
+"parties": 2022,
+"with_fish": 6
+}
+},
+"Hoh River|Unknown": {
+"midday": {
+"parties": 684,
+"with_fish": 1
+}
+},
+"Hoh River|Whitefish": {
+"afternoon": {
+"parties": 165,
+"with_fish": 2
+},
+"first light": {
+"parties": 151,
+"with_fish": 10
+},
+"midday": {
+"parties": 684,
+"with_fish": 22
+},
+"morning": {
+"parties": 2022,
+"with_fish": 161
+}
+},
+"Horseshoe Lake|Bluegill": {
+"morning": {
+"parties": 203,
+"with_fish": 1
+}
+},
+"Horseshoe Lake|Brook Trout": {
+"midday": {
+"parties": 158,
+"with_fish": 1
+}
+},
+"Horseshoe Lake|Brown Bullhead": {
+"afternoon": {
+"parties": 63,
+"with_fish": 2
+}
+},
+"Horseshoe Lake|Brown trout": {
+"afternoon": {
+"parties": 63,
+"with_fish": 4
+},
+"first light": {
+"parties": 108,
+"with_fish": 31
+},
+"midday": {
+"parties": 158,
+"with_fish": 28
+},
+"morning": {
+"parties": 203,
+"with_fish": 39
+}
+},
+"Horseshoe Lake|Cutthroat": {
+"midday": {
+"parties": 158,
+"with_fish": 1
+},
+"morning": {
+"parties": 203,
+"with_fish": 2
+}
+},
+"Horseshoe Lake|Largemouth bass": {
+"afternoon": {
+"parties": 63,
+"with_fish": 2
+},
+"first light": {
+"parties": 108,
+"with_fish": 1
+},
+"midday": {
+"parties": 158,
+"with_fish": 4
+},
+"morning": {
+"parties": 203,
+"with_fish": 9
+}
+},
+"Horseshoe Lake|Pumpkinseed": {
+"afternoon": {
+"parties": 63,
+"with_fish": 1
+}
+},
+"Horseshoe Lake|Rainbow trout": {
+"afternoon": {
+"parties": 63,
+"with_fish": 27
+},
+"first light": {
+"parties": 108,
+"with_fish": 97
+},
+"midday": {
+"parties": 158,
+"with_fish": 77
+},
+"morning": {
+"parties": 203,
+"with_fish": 146
+}
+},
+"Horseshoe Lake|Sculpin Species - Unspecified": {
+"midday": {
+"parties": 158,
+"with_fish": 1
+}
+},
+"Horseshoe Lake|Steelhead": {
+"afternoon": {
+"parties": 63,
+"with_fish": 1
+},
+"first light": {
+"parties": 108,
+"with_fish": 2
+},
+"midday": {
+"parties": 158,
+"with_fish": 8
+},
+"morning": {
+"parties": 203,
+"with_fish": 1
+}
+},
+"Horseshoe Lake|Yellow perch": {
+"afternoon": {
+"parties": 63,
+"with_fish": 1
+},
+"midday": {
+"parties": 158,
+"with_fish": 1
+},
+"morning": {
+"parties": 203,
+"with_fish": 1
+}
+},
+"Horsethief Lake|Bass - Unspecified": {
+"morning": {
+"parties": 369,
+"with_fish": 1
+}
+},
+"Horsethief Lake|Brown Bullhead": {
+"morning": {
+"parties": 369,
+"with_fish": 3
+}
+},
+"Horsethief Lake|Carp": {
+"morning": {
+"parties": 369,
+"with_fish": 2
+}
+},
+"Horsethief Lake|Channel catfish": {
+"morning": {
+"parties": 369,
+"with_fish": 2
+}
+},
+"Horsethief Lake|Largemouth bass": {
+"first light": {
+"parties": 145,
+"with_fish": 2
+},
+"midday": {
+"parties": 93,
+"with_fish": 1
+},
+"morning": {
+"parties": 369,
+"with_fish": 1
+}
+},
+"Horsethief Lake|Pumpkinseed": {
+"midday": {
+"parties": 93,
+"with_fish": 7
+},
+"morning": {
+"parties": 369,
+"with_fish": 3
+}
+},
+"Horsethief Lake|Rainbow trout": {
+"afternoon": {
+"parties": 22,
+"with_fish": 9
+},
+"first light": {
+"parties": 145,
+"with_fish": 132
+},
+"midday": {
+"parties": 93,
+"with_fish": 52
+},
+"morning": {
+"parties": 369,
+"with_fish": 315
+}
+},
+"Horsethief Lake|Salmonid - Unspecified": {
+"first light": {
+"parties": 145,
+"with_fish": 1
+}
+},
+"Horsethief Lake|Smallmouth bass": {
+"first light": {
+"parties": 145,
+"with_fish": 2
+},
+"midday": {
+"parties": 93,
+"with_fish": 3
+},
+"morning": {
+"parties": 369,
+"with_fish": 13
+}
+},
+"Horsethief Lake|Steelhead": {
+"first light": {
+"parties": 145,
+"with_fish": 1
+}
+},
+"Horsethief Lake|Walleye": {
+"first light": {
+"parties": 145,
+"with_fish": 1
+},
+"morning": {
+"parties": 369,
+"with_fish": 2
+}
+},
+"Horsethief Lake|Yellow perch": {
+"midday": {
+"parties": 93,
+"with_fish": 8
+},
+"morning": {
+"parties": 369,
+"with_fish": 1
+}
+},
+"Humptulips River|Chinook": {
+"afternoon": {
+"parties": 492,
+"with_fish": 36
+},
+"first light": {
+"parties": 931,
+"with_fish": 501
+},
+"midday": {
+"parties": 1440,
+"with_fish": 208
+},
+"morning": {
+"parties": 3362,
+"with_fish": 1027
+}
+},
+"Humptulips River|Chum": {
+"afternoon": {
+"parties": 492,
+"with_fish": 57
+},
+"first light": {
+"parties": 931,
+"with_fish": 57
+},
+"midday": {
+"parties": 1440,
+"with_fish": 188
+},
+"morning": {
+"parties": 3362,
+"with_fish": 644
+}
+},
+"Humptulips River|Coho": {
+"afternoon": {
+"parties": 492,
+"with_fish": 62
+},
+"first light": {
+"parties": 931,
+"with_fish": 201
+},
+"midday": {
+"parties": 1440,
+"with_fish": 270
+},
+"morning": {
+"parties": 3362,
+"with_fish": 1273
+}
+},
+"Humptulips River|Cutthroat": {
+"afternoon": {
+"parties": 492,
+"with_fish": 2
+},
+"first light": {
+"parties": 931,
+"with_fish": 18
+},
+"midday": {
+"parties": 1440,
+"with_fish": 6
+},
+"morning": {
+"parties": 3362,
+"with_fish": 45
+}
+},
+"Humptulips River|Northern pikeminnow": {
+"midday": {
+"parties": 1440,
+"with_fish": 1
+}
+},
+"Humptulips River|Other": {
+"first light": {
+"parties": 931,
+"with_fish": 2
+},
+"morning": {
+"parties": 3362,
+"with_fish": 1
+}
+},
+"Humptulips River|Pink": {
+"morning": {
+"parties": 3362,
+"with_fish": 2
+}
+},
+"Humptulips River|Rainbow trout": {
+"first light": {
+"parties": 931,
+"with_fish": 7
+},
+"midday": {
+"parties": 1440,
+"with_fish": 5
+},
+"morning": {
+"parties": 3362,
+"with_fish": 22
+}
+},
+"Humptulips River|Salmonid - Unspecified": {
+"midday": {
+"parties": 1440,
+"with_fish": 1
+}
+},
+"Humptulips River|Sculpin Species - Unspecified": {
+"first light": {
+"parties": 931,
+"with_fish": 4
+},
+"midday": {
+"parties": 1440,
+"with_fish": 1
+},
+"morning": {
+"parties": 3362,
+"with_fish": 2
+}
+},
+"Humptulips River|Sockeye": {
+"morning": {
+"parties": 3362,
+"with_fish": 1
+}
+},
+"Humptulips River|Steelhead": {
+"afternoon": {
+"parties": 492,
+"with_fish": 7
+},
+"first light": {
+"parties": 931,
+"with_fish": 19
+},
+"midday": {
+"parties": 1440,
+"with_fish": 29
+},
+"morning": {
+"parties": 3362,
+"with_fish": 149
+}
+},
+"Humptulips River|Sucker": {
+"first light": {
+"parties": 931,
+"with_fish": 1
+},
+"morning": {
+"parties": 3362,
+"with_fish": 2
+}
+},
+"Humptulips River|Trout - Unspecified": {
+"afternoon": {
+"parties": 492,
+"with_fish": 1
+},
+"morning": {
+"parties": 3362,
+"with_fish": 7
+}
+},
+"Humptulips River|Unknown": {
+"morning": {
+"parties": 3362,
+"with_fish": 2
+}
+},
+"Humptulips River|Whitefish": {
+"first light": {
+"parties": 931,
+"with_fish": 2
+},
+"midday": {
+"parties": 1440,
+"with_fish": 8
+},
+"morning": {
+"parties": 3362,
+"with_fish": 17
+}
+},
+"Icehouse Lake|Bluegill": {
+"midday": {
+"parties": 85,
+"with_fish": 2
+},
+"morning": {
+"parties": 155,
+"with_fish": 4
+}
+},
+"Icehouse Lake|Brook Trout": {
+"midday": {
+"parties": 85,
+"with_fish": 1
+},
+"morning": {
+"parties": 155,
+"with_fish": 1
+}
+},
+"Icehouse Lake|Brown Bullhead": {
+"morning": {
+"parties": 155,
+"with_fish": 2
+}
+},
+"Icehouse Lake|Brown trout": {
+"first light": {
+"parties": 61,
+"with_fish": 21
+},
+"midday": {
+"parties": 85,
+"with_fish": 9
+},
+"morning": {
+"parties": 155,
+"with_fish": 26
+}
+},
+"Icehouse Lake|Cutthroat": {
+"midday": {
+"parties": 85,
+"with_fish": 2
+},
+"morning": {
+"parties": 155,
+"with_fish": 2
+}
+},
+"Icehouse Lake|Largemouth bass": {
+"midday": {
+"parties": 85,
+"with_fish": 1
+}
+},
+"Icehouse Lake|Rainbow trout": {
+"first light": {
+"parties": 61,
+"with_fish": 53
+},
+"midday": {
+"parties": 85,
+"with_fish": 46
+},
+"morning": {
+"parties": 155,
+"with_fish": 132
+}
+},
+"Icehouse Lake|White Crappie": {
+"morning": {
+"parties": 155,
+"with_fish": 3
+}
+},
+"Kalama River|Chinook": {
+"afternoon": {
+"parties": 757,
+"with_fish": 23
+},
+"evening": {
+"parties": 116,
+"with_fish": 2
+},
+"first light": {
+"parties": 1381,
+"with_fish": 123
+},
+"midday": {
+"parties": 1860,
+"with_fish": 53
+},
+"morning": {
+"parties": 2913,
+"with_fish": 114
+}
+},
+"Kalama River|Coho": {
+"afternoon": {
+"parties": 757,
+"with_fish": 15
+},
+"first light": {
+"parties": 1381,
+"with_fish": 51
+},
+"midday": {
+"parties": 1860,
+"with_fish": 74
+},
+"morning": {
+"parties": 2913,
+"with_fish": 219
+}
+},
+"Kalama River|Cutthroat": {
+"afternoon": {
+"parties": 757,
+"with_fish": 1
+},
+"midday": {
+"parties": 1860,
+"with_fish": 3
+},
+"morning": {
+"parties": 2913,
+"with_fish": 3
+}
+},
+"Kalama River|Peamouth": {
+"afternoon": {
+"parties": 757,
+"with_fish": 1
+}
+},
+"Kalama River|Steelhead": {
+"afternoon": {
+"parties": 757,
+"with_fish": 36
+},
+"evening": {
+"parties": 116,
+"with_fish": 4
+},
+"first light": {
+"parties": 1381,
+"with_fish": 243
+},
+"midday": {
+"parties": 1860,
+"with_fish": 124
+},
+"morning": {
+"parties": 2913,
+"with_fish": 418
+}
+},
+"Kalama River|Sucker": {
+"morning": {
+"parties": 2913,
+"with_fish": 3
+}
+},
+"Kalama River|Unknown": {
+"afternoon": {
+"parties": 757,
+"with_fish": 5
+},
+"evening": {
+"parties": 116,
+"with_fish": 3
+},
+"first light": {
+"parties": 1381,
+"with_fish": 13
+},
+"midday": {
+"parties": 1860,
+"with_fish": 9
+},
+"morning": {
+"parties": 2913,
+"with_fish": 11
+}
+},
+"Kalama River|Whitefish": {
+"midday": {
+"parties": 1860,
+"with_fish": 1
+},
+"morning": {
+"parties": 2913,
+"with_fish": 1
+}
+},
+"Klineline Pond|Bluegill": {
+"evening": {
+"parties": 67,
+"with_fish": 1
+},
+"midday": {
+"parties": 4309,
+"with_fish": 2
+},
+"morning": {
+"parties": 2424,
+"with_fish": 2
+}
+},
+"Klineline Pond|Brown Bullhead": {
+"afternoon": {
+"parties": 636,
+"with_fish": 1
+},
+"midday": {
+"parties": 4309,
+"with_fish": 1
+}
+},
+"Klineline Pond|Brown trout": {
+"afternoon": {
+"parties": 636,
+"with_fish": 33
+},
+"evening": {
+"parties": 67,
+"with_fish": 2
+},
+"first light": {
+"parties": 130,
+"with_fish": 14
+},
+"midday": {
+"parties": 4309,
+"with_fish": 375
+},
+"morning": {
+"parties": 2424,
+"with_fish": 400
+}
+},
+"Klineline Pond|Cutthroat": {
+"midday": {
+"parties": 4309,
+"with_fish": 11
+},
+"morning": {
+"parties": 2424,
+"with_fish": 15
+}
+},
+"Klineline Pond|Largemouth bass": {
+"midday": {
+"parties": 4309,
+"with_fish": 1
+},
+"morning": {
+"parties": 2424,
+"with_fish": 4
+}
+},
+"Klineline Pond|Rainbow trout": {
+"afternoon": {
+"parties": 636,
+"with_fish": 250
+},
+"evening": {
+"parties": 67,
+"with_fish": 28
+},
+"first light": {
+"parties": 130,
+"with_fish": 98
+},
+"midday": {
+"parties": 4309,
+"with_fish": 1806
+},
+"morning": {
+"parties": 2424,
+"with_fish": 1383
+}
+},
+"Klineline Pond|Steelhead": {
+"midday": {
+"parties": 4309,
+"with_fish": 7
+},
+"morning": {
+"parties": 2424,
+"with_fish": 13
+}
+},
+"Kress Lake|Black Crappie": {
+"afternoon": {
+"parties": 180,
+"with_fish": 2
+},
+"midday": {
+"parties": 407,
+"with_fish": 2
+}
+},
+"Kress Lake|Bluegill": {
+"afternoon": {
+"parties": 180,
+"with_fish": 25
+},
+"first light": {
+"parties": 167,
+"with_fish": 8
+},
+"midday": {
+"parties": 407,
+"with_fish": 62
+},
+"morning": {
+"parties": 386,
+"with_fish": 30
+}
+},
+"Kress Lake|Brook Trout": {
+"first light": {
+"parties": 167,
+"with_fish": 5
+},
+"morning": {
+"parties": 386,
+"with_fish": 1
+}
+},
+"Kress Lake|Brown trout": {
+"afternoon": {
+"parties": 180,
+"with_fish": 17
+},
+"first light": {
+"parties": 167,
+"with_fish": 30
+},
+"midday": {
+"parties": 407,
+"with_fish": 59
+},
+"morning": {
+"parties": 386,
+"with_fish": 64
+}
+},
+"Kress Lake|Channel catfish": {
+"first light": {
+"parties": 167,
+"with_fish": 1
+},
+"midday": {
+"parties": 407,
+"with_fish": 2
+}
+},
+"Kress Lake|Cutthroat": {
+"first light": {
+"parties": 167,
+"with_fish": 3
+},
+"midday": {
+"parties": 407,
+"with_fish": 3
+},
+"morning": {
+"parties": 386,
+"with_fish": 1
+}
+},
+"Kress Lake|Largemouth bass": {
+"afternoon": {
+"parties": 180,
+"with_fish": 4
+},
+"first light": {
+"parties": 167,
+"with_fish": 8
+},
+"midday": {
+"parties": 407,
+"with_fish": 12
+},
+"morning": {
+"parties": 386,
+"with_fish": 20
+}
+},
+"Kress Lake|Northern pikeminnow": {
+"midday": {
+"parties": 407,
+"with_fish": 1
+}
+},
+"Kress Lake|Pumpkinseed": {
+"afternoon": {
+"parties": 180,
+"with_fish": 5
+},
+"midday": {
+"parties": 407,
+"with_fish": 3
+},
+"morning": {
+"parties": 386,
+"with_fish": 3
+}
+},
+"Kress Lake|Rainbow trout": {
+"afternoon": {
+"parties": 180,
+"with_fish": 44
+},
+"first light": {
+"parties": 167,
+"with_fish": 108
+},
+"midday": {
+"parties": 407,
+"with_fish": 160
+},
+"morning": {
+"parties": 386,
+"with_fish": 219
+}
+},
+"Kress Lake|Steelhead": {
+"first light": {
+"parties": 167,
+"with_fish": 8
+},
+"midday": {
+"parties": 407,
+"with_fish": 5
+},
+"morning": {
+"parties": 386,
+"with_fish": 10
+}
+},
+"Kress Lake|Warmouth": {
+"first light": {
+"parties": 167,
+"with_fish": 1
+}
+},
+"Kress Lake|White Crappie": {
+"first light": {
+"parties": 167,
+"with_fish": 1
+}
+},
+"Kress Lake|Yellow perch": {
+"afternoon": {
+"parties": 180,
+"with_fish": 2
+},
+"midday": {
+"parties": 407,
+"with_fish": 2
+},
+"morning": {
+"parties": 386,
+"with_fish": 4
+}
+},
+"Lacamas Lake|Black Crappie": {
+"afternoon": {
+"parties": 69,
+"with_fish": 1
+},
+"midday": {
+"parties": 146,
+"with_fish": 1
+},
+"morning": {
+"parties": 181,
+"with_fish": 1
+}
+},
+"Lacamas Lake|Bluegill": {
+"first light": {
+"parties": 91,
+"with_fish": 2
+},
+"morning": {
+"parties": 181,
+"with_fish": 2
+}
+},
+"Lacamas Lake|Brown Bullhead": {
+"afternoon": {
+"parties": 69,
+"with_fish": 1
+},
+"first light": {
+"parties": 91,
+"with_fish": 1
+},
+"morning": {
+"parties": 181,
+"with_fish": 3
+}
+},
+"Lacamas Lake|Brown trout": {
+"afternoon": {
+"parties": 69,
+"with_fish": 5
+},
+"first light": {
+"parties": 91,
+"with_fish": 63
+},
+"midday": {
+"parties": 146,
+"with_fish": 22
+},
+"morning": {
+"parties": 181,
+"with_fish": 79
+}
+},
+"Lacamas Lake|Carp": {
+"afternoon": {
+"parties": 69,
+"with_fish": 3
+},
+"first light": {
+"parties": 91,
+"with_fish": 1
+},
+"midday": {
+"parties": 146,
+"with_fish": 9
+},
+"morning": {
+"parties": 181,
+"with_fish": 8
+}
+},
+"Lacamas Lake|Channel catfish": {
+"first light": {
+"parties": 91,
+"with_fish": 1
+}
+},
+"Lacamas Lake|Crappie - Unspecified": {
+"morning": {
+"parties": 181,
+"with_fish": 1
+}
+},
+"Lacamas Lake|Cutthroat": {
+"morning": {
+"parties": 181,
+"with_fish": 1
+}
+},
+"Lacamas Lake|Largemouth bass": {
+"afternoon": {
+"parties": 69,
+"with_fish": 1
+},
+"first light": {
+"parties": 91,
+"with_fish": 4
+},
+"morning": {
+"parties": 181,
+"with_fish": 4
+}
+},
+"Lacamas Lake|Northern pikeminnow": {
+"midday": {
+"parties": 146,
+"with_fish": 1
+}
+},
+"Lacamas Lake|Rainbow trout": {
+"afternoon": {
+"parties": 69,
+"with_fish": 5
+},
+"first light": {
+"parties": 91,
+"with_fish": 14
+},
+"midday": {
+"parties": 146,
+"with_fish": 17
+},
+"morning": {
+"parties": 181,
+"with_fish": 37
+}
+},
+"Lacamas Lake|White Crappie": {
+"first light": {
+"parties": 91,
+"with_fish": 2
+},
+"morning": {
+"parties": 181,
+"with_fish": 1
+}
+},
+"Lacamas Lake|Yellow perch": {
+"afternoon": {
+"parties": 69,
+"with_fish": 4
+},
+"first light": {
+"parties": 91,
+"with_fish": 4
+},
+"midday": {
+"parties": 146,
+"with_fish": 8
+},
+"morning": {
+"parties": 181,
+"with_fish": 14
+}
+},
+"Lake Sacajawea|Black Crappie": {
+"midday": {
+"parties": 138,
+"with_fish": 3
+},
+"morning": {
+"parties": 127,
+"with_fish": 5
+}
+},
+"Lake Sacajawea|Bluegill": {
+"afternoon": {
+"parties": 72,
+"with_fish": 11
+},
+"midday": {
+"parties": 138,
+"with_fish": 10
+},
+"morning": {
+"parties": 127,
+"with_fish": 15
+}
+},
+"Lake Sacajawea|Brown trout": {
+"afternoon": {
+"parties": 72,
+"with_fish": 10
+},
+"midday": {
+"parties": 138,
+"with_fish": 11
+},
+"morning": {
+"parties": 127,
+"with_fish": 31
+}
+},
+"Lake Sacajawea|Channel catfish": {
+"midday": {
+"parties": 138,
+"with_fish": 1
+}
+},
+"Lake Sacajawea|Largemouth bass": {
+"afternoon": {
+"parties": 72,
+"with_fish": 3
+},
+"midday": {
+"parties": 138,
+"with_fish": 5
+},
+"morning": {
+"parties": 127,
+"with_fish": 4
+}
+},
+"Lake Sacajawea|Northern pikeminnow": {
+"morning": {
+"parties": 127,
+"with_fish": 1
+}
+},
+"Lake Sacajawea|Pumpkinseed": {
+"midday": {
+"parties": 138,
+"with_fish": 1
+},
+"morning": {
+"parties": 127,
+"with_fish": 1
+}
+},
+"Lake Sacajawea|Rainbow trout": {
+"afternoon": {
+"parties": 72,
+"with_fish": 28
+},
+"midday": {
+"parties": 138,
+"with_fish": 54
+},
+"morning": {
+"parties": 127,
+"with_fish": 65
+}
+},
+"Lake Sacajawea|Sculpin Species - Unspecified": {
+"afternoon": {
+"parties": 72,
+"with_fish": 1
+}
+},
+"Lake Sacajawea|Sturgeon": {
+"midday": {
+"parties": 138,
+"with_fish": 1
+}
+},
+"Lake Sacajawea|Warmouth": {
+"afternoon": {
+"parties": 72,
+"with_fish": 3
+}
+},
+"Lake Sacajawea|Yellow perch": {
+"afternoon": {
+"parties": 72,
+"with_fish": 4
+},
+"midday": {
+"parties": 138,
+"with_fish": 11
+},
+"morning": {
+"parties": 127,
+"with_fish": 6
+}
+},
+"Little Ash Lake|Bluegill": {
+"morning": {
+"parties": 153,
+"with_fish": 1
+}
+},
+"Little Ash Lake|Brown Bullhead": {
+"first light": {
+"parties": 62,
+"with_fish": 2
+},
+"midday": {
+"parties": 40,
+"with_fish": 3
+},
+"morning": {
+"parties": 153,
+"with_fish": 5
+}
+},
+"Little Ash Lake|Rainbow trout": {
+"first light": {
+"parties": 62,
+"with_fish": 59
+},
+"midday": {
+"parties": 40,
+"with_fish": 22
+},
+"morning": {
+"parties": 153,
+"with_fish": 127
+}
+},
+"Little White Salmon - Drano Lake|Bass - Unspecified": {
+"morning": {
+"parties": 2002,
+"with_fish": 1
+}
+},
+"Little White Salmon - Drano Lake|Chinook": {
+"afternoon": {
+"parties": 380,
+"with_fish": 90
+},
+"first light": {
+"parties": 4218,
+"with_fish": 2341
+},
+"midday": {
+"parties": 852,
+"with_fish": 225
+},
+"morning": {
+"parties": 2002,
+"with_fish": 674
+}
+},
+"Little White Salmon - Drano Lake|Coho": {
+"afternoon": {
+"parties": 380,
+"with_fish": 18
+},
+"first light": {
+"parties": 4218,
+"with_fish": 244
+},
+"midday": {
+"parties": 852,
+"with_fish": 55
+},
+"morning": {
+"parties": 2002,
+"with_fish": 282
+}
+},
+"Little White Salmon - Drano Lake|Northern pikeminnow": {
+"midday": {
+"parties": 852,
+"with_fish": 1
+},
+"morning": {
+"parties": 2002,
+"with_fish": 1
+}
+},
+"Little White Salmon - Drano Lake|Smallmouth bass": {
+"afternoon": {
+"parties": 380,
+"with_fish": 1
+},
+"first light": {
+"parties": 4218,
+"with_fish": 3
+},
+"midday": {
+"parties": 852,
+"with_fish": 1
+},
+"morning": {
+"parties": 2002,
+"with_fish": 2
+}
+},
+"Little White Salmon - Drano Lake|Sockeye": {
+"first light": {
+"parties": 4218,
+"with_fish": 1
+},
+"morning": {
+"parties": 2002,
+"with_fish": 1
+}
+},
+"Little White Salmon - Drano Lake|Steelhead": {
+"afternoon": {
+"parties": 380,
+"with_fish": 21
+},
+"first light": {
+"parties": 4218,
+"with_fish": 264
+},
+"midday": {
+"parties": 852,
+"with_fish": 71
+},
+"morning": {
+"parties": 2002,
+"with_fish": 134
+}
+},
+"Little White Salmon - Drano Lake|Sturgeon": {
+"afternoon": {
+"parties": 380,
+"with_fish": 2
+},
+"first light": {
+"parties": 4218,
+"with_fish": 3
+},
+"morning": {
+"parties": 2002,
+"with_fish": 3
+}
+},
+"Little White Salmon - Drano Lake|Whitefish": {
+"morning": {
+"parties": 2002,
+"with_fish": 1
+}
+},
+"Mineral Lake|Brown trout": {
+"afternoon": {
+"parties": 79,
+"with_fish": 1
+},
+"first light": {
+"parties": 731,
+"with_fish": 64
+},
+"midday": {
+"parties": 272,
+"with_fish": 11
+},
+"morning": {
+"parties": 623,
+"with_fish": 25
+}
+},
+"Mineral Lake|Cutthroat": {
+"afternoon": {
+"parties": 79,
+"with_fish": 2
+},
+"first light": {
+"parties": 731,
+"with_fish": 16
+},
+"midday": {
+"parties": 272,
+"with_fish": 6
+},
+"morning": {
+"parties": 623,
+"with_fish": 15
+}
+},
+"Mineral Lake|Largemouth bass": {
+"afternoon": {
+"parties": 79,
+"with_fish": 1
+},
+"midday": {
+"parties": 272,
+"with_fish": 13
+},
+"morning": {
+"parties": 623,
+"with_fish": 11
+}
+},
+"Mineral Lake|Rainbow trout": {
+"afternoon": {
+"parties": 79,
+"with_fish": 64
+},
+"first light": {
+"parties": 731,
+"with_fish": 683
+},
+"midday": {
+"parties": 272,
+"with_fish": 236
+},
+"morning": {
+"parties": 623,
+"with_fish": 554
+}
+},
+"Mineral Lake|Trout - Unspecified": {
+"first light": {
+"parties": 731,
+"with_fish": 16
+},
+"morning": {
+"parties": 623,
+"with_fish": 11
+}
+},
+"Naselle River|Coho": {
+"first light": {
+"parties": 21,
+"with_fish": 1
+},
+"midday": {
+"parties": 231,
+"with_fish": 11
+},
+"morning": {
+"parties": 413,
+"with_fish": 28
+}
+},
+"Naselle River|Cutthroat": {
+"afternoon": {
+"parties": 46,
+"with_fish": 1
+},
+"first light": {
+"parties": 21,
+"with_fish": 3
+},
+"midday": {
+"parties": 231,
+"with_fish": 13
+},
+"morning": {
+"parties": 413,
+"with_fish": 23
+}
+},
+"Naselle River|Rainbow trout": {
+"midday": {
+"parties": 231,
+"with_fish": 1
+},
+"morning": {
+"parties": 413,
+"with_fish": 4
+}
+},
+"Naselle River|Steelhead": {
+"afternoon": {
+"parties": 46,
+"with_fish": 7
+},
+"first light": {
+"parties": 21,
+"with_fish": 10
+},
+"midday": {
+"parties": 231,
+"with_fish": 51
+},
+"morning": {
+"parties": 413,
+"with_fish": 159
+}
+},
+"Naselle River|Trout - Unspecified": {
+"midday": {
+"parties": 231,
+"with_fish": 1
+}
+},
+"Nisqually River|Chinook": {
+"afternoon": {
+"parties": 1219,
+"with_fish": 102
+},
+"evening": {
+"parties": 144,
+"with_fish": 5
+},
+"first light": {
+"parties": 2557,
+"with_fish": 608
+},
+"midday": {
+"parties": 1801,
+"with_fish": 192
+},
+"morning": {
+"parties": 2285,
+"with_fish": 376
+}
+},
+"Nisqually River|Chum": {
+"midday": {
+"parties": 1801,
+"with_fish": 1
+}
+},
+"Nisqually River|Coho": {
+"afternoon": {
+"parties": 1219,
+"with_fish": 40
+},
+"first light": {
+"parties": 2557,
+"with_fish": 317
+},
+"midday": {
+"parties": 1801,
+"with_fish": 121
+},
+"morning": {
+"parties": 2285,
+"with_fish": 252
+}
+},
+"Nisqually River|Cutthroat": {
+"afternoon": {
+"parties": 1219,
+"with_fish": 7
+},
+"first light": {
+"parties": 2557,
+"with_fish": 4
+},
+"midday": {
+"parties": 1801,
+"with_fish": 2
+},
+"morning": {
+"parties": 2285,
+"with_fish": 8
+}
+},
+"Nisqually River|Pink": {
+"afternoon": {
+"parties": 1219,
+"with_fish": 55
+},
+"evening": {
+"parties": 144,
+"with_fish": 4
+},
+"first light": {
+"parties": 2557,
+"with_fish": 377
+},
+"midday": {
+"parties": 1801,
+"with_fish": 152
+},
+"morning": {
+"parties": 2285,
+"with_fish": 244
+}
+},
+"Nisqually River|Rainbow trout": {
+"afternoon": {
+"parties": 1219,
+"with_fish": 6
+},
+"evening": {
+"parties": 144,
+"with_fish": 2
+},
+"first light": {
+"parties": 2557,
+"with_fish": 4
+},
+"midday": {
+"parties": 1801,
+"with_fish": 6
+},
+"morning": {
+"parties": 2285,
+"with_fish": 9
+}
+},
+"Nisqually River|Steelhead": {
+"first light": {
+"parties": 2557,
+"with_fish": 1
+},
+"midday": {
+"parties": 1801,
+"with_fish": 1
+},
+"morning": {
+"parties": 2285,
+"with_fish": 1
+}
+},
+"Nisqually River|Sucker": {
+"midday": {
+"parties": 1801,
+"with_fish": 1
+}
+},
+"Nisqually River|Trout - Unspecified": {
+"afternoon": {
+"parties": 1219,
+"with_fish": 1
+},
+"first light": {
+"parties": 2557,
+"with_fish": 1
+},
+"morning": {
+"parties": 2285,
+"with_fish": 1
+}
+},
+"Nooksack River - North Fork|Bull trout": {
+"afternoon": {
+"parties": 148,
+"with_fish": 6
+},
+"evening": {
+"parties": 37,
+"with_fish": 2
+},
+"first light": {
+"parties": 165,
+"with_fish": 16
+},
+"midday": {
+"parties": 256,
+"with_fish": 17
+},
+"morning": {
+"parties": 292,
+"with_fish": 35
+}
+},
+"Nooksack River - North Fork|Chinook": {
+"afternoon": {
+"parties": 148,
+"with_fish": 13
+},
+"evening": {
+"parties": 37,
+"with_fish": 2
+},
+"first light": {
+"parties": 165,
+"with_fish": 42
+},
+"midday": {
+"parties": 256,
+"with_fish": 8
+},
+"morning": {
+"parties": 292,
+"with_fish": 10
+}
+},
+"Nooksack River - North Fork|Chum": {
+"afternoon": {
+"parties": 148,
+"with_fish": 1
+},
+"midday": {
+"parties": 256,
+"with_fish": 12
+},
+"morning": {
+"parties": 292,
+"with_fish": 12
+}
+},
+"Nooksack River - North Fork|Coho": {
+"midday": {
+"parties": 256,
+"with_fish": 8
+},
+"morning": {
+"parties": 292,
+"with_fish": 7
+}
+},
+"Nooksack River - North Fork|Cutthroat": {
+"afternoon": {
+"parties": 148,
+"with_fish": 1
+},
+"first light": {
+"parties": 165,
+"with_fish": 1
+},
+"morning": {
+"parties": 292,
+"with_fish": 1
+}
+},
+"Nooksack River - North Fork|Dolly Varden": {
+"afternoon": {
+"parties": 148,
+"with_fish": 1
+},
+"evening": {
+"parties": 37,
+"with_fish": 2
+},
+"first light": {
+"parties": 165,
+"with_fish": 7
+},
+"midday": {
+"parties": 256,
+"with_fish": 7
+},
+"morning": {
+"parties": 292,
+"with_fish": 10
+}
+},
+"Nooksack River - North Fork|Largescale Sucker": {
+"morning": {
+"parties": 292,
+"with_fish": 1
+}
+},
+"Nooksack River - North Fork|Rainbow trout": {
+"afternoon": {
+"parties": 148,
+"with_fish": 1
+},
+"midday": {
+"parties": 256,
+"with_fish": 1
+},
+"morning": {
+"parties": 292,
+"with_fish": 2
+}
+},
+"Nooksack River - North Fork|Steelhead": {
+"afternoon": {
+"parties": 148,
+"with_fish": 3
+},
+"first light": {
+"parties": 165,
+"with_fish": 19
+},
+"midday": {
+"parties": 256,
+"with_fish": 8
+},
+"morning": {
+"parties": 292,
+"with_fish": 35
+}
+},
+"Nooksack River - North Fork|Sucker": {
+"afternoon": {
+"parties": 148,
+"with_fish": 2
+},
+"evening": {
+"parties": 37,
+"with_fish": 1
+},
+"morning": {
+"parties": 292,
+"with_fish": 2
+}
+},
+"Nooksack River - North Fork|Trout - Unspecified": {
+"afternoon": {
+"parties": 148,
+"with_fish": 1
+}
+},
+"Nooksack River - North Fork|Whitefish": {
+"afternoon": {
+"parties": 148,
+"with_fish": 4
+},
+"first light": {
+"parties": 165,
+"with_fish": 4
+},
+"midday": {
+"parties": 256,
+"with_fish": 5
+},
+"morning": {
+"parties": 292,
+"with_fish": 8
+}
+},
+"Nooksack River|Bull trout": {
+"midday": {
+"parties": 47,
+"with_fish": 1
+},
+"morning": {
+"parties": 54,
+"with_fish": 1
+}
+},
+"Nooksack River|Chum": {
+"midday": {
+"parties": 47,
+"with_fish": 4
+},
+"morning": {
+"parties": 54,
+"with_fish": 13
+}
+},
+"Nooksack River|Coho": {
+"midday": {
+"parties": 47,
+"with_fish": 9
+},
+"morning": {
+"parties": 54,
+"with_fish": 12
+}
+},
+"Nooksack River|Rainbow trout": {
+"morning": {
+"parties": 54,
+"with_fish": 1
+}
+},
+"Nooksack River|Steelhead": {
+"morning": {
+"parties": 54,
+"with_fish": 3
+}
+},
+"Nooksack River|Sucker": {
+"midday": {
+"parties": 47,
+"with_fish": 1
+},
+"morning": {
+"parties": 54,
+"with_fish": 2
+}
+},
+"Plummer Lake|Brown trout": {
+"first light": {
+"parties": 61,
+"with_fish": 2
+},
+"morning": {
+"parties": 170,
+"with_fish": 4
+}
+},
+"Plummer Lake|Largemouth bass": {
+"morning": {
+"parties": 170,
+"with_fish": 3
+}
+},
+"Plummer Lake|Rainbow trout": {
+"first light": {
+"parties": 61,
+"with_fish": 46
+},
+"midday": {
+"parties": 35,
+"with_fish": 20
+},
+"morning": {
+"parties": 170,
+"with_fish": 111
+}
+},
+"Puyallup River|Brown Bullhead": {
+"morning": {
+"parties": 1894,
+"with_fish": 1
+}
+},
+"Puyallup River|Bull trout": {
+"midday": {
+"parties": 2027,
+"with_fish": 1
+}
+},
+"Puyallup River|Chinook": {
+"afternoon": {
+"parties": 1574,
+"with_fish": 85
+},
+"evening": {
+"parties": 313,
+"with_fish": 10
+},
+"first light": {
+"parties": 1857,
+"with_fish": 198
+},
+"midday": {
+"parties": 2027,
+"with_fish": 125
+},
+"morning": {
+"parties": 1894,
+"with_fish": 113
+}
+},
+"Puyallup River|Chum": {
+"midday": {
+"parties": 2027,
+"with_fish": 1
+},
+"morning": {
+"parties": 1894,
+"with_fish": 1
+}
+},
+"Puyallup River|Coho": {
+"afternoon": {
+"parties": 1574,
+"with_fish": 213
+},
+"evening": {
+"parties": 313,
+"with_fish": 15
+},
+"first light": {
+"parties": 1857,
+"with_fish": 359
+},
+"midday": {
+"parties": 2027,
+"with_fish": 334
+},
+"morning": {
+"parties": 1894,
+"with_fish": 338
+}
+},
+"Puyallup River|Dolly Varden": {
+"midday": {
+"parties": 2027,
+"with_fish": 1
+}
+},
+"Puyallup River|Other": {
+"morning": {
+"parties": 1894,
+"with_fish": 1
+}
+},
+"Puyallup River|Pink": {
+"afternoon": {
+"parties": 1574,
+"with_fish": 522
+},
+"evening": {
+"parties": 313,
+"with_fish": 125
+},
+"first light": {
+"parties": 1857,
+"with_fish": 769
+},
+"midday": {
+"parties": 2027,
+"with_fish": 605
+},
+"morning": {
+"parties": 1894,
+"with_fish": 661
+}
+},
+"Puyallup River|Salmonid - Unspecified": {
+"first light": {
+"parties": 1857,
+"with_fish": 1
+},
+"midday": {
+"parties": 2027,
+"with_fish": 1
+}
+},
+"Puyallup River|Trout - Unspecified": {
+"morning": {
+"parties": 1894,
+"with_fish": 1
+}
+},
+"Puyallup River|Whitefish": {
+"midday": {
+"parties": 2027,
+"with_fish": 1
+}
+},
+"Quillayute River|Bull trout": {
+"first light": {
+"parties": 106,
+"with_fish": 1
+},
+"midday": {
+"parties": 187,
+"with_fish": 1
+}
+},
+"Quillayute River|Chinook": {
+"afternoon": {
+"parties": 79,
+"with_fish": 9
+},
+"first light": {
+"parties": 106,
+"with_fish": 46
+},
+"midday": {
+"parties": 187,
+"with_fish": 22
+},
+"morning": {
+"parties": 359,
+"with_fish": 89
+}
+},
+"Quillayute River|Chum": {
+"morning": {
+"parties": 359,
+"with_fish": 1
+}
+},
+"Quillayute River|Coho": {
+"afternoon": {
+"parties": 79,
+"with_fish": 15
+},
+"first light": {
+"parties": 106,
+"with_fish": 49
+},
+"midday": {
+"parties": 187,
+"with_fish": 46
+},
+"morning": {
+"parties": 359,
+"with_fish": 166
+}
+},
+"Quillayute River|Cutthroat": {
+"first light": {
+"parties": 106,
+"with_fish": 4
+},
+"midday": {
+"parties": 187,
+"with_fish": 3
+},
+"morning": {
+"parties": 359,
+"with_fish": 17
+}
+},
+"Quillayute River|Rainbow trout": {
+"afternoon": {
+"parties": 79,
+"with_fish": 1
+},
+"first light": {
+"parties": 106,
+"with_fish": 1
+},
+"midday": {
+"parties": 187,
+"with_fish": 2
+},
+"morning": {
+"parties": 359,
+"with_fish": 4
+}
+},
+"Quillayute River|Salmonid - Unspecified": {
+"first light": {
+"parties": 106,
+"with_fish": 1
+},
+"midday": {
+"parties": 187,
+"with_fish": 1
+},
+"morning": {
+"parties": 359,
+"with_fish": 2
+}
+},
+"Quillayute River|Sockeye": {
+"midday": {
+"parties": 187,
+"with_fish": 1
+},
+"morning": {
+"parties": 359,
+"with_fish": 3
+}
+},
+"Quillayute River|Steelhead": {
+"afternoon": {
+"parties": 79,
+"with_fish": 1
+},
+"first light": {
+"parties": 106,
+"with_fish": 3
+},
+"midday": {
+"parties": 187,
+"with_fish": 3
+},
+"morning": {
+"parties": 359,
+"with_fish": 42
+}
+},
+"Quillayute River|Trout - Unspecified": {
+"morning": {
+"parties": 359,
+"with_fish": 2
+}
+},
+"Quillayute River|Whitefish": {
+"morning": {
+"parties": 359,
+"with_fish": 1
+}
+},
+"Quinault River|Bull trout": {
+"morning": {
+"parties": 35,
+"with_fish": 1
+}
+},
+"Quinault River|Coho": {
+"morning": {
+"parties": 35,
+"with_fish": 1
+}
+},
+"Quinault River|Dolly Varden": {
+"morning": {
+"parties": 35,
+"with_fish": 2
+}
+},
+"Quinault River|Steelhead": {
+"morning": {
+"parties": 35,
+"with_fish": 14
+}
+},
+"Quinault River|Whitefish": {
+"morning": {
+"parties": 35,
+"with_fish": 2
+}
+},
+"Riffe Lake|Channel catfish": {
+"midday": {
+"parties": 59,
+"with_fish": 1
+},
+"morning": {
+"parties": 45,
+"with_fish": 2
+}
+},
+"Riffe Lake|Coho": {
+"afternoon": {
+"parties": 20,
+"with_fish": 12
+},
+"midday": {
+"parties": 59,
+"with_fish": 34
+},
+"morning": {
+"parties": 45,
+"with_fish": 25
+}
+},
+"Riffe Lake|Northern pikeminnow": {
+"midday": {
+"parties": 59,
+"with_fish": 1
+},
+"morning": {
+"parties": 45,
+"with_fish": 1
+}
+},
+"Riffe Lake|Rainbow trout": {
+"afternoon": {
+"parties": 20,
+"with_fish": 1
+},
+"midday": {
+"parties": 59,
+"with_fish": 4
+},
+"morning": {
+"parties": 45,
+"with_fish": 2
+}
+},
+"Riffe Lake|Smallmouth bass": {
+"midday": {
+"parties": 59,
+"with_fish": 12
+},
+"morning": {
+"parties": 45,
+"with_fish": 15
+}
+},
+"Rowland Lake|Black Crappie": {
+"afternoon": {
+"parties": 58,
+"with_fish": 3
+},
+"first light": {
+"parties": 362,
+"with_fish": 2
+},
+"midday": {
+"parties": 247,
+"with_fish": 7
+},
+"morning": {
+"parties": 384,
+"with_fish": 16
+}
+},
+"Rowland Lake|Bluegill": {
+"afternoon": {
+"parties": 58,
+"with_fish": 12
+},
+"midday": {
+"parties": 247,
+"with_fish": 21
+},
+"morning": {
+"parties": 384,
+"with_fish": 20
+}
+},
+"Rowland Lake|Brook Trout": {
+"afternoon": {
+"parties": 58,
+"with_fish": 3
+},
+"first light": {
+"parties": 362,
+"with_fish": 42
+},
+"midday": {
+"parties": 247,
+"with_fish": 9
+},
+"morning": {
+"parties": 384,
+"with_fish": 24
+}
+},
+"Rowland Lake|Brown Bullhead": {
+"midday": {
+"parties": 247,
+"with_fish": 2
+}
+},
+"Rowland Lake|Channel catfish": {
+"afternoon": {
+"parties": 58,
+"with_fish": 1
+},
+"first light": {
+"parties": 362,
+"with_fish": 1
+},
+"midday": {
+"parties": 247,
+"with_fish": 4
+},
+"morning": {
+"parties": 384,
+"with_fish": 6
+}
+},
+"Rowland Lake|Cutthroat": {
+"first light": {
+"parties": 362,
+"with_fish": 1
+}
+},
+"Rowland Lake|Largemouth bass": {
+"first light": {
+"parties": 362,
+"with_fish": 1
+},
+"midday": {
+"parties": 247,
+"with_fish": 7
+},
+"morning": {
+"parties": 384,
+"with_fish": 6
+}
+},
+"Rowland Lake|Northern pikeminnow": {
+"morning": {
+"parties": 384,
+"with_fish": 1
+}
+},
+"Rowland Lake|Pumpkinseed": {
+"afternoon": {
+"parties": 58,
+"with_fish": 1
+},
+"first light": {
+"parties": 362,
+"with_fish": 1
+},
+"midday": {
+"parties": 247,
+"with_fish": 4
+},
+"morning": {
+"parties": 384,
+"with_fish": 7
+}
+},
+"Rowland Lake|Rainbow trout": {
+"afternoon": {
+"parties": 58,
+"with_fish": 24
+},
+"first light": {
+"parties": 362,
+"with_fish": 329
+},
+"midday": {
+"parties": 247,
+"with_fish": 113
+},
+"morning": {
+"parties": 384,
+"with_fish": 283
+}
+},
+"Rowland Lake|Smallmouth bass": {
+"morning": {
+"parties": 384,
+"with_fish": 5
+}
+},
+"Rowland Lake|Trout - Unspecified": {
+"first light": {
+"parties": 362,
+"with_fish": 3
+},
+"midday": {
+"parties": 247,
+"with_fish": 1
+},
+"morning": {
+"parties": 384,
+"with_fish": 5
+}
+},
+"Rowland Lake|White Crappie": {
+"midday": {
+"parties": 247,
+"with_fish": 1
+},
+"morning": {
+"parties": 384,
+"with_fish": 3
+}
+},
+"Rowland Lake|Yellow perch": {
+"afternoon": {
+"parties": 58,
+"with_fish": 4
+},
+"first light": {
+"parties": 362,
+"with_fish": 2
+},
+"midday": {
+"parties": 247,
+"with_fish": 14
+},
+"morning": {
+"parties": 384,
+"with_fish": 14
+}
+},
+"Salmon Creek|Cutthroat": {
+"midday": {
+"parties": 330,
+"with_fish": 2
+},
+"morning": {
+"parties": 386,
+"with_fish": 2
+}
+},
+"Salmon Creek|Other": {
+"midday": {
+"parties": 330,
+"with_fish": 1
+}
+},
+"Salmon Creek|Rainbow trout": {
+"midday": {
+"parties": 330,
+"with_fish": 1
+},
+"morning": {
+"parties": 386,
+"with_fish": 10
+}
+},
+"Salmon Creek|Steelhead": {
+"afternoon": {
+"parties": 76,
+"with_fish": 4
+},
+"midday": {
+"parties": 330,
+"with_fish": 18
+},
+"morning": {
+"parties": 386,
+"with_fish": 27
+}
+},
+"Salmon Creek|Sucker": {
+"midday": {
+"parties": 330,
+"with_fish": 14
+},
+"morning": {
+"parties": 386,
+"with_fish": 14
+}
+},
+"Salmon Creek|Trout - Unspecified": {
+"morning": {
+"parties": 386,
+"with_fish": 2
+}
+},
+"Salmon River|Bull trout": {
+"morning": {
+"parties": 37,
+"with_fish": 2
+}
+},
+"Salmon River|Coho": {
+"morning": {
+"parties": 37,
+"with_fish": 1
+}
+},
+"Salmon River|Steelhead": {
+"morning": {
+"parties": 37,
+"with_fish": 11
+}
+},
+"Salmon River|Whitefish": {
+"morning": {
+"parties": 37,
+"with_fish": 1
+}
+},
+"Satsop River|Carp": {
+"morning": {
+"parties": 1070,
+"with_fish": 1
+}
+},
+"Satsop River|Chinook": {
+"afternoon": {
+"parties": 163,
+"with_fish": 6
+},
+"first light": {
+"parties": 119,
+"with_fish": 17
+},
+"midday": {
+"parties": 447,
+"with_fish": 12
+},
+"morning": {
+"parties": 1070,
+"with_fish": 74
+}
+},
+"Satsop River|Chum": {
+"afternoon": {
+"parties": 163,
+"with_fish": 15
+},
+"first light": {
+"parties": 119,
+"with_fish": 14
+},
+"midday": {
+"parties": 447,
+"with_fish": 53
+},
+"morning": {
+"parties": 1070,
+"with_fish": 197
+}
+},
+"Satsop River|Coho": {
+"afternoon": {
+"parties": 163,
+"with_fish": 29
+},
+"first light": {
+"parties": 119,
+"with_fish": 66
+},
+"midday": {
+"parties": 447,
+"with_fish": 82
+},
+"morning": {
+"parties": 1070,
+"with_fish": 429
+}
+},
+"Satsop River|Cutthroat": {
+"first light": {
+"parties": 119,
+"with_fish": 3
+},
+"midday": {
+"parties": 447,
+"with_fish": 8
+},
+"morning": {
+"parties": 1070,
+"with_fish": 27
+}
+},
+"Satsop River|Northern pikeminnow": {
+"afternoon": {
+"parties": 163,
+"with_fish": 1
+},
+"first light": {
+"parties": 119,
+"with_fish": 3
+},
+"midday": {
+"parties": 447,
+"with_fish": 2
+},
+"morning": {
+"parties": 1070,
+"with_fish": 18
+}
+},
+"Satsop River|Other": {
+"midday": {
+"parties": 447,
+"with_fish": 1
+},
+"morning": {
+"parties": 1070,
+"with_fish": 1
+}
+},
+"Satsop River|Peamouth": {
+"morning": {
+"parties": 1070,
+"with_fish": 1
+}
+},
+"Satsop River|Rainbow trout": {
+"midday": {
+"parties": 447,
+"with_fish": 4
+}
+},
+"Satsop River|Sculpin Species - Unspecified": {
+"first light": {
+"parties": 119,
+"with_fish": 1
+}
+},
+"Satsop River|Steelhead": {
+"afternoon": {
+"parties": 163,
+"with_fish": 2
+},
+"first light": {
+"parties": 119,
+"with_fish": 1
+},
+"midday": {
+"parties": 447,
+"with_fish": 10
+},
+"morning": {
+"parties": 1070,
+"with_fish": 55
+}
+},
+"Satsop River|Sucker": {
+"afternoon": {
+"parties": 163,
+"with_fish": 2
+},
+"first light": {
+"parties": 119,
+"with_fish": 2
+},
+"midday": {
+"parties": 447,
+"with_fish": 4
+},
+"morning": {
+"parties": 1070,
+"with_fish": 13
+}
+},
+"Satsop River|Trout - Unspecified": {
+"afternoon": {
+"parties": 163,
+"with_fish": 1
+},
+"first light": {
+"parties": 119,
+"with_fish": 1
+},
+"midday": {
+"parties": 447,
+"with_fish": 4
+},
+"morning": {
+"parties": 1070,
+"with_fish": 4
+}
+},
+"Satsop River|Whitefish": {
+"afternoon": {
+"parties": 163,
+"with_fish": 1
+},
+"midday": {
+"parties": 447,
+"with_fish": 4
+},
+"morning": {
+"parties": 1070,
+"with_fish": 8
+}
+},
+"Sauk River|Bull trout": {
+"afternoon": {
+"parties": 130,
+"with_fish": 4
+},
+"first light": {
+"parties": 459,
+"with_fish": 22
+},
+"midday": {
+"parties": 815,
+"with_fish": 27
+},
+"morning": {
+"parties": 1620,
+"with_fish": 75
+}
+},
+"Sauk River|Coho": {
+"midday": {
+"parties": 815,
+"with_fish": 1
+},
+"morning": {
+"parties": 1620,
+"with_fish": 2
+}
+},
+"Sauk River|Cutthroat": {
+"afternoon": {
+"parties": 130,
+"with_fish": 1
+},
+"first light": {
+"parties": 459,
+"with_fish": 3
+},
+"midday": {
+"parties": 815,
+"with_fish": 2
+},
+"morning": {
+"parties": 1620,
+"with_fish": 20
+}
+},
+"Sauk River|Dolly Varden": {
+"afternoon": {
+"parties": 130,
+"with_fish": 1
+},
+"first light": {
+"parties": 459,
+"with_fish": 5
+},
+"midday": {
+"parties": 815,
+"with_fish": 7
+},
+"morning": {
+"parties": 1620,
+"with_fish": 19
+}
+},
+"Sauk River|Largescale Sucker": {
+"morning": {
+"parties": 1620,
+"with_fish": 1
+}
+},
+"Sauk River|Pink": {
+"morning": {
+"parties": 1620,
+"with_fish": 1
+}
+},
+"Sauk River|Rainbow trout": {
+"afternoon": {
+"parties": 130,
+"with_fish": 1
+},
+"first light": {
+"parties": 459,
+"with_fish": 3
+},
+"midday": {
+"parties": 815,
+"with_fish": 3
+},
+"morning": {
+"parties": 1620,
+"with_fish": 9
+}
+},
+"Sauk River|Steelhead": {
+"afternoon": {
+"parties": 130,
+"with_fish": 7
+},
+"first light": {
+"parties": 459,
+"with_fish": 127
+},
+"midday": {
+"parties": 815,
+"with_fish": 39
+},
+"morning": {
+"parties": 1620,
+"with_fish": 174
+}
+},
+"Sauk River|Sturgeon": {
+"first light": {
+"parties": 459,
+"with_fish": 1
+},
+"morning": {
+"parties": 1620,
+"with_fish": 2
+}
+},
+"Sauk River|Sucker": {
+"first light": {
+"parties": 459,
+"with_fish": 1
+},
+"midday": {
+"parties": 815,
+"with_fish": 1
+},
+"morning": {
+"parties": 1620,
+"with_fish": 11
+}
+},
+"Sauk River|Trout - Unspecified": {
+"midday": {
+"parties": 815,
+"with_fish": 1
+},
+"morning": {
+"parties": 1620,
+"with_fish": 5
+}
+},
+"Sauk River|Whitefish": {
+"afternoon": {
+"parties": 130,
+"with_fish": 2
+},
+"first light": {
+"parties": 459,
+"with_fish": 18
+},
+"midday": {
+"parties": 815,
+"with_fish": 16
+},
+"morning": {
+"parties": 1620,
+"with_fish": 50
+}
+},
+"Silver Lake|Black Crappie": {
+"afternoon": {
+"parties": 74,
+"with_fish": 9
+},
+"first light": {
+"parties": 88,
+"with_fish": 6
+},
+"midday": {
+"parties": 406,
+"with_fish": 83
+},
+"morning": {
+"parties": 418,
+"with_fish": 99
+}
+},
+"Silver Lake|Bluegill": {
+"afternoon": {
+"parties": 74,
+"with_fish": 16
+},
+"first light": {
+"parties": 88,
+"with_fish": 14
+},
+"midday": {
+"parties": 406,
+"with_fish": 119
+},
+"morning": {
+"parties": 418,
+"with_fish": 175
+}
+},
+"Silver Lake|Brown Bullhead": {
+"first light": {
+"parties": 88,
+"with_fish": 2
+},
+"midday": {
+"parties": 406,
+"with_fish": 6
+},
+"morning": {
+"parties": 418,
+"with_fish": 17
+}
+},
+"Silver Lake|Bullhead - Unspecified": {
+"midday": {
+"parties": 406,
+"with_fish": 2
+}
+},
+"Silver Lake|Carp": {
+"first light": {
+"parties": 88,
+"with_fish": 2
+},
+"morning": {
+"parties": 418,
+"with_fish": 4
+}
+},
+"Silver Lake|Channel catfish": {
+"midday": {
+"parties": 406,
+"with_fish": 1
+},
+"morning": {
+"parties": 418,
+"with_fish": 2
+}
+},
+"Silver Lake|Crappie - Unspecified": {
+"afternoon": {
+"parties": 74,
+"with_fish": 36
+},
+"first light": {
+"parties": 88,
+"with_fish": 3
+},
+"midday": {
+"parties": 406,
+"with_fish": 172
+},
+"morning": {
+"parties": 418,
+"with_fish": 171
+}
+},
+"Silver Lake|Grass Carp": {
+"midday": {
+"parties": 406,
+"with_fish": 1
+},
+"morning": {
+"parties": 418,
+"with_fish": 3
+}
+},
+"Silver Lake|Largemouth bass": {
+"afternoon": {
+"parties": 74,
+"with_fish": 4
+},
+"first light": {
+"parties": 88,
+"with_fish": 41
+},
+"midday": {
+"parties": 406,
+"with_fish": 24
+},
+"morning": {
+"parties": 418,
+"with_fish": 52
+}
+},
+"Silver Lake|Northern pikeminnow": {
+"midday": {
+"parties": 406,
+"with_fish": 1
+}
+},
+"Silver Lake|Pumpkinseed": {
+"first light": {
+"parties": 88,
+"with_fish": 1
+},
+"midday": {
+"parties": 406,
+"with_fish": 5
+},
+"morning": {
+"parties": 418,
+"with_fish": 2
+}
+},
+"Silver Lake|Rainbow trout": {
+"afternoon": {
+"parties": 74,
+"with_fish": 4
+},
+"first light": {
+"parties": 88,
+"with_fish": 9
+},
+"midday": {
+"parties": 406,
+"with_fish": 23
+},
+"morning": {
+"parties": 418,
+"with_fish": 24
+}
+},
+"Silver Lake|Warmouth": {
+"midday": {
+"parties": 406,
+"with_fish": 3
+}
+},
+"Silver Lake|White Crappie": {
+"afternoon": {
+"parties": 74,
+"with_fish": 14
+},
+"first light": {
+"parties": 88,
+"with_fish": 3
+},
+"midday": {
+"parties": 406,
+"with_fish": 105
+},
+"morning": {
+"parties": 418,
+"with_fish": 97
+}
+},
+"Silver Lake|Yellow perch": {
+"afternoon": {
+"parties": 74,
+"with_fish": 28
+},
+"first light": {
+"parties": 88,
+"with_fish": 15
+},
+"midday": {
+"parties": 406,
+"with_fish": 178
+},
+"morning": {
+"parties": 418,
+"with_fish": 204
+}
+},
+"Skagit River|Brook Trout": {
+"midday": {
+"parties": 4556,
+"with_fish": 1
+}
+},
+"Skagit River|Brown Bullhead": {
+"first light": {
+"parties": 3351,
+"with_fish": 2
+},
+"midday": {
+"parties": 4556,
+"with_fish": 1
+},
+"morning": {
+"parties": 6917,
+"with_fish": 4
+}
+},
+"Skagit River|Bull trout": {
+"afternoon": {
+"parties": 2288,
+"with_fish": 28
+},
+"evening": {
+"parties": 251,
+"with_fish": 3
+},
+"first light": {
+"parties": 3351,
+"with_fish": 114
+},
+"midday": {
+"parties": 4556,
+"with_fish": 110
+},
+"morning": {
+"parties": 6917,
+"with_fish": 387
+}
+},
+"Skagit River|Channel catfish": {
+"midday": {
+"parties": 4556,
+"with_fish": 1
+}
+},
+"Skagit River|Chinook": {
+"afternoon": {
+"parties": 2288,
+"with_fish": 18
+},
+"evening": {
+"parties": 251,
+"with_fish": 4
+},
+"first light": {
+"parties": 3351,
+"with_fish": 140
+},
+"midday": {
+"parties": 4556,
+"with_fish": 36
+},
+"morning": {
+"parties": 6917,
+"with_fish": 111
+}
+},
+"Skagit River|Chum": {
+"afternoon": {
+"parties": 2288,
+"with_fish": 4
+},
+"first light": {
+"parties": 3351,
+"with_fish": 9
+},
+"midday": {
+"parties": 4556,
+"with_fish": 38
+},
+"morning": {
+"parties": 6917,
+"with_fish": 97
+}
+},
+"Skagit River|Coho": {
+"afternoon": {
+"parties": 2288,
+"with_fish": 97
+},
+"first light": {
+"parties": 3351,
+"with_fish": 390
+},
+"midday": {
+"parties": 4556,
+"with_fish": 339
+},
+"morning": {
+"parties": 6917,
+"with_fish": 1250
+}
+},
+"Skagit River|Cutthroat": {
+"afternoon": {
+"parties": 2288,
+"with_fish": 8
+},
+"first light": {
+"parties": 3351,
+"with_fish": 29
+},
+"midday": {
+"parties": 4556,
+"with_fish": 38
+},
+"morning": {
+"parties": 6917,
+"with_fish": 74
+}
+},
+"Skagit River|Dolly Varden": {
+"afternoon": {
+"parties": 2288,
+"with_fish": 19
+},
+"evening": {
+"parties": 251,
+"with_fish": 1
+},
+"first light": {
+"parties": 3351,
+"with_fish": 64
+},
+"midday": {
+"parties": 4556,
+"with_fish": 54
+},
+"morning": {
+"parties": 6917,
+"with_fish": 129
+}
+},
+"Skagit River|Green Sturgeon": {
+"midday": {
+"parties": 4556,
+"with_fish": 1
+}
+},
+"Skagit River|Largescale Sucker": {
+"afternoon": {
+"parties": 2288,
+"with_fish": 1
+},
+"first light": {
+"parties": 3351,
+"with_fish": 2
+},
+"morning": {
+"parties": 6917,
+"with_fish": 2
+}
+},
+"Skagit River|Northern pikeminnow": {
+"afternoon": {
+"parties": 2288,
+"with_fish": 1
+},
+"first light": {
+"parties": 3351,
+"with_fish": 1
+},
+"morning": {
+"parties": 6917,
+"with_fish": 4
+}
+},
+"Skagit River|Other": {
+"afternoon": {
+"parties": 2288,
+"with_fish": 1
+},
+"first light": {
+"parties": 3351,
+"with_fish": 1
+},
+"midday": {
+"parties": 4556,
+"with_fish": 5
+},
+"morning": {
+"parties": 6917,
+"with_fish": 6
+}
+},
+"Skagit River|Pink": {
+"afternoon": {
+"parties": 2288,
+"with_fish": 320
+},
+"evening": {
+"parties": 251,
+"with_fish": 10
+},
+"first light": {
+"parties": 3351,
+"with_fish": 354
+},
+"midday": {
+"parties": 4556,
+"with_fish": 671
+},
+"morning": {
+"parties": 6917,
+"with_fish": 908
+}
+},
+"Skagit River|Rainbow trout": {
+"afternoon": {
+"parties": 2288,
+"with_fish": 13
+},
+"evening": {
+"parties": 251,
+"with_fish": 3
+},
+"first light": {
+"parties": 3351,
+"with_fish": 64
+},
+"midday": {
+"parties": 4556,
+"with_fish": 51
+},
+"morning": {
+"parties": 6917,
+"with_fish": 104
+}
+},
+"Skagit River|Salmonid - Unspecified": {
+"first light": {
+"parties": 3351,
+"with_fish": 4
+},
+"midday": {
+"parties": 4556,
+"with_fish": 10
+},
+"morning": {
+"parties": 6917,
+"with_fish": 5
+}
+},
+"Skagit River|Sockeye": {
+"afternoon": {
+"parties": 2288,
+"with_fish": 20
+},
+"evening": {
+"parties": 251,
+"with_fish": 4
+},
+"first light": {
+"parties": 3351,
+"with_fish": 220
+},
+"midday": {
+"parties": 4556,
+"with_fish": 21
+},
+"morning": {
+"parties": 6917,
+"with_fish": 39
+}
+},
+"Skagit River|Steelhead": {
+"afternoon": {
+"parties": 2288,
+"with_fish": 15
+},
+"evening": {
+"parties": 251,
+"with_fish": 1
+},
+"first light": {
+"parties": 3351,
+"with_fish": 233
+},
+"midday": {
+"parties": 4556,
+"with_fish": 81
+},
+"morning": {
+"parties": 6917,
+"with_fish": 388
+}
+},
+"Skagit River|Sturgeon": {
+"afternoon": {
+"parties": 2288,
+"with_fish": 1
+},
+"first light": {
+"parties": 3351,
+"with_fish": 1
+},
+"midday": {
+"parties": 4556,
+"with_fish": 4
+},
+"morning": {
+"parties": 6917,
+"with_fish": 7
+}
+},
+"Skagit River|Sucker": {
+"afternoon": {
+"parties": 2288,
+"with_fish": 3
+},
+"first light": {
+"parties": 3351,
+"with_fish": 4
+},
+"midday": {
+"parties": 4556,
+"with_fish": 3
+},
+"morning": {
+"parties": 6917,
+"with_fish": 19
+}
+},
+"Skagit River|Trout - Unspecified": {
+"afternoon": {
+"parties": 2288,
+"with_fish": 9
+},
+"evening": {
+"parties": 251,
+"with_fish": 2
+},
+"first light": {
+"parties": 3351,
+"with_fish": 3
+},
+"midday": {
+"parties": 4556,
+"with_fish": 11
+},
+"morning": {
+"parties": 6917,
+"with_fish": 20
+}
+},
+"Skagit River|Unknown": {
+"afternoon": {
+"parties": 2288,
+"with_fish": 1
+},
+"first light": {
+"parties": 3351,
+"with_fish": 2
+},
+"morning": {
+"parties": 6917,
+"with_fish": 2
+}
+},
+"Skagit River|Whitefish": {
+"afternoon": {
+"parties": 2288,
+"with_fish": 11
+},
+"evening": {
+"parties": 251,
+"with_fish": 1
+},
+"first light": {
+"parties": 3351,
+"with_fish": 92
+},
+"midday": {
+"parties": 4556,
+"with_fish": 50
+},
+"morning": {
+"parties": 6917,
+"with_fish": 188
+}
+},
+"Skookumchuck River|Coho": {
+"midday": {
+"parties": 272,
+"with_fish": 23
+},
+"morning": {
+"parties": 409,
+"with_fish": 27
+}
+},
+"Skookumchuck River|Cutthroat": {
+"afternoon": {
+"parties": 27,
+"with_fish": 1
+},
+"midday": {
+"parties": 272,
+"with_fish": 2
+},
+"morning": {
+"parties": 409,
+"with_fish": 2
+}
+},
+"Skookumchuck River|Northern pikeminnow": {
+"morning": {
+"parties": 409,
+"with_fish": 2
+}
+},
+"Skookumchuck River|Rainbow trout": {
+"midday": {
+"parties": 272,
+"with_fish": 6
+},
+"morning": {
+"parties": 409,
+"with_fish": 6
+}
+},
+"Skookumchuck River|Steelhead": {
+"afternoon": {
+"parties": 27,
+"with_fish": 2
+},
+"midday": {
+"parties": 272,
+"with_fish": 22
+},
+"morning": {
+"parties": 409,
+"with_fish": 49
+}
+},
+"Skookumchuck River|Sucker": {
+"morning": {
+"parties": 409,
+"with_fish": 1
+}
+},
+"Skookumchuck River|Trout - Unspecified": {
+"morning": {
+"parties": 409,
+"with_fish": 1
+}
+},
+"Skookumchuck River|Whitefish": {
+"midday": {
+"parties": 272,
+"with_fish": 8
+},
+"morning": {
+"parties": 409,
+"with_fish": 12
+}
+},
+"Skykomish River|Brown Bullhead": {
+"afternoon": {
+"parties": 713,
+"with_fish": 2
+},
+"first light": {
+"parties": 1501,
+"with_fish": 5
+},
+"midday": {
+"parties": 1328,
+"with_fish": 2
+},
+"morning": {
+"parties": 1627,
+"with_fish": 1
+}
+},
+"Skykomish River|Bull trout": {
+"afternoon": {
+"parties": 713,
+"with_fish": 10
+},
+"evening": {
+"parties": 101,
+"with_fish": 2
+},
+"first light": {
+"parties": 1501,
+"with_fish": 36
+},
+"midday": {
+"parties": 1328,
+"with_fish": 11
+},
+"morning": {
+"parties": 1627,
+"with_fish": 18
+}
+},
+"Skykomish River|Carp": {
+"first light": {
+"parties": 1501,
+"with_fish": 1
+}
+},
+"Skykomish River|Chinook": {
+"afternoon": {
+"parties": 713,
+"with_fish": 17
+},
+"evening": {
+"parties": 101,
+"with_fish": 3
+},
+"first light": {
+"parties": 1501,
+"with_fish": 322
+},
+"midday": {
+"parties": 1328,
+"with_fish": 44
+},
+"morning": {
+"parties": 1627,
+"with_fish": 56
+}
+},
+"Skykomish River|Chum": {
+"afternoon": {
+"parties": 713,
+"with_fish": 4
+},
+"first light": {
+"parties": 1501,
+"with_fish": 2
+},
+"midday": {
+"parties": 1328,
+"with_fish": 10
+},
+"morning": {
+"parties": 1627,
+"with_fish": 45
+}
+},
+"Skykomish River|Coho": {
+"afternoon": {
+"parties": 713,
+"with_fish": 9
+},
+"first light": {
+"parties": 1501,
+"with_fish": 11
+},
+"midday": {
+"parties": 1328,
+"with_fish": 34
+},
+"morning": {
+"parties": 1627,
+"with_fish": 82
+}
+},
+"Skykomish River|Cutthroat": {
+"afternoon": {
+"parties": 713,
+"with_fish": 9
+},
+"evening": {
+"parties": 101,
+"with_fish": 1
+},
+"first light": {
+"parties": 1501,
+"with_fish": 55
+},
+"midday": {
+"parties": 1328,
+"with_fish": 17
+},
+"morning": {
+"parties": 1627,
+"with_fish": 32
+}
+},
+"Skykomish River|Dolly Varden": {
+"afternoon": {
+"parties": 713,
+"with_fish": 1
+},
+"first light": {
+"parties": 1501,
+"with_fish": 9
+},
+"midday": {
+"parties": 1328,
+"with_fish": 6
+},
+"morning": {
+"parties": 1627,
+"with_fish": 5
+}
+},
+"Skykomish River|Largescale Sucker": {
+"midday": {
+"parties": 1328,
+"with_fish": 1
+}
+},
+"Skykomish River|Northern pikeminnow": {
+"afternoon": {
+"parties": 713,
+"with_fish": 1
+}
+},
+"Skykomish River|Other": {
+"afternoon": {
+"parties": 713,
+"with_fish": 2
+},
+"first light": {
+"parties": 1501,
+"with_fish": 11
+},
+"midday": {
+"parties": 1328,
+"with_fish": 3
+},
+"morning": {
+"parties": 1627,
+"with_fish": 4
+}
+},
+"Skykomish River|Pink": {
+"afternoon": {
+"parties": 713,
+"with_fish": 18
+},
+"first light": {
+"parties": 1501,
+"with_fish": 19
+},
+"midday": {
+"parties": 1328,
+"with_fish": 67
+},
+"morning": {
+"parties": 1627,
+"with_fish": 100
+}
+},
+"Skykomish River|Rainbow trout": {
+"afternoon": {
+"parties": 713,
+"with_fish": 19
+},
+"evening": {
+"parties": 101,
+"with_fish": 3
+},
+"first light": {
+"parties": 1501,
+"with_fish": 69
+},
+"midday": {
+"parties": 1328,
+"with_fish": 36
+},
+"morning": {
+"parties": 1627,
+"with_fish": 65
+}
+},
+"Skykomish River|Salmonid - Unspecified": {
+"afternoon": {
+"parties": 713,
+"with_fish": 4
+},
+"first light": {
+"parties": 1501,
+"with_fish": 21
+},
+"midday": {
+"parties": 1328,
+"with_fish": 5
+},
+"morning": {
+"parties": 1627,
+"with_fish": 14
+}
+},
+"Skykomish River|Sculpin Species - Unspecified": {
+"first light": {
+"parties": 1501,
+"with_fish": 3
+},
+"morning": {
+"parties": 1627,
+"with_fish": 3
+}
+},
+"Skykomish River|Smallmouth bass": {
+"first light": {
+"parties": 1501,
+"with_fish": 1
+},
+"midday": {
+"parties": 1328,
+"with_fish": 1
+}
+},
+"Skykomish River|Sockeye": {
+"first light": {
+"parties": 1501,
+"with_fish": 1
+}
+},
+"Skykomish River|Steelhead": {
+"afternoon": {
+"parties": 713,
+"with_fish": 54
+},
+"evening": {
+"parties": 101,
+"with_fish": 7
+},
+"first light": {
+"parties": 1501,
+"with_fish": 297
+},
+"midday": {
+"parties": 1328,
+"with_fish": 75
+},
+"morning": {
+"parties": 1627,
+"with_fish": 185
+}
+},
+"Skykomish River|Sucker": {
+"afternoon": {
+"parties": 713,
+"with_fish": 11
+},
+"first light": {
+"parties": 1501,
+"with_fish": 32
+},
+"midday": {
+"parties": 1328,
+"with_fish": 15
+},
+"morning": {
+"parties": 1627,
+"with_fish": 13
+}
+},
+"Skykomish River|Trout - Unspecified": {
+"afternoon": {
+"parties": 713,
+"with_fish": 1
+},
+"first light": {
+"parties": 1501,
+"with_fish": 1
+},
+"midday": {
+"parties": 1328,
+"with_fish": 8
+},
+"morning": {
+"parties": 1627,
+"with_fish": 8
+}
+},
+"Skykomish River|Unknown": {
+"afternoon": {
+"parties": 713,
+"with_fish": 3
+},
+"first light": {
+"parties": 1501,
+"with_fish": 2
+}
+},
+"Skykomish River|Whitefish": {
+"afternoon": {
+"parties": 713,
+"with_fish": 10
+},
+"evening": {
+"parties": 101,
+"with_fish": 1
+},
+"first light": {
+"parties": 1501,
+"with_fish": 37
+},
+"midday": {
+"parties": 1328,
+"with_fish": 11
+},
+"morning": {
+"parties": 1627,
+"with_fish": 21
+}
+},
+"Snohomish River|Bass - Unspecified": {
+"midday": {
+"parties": 1774,
+"with_fish": 1
+},
+"morning": {
+"parties": 2489,
+"with_fish": 1
+}
+},
+"Snohomish River|Bluegill": {
+"midday": {
+"parties": 1774,
+"with_fish": 1
+}
+},
+"Snohomish River|Brown Bullhead": {
+"afternoon": {
+"parties": 686,
+"with_fish": 1
+},
+"first light": {
+"parties": 791,
+"with_fish": 2
+},
+"midday": {
+"parties": 1774,
+"with_fish": 6
+},
+"morning": {
+"parties": 2489,
+"with_fish": 7
+}
+},
+"Snohomish River|Bull trout": {
+"afternoon": {
+"parties": 686,
+"with_fish": 1
+},
+"midday": {
+"parties": 1774,
+"with_fish": 1
+},
+"morning": {
+"parties": 2489,
+"with_fish": 1
+}
+},
+"Snohomish River|Channel catfish": {
+"midday": {
+"parties": 1774,
+"with_fish": 1
+}
+},
+"Snohomish River|Chinook": {
+"first light": {
+"parties": 791,
+"with_fish": 7
+},
+"midday": {
+"parties": 1774,
+"with_fish": 1
+},
+"morning": {
+"parties": 2489,
+"with_fish": 5
+}
+},
+"Snohomish River|Chum": {
+"afternoon": {
+"parties": 686,
+"with_fish": 1
+},
+"first light": {
+"parties": 791,
+"with_fish": 1
+},
+"midday": {
+"parties": 1774,
+"with_fish": 1
+},
+"morning": {
+"parties": 2489,
+"with_fish": 9
+}
+},
+"Snohomish River|Coho": {
+"afternoon": {
+"parties": 686,
+"with_fish": 22
+},
+"first light": {
+"parties": 791,
+"with_fish": 80
+},
+"midday": {
+"parties": 1774,
+"with_fish": 96
+},
+"morning": {
+"parties": 2489,
+"with_fish": 310
+}
+},
+"Snohomish River|Cutthroat": {
+"afternoon": {
+"parties": 686,
+"with_fish": 2
+},
+"first light": {
+"parties": 791,
+"with_fish": 3
+},
+"midday": {
+"parties": 1774,
+"with_fish": 14
+},
+"morning": {
+"parties": 2489,
+"with_fish": 20
+}
+},
+"Snohomish River|Dolly Varden": {
+"morning": {
+"parties": 2489,
+"with_fish": 1
+}
+},
+"Snohomish River|Green Sunfish": {
+"midday": {
+"parties": 1774,
+"with_fish": 1
+}
+},
+"Snohomish River|Largemouth bass": {
+"morning": {
+"parties": 2489,
+"with_fish": 1
+}
+},
+"Snohomish River|Northern pikeminnow": {
+"midday": {
+"parties": 1774,
+"with_fish": 1
+}
+},
+"Snohomish River|Other": {
+"first light": {
+"parties": 791,
+"with_fish": 1
+},
+"morning": {
+"parties": 2489,
+"with_fish": 1
+}
+},
+"Snohomish River|Peamouth": {
+"first light": {
+"parties": 791,
+"with_fish": 1
+}
+},
+"Snohomish River|Pink": {
+"afternoon": {
+"parties": 686,
+"with_fish": 189
+},
+"first light": {
+"parties": 791,
+"with_fish": 466
+},
+"midday": {
+"parties": 1774,
+"with_fish": 674
+},
+"morning": {
+"parties": 2489,
+"with_fish": 1074
+}
+},
+"Snohomish River|Rainbow trout": {
+"first light": {
+"parties": 791,
+"with_fish": 2
+},
+"midday": {
+"parties": 1774,
+"with_fish": 7
+},
+"morning": {
+"parties": 2489,
+"with_fish": 10
+}
+},
+"Snohomish River|Salmonid - Unspecified": {
+"first light": {
+"parties": 791,
+"with_fish": 1
+},
+"morning": {
+"parties": 2489,
+"with_fish": 1
+}
+},
+"Snohomish River|Sculpin Species - Unspecified": {
+"afternoon": {
+"parties": 686,
+"with_fish": 3
+},
+"first light": {
+"parties": 791,
+"with_fish": 2
+},
+"midday": {
+"parties": 1774,
+"with_fish": 5
+},
+"morning": {
+"parties": 2489,
+"with_fish": 4
+}
+},
+"Snohomish River|Shad": {
+"morning": {
+"parties": 2489,
+"with_fish": 1
+}
+},
+"Snohomish River|Steelhead": {
+"first light": {
+"parties": 791,
+"with_fish": 2
+}
+},
+"Snohomish River|Sucker": {
+"morning": {
+"parties": 2489,
+"with_fish": 3
+}
+},
+"Snohomish River|Trout - Unspecified": {
+"first light": {
+"parties": 791,
+"with_fish": 2
+},
+"midday": {
+"parties": 1774,
+"with_fish": 6
+},
+"morning": {
+"parties": 2489,
+"with_fish": 6
+}
+},
+"Snohomish River|Unknown": {
+"midday": {
+"parties": 1774,
+"with_fish": 1
+}
+},
+"Snohomish River|White Crappie": {
+"midday": {
+"parties": 1774,
+"with_fish": 1
+}
+},
+"Snohomish River|Whitefish": {
+"afternoon": {
+"parties": 686,
+"with_fish": 1
+},
+"first light": {
+"parties": 791,
+"with_fish": 2
+},
+"midday": {
+"parties": 1774,
+"with_fish": 1
+},
+"morning": {
+"parties": 2489,
+"with_fish": 3
+}
+},
+"Snohomish River|Yellow perch": {
+"midday": {
+"parties": 1774,
+"with_fish": 1
+}
+},
+"Snoqualmie River|Chum": {
+"midday": {
+"parties": 287,
+"with_fish": 1
+},
+"morning": {
+"parties": 264,
+"with_fish": 3
+}
+},
+"Snoqualmie River|Coho": {
+"afternoon": {
+"parties": 64,
+"with_fish": 1
+},
+"first light": {
+"parties": 22,
+"with_fish": 4
+},
+"midday": {
+"parties": 287,
+"with_fish": 9
+},
+"morning": {
+"parties": 264,
+"with_fish": 28
+}
+},
+"Snoqualmie River|Cutthroat": {
+"midday": {
+"parties": 287,
+"with_fish": 7
+},
+"morning": {
+"parties": 264,
+"with_fish": 7
+}
+},
+"Snoqualmie River|Largescale Sucker": {
+"midday": {
+"parties": 287,
+"with_fish": 1
+}
+},
+"Snoqualmie River|Northern pikeminnow": {
+"afternoon": {
+"parties": 64,
+"with_fish": 1
+},
+"midday": {
+"parties": 287,
+"with_fish": 1
+},
+"morning": {
+"parties": 264,
+"with_fish": 1
+}
+},
+"Snoqualmie River|Pink": {
+"morning": {
+"parties": 264,
+"with_fish": 5
+}
+},
+"Snoqualmie River|Rainbow trout": {
+"afternoon": {
+"parties": 64,
+"with_fish": 7
+},
+"midday": {
+"parties": 287,
+"with_fish": 18
+},
+"morning": {
+"parties": 264,
+"with_fish": 7
+}
+},
+"Snoqualmie River|Steelhead": {
+"first light": {
+"parties": 22,
+"with_fish": 1
+},
+"midday": {
+"parties": 287,
+"with_fish": 9
+},
+"morning": {
+"parties": 264,
+"with_fish": 9
+}
+},
+"Snoqualmie River|Sucker": {
+"morning": {
+"parties": 264,
+"with_fish": 1
+}
+},
+"Snoqualmie River|Trout - Unspecified": {
+"afternoon": {
+"parties": 64,
+"with_fish": 1
+},
+"first light": {
+"parties": 22,
+"with_fish": 1
+},
+"midday": {
+"parties": 287,
+"with_fish": 2
+},
+"morning": {
+"parties": 264,
+"with_fish": 2
+}
+},
+"Snoqualmie River|Whitefish": {
+"afternoon": {
+"parties": 64,
+"with_fish": 1
+},
+"first light": {
+"parties": 22,
+"with_fish": 1
+},
+"midday": {
+"parties": 287,
+"with_fish": 12
+},
+"morning": {
+"parties": 264,
+"with_fish": 19
+}
+},
+"Sol Duc River|Bull trout": {
+"morning": {
+"parties": 1499,
+"with_fish": 1
+}
+},
+"Sol Duc River|Chinook": {
+"afternoon": {
+"parties": 153,
+"with_fish": 10
+},
+"first light": {
+"parties": 254,
+"with_fish": 96
+},
+"midday": {
+"parties": 564,
+"with_fish": 23
+},
+"morning": {
+"parties": 1499,
+"with_fish": 133
+}
+},
+"Sol Duc River|Coho": {
+"afternoon": {
+"parties": 153,
+"with_fish": 3
+},
+"first light": {
+"parties": 254,
+"with_fish": 20
+},
+"midday": {
+"parties": 564,
+"with_fish": 42
+},
+"morning": {
+"parties": 1499,
+"with_fish": 193
+}
+},
+"Sol Duc River|Cutthroat": {
+"afternoon": {
+"parties": 153,
+"with_fish": 5
+},
+"first light": {
+"parties": 254,
+"with_fish": 26
+},
+"midday": {
+"parties": 564,
+"with_fish": 23
+},
+"morning": {
+"parties": 1499,
+"with_fish": 98
+}
+},
+"Sol Duc River|Dolly Varden": {
+"morning": {
+"parties": 1499,
+"with_fish": 2
+}
+},
+"Sol Duc River|Other": {
+"morning": {
+"parties": 1499,
+"with_fish": 2
+}
+},
+"Sol Duc River|Pink": {
+"morning": {
+"parties": 1499,
+"with_fish": 1
+}
+},
+"Sol Duc River|Rainbow trout": {
+"first light": {
+"parties": 254,
+"with_fish": 3
+},
+"midday": {
+"parties": 564,
+"with_fish": 4
+},
+"morning": {
+"parties": 1499,
+"with_fish": 10
+}
+},
+"Sol Duc River|Salmonid - Unspecified": {
+"midday": {
+"parties": 564,
+"with_fish": 3
+},
+"morning": {
+"parties": 1499,
+"with_fish": 1
+}
+},
+"Sol Duc River|Sockeye": {
+"afternoon": {
+"parties": 153,
+"with_fish": 2
+},
+"first light": {
+"parties": 254,
+"with_fish": 5
+},
+"midday": {
+"parties": 564,
+"with_fish": 3
+},
+"morning": {
+"parties": 1499,
+"with_fish": 17
+}
+},
+"Sol Duc River|Steelhead": {
+"afternoon": {
+"parties": 153,
+"with_fish": 11
+},
+"first light": {
+"parties": 254,
+"with_fish": 77
+},
+"midday": {
+"parties": 564,
+"with_fish": 79
+},
+"morning": {
+"parties": 1499,
+"with_fish": 598
+}
+},
+"Sol Duc River|Sturgeon": {
+"morning": {
+"parties": 1499,
+"with_fish": 1
+}
+},
+"Sol Duc River|Sucker": {
+"morning": {
+"parties": 1499,
+"with_fish": 1
+}
+},
+"Sol Duc River|Trout - Unspecified": {
+"midday": {
+"parties": 564,
+"with_fish": 3
+},
+"morning": {
+"parties": 1499,
+"with_fish": 1
+}
+},
+"Sol Duc River|Whitefish": {
+"afternoon": {
+"parties": 153,
+"with_fish": 3
+},
+"first light": {
+"parties": 254,
+"with_fish": 14
+},
+"midday": {
+"parties": 564,
+"with_fish": 15
+},
+"morning": {
+"parties": 1499,
+"with_fish": 86
+}
+},
+"Sol Duc River|Yellow perch": {
+"morning": {
+"parties": 1499,
+"with_fish": 1
+}
+},
+"South Fork Toutle River|Chinook": {
+"afternoon": {
+"parties": 156,
+"with_fish": 1
+},
+"first light": {
+"parties": 204,
+"with_fish": 1
+},
+"midday": {
+"parties": 392,
+"with_fish": 3
+},
+"morning": {
+"parties": 523,
+"with_fish": 2
+}
+},
+"South Fork Toutle River|Coho": {
+"afternoon": {
+"parties": 156,
+"with_fish": 1
+},
+"midday": {
+"parties": 392,
+"with_fish": 3
+},
+"morning": {
+"parties": 523,
+"with_fish": 4
+}
+},
+"South Fork Toutle River|Cutthroat": {
+"first light": {
+"parties": 204,
+"with_fish": 2
+},
+"morning": {
+"parties": 523,
+"with_fish": 2
+}
+},
+"South Fork Toutle River|Steelhead": {
+"afternoon": {
+"parties": 156,
+"with_fish": 22
+},
+"evening": {
+"parties": 28,
+"with_fish": 2
+},
+"first light": {
+"parties": 204,
+"with_fish": 42
+},
+"midday": {
+"parties": 392,
+"with_fish": 53
+},
+"morning": {
+"parties": 523,
+"with_fish": 130
+}
+},
+"South Fork Toutle River|Unknown": {
+"afternoon": {
+"parties": 156,
+"with_fish": 2
+},
+"first light": {
+"parties": 204,
+"with_fish": 6
+},
+"midday": {
+"parties": 392,
+"with_fish": 3
+},
+"morning": {
+"parties": 523,
+"with_fish": 10
+}
+},
+"South Fork Toutle River|Whitefish": {
+"first light": {
+"parties": 204,
+"with_fish": 1
+}
+},
+"South Lewis County Park Pond|Bluegill": {
+"midday": {
+"parties": 77,
+"with_fish": 4
+},
+"morning": {
+"parties": 26,
+"with_fish": 1
+}
+},
+"South Lewis County Park Pond|Brown trout": {
+"midday": {
+"parties": 77,
+"with_fish": 1
+},
+"morning": {
+"parties": 26,
+"with_fish": 3
+}
+},
+"South Lewis County Park Pond|Cutthroat": {
+"midday": {
+"parties": 77,
+"with_fish": 3
+},
+"morning": {
+"parties": 26,
+"with_fish": 1
+}
+},
+"South Lewis County Park Pond|Largemouth bass": {
+"midday": {
+"parties": 77,
+"with_fish": 2
+},
+"morning": {
+"parties": 26,
+"with_fish": 1
+}
+},
+"South Lewis County Park Pond|Rainbow trout": {
+"midday": {
+"parties": 77,
+"with_fish": 46
+},
+"morning": {
+"parties": 26,
+"with_fish": 21
+}
+},
+"South Lewis County Park Pond|Sunfish - Unspecified": {
+"midday": {
+"parties": 77,
+"with_fish": 3
+}
+},
+"South Lewis County Park Pond|Yellow perch": {
+"midday": {
+"parties": 77,
+"with_fish": 2
+}
+},
+"Spearfish Lake|Brown Bullhead": {
+"morning": {
+"parties": 327,
+"with_fish": 1
+}
+},
+"Spearfish Lake|Northern pikeminnow": {
+"first light": {
+"parties": 297,
+"with_fish": 1
+},
+"midday": {
+"parties": 81,
+"with_fish": 1
+},
+"morning": {
+"parties": 327,
+"with_fish": 2
+}
+},
+"Spearfish Lake|Rainbow trout": {
+"first light": {
+"parties": 297,
+"with_fish": 276
+},
+"midday": {
+"parties": 81,
+"with_fish": 46
+},
+"morning": {
+"parties": 327,
+"with_fish": 270
+}
+},
+"Stillaguamish River - North Fork|Bull trout": {
+"first light": {
+"parties": 24,
+"with_fish": 1
+},
+"morning": {
+"parties": 244,
+"with_fish": 1
+}
+},
+"Stillaguamish River - North Fork|Chinook": {
+"midday": {
+"parties": 289,
+"with_fish": 1
+}
+},
+"Stillaguamish River - North Fork|Chum": {
+"afternoon": {
+"parties": 40,
+"with_fish": 1
+},
+"midday": {
+"parties": 289,
+"with_fish": 8
+},
+"morning": {
+"parties": 244,
+"with_fish": 7
+}
+},
+"Stillaguamish River - North Fork|Coho": {
+"afternoon": {
+"parties": 40,
+"with_fish": 1
+},
+"first light": {
+"parties": 24,
+"with_fish": 1
+},
+"midday": {
+"parties": 289,
+"with_fish": 23
+},
+"morning": {
+"parties": 244,
+"with_fish": 29
+}
+},
+"Stillaguamish River - North Fork|Cutthroat": {
+"afternoon": {
+"parties": 40,
+"with_fish": 3
+},
+"first light": {
+"parties": 24,
+"with_fish": 6
+},
+"midday": {
+"parties": 289,
+"with_fish": 44
+},
+"morning": {
+"parties": 244,
+"with_fish": 42
+}
+},
+"Stillaguamish River - North Fork|Dolly Varden": {
+"midday": {
+"parties": 289,
+"with_fish": 1
+},
+"morning": {
+"parties": 244,
+"with_fish": 4
+}
+},
+"Stillaguamish River - North Fork|Pink": {
+"afternoon": {
+"parties": 40,
+"with_fish": 5
+},
+"first light": {
+"parties": 24,
+"with_fish": 9
+},
+"midday": {
+"parties": 289,
+"with_fish": 8
+},
+"morning": {
+"parties": 244,
+"with_fish": 9
+}
+},
+"Stillaguamish River - North Fork|Rainbow trout": {
+"afternoon": {
+"parties": 40,
+"with_fish": 3
+},
+"first light": {
+"parties": 24,
+"with_fish": 3
+},
+"midday": {
+"parties": 289,
+"with_fish": 30
+},
+"morning": {
+"parties": 244,
+"with_fish": 20
+}
+},
+"Stillaguamish River - North Fork|Salmonid - Unspecified": {
+"midday": {
+"parties": 289,
+"with_fish": 1
+},
+"morning": {
+"parties": 244,
+"with_fish": 1
+}
+},
+"Stillaguamish River - North Fork|Steelhead": {
+"afternoon": {
+"parties": 40,
+"with_fish": 2
+},
+"first light": {
+"parties": 24,
+"with_fish": 6
+},
+"midday": {
+"parties": 289,
+"with_fish": 12
+},
+"morning": {
+"parties": 244,
+"with_fish": 19
+}
+},
+"Stillaguamish River - North Fork|Sucker": {
+"midday": {
+"parties": 289,
+"with_fish": 1
+}
+},
+"Stillaguamish River - North Fork|Trout - Unspecified": {
+"midday": {
+"parties": 289,
+"with_fish": 5
+},
+"morning": {
+"parties": 244,
+"with_fish": 3
+}
+},
+"Stillaguamish River - North Fork|Whitefish": {
+"afternoon": {
+"parties": 40,
+"with_fish": 1
+},
+"midday": {
+"parties": 289,
+"with_fish": 3
+},
+"morning": {
+"parties": 244,
+"with_fish": 4
+}
+},
+"Stillaguamish River - South Fork|Chum": {
+"midday": {
+"parties": 131,
+"with_fish": 1
+},
+"morning": {
+"parties": 56,
+"with_fish": 1
+}
+},
+"Stillaguamish River - South Fork|Coho": {
+"afternoon": {
+"parties": 46,
+"with_fish": 2
+},
+"morning": {
+"parties": 56,
+"with_fish": 2
+}
+},
+"Stillaguamish River - South Fork|Cutthroat": {
+"afternoon": {
+"parties": 46,
+"with_fish": 3
+},
+"midday": {
+"parties": 131,
+"with_fish": 6
+},
+"morning": {
+"parties": 56,
+"with_fish": 4
+}
+},
+"Stillaguamish River - South Fork|Rainbow trout": {
+"afternoon": {
+"parties": 46,
+"with_fish": 7
+},
+"midday": {
+"parties": 131,
+"with_fish": 45
+},
+"morning": {
+"parties": 56,
+"with_fish": 16
+}
+},
+"Stillaguamish River - South Fork|Steelhead": {
+"afternoon": {
+"parties": 46,
+"with_fish": 2
+},
+"midday": {
+"parties": 131,
+"with_fish": 2
+},
+"morning": {
+"parties": 56,
+"with_fish": 5
+}
+},
+"Stillaguamish River - South Fork|Trout - Unspecified": {
+"midday": {
+"parties": 131,
+"with_fish": 4
+},
+"morning": {
+"parties": 56,
+"with_fish": 3
+}
+},
+"Stillaguamish River - South Fork|Whitefish": {
+"midday": {
+"parties": 131,
+"with_fish": 2
+},
+"morning": {
+"parties": 56,
+"with_fish": 1
+}
+},
+"Stillaguamish River|Bluegill": {
+"morning": {
+"parties": 838,
+"with_fish": 1
+}
+},
+"Stillaguamish River|Brown Bullhead": {
+"midday": {
+"parties": 776,
+"with_fish": 1
+},
+"morning": {
+"parties": 838,
+"with_fish": 2
+}
+},
+"Stillaguamish River|Bull trout": {
+"first light": {
+"parties": 193,
+"with_fish": 1
+},
+"midday": {
+"parties": 776,
+"with_fish": 4
+}
+},
+"Stillaguamish River|Carp": {
+"morning": {
+"parties": 838,
+"with_fish": 1
+}
+},
+"Stillaguamish River|Chinook": {
+"first light": {
+"parties": 193,
+"with_fish": 2
+},
+"morning": {
+"parties": 838,
+"with_fish": 1
+}
+},
+"Stillaguamish River|Chum": {
+"afternoon": {
+"parties": 318,
+"with_fish": 1
+},
+"first light": {
+"parties": 193,
+"with_fish": 1
+},
+"midday": {
+"parties": 776,
+"with_fish": 5
+},
+"morning": {
+"parties": 838,
+"with_fish": 5
+}
+},
+"Stillaguamish River|Coho": {
+"afternoon": {
+"parties": 318,
+"with_fish": 31
+},
+"first light": {
+"parties": 193,
+"with_fish": 42
+},
+"midday": {
+"parties": 776,
+"with_fish": 68
+},
+"morning": {
+"parties": 838,
+"with_fish": 131
+}
+},
+"Stillaguamish River|Cutthroat": {
+"afternoon": {
+"parties": 318,
+"with_fish": 4
+},
+"first light": {
+"parties": 193,
+"with_fish": 8
+},
+"midday": {
+"parties": 776,
+"with_fish": 9
+},
+"morning": {
+"parties": 838,
+"with_fish": 24
+}
+},
+"Stillaguamish River|Largescale Sucker": {
+"first light": {
+"parties": 193,
+"with_fish": 2
+},
+"morning": {
+"parties": 838,
+"with_fish": 2
+}
+},
+"Stillaguamish River|Other": {
+"midday": {
+"parties": 776,
+"with_fish": 1
+},
+"morning": {
+"parties": 838,
+"with_fish": 1
+}
+},
+"Stillaguamish River|Pink": {
+"afternoon": {
+"parties": 318,
+"with_fish": 41
+},
+"first light": {
+"parties": 193,
+"with_fish": 49
+},
+"midday": {
+"parties": 776,
+"with_fish": 125
+},
+"morning": {
+"parties": 838,
+"with_fish": 130
+}
+},
+"Stillaguamish River|Rainbow trout": {
+"afternoon": {
+"parties": 318,
+"with_fish": 4
+},
+"first light": {
+"parties": 193,
+"with_fish": 3
+},
+"midday": {
+"parties": 776,
+"with_fish": 11
+},
+"morning": {
+"parties": 838,
+"with_fish": 8
+}
+},
+"Stillaguamish River|Salmonid - Unspecified": {
+"morning": {
+"parties": 838,
+"with_fish": 1
+}
+},
+"Stillaguamish River|Steelhead": {
+"first light": {
+"parties": 193,
+"with_fish": 1
+},
+"midday": {
+"parties": 776,
+"with_fish": 2
+}
+},
+"Stillaguamish River|Sucker": {
+"afternoon": {
+"parties": 318,
+"with_fish": 1
+},
+"first light": {
+"parties": 193,
+"with_fish": 1
+},
+"midday": {
+"parties": 776,
+"with_fish": 1
+},
+"morning": {
+"parties": 838,
+"with_fish": 2
+}
+},
+"Stillaguamish River|Trout - Unspecified": {
+"afternoon": {
+"parties": 318,
+"with_fish": 1
+},
+"first light": {
+"parties": 193,
+"with_fish": 1
+},
+"midday": {
+"parties": 776,
+"with_fish": 2
+},
+"morning": {
+"parties": 838,
+"with_fish": 7
+}
+},
+"Stillaguamish River|Whitefish": {
+"midday": {
+"parties": 776,
+"with_fish": 1
+},
+"morning": {
+"parties": 838,
+"with_fish": 2
+}
+},
+"Swofford Pond|Black Crappie": {
+"midday": {
+"parties": 67,
+"with_fish": 2
+},
+"morning": {
+"parties": 56,
+"with_fish": 1
+}
+},
+"Swofford Pond|Bluegill": {
+"afternoon": {
+"parties": 34,
+"with_fish": 9
+},
+"midday": {
+"parties": 67,
+"with_fish": 21
+},
+"morning": {
+"parties": 56,
+"with_fish": 20
+}
+},
+"Swofford Pond|Brown trout": {
+"morning": {
+"parties": 56,
+"with_fish": 1
+}
+},
+"Swofford Pond|Channel catfish": {
+"afternoon": {
+"parties": 34,
+"with_fish": 1
+},
+"midday": {
+"parties": 67,
+"with_fish": 1
+},
+"morning": {
+"parties": 56,
+"with_fish": 1
+}
+},
+"Swofford Pond|Largemouth bass": {
+"afternoon": {
+"parties": 34,
+"with_fish": 11
+},
+"midday": {
+"parties": 67,
+"with_fish": 17
+},
+"morning": {
+"parties": 56,
+"with_fish": 7
+}
+},
+"Swofford Pond|Pumpkinseed": {
+"afternoon": {
+"parties": 34,
+"with_fish": 3
+},
+"morning": {
+"parties": 56,
+"with_fish": 1
+}
+},
+"Swofford Pond|Rainbow trout": {
+"afternoon": {
+"parties": 34,
+"with_fish": 6
+},
+"midday": {
+"parties": 67,
+"with_fish": 13
+},
+"morning": {
+"parties": 56,
+"with_fish": 20
+}
+},
+"Swofford Pond|Smallmouth bass": {
+"morning": {
+"parties": 56,
+"with_fish": 2
+}
+},
+"Swofford Pond|Yellow perch": {
+"midday": {
+"parties": 67,
+"with_fish": 1
+},
+"morning": {
+"parties": 56,
+"with_fish": 2
+}
+},
+"Tokul Creek|Bull trout": {
+"midday": {
+"parties": 155,
+"with_fish": 1
+}
+},
+"Tokul Creek|Coho": {
+"morning": {
+"parties": 228,
+"with_fish": 2
+}
+},
+"Tokul Creek|Cutthroat": {
+"morning": {
+"parties": 228,
+"with_fish": 1
+}
+},
+"Tokul Creek|Rainbow trout": {
+"midday": {
+"parties": 155,
+"with_fish": 2
+},
+"morning": {
+"parties": 228,
+"with_fish": 5
+}
+},
+"Tokul Creek|Steelhead": {
+"afternoon": {
+"parties": 26,
+"with_fish": 1
+},
+"midday": {
+"parties": 155,
+"with_fish": 24
+},
+"morning": {
+"parties": 228,
+"with_fish": 54
+}
+},
+"Tokul Creek|Sucker": {
+"midday": {
+"parties": 155,
+"with_fish": 1
+}
+},
+"Tokul Creek|Whitefish": {
+"morning": {
+"parties": 228,
+"with_fish": 1
+}
+},
+"Tunnel Lake|Bluegill": {
+"midday": {
+"parties": 71,
+"with_fish": 1
+}
+},
+"Tunnel Lake|Brown Bullhead": {
+"midday": {
+"parties": 71,
+"with_fish": 1
+}
+},
+"Tunnel Lake|Cutthroat": {
+"midday": {
+"parties": 71,
+"with_fish": 2
+}
+},
+"Tunnel Lake|Largemouth bass": {
+"afternoon": {
+"parties": 37,
+"with_fish": 2
+},
+"midday": {
+"parties": 71,
+"with_fish": 2
+},
+"morning": {
+"parties": 119,
+"with_fish": 1
+}
+},
+"Tunnel Lake|Rainbow trout": {
+"afternoon": {
+"parties": 37,
+"with_fish": 17
+},
+"first light": {
+"parties": 39,
+"with_fish": 30
+},
+"midday": {
+"parties": 71,
+"with_fish": 38
+},
+"morning": {
+"parties": 119,
+"with_fish": 76
+}
+},
+"Tunnel Lake|Yellow perch": {
+"afternoon": {
+"parties": 37,
+"with_fish": 2
+},
+"midday": {
+"parties": 71,
+"with_fish": 4
+},
+"morning": {
+"parties": 119,
+"with_fish": 2
+}
+},
+"Upper Gorge - Rock Creek|Coho": {
+"midday": {
+"parties": 31,
+"with_fish": 4
+},
+"morning": {
+"parties": 21,
+"with_fish": 1
+}
+},
+"Upper Gorge - Rock Creek|Steelhead": {
+"midday": {
+"parties": 31,
+"with_fish": 8
+},
+"morning": {
+"parties": 21,
+"with_fish": 7
+}
+},
+"Vancouver Lake|Black Crappie": {
+"midday": {
+"parties": 213,
+"with_fish": 1
+}
+},
+"Vancouver Lake|Bluegill": {
+"morning": {
+"parties": 56,
+"with_fish": 2
+}
+},
+"Vancouver Lake|Brown Bullhead": {
+"afternoon": {
+"parties": 145,
+"with_fish": 12
+},
+"midday": {
+"parties": 213,
+"with_fish": 22
+},
+"morning": {
+"parties": 56,
+"with_fish": 12
+}
+},
+"Vancouver Lake|Carp": {
+"afternoon": {
+"parties": 145,
+"with_fish": 1
+},
+"midday": {
+"parties": 213,
+"with_fish": 3
+},
+"morning": {
+"parties": 56,
+"with_fish": 1
+}
+},
+"Vancouver Lake|Channel catfish": {
+"afternoon": {
+"parties": 145,
+"with_fish": 2
+},
+"midday": {
+"parties": 213,
+"with_fish": 1
+},
+"morning": {
+"parties": 56,
+"with_fish": 2
+}
+},
+"Vancouver Lake|Crappie - Unspecified": {
+"midday": {
+"parties": 213,
+"with_fish": 2
+}
+},
+"Vancouver Lake|Largemouth bass": {
+"afternoon": {
+"parties": 145,
+"with_fish": 5
+},
+"midday": {
+"parties": 213,
+"with_fish": 10
+},
+"morning": {
+"parties": 56,
+"with_fish": 2
+}
+},
+"Vancouver Lake|Pumpkinseed": {
+"midday": {
+"parties": 213,
+"with_fish": 2
+}
+},
+"Vancouver Lake|Rainbow trout": {
+"afternoon": {
+"parties": 145,
+"with_fish": 1
+},
+"midday": {
+"parties": 213,
+"with_fish": 1
+}
+},
+"Vancouver Lake|Salmonid - Unspecified": {
+"afternoon": {
+"parties": 145,
+"with_fish": 2
+}
+},
+"Vancouver Lake|Shad": {
+"midday": {
+"parties": 213,
+"with_fish": 1
+}
+},
+"Vancouver Lake|Starry Flounder": {
+"afternoon": {
+"parties": 145,
+"with_fish": 1
+},
+"midday": {
+"parties": 213,
+"with_fish": 2
+},
+"morning": {
+"parties": 56,
+"with_fish": 1
+}
+},
+"Vancouver Lake|Steelhead": {
+"midday": {
+"parties": 213,
+"with_fish": 1
+}
+},
+"Vancouver Lake|Sunfish - Unspecified": {
+"midday": {
+"parties": 213,
+"with_fish": 1
+}
+},
+"Vancouver Lake|White Crappie": {
+"afternoon": {
+"parties": 145,
+"with_fish": 9
+},
+"midday": {
+"parties": 213,
+"with_fish": 18
+},
+"morning": {
+"parties": 56,
+"with_fish": 11
+}
+},
+"Vancouver Lake|Yellow perch": {
+"afternoon": {
+"parties": 145,
+"with_fish": 16
+},
+"midday": {
+"parties": 213,
+"with_fish": 29
+},
+"morning": {
+"parties": 56,
+"with_fish": 5
+}
+},
+"Wallace River|Bull trout": {
+"afternoon": {
+"parties": 107,
+"with_fish": 1
+}
+},
+"Wallace River|Chinook": {
+"midday": {
+"parties": 572,
+"with_fish": 1
+},
+"morning": {
+"parties": 842,
+"with_fish": 3
+}
+},
+"Wallace River|Chum": {
+"afternoon": {
+"parties": 107,
+"with_fish": 7
+},
+"first light": {
+"parties": 50,
+"with_fish": 7
+},
+"midday": {
+"parties": 572,
+"with_fish": 49
+},
+"morning": {
+"parties": 842,
+"with_fish": 97
+}
+},
+"Wallace River|Coho": {
+"afternoon": {
+"parties": 107,
+"with_fish": 37
+},
+"first light": {
+"parties": 50,
+"with_fish": 35
+},
+"midday": {
+"parties": 572,
+"with_fish": 271
+},
+"morning": {
+"parties": 842,
+"with_fish": 476
+}
+},
+"Wallace River|Cutthroat": {
+"morning": {
+"parties": 842,
+"with_fish": 3
+}
+},
+"Wallace River|Dolly Varden": {
+"morning": {
+"parties": 842,
+"with_fish": 1
+}
+},
+"Wallace River|Largescale Sucker": {
+"afternoon": {
+"parties": 107,
+"with_fish": 1
+}
+},
+"Wallace River|Pink": {
+"afternoon": {
+"parties": 107,
+"with_fish": 3
+},
+"first light": {
+"parties": 50,
+"with_fish": 6
+},
+"midday": {
+"parties": 572,
+"with_fish": 29
+},
+"morning": {
+"parties": 842,
+"with_fish": 44
+}
+},
+"Wallace River|Rainbow trout": {
+"morning": {
+"parties": 842,
+"with_fish": 2
+}
+},
+"Wallace River|Steelhead": {
+"afternoon": {
+"parties": 107,
+"with_fish": 3
+},
+"midday": {
+"parties": 572,
+"with_fish": 11
+},
+"morning": {
+"parties": 842,
+"with_fish": 20
+}
+},
+"Wallace River|Sucker": {
+"midday": {
+"parties": 572,
+"with_fish": 1
+}
+},
+"Wallace River|Trout - Unspecified": {
+"midday": {
+"parties": 572,
+"with_fish": 1
+}
+},
+"Wallace River|Whitefish": {
+"midday": {
+"parties": 572,
+"with_fish": 9
+},
+"morning": {
+"parties": 842,
+"with_fish": 3
+}
+},
+"Washougal River|Carp": {
+"afternoon": {
+"parties": 666,
+"with_fish": 1
+}
+},
+"Washougal River|Chinook": {
+"afternoon": {
+"parties": 666,
+"with_fish": 7
+},
+"evening": {
+"parties": 233,
+"with_fish": 2
+},
+"first light": {
+"parties": 556,
+"with_fish": 13
+},
+"midday": {
+"parties": 1415,
+"with_fish": 38
+},
+"morning": {
+"parties": 1901,
+"with_fish": 33
+}
+},
+"Washougal River|Coho": {
+"first light": {
+"parties": 556,
+"with_fish": 1
+},
+"midday": {
+"parties": 1415,
+"with_fish": 3
+},
+"morning": {
+"parties": 1901,
+"with_fish": 11
+}
+},
+"Washougal River|Cutthroat": {
+"afternoon": {
+"parties": 666,
+"with_fish": 1
+},
+"evening": {
+"parties": 233,
+"with_fish": 1
+},
+"first light": {
+"parties": 556,
+"with_fish": 1
+}
+},
+"Washougal River|Steelhead": {
+"afternoon": {
+"parties": 666,
+"with_fish": 46
+},
+"evening": {
+"parties": 233,
+"with_fish": 15
+},
+"first light": {
+"parties": 556,
+"with_fish": 102
+},
+"midday": {
+"parties": 1415,
+"with_fish": 99
+},
+"morning": {
+"parties": 1901,
+"with_fish": 298
+}
+},
+"Washougal River|Unknown": {
+"first light": {
+"parties": 556,
+"with_fish": 2
+},
+"midday": {
+"parties": 1415,
+"with_fish": 4
+},
+"morning": {
+"parties": 1901,
+"with_fish": 1
+}
+},
+"Willapa River|Chinook": {
+"morning": {
+"parties": 632,
+"with_fish": 1
+}
+},
+"Willapa River|Chum": {
+"morning": {
+"parties": 632,
+"with_fish": 1
+}
+},
+"Willapa River|Coho": {
+"afternoon": {
+"parties": 132,
+"with_fish": 6
+},
+"midday": {
+"parties": 389,
+"with_fish": 28
+},
+"morning": {
+"parties": 632,
+"with_fish": 84
+}
+},
+"Willapa River|Cutthroat": {
+"afternoon": {
+"parties": 132,
+"with_fish": 7
+},
+"midday": {
+"parties": 389,
+"with_fish": 36
+},
+"morning": {
+"parties": 632,
+"with_fish": 74
+}
+},
+"Willapa River|Rainbow trout": {
+"midday": {
+"parties": 389,
+"with_fish": 2
+},
+"morning": {
+"parties": 632,
+"with_fish": 16
+}
+},
+"Willapa River|Steelhead": {
+"afternoon": {
+"parties": 132,
+"with_fish": 10
+},
+"midday": {
+"parties": 389,
+"with_fish": 68
+},
+"morning": {
+"parties": 632,
+"with_fish": 154
+}
+},
+"Willapa River|Sucker": {
+"morning": {
+"parties": 632,
+"with_fish": 4
+}
+},
+"Willapa River|Trout - Unspecified": {
+"morning": {
+"parties": 632,
+"with_fish": 2
+}
+},
+"Wynoochee River|Coho": {
+"afternoon": {
+"parties": 41,
+"with_fish": 1
+},
+"first light": {
+"parties": 43,
+"with_fish": 1
+},
+"midday": {
+"parties": 193,
+"with_fish": 4
+},
+"morning": {
+"parties": 697,
+"with_fish": 20
+}
+},
+"Wynoochee River|Cutthroat": {
+"midday": {
+"parties": 193,
+"with_fish": 2
+},
+"morning": {
+"parties": 697,
+"with_fish": 14
+}
+},
+"Wynoochee River|Northern pikeminnow": {
+"first light": {
+"parties": 43,
+"with_fish": 1
+},
+"morning": {
+"parties": 697,
+"with_fish": 1
+}
+},
+"Wynoochee River|Rainbow trout": {
+"midday": {
+"parties": 193,
+"with_fish": 2
+},
+"morning": {
+"parties": 697,
+"with_fish": 12
+}
+},
+"Wynoochee River|Steelhead": {
+"afternoon": {
+"parties": 41,
+"with_fish": 5
+},
+"first light": {
+"parties": 43,
+"with_fish": 12
+},
+"midday": {
+"parties": 193,
+"with_fish": 16
+},
+"morning": {
+"parties": 697,
+"with_fish": 238
+}
+},
+"Wynoochee River|Whitefish": {
+"midday": {
+"parties": 193,
+"with_fish": 1
+},
+"morning": {
+"parties": 697,
+"with_fish": 14
+}
+}
+},
 "seat": {
 "Abernathy Creek": {
 "Bank": {
@@ -2486,6 +10546,1002 @@
 "p25": 64.0,
 "p50": 69.0,
 "p75": 76.0
+}
+},
+"target": {
+"Abernathy Creek|Steelhead": {
+"anglers": 94,
+"parties": 65
+},
+"Baker Lake|Sockeye": {
+"anglers": 2317,
+"parties": 1041
+},
+"Battle Ground Lake|Trout": {
+"anglers": 2087,
+"parties": 874
+},
+"Blue Creek (Cowlitz)|Steelhead": {
+"anglers": 178,
+"parties": 86
+},
+"Bogachiel River|Chinook": {
+"anglers": 101,
+"parties": 50
+},
+"Bogachiel River|Coho": {
+"anglers": 232,
+"parties": 99
+},
+"Bogachiel River|Steelhead": {
+"anglers": 2338,
+"parties": 1203
+},
+"Calawah River|Steelhead": {
+"anglers": 560,
+"parties": 284
+},
+"Carbon River|Chinook": {
+"anglers": 1719,
+"parties": 1059
+},
+"Carbon River|Coho": {
+"anglers": 887,
+"parties": 583
+},
+"Carbon River|Pink": {
+"anglers": 296,
+"parties": 180
+},
+"Carlisle Lake|Any species": {
+"anglers": 107,
+"parties": 33
+},
+"Carlisle Lake|Rainbow trout": {
+"anglers": 154,
+"parties": 60
+},
+"Carlisle Lake|Trout": {
+"anglers": 2112,
+"parties": 858
+},
+"Cascade River|Bull trout": {
+"anglers": 46,
+"parties": 30
+},
+"Cascade River|Chinook": {
+"anglers": 2358,
+"parties": 1408
+},
+"Cascade River|Coho": {
+"anglers": 1699,
+"parties": 952
+},
+"Chehalis River|Coho": {
+"anglers": 315,
+"parties": 172
+},
+"Chehalis River|Steelhead": {
+"anglers": 192,
+"parties": 91
+},
+"Clearwater River |Steelhead": {
+"anglers": 121,
+"parties": 52
+},
+"Coldwater Lake|Trout": {
+"anglers": 145,
+"parties": 75
+},
+"Coweeman River|Steelhead": {
+"anglers": 238,
+"parties": 155
+},
+"Cowlitz River|Any species": {
+"anglers": 4329,
+"parties": 1775
+},
+"Cowlitz River|Chinook": {
+"anglers": 2312,
+"parties": 1640
+},
+"Cowlitz River|Coho": {
+"anglers": 3345,
+"parties": 1958
+},
+"Cowlitz River|Cutthroat": {
+"anglers": 44,
+"parties": 32
+},
+"Cowlitz River|Salmonid": {
+"anglers": 4302,
+"parties": 2428
+},
+"Cowlitz River|Steelhead": {
+"anglers": 16353,
+"parties": 8339
+},
+"Cowlitz River|Sturgeon": {
+"anglers": 743,
+"parties": 289
+},
+"Cowlitz River|Trout": {
+"anglers": 41,
+"parties": 31
+},
+"East Fork Lewis River|Steelhead": {
+"anglers": 1852,
+"parties": 1340
+},
+"Elochoman River|Any species": {
+"anglers": 60,
+"parties": 32
+},
+"Elochoman River|Steelhead": {
+"anglers": 1486,
+"parties": 951
+},
+"Ft. Borst Park Pond|Trout": {
+"anglers": 1201,
+"parties": 450
+},
+"Germany Creek|Steelhead": {
+"anglers": 121,
+"parties": 89
+},
+"Goose Lake|Trout": {
+"anglers": 136,
+"parties": 67
+},
+"Grays River|Coho": {
+"anglers": 76,
+"parties": 44
+},
+"Grays River|Steelhead": {
+"anglers": 302,
+"parties": 163
+},
+"Hoh River|Chinook": {
+"anglers": 186,
+"parties": 89
+},
+"Hoh River|Coho": {
+"anglers": 332,
+"parties": 159
+},
+"Hoh River|Steelhead": {
+"anglers": 5232,
+"parties": 2761
+},
+"Horseshoe Lake|Any species": {
+"anglers": 107,
+"parties": 49
+},
+"Horseshoe Lake|Trout": {
+"anglers": 1169,
+"parties": 487
+},
+"Horsethief Lake|Trout": {
+"anglers": 1518,
+"parties": 597
+},
+"Humptulips River|Coho": {
+"anglers": 178,
+"parties": 98
+},
+"Humptulips River|Multiple salmon and/or steelhead targeted": {
+"anglers": 36,
+"parties": 22
+},
+"Humptulips River|Steelhead": {
+"anglers": 1178,
+"parties": 721
+},
+"Icehouse Lake|Any species": {
+"anglers": 43,
+"parties": 21
+},
+"Icehouse Lake|Trout": {
+"anglers": 717,
+"parties": 297
+},
+"Kalama River|Any species": {
+"anglers": 721,
+"parties": 469
+},
+"Kalama River|Chinook": {
+"anglers": 521,
+"parties": 324
+},
+"Kalama River|Coho": {
+"anglers": 272,
+"parties": 183
+},
+"Kalama River|Steelhead": {
+"anglers": 2715,
+"parties": 1898
+},
+"Klineline Pond|Trout": {
+"anglers": 13371,
+"parties": 7560
+},
+"Kress Lake|Any species": {
+"anglers": 594,
+"parties": 298
+},
+"Kress Lake|Trout": {
+"anglers": 1690,
+"parties": 813
+},
+"Lacamas Lake|Any species": {
+"anglers": 210,
+"parties": 98
+},
+"Lacamas Lake|Carp": {
+"anglers": 70,
+"parties": 44
+},
+"Lacamas Lake|Trout": {
+"anglers": 634,
+"parties": 326
+},
+"Lake Sacajawea|Any species": {
+"anglers": 200,
+"parties": 103
+},
+"Lake Sacajawea|Trout": {
+"anglers": 471,
+"parties": 225
+},
+"Little Ash Lake|Trout": {
+"anglers": 589,
+"parties": 256
+},
+"Little White Salmon - Drano Lake|Salmonid": {
+"anglers": 18941,
+"parties": 7445
+},
+"Merrill Lake|Trout": {
+"anglers": 55,
+"parties": 32
+},
+"Mineral Lake|Any species": {
+"anglers": 530,
+"parties": 213
+},
+"Mineral Lake|Trout": {
+"anglers": 3868,
+"parties": 1494
+},
+"Naselle River|Coho": {
+"anglers": 42,
+"parties": 26
+},
+"Naselle River|Salmonid": {
+"anglers": 60,
+"parties": 36
+},
+"Naselle River|Steelhead": {
+"anglers": 1079,
+"parties": 636
+},
+"Nisqually River|Chinook": {
+"anglers": 8071,
+"parties": 6416
+},
+"Nisqually River|Coho": {
+"anglers": 1605,
+"parties": 1253
+},
+"Nisqually River|Pink": {
+"anglers": 32,
+"parties": 21
+},
+"Nisqually River|Rainbow trout": {
+"anglers": 60,
+"parties": 34
+},
+"Nooksack River - North Fork|Chinook": {
+"anglers": 685,
+"parties": 400
+},
+"Nooksack River - North Fork|Coho": {
+"anglers": 31,
+"parties": 20
+},
+"Nooksack River - North Fork|Other": {
+"anglers": 34,
+"parties": 21
+},
+"Nooksack River - North Fork|Steelhead": {
+"anglers": 707,
+"parties": 441
+},
+"Nooksack River - South Fork|Steelhead": {
+"anglers": 35,
+"parties": 24
+},
+"Nooksack River|Coho": {
+"anglers": 102,
+"parties": 76
+},
+"Plummer Lake|Trout": {
+"anglers": 570,
+"parties": 269
+},
+"Puyallup River|Chinook": {
+"anglers": 5601,
+"parties": 3891
+},
+"Puyallup River|Coho": {
+"anglers": 2014,
+"parties": 1410
+},
+"Puyallup River|Pink": {
+"anglers": 3739,
+"parties": 2364
+},
+"Quillayute River|Chinook": {
+"anglers": 493,
+"parties": 234
+},
+"Quillayute River|Coho": {
+"anglers": 942,
+"parties": 434
+},
+"Quillayute River|Steelhead": {
+"anglers": 111,
+"parties": 57
+},
+"Quinault River|Steelhead": {
+"anglers": 116,
+"parties": 65
+},
+"Riffe Lake|Coho": {
+"anglers": 195,
+"parties": 79
+},
+"Rowland Lake|Any species": {
+"anglers": 290,
+"parties": 117
+},
+"Rowland Lake|Trout": {
+"anglers": 2108,
+"parties": 873
+},
+"Salmon Creek|Steelhead": {
+"anglers": 975,
+"parties": 725
+},
+"Salmon Creek|Trout": {
+"anglers": 29,
+"parties": 22
+},
+"Salmon River|Steelhead": {
+"anglers": 94,
+"parties": 46
+},
+"Satsop River|Coho": {
+"anglers": 222,
+"parties": 131
+},
+"Satsop River|Steelhead": {
+"anglers": 546,
+"parties": 303
+},
+"Sauk River|Bull trout": {
+"anglers": 60,
+"parties": 39
+},
+"Sauk River|Steelhead": {
+"anglers": 5179,
+"parties": 2976
+},
+"Silver Lake|Any species": {
+"anglers": 729,
+"parties": 302
+},
+"Silver Lake|Bass": {
+"anglers": 234,
+"parties": 142
+},
+"Silver Lake|Crappie": {
+"anglers": 869,
+"parties": 415
+},
+"Silver Lake|Trout": {
+"anglers": 105,
+"parties": 49
+},
+"Silver Lake|Yellow perch": {
+"anglers": 64,
+"parties": 33
+},
+"Skagit River|Bull trout": {
+"anglers": 304,
+"parties": 185
+},
+"Skagit River|Chinook": {
+"anglers": 3586,
+"parties": 2120
+},
+"Skagit River|Coho": {
+"anglers": 12638,
+"parties": 6824
+},
+"Skagit River|Other": {
+"anglers": 497,
+"parties": 296
+},
+"Skagit River|Pink": {
+"anglers": 5820,
+"parties": 2872
+},
+"Skagit River|Rainbow trout": {
+"anglers": 126,
+"parties": 75
+},
+"Skagit River|Sockeye": {
+"anglers": 3997,
+"parties": 2382
+},
+"Skagit River|Steelhead": {
+"anglers": 4942,
+"parties": 2493
+},
+"Skookumchuck River|Coho": {
+"anglers": 63,
+"parties": 39
+},
+"Skookumchuck River|Steelhead": {
+"anglers": 1036,
+"parties": 672
+},
+"Skykomish River|Chinook": {
+"anglers": 5328,
+"parties": 2256
+},
+"Skykomish River|Coho": {
+"anglers": 763,
+"parties": 443
+},
+"Skykomish River|Multiple salmon and/or steelhead targeted": {
+"anglers": 50,
+"parties": 22
+},
+"Skykomish River|Other": {
+"anglers": 106,
+"parties": 54
+},
+"Skykomish River|Pink": {
+"anglers": 426,
+"parties": 274
+},
+"Skykomish River|Rainbow trout": {
+"anglers": 97,
+"parties": 61
+},
+"Skykomish River|Salmonid": {
+"anglers": 124,
+"parties": 58
+},
+"Skykomish River|Steelhead": {
+"anglers": 2942,
+"parties": 2009
+},
+"Skykomish River|Trout": {
+"anglers": 85,
+"parties": 46
+},
+"Snohomish River|Any species": {
+"anglers": 53,
+"parties": 34
+},
+"Snohomish River|Coho": {
+"anglers": 4149,
+"parties": 2252
+},
+"Snohomish River|Multiple salmon and/or steelhead targeted": {
+"anglers": 126,
+"parties": 69
+},
+"Snohomish River|Pink": {
+"anglers": 6336,
+"parties": 3172
+},
+"Snohomish River|Rainbow trout": {
+"anglers": 45,
+"parties": 29
+},
+"Snohomish River|Salmonid": {
+"anglers": 36,
+"parties": 22
+},
+"Snoqualmie River|Coho": {
+"anglers": 185,
+"parties": 106
+},
+"Snoqualmie River|Cutthroat": {
+"anglers": 33,
+"parties": 20
+},
+"Snoqualmie River|Other": {
+"anglers": 48,
+"parties": 30
+},
+"Snoqualmie River|Rainbow trout": {
+"anglers": 38,
+"parties": 26
+},
+"Snoqualmie River|Steelhead": {
+"anglers": 532,
+"parties": 363
+},
+"Snoqualmie River|Trout": {
+"anglers": 48,
+"parties": 36
+},
+"Sol Duc River|Chinook": {
+"anglers": 833,
+"parties": 415
+},
+"Sol Duc River|Coho": {
+"anglers": 1066,
+"parties": 504
+},
+"Sol Duc River|Other": {
+"anglers": 53,
+"parties": 30
+},
+"Sol Duc River|Steelhead": {
+"anglers": 3006,
+"parties": 1522
+},
+"South Lewis County Park Pond|Any species": {
+"anglers": 54,
+"parties": 27
+},
+"South Lewis County Park Pond|Trout": {
+"anglers": 183,
+"parties": 97
+},
+"Spearfish Lake|Trout": {
+"anglers": 1616,
+"parties": 678
+},
+"Stillaguamish River - North Fork|Coho": {
+"anglers": 34,
+"parties": 24
+},
+"Stillaguamish River - North Fork|Cutthroat": {
+"anglers": 184,
+"parties": 122
+},
+"Stillaguamish River - North Fork|Steelhead": {
+"anglers": 483,
+"parties": 349
+},
+"Stillaguamish River - North Fork|Trout": {
+"anglers": 64,
+"parties": 47
+},
+"Stillaguamish River - South Fork|Rainbow trout": {
+"anglers": 164,
+"parties": 102
+},
+"Stillaguamish River - South Fork|Trout": {
+"anglers": 113,
+"parties": 74
+},
+"Stillaguamish River|Coho": {
+"anglers": 2718,
+"parties": 1803
+},
+"Stillaguamish River|Cutthroat": {
+"anglers": 40,
+"parties": 28
+},
+"Stillaguamish River|Pink": {
+"anglers": 360,
+"parties": 193
+},
+"Stillaguamish River|Steelhead": {
+"anglers": 52,
+"parties": 35
+},
+"Swofford Pond|Any species": {
+"anglers": 94,
+"parties": 41
+},
+"Swofford Pond|Bass": {
+"anglers": 52,
+"parties": 25
+},
+"Swofford Pond|Trout": {
+"anglers": 170,
+"parties": 81
+},
+"Tokul Creek|Steelhead": {
+"anglers": 544,
+"parties": 410
+},
+"Tunnel Lake|Any species": {
+"anglers": 64,
+"parties": 25
+},
+"Tunnel Lake|Trout": {
+"anglers": 524,
+"parties": 239
+},
+"Upper Gorge - Rock Creek|Steelhead": {
+"anglers": 40,
+"parties": 33
+},
+"Vancouver Lake|Any species": {
+"anglers": 109,
+"parties": 64
+},
+"Vancouver Lake|Bass": {
+"anglers": 44,
+"parties": 25
+},
+"Vancouver Lake|Bullhead": {
+"anglers": 325,
+"parties": 150
+},
+"Vancouver Lake|Crappie": {
+"anglers": 120,
+"parties": 66
+},
+"Vancouver Lake|Yellow perch": {
+"anglers": 204,
+"parties": 77
+},
+"Wallace River|Coho": {
+"anglers": 2077,
+"parties": 1304
+},
+"Wallace River|Steelhead": {
+"anglers": 357,
+"parties": 247
+},
+"Washougal River|Chinook": {
+"anglers": 302,
+"parties": 238
+},
+"Washougal River|Steelhead": {
+"anglers": 118,
+"parties": 103
+},
+"Willapa River - South Fork|Steelhead": {
+"anglers": 37,
+"parties": 28
+},
+"Willapa River|Coho": {
+"anglers": 154,
+"parties": 100
+},
+"Willapa River|Salmonid": {
+"anglers": 92,
+"parties": 63
+},
+"Willapa River|Steelhead": {
+"anglers": 1430,
+"parties": 992
+},
+"Wynoochee River|Multiple salmon and/or steelhead targeted": {
+"anglers": 62,
+"parties": 35
+},
+"Wynoochee River|Steelhead": {
+"anglers": 1817,
+"parties": 911
+}
+},
+"trips": {
+"Abernathy Creek": {
+"complete": 48,
+"incomplete": 19
+},
+"Baker Lake": {
+"complete": 1043,
+"incomplete": 13
+},
+"Battle Ground Lake": {
+"complete": 602,
+"incomplete": 283
+},
+"Blue Creek (Cowlitz)": {
+"complete": 5,
+"incomplete": 84
+},
+"Bogachiel River": {
+"complete": 1095,
+"incomplete": 268
+},
+"Calawah River": {
+"complete": 230,
+"incomplete": 70
+},
+"Carbon River": {
+"complete": 1823,
+"incomplete": 0
+},
+"Carlisle Lake": {
+"complete": 870,
+"incomplete": 88
+},
+"Cascade River": {
+"complete": 806,
+"incomplete": 1602
+},
+"Chehalis River": {
+"complete": 4682,
+"incomplete": 406
+},
+"Clearwater River ": {
+"complete": 41,
+"incomplete": 11
+},
+"Coldwater Lake": {
+"complete": 77,
+"incomplete": 1
+},
+"Coweeman River": {
+"complete": 71,
+"incomplete": 167
+},
+"Cowlitz River": {
+"complete": 5148,
+"incomplete": 10785
+},
+"Davis Lake": {
+"complete": 14,
+"incomplete": 7
+},
+"Dickey River": {
+"complete": 17,
+"incomplete": 15
+},
+"East Fork Lewis River": {
+"complete": 1031,
+"incomplete": 1438
+},
+"Elochoman River": {
+"complete": 631,
+"incomplete": 370
+},
+"Ft. Borst Park Pond": {
+"complete": 397,
+"incomplete": 68
+},
+"Germany Creek": {
+"complete": 69,
+"incomplete": 24
+},
+"Goose Lake": {
+"complete": 30,
+"incomplete": 38
+},
+"Grays River": {
+"complete": 134,
+"incomplete": 88
+},
+"Hoh River": {
+"complete": 2184,
+"incomplete": 841
+},
+"Horseshoe Lake": {
+"complete": 287,
+"incomplete": 253
+},
+"Horsethief Lake": {
+"complete": 510,
+"incomplete": 119
+},
+"Humptulips River": {
+"complete": 5511,
+"incomplete": 1378
+},
+"Icehouse Lake": {
+"complete": 194,
+"incomplete": 124
+},
+"Kalama River": {
+"complete": 2743,
+"incomplete": 4289
+},
+"Klineline Pond": {
+"complete": 1329,
+"incomplete": 6237
+},
+"Kress Lake": {
+"complete": 368,
+"incomplete": 782
+},
+"Lacamas Lake": {
+"complete": 166,
+"incomplete": 326
+},
+"Lake Sacajawea": {
+"complete": 65,
+"incomplete": 281
+},
+"Little Ash Lake": {
+"complete": 152,
+"incomplete": 107
+},
+"Little White Salmon - Drano Lake": {
+"complete": 6268,
+"incomplete": 1193
+},
+"Mayfield Lake": {
+"complete": 4,
+"incomplete": 17
+},
+"Merrill Lake": {
+"complete": 26,
+"incomplete": 6
+},
+"Mineral Lake": {
+"complete": 1276,
+"incomplete": 432
+},
+"Naselle River": {
+"complete": 406,
+"incomplete": 305
+},
+"Nisqually River": {
+"complete": 7789,
+"incomplete": 217
+},
+"Nooksack River": {
+"complete": 55,
+"incomplete": 57
+},
+"Nooksack River - North Fork": {
+"complete": 428,
+"incomplete": 470
+},
+"Nooksack River - South Fork": {
+"complete": 17,
+"incomplete": 15
+},
+"Plummer Lake": {
+"complete": 247,
+"incomplete": 28
+},
+"Puyallup River": {
+"complete": 7665,
+"incomplete": 0
+},
+"Quillayute River": {
+"complete": 478,
+"incomplete": 258
+},
+"Quinault River": {
+"complete": 46,
+"incomplete": 20
+},
+"Riffe Lake": {
+"complete": 91,
+"incomplete": 44
+},
+"Rowland Lake": {
+"complete": 769,
+"incomplete": 287
+},
+"Salmon Creek": {
+"complete": 524,
+"incomplete": 279
+},
+"Salmon River": {
+"complete": 31,
+"incomplete": 16
+},
+"Satsop River": {
+"complete": 1950,
+"incomplete": 82
+},
+"Sauk River": {
+"complete": 1611,
+"incomplete": 1423
+},
+"Silver Lake": {
+"complete": 642,
+"incomplete": 344
+},
+"Skagit River": {
+"complete": 9139,
+"incomplete": 8224
+},
+"Skookumchuck River": {
+"complete": 463,
+"incomplete": 259
+},
+"Skykomish River": {
+"complete": 3928,
+"incomplete": 1291
+},
+"Skykomish River - NF": {
+"complete": 12,
+"incomplete": 8
+},
+"Snohomish River": {
+"complete": 4720,
+"incomplete": 1024
+},
+"Snoqualmie River": {
+"complete": 419,
+"incomplete": 219
+},
+"Sol Duc River": {
+"complete": 1900,
+"incomplete": 574
+},
+"South Fork Toutle River": {
+"complete": 451,
+"incomplete": 852
+},
+"South Lewis County Park Pond": {
+"complete": 28,
+"incomplete": 102
+},
+"Spearfish Lake": {
+"complete": 645,
+"incomplete": 66
+},
+"Stillaguamish River": {
+"complete": 1577,
+"incomplete": 550
+},
+"Stillaguamish River - North Fork": {
+"complete": 455,
+"incomplete": 141
+},
+"Stillaguamish River - South Fork": {
+"complete": 130,
+"incomplete": 109
+},
+"Swofford Pond": {
+"complete": 42,
+"incomplete": 146
+},
+"Tokul Creek": {
+"complete": 302,
+"incomplete": 109
+},
+"Tunnel Lake": {
+"complete": 92,
+"incomplete": 177
+},
+"Upper Gorge - Rock Creek": {
+"complete": 39,
+"incomplete": 29
+},
+"Vancouver Lake": {
+"complete": 48,
+"incomplete": 371
+},
+"Wallace River": {
+"complete": 1420,
+"incomplete": 147
+},
+"Washougal River": {
+"complete": 1572,
+"incomplete": 3199
+},
+"Willapa River": {
+"complete": 756,
+"incomplete": 410
+},
+"Willapa River - South Fork": {
+"complete": 22,
+"incomplete": 7
+},
+"Wynoochee River": {
+"complete": 757,
+"incomplete": 217
 }
 }
 }

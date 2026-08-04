@@ -309,6 +309,31 @@ class TestFieldNotes(unittest.TestCase):
         self.assertEqual(size['n'], 39)
 
 
+class TestTimeOfDay(unittest.TestCase):
+    """A party counts once, in the band it set out in."""
+
+    def test_bands(self):
+        self.assertEqual(socrata._band(5), 'first light')
+        self.assertEqual(socrata._band(8), 'morning')
+        self.assertEqual(socrata._band(12), 'midday')
+        self.assertEqual(socrata._band(16), 'afternoon')
+        self.assertEqual(socrata._band(21), 'evening')
+
+    def test_a_target_that_was_never_asked_is_not_a_target(self):
+        interviews = [{'interview_id': str(i), 'event_date': '2026-07-01',
+                       'water_body': 'Ash Lake', 'angler_count': '1',
+                       'target_species': 'Target species not asked'}
+                      for i in range(30)]
+        real = socrata.fetch_all
+        socrata.fetch_all = lambda dataset, **kw: (
+            interviews if dataset == socrata.INTERVIEWS else [])
+        try:
+            detail = socrata.load(say=lambda *a: None)[3]
+        finally:
+            socrata.fetch_all = real
+        self.assertEqual(detail['target'], {})
+
+
 class TestLocalityMatching(unittest.TestCase):
     """A dock borrows a neighbour's position, not a namesake's across the state."""
 

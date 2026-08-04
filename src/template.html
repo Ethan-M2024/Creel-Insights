@@ -206,7 +206,9 @@ td.num { font-family: var(--mono); font-variant-numeric: tabular-nums; }
   background: var(--surface-2); border: 1px solid var(--rule); overflow: hidden;
   vertical-align: middle;
 }
-.meter > span { display: block; height: 100%; }
+/* the quota meters pass their own colour; the field notes do not, so a bar with
+   no colour of its own still has to be visible */
+.meter > span { display: block; height: 100%; background: var(--accent); }
 .meter-label { font-family: var(--mono); font-size: 11.5px; margin-left: 7px; }
 td.wrap { white-space: normal; min-width: 8ch; }
 
@@ -447,6 +449,13 @@ ul.checks li { padding: 4px 0; border-bottom: 1px solid var(--grid); }
       <select id="f-species3"></select>
     </div>
     <div class="field">
+      <label>Year chart</label>
+      <div class="seg" id="f-year">
+        <button data-v="fish" aria-pressed="true">Fish counted</button>
+        <button data-v="rate" aria-pressed="false">Per angler</button>
+      </div>
+    </div>
+    <div class="field">
       <label>Count</label>
       <div class="seg" id="f-fate3">
         <button data-v="kept" aria-pressed="true">Kept</button>
@@ -458,9 +467,8 @@ ul.checks li { padding: 4px 0; border-bottom: 1px solid var(--grid); }
   <div class="layout">
     <div class="card">
       <h2 id="year-title">Kept by year</h2>
-      <p class="note">Every fish this species contributed to the record, by the year it
-        was counted. Years before a source began are lower because the record is, not
-        because the fishing was.</p>
+      <p class="note" id="year-note">Every fish this species contributed to the
+        record, by the year it was counted.</p>
       <div id="year-chart"></div>
     </div>
     <div class="card">
@@ -660,6 +668,9 @@ const state = {
   // A steelhead river that is catch-and-release reports almost no kept fish,
   // and reading it on the kept column alone says the fishing is dead.
   fate: 'kept',
+  // fish counted, or fish per angler. Volume alone reads a year with more anglers
+  // as a better year, which is how a fishery in decline looks healthy.
+  yearMode: 'fish',
   // per angler, or per hour those anglers actually fished. Only the interview
   // database times its trips, so the hour basis covers part of the state — the
   // places without it say so rather than being quietly dropped to zero.
@@ -1526,7 +1537,12 @@ function fieldNotes(pid) {
   const size = (d.size || {})[key];
   const gear = (d.gear || {})[key];
   const seat = (d.seat || {})[String(pid)];
-  if (!size && !gear && !seat) return '';
+  const hour = (d.hour || {})[key];
+  const target = (d.target || {})[key];
+  const trips = (d.trips || {})[String(pid)];
+  const crowd = (d.crowd || {})[String(pid)];
+  const mix = speciesMix(pid);
+  if (!size && !gear && !seat && !hour && !target && !crowd && !mix) return '';
 
   const inches = cm => (cm / 2.54).toFixed(0);
   let out = '<div class="field-notes">';
@@ -1547,6 +1563,26 @@ function fieldNotes(pid) {
         <td class="num" style="color:var(--ink-3)">${Math.round(100 * n / total)}%</td>
         </tr>`).join('') + '</tbody></table>';
   }
+  if (hour) {
+    const bands = ['first light', 'morning', 'midday', 'afternoon', 'evening'];
+    const rows = bands.filter(b => hour[b] && hour[b].parties >= 20);
+    if (rows.length > 1) {
+      const best = Math.max(...rows.map(b => hour[b].with_fish / hour[b].parties));
+      out += `<h3>When the fishing was done</h3>
+        <p class="note">Share of parties that had
+          ${escapeHtml(SPECIES[state.species])} aboard, by the time of day they
+          started. A party is counted once, in the band it set out in.</p>
+        <table><tbody>` + rows.map(b => {
+          const v = hour[b], share = v.with_fish / v.parties;
+          return `<tr><td>${b}</td>
+            <td class="num" style="width:120px">
+              <span class="meter"><span style="width:${Math.round(100 * share / best)}%"></span></span>
+            </td>
+            <td class="num">${asPercent(share)}</td>
+            <td class="num" style="color:var(--ink-3)">${fmt(v.parties)} parties</td></tr>`;
+        }).join('') + '</tbody></table>';
+    }
+  }
   if (seat && (seat.Bank || seat.Boat)) {
     const line = (label, v) => v ? `
       <tr><td>${label}</td>
@@ -1557,7 +1593,60 @@ function fieldNotes(pid) {
       '<table><tbody>' + line('Bank', seat.Bank) + line('Boat', seat.Boat) +
       '</tbody></table>';
   }
+  if (target) {
+    const row = LIFETIME.get(pid)?.get(state.species);
+    const fish = row ? fishFate(row.kept, row.rel) : 0;
+    out += `<h3>Who was fishing for them</h3>
+      <p class="note">${fmt(target.parties)} parties, ${fmt(target.anglers)} anglers,
+        told the sampler they were after ${escapeHtml(SPECIES[state.species])} here` +
+      (fish && target.anglers
+        ? ` — ${rate(fish / target.anglers)} per angler who came for them, against
+            ${rate(row && PLACES[pid].anglers ? fish / PLACES[pid].anglers : 0)} per
+            angler on the water. The gap is everyone who was fishing for something
+            else.`
+        : '.') + '</p>';
+  }
+  if (crowd) {
+    const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+    const peak = Math.max(...crowd);
+    const total = crowd.reduce((a, b) => a + b, 0);
+    out += `<h3>When everyone else goes</h3>
+      <p class="note">Anglers interviewed by day of the week, over the whole record —
+        ${fmt(total)} in all.</p><table><tbody>` +
+      crowd.map((n, i) => `<tr><td>${days[i]}</td>
+        <td class="num" style="width:120px"><span class="meter"><span style="width:${
+          Math.round(100 * n / peak)}%"></span></span></td>
+        <td class="num">${fmt(n)}</td></tr>`).join('') + '</tbody></table>';
+  }
+  if (mix) {
+    out += `<h3>What else is caught here</h3>
+      <p class="note">Every species this place has reported, over the whole record.</p>
+      <table><tbody>` + mix.map(m => `
+        <tr><td>${escapeHtml(m.name)}</td><td class="num">${fmt(m.fish)}</td>
+        <td class="num" style="color:var(--ink-3)">${m.share}%</td></tr>`).join('') +
+      '</tbody></table>';
+  }
+  if (trips) {
+    const total = trips.complete + trips.incomplete;
+    out += `<p class="note">${asPercent(trips.complete / total)} of the
+      ${fmt(total)} interviews here were taken from parties that had finished
+      fishing; the rest were still at it, and their catch is what they had so far.</p>`;
+  }
   return out + '</div>';
+}
+
+/* Every species a place has ever reported, biggest first. A reader looking at a
+   Chinook map still wants to know that the river is full of pinks in August. */
+function speciesMix(pid) {
+  const bySpecies = LIFETIME.get(pid);
+  if (!bySpecies) return null;
+  const rows = [...bySpecies.entries()]
+    .map(([sp, t]) => ({ name: SPECIES[sp], fish: t.kept + t.rel }))
+    .filter(r => r.fish > 0)
+    .sort((a, b) => b.fish - a.fish);
+  if (rows.length < 2) return null;
+  const total = rows.reduce((a, r) => a + r.fish, 0);
+  return rows.slice(0, 8).map(r => ({ ...r, share: Math.round(100 * r.fish / total) }));
 }
 
 function weeklyChart(series) {
@@ -1738,12 +1827,26 @@ function exportPlaces() {
 function renderSpecies() {
   const sp = SPECIES[state.species];
   const released = DATA.years_released || {};
+  const anglers = DATA.year_anglers || {};
+  const perAngler = state.yearMode === 'rate';
   const years = Object.entries(DATA.years)
-    .map(([y, byS]) => [y, fishFate(byS[sp] || 0, (released[y] || {})[sp] || 0)])
+    .map(([y, byS]) => {
+      const fish = fishFate(byS[sp] || 0, (released[y] || {})[sp] || 0);
+      return [y, perAngler ? (anglers[y] ? fish / anglers[y] : 0) : fish];
+    })
     .filter(([y]) => y >= '1998');
-  document.getElementById('year-chart').innerHTML = barChart(years, `fish ${fateWord()}`);
-  document.getElementById('year-title').textContent =
-    `${fateWord().charAt(0).toUpperCase()}${fateWord().slice(1)} by year`;
+  document.getElementById('year-chart').innerHTML = barChart(
+    years, perAngler ? `${fateWord()} per angler interviewed` : `fish ${fateWord()}`);
+  document.getElementById('year-title').textContent = perAngler
+    ? `${fateWord().charAt(0).toUpperCase()}${fateWord().slice(1)} per angler, by year`
+    : `${fateWord().charAt(0).toUpperCase()}${fateWord().slice(1)} by year`;
+  document.getElementById('year-note').textContent = perAngler
+    ? 'Fish divided by every angler interviewed statewide that year, which is what ' +
+      'separates a better year from a busier one. Effort is all species pooled, so ' +
+      'read the shape rather than the absolute height.'
+    : 'Every fish this species contributed to the record, by the year it was ' +
+      'counted. Years before a source began are lower because the record is, not ' +
+      'because the fishing was.';
   const seasonKept = DATA.season.kept[String(state.species)] || [];
   const seasonRel = (DATA.season.released || {})[String(state.species)] || [];
   const weeks = seasonKept.map((n, i) => fishFate(n, seasonRel[i] || 0));
@@ -2062,6 +2165,7 @@ function init() {
       });
     }
   };
+  syncSwitch(['f-year'], 'yearMode');
   syncSwitch(['f-basis', 'f-basis2', 'f-basis4'], 'basis');
   syncSwitch(['f-fate', 'f-fate2', 'f-fate3', 'f-fate4'], 'fate');
 

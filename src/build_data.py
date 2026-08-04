@@ -316,7 +316,7 @@ def build(catch_rows, effort_rows, place_geo, say=print, success_rows=()):
         'coverage': coverage(places, catch_day, effort_day, say=say),
         # what the samplers wrote down beyond the count: how big, on what, and
         # whether the boat or the bank did better
-        'detail': detail_by_place(places, sp_index, say=say),
+        'detail': detail_by_place(places, sp_index, effort_day=effort_day, say=say),
         'year_anglers': dict(sorted(effort_year.items())),
     }
     return payload
@@ -721,7 +721,7 @@ def trends(catch_day, effort_day, places, sp_index, as_of_d, say=print,
 CREST = -120.7
 
 
-def detail_by_place(places, sp_index, say=print):
+def detail_by_place(places, sp_index, effort_day=None, say=print):
     """Re-key the size, gear and bank-or-boat summaries onto place and species ids.
 
     They are gathered by water body name, because that is what the interviews carry;
@@ -750,8 +750,33 @@ def detail_by_place(places, sp_index, say=print):
     for name, value in (raw.get('seat') or {}).items():
         for pid in by_name.get(name, ()):
             seat[str(pid)] = value
-    say(f'   detail: {len(size)} size, {len(gear)} gear, {len(seat)} bank-or-boat')
-    return {'size': size, 'gear': gear, 'seat': seat}
+    hour, target, trips = {}, {}, {}
+    for key, value in (raw.get('hour') or {}).items():
+        name, _, species = key.partition('|')
+        if species in sp_index:
+            for pid in by_name.get(name, ()):
+                hour[f'{pid}|{sp_index[species]}'] = value
+    for key, value in (raw.get('target') or {}).items():
+        name, _, species = key.partition('|')
+        if species in sp_index:
+            for pid in by_name.get(name, ()):
+                target[f'{pid}|{sp_index[species]}'] = value
+    for name, value in (raw.get('trips') or {}).items():
+        for pid in by_name.get(name, ()):
+            trips[str(pid)] = value
+
+    # which days of the week the fishing happens on, from every source rather than
+    # only the interviews: a ramp that is a Saturday scrum is worth knowing about
+    weekday = defaultdict(lambda: [0] * 7)
+    for (pid, day), (anglers, _h, _i) in (effort_day or {}).items():
+        weekday[pid][date.fromisoformat(day).weekday()] += anglers
+    crowd = {str(pid): counts for pid, counts in weekday.items() if sum(counts) >= 200}
+
+    say(f'   detail: {len(size)} size, {len(gear)} gear, {len(seat)} bank-or-boat, '
+        f'{len(hour)} by time of day, {len(target)} directed effort, '
+        f'{len(crowd)} weekday profiles')
+    return {'size': size, 'gear': gear, 'seat': seat, 'hour': hour,
+            'target': target, 'trips': trips, 'crowd': crowd}
 
 
 def coverage(places, catch_day, effort_day, say=print):
