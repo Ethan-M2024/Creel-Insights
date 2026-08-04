@@ -1587,6 +1587,14 @@ function windowNotes(pid, days) {
     hour[band] = { parties, with_fish: hourHits[band] || 0 };
   }
   return {
+    counts: {
+      size: size.length,
+      gear: Object.values(gear).reduce((a, b) => a + b, 0),
+      hour: Object.values(hourParties).reduce((a, b) => a + b, 0),
+      seat: Object.values(seat).reduce((a, v) => a + v.parties, 0),
+      target: target[0],
+      trips: trips[0] + trips[1],
+    },
     size: size.length >= 5 ? {
       n: size.length, mean: +(size.reduce((a, b) => a + b, 0) / size.length).toFixed(1),
       p25: quantile(size, 0.25), p50: quantile(size, 0.5),
@@ -1609,6 +1617,7 @@ function fieldNotes(pid) {
   const days = windowDays();
   const win = windowNotes(pid, days);
   const windowed = f => win && win[f];
+  const shortfall = f => (win && win.counts && win.counts[f]) || 0;
   const period = win
     ? `the ${state.window} days to ${dayLabel(META.as_of)}`
     : 'the whole record';
@@ -1620,7 +1629,11 @@ function fieldNotes(pid) {
   const trips = windowed('trips') || (d.trips || {})[String(pid)];
   const crowd = (d.crowd || {})[String(pid)];
   const mix = speciesMix(pid);
-  const from = f => (windowed(f) ? period : 'the whole record');
+  // a fallback says why: nothing measured in the window, or too little of it
+  const from = f => windowed(f) ? period
+    : state.window === 'all' ? 'the whole record'
+    : shortfall(f) ? `the whole record — only ${fmt(shortfall(f))} in ${period}`
+    : 'the whole record';
   if (!size && !gear && !seat && !hour && !target && !crowd && !mix) return '';
 
   const inches = cm => (cm / 2.54).toFixed(0);
@@ -1658,8 +1671,10 @@ function fieldNotes(pid) {
   }
   if (hour) {
     const bands = ['first light', 'morning', 'midday', 'afternoon', 'evening'];
-    const rows = bands.filter(b => hour[b] && hour[b].parties >= 20);
-    if (rows.length > 1) {
+    // a short window has short counts; the bar is lower there than for fifty years
+    const floor = windowed('hour') ? 5 : 20;
+    const rows = bands.filter(b => hour[b] && hour[b].parties >= floor);
+    if (rows.length) {
       const best = Math.max(...rows.map(b => hour[b].with_fish / hour[b].parties));
       out += `<h3>When the fishing was done <span class="pill">${from('hour')}</span></h3>
         <p class="note">Share of parties that had
@@ -1724,9 +1739,10 @@ function fieldNotes(pid) {
   }
   if (trips) {
     const total = trips.complete + trips.incomplete;
-    out += `<p class="note">${asPercent(trips.complete / total)} of the
-      ${fmt(total)} interviews here were taken from parties that had finished
-      fishing; the rest were still at it, and their catch is what they had so far.</p>`;
+    out += `<p class="note">Over ${from('trips')},
+      ${asPercent(trips.complete / total)} of the ${fmt(total)} interviews here were
+      taken from parties that had finished fishing; the rest were still at it, and
+      their catch is what they had so far.</p>`;
   }
   return out + '</div>';
 }
