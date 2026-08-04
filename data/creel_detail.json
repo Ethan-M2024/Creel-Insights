@@ -6877,7 +6877,7 @@
 },
 "Skagit River|Brook Trout": {
 "midday": {
-"parties": 4556,
+"parties": 4559,
 "with_fish": 1
 }
 },
@@ -6887,7 +6887,7 @@
 "with_fish": 2
 },
 "midday": {
-"parties": 4556,
+"parties": 4559,
 "with_fish": 1
 },
 "morning": {
@@ -6909,7 +6909,7 @@
 "with_fish": 114
 },
 "midday": {
-"parties": 4556,
+"parties": 4559,
 "with_fish": 110
 },
 "morning": {
@@ -6919,7 +6919,7 @@
 },
 "Skagit River|Channel catfish": {
 "midday": {
-"parties": 4556,
+"parties": 4559,
 "with_fish": 1
 }
 },
@@ -6937,7 +6937,7 @@
 "with_fish": 140
 },
 "midday": {
-"parties": 4556,
+"parties": 4559,
 "with_fish": 36
 },
 "morning": {
@@ -6955,7 +6955,7 @@
 "with_fish": 9
 },
 "midday": {
-"parties": 4556,
+"parties": 4559,
 "with_fish": 38
 },
 "morning": {
@@ -6973,7 +6973,7 @@
 "with_fish": 390
 },
 "midday": {
-"parties": 4556,
+"parties": 4559,
 "with_fish": 339
 },
 "morning": {
@@ -6991,7 +6991,7 @@
 "with_fish": 29
 },
 "midday": {
-"parties": 4556,
+"parties": 4559,
 "with_fish": 38
 },
 "morning": {
@@ -7013,7 +7013,7 @@
 "with_fish": 64
 },
 "midday": {
-"parties": 4556,
+"parties": 4559,
 "with_fish": 54
 },
 "morning": {
@@ -7023,7 +7023,7 @@
 },
 "Skagit River|Green Sturgeon": {
 "midday": {
-"parties": 4556,
+"parties": 4559,
 "with_fish": 1
 }
 },
@@ -7065,7 +7065,7 @@
 "with_fish": 1
 },
 "midday": {
-"parties": 4556,
+"parties": 4559,
 "with_fish": 5
 },
 "morning": {
@@ -7087,7 +7087,7 @@
 "with_fish": 354
 },
 "midday": {
-"parties": 4556,
+"parties": 4559,
 "with_fish": 671
 },
 "morning": {
@@ -7109,7 +7109,7 @@
 "with_fish": 64
 },
 "midday": {
-"parties": 4556,
+"parties": 4559,
 "with_fish": 51
 },
 "morning": {
@@ -7123,7 +7123,7 @@
 "with_fish": 4
 },
 "midday": {
-"parties": 4556,
+"parties": 4559,
 "with_fish": 10
 },
 "morning": {
@@ -7145,7 +7145,7 @@
 "with_fish": 220
 },
 "midday": {
-"parties": 4556,
+"parties": 4559,
 "with_fish": 21
 },
 "morning": {
@@ -7167,7 +7167,7 @@
 "with_fish": 233
 },
 "midday": {
-"parties": 4556,
+"parties": 4559,
 "with_fish": 81
 },
 "morning": {
@@ -7185,7 +7185,7 @@
 "with_fish": 1
 },
 "midday": {
-"parties": 4556,
+"parties": 4559,
 "with_fish": 4
 },
 "morning": {
@@ -7203,7 +7203,7 @@
 "with_fish": 4
 },
 "midday": {
-"parties": 4556,
+"parties": 4559,
 "with_fish": 3
 },
 "morning": {
@@ -7225,7 +7225,7 @@
 "with_fish": 3
 },
 "midday": {
-"parties": 4556,
+"parties": 4559,
 "with_fish": 11
 },
 "morning": {
@@ -7261,7 +7261,7 @@
 "with_fish": 92
 },
 "midday": {
-"parties": 4556,
+"parties": 4559,
 "with_fish": 50
 },
 "morning": {
@@ -10978,12 +10978,12 @@
 "parties": 2872
 },
 "Skagit River|Rainbow trout": {
-"anglers": 126,
-"parties": 75
+"anglers": 128,
+"parties": 76
 },
 "Skagit River|Sockeye": {
-"anglers": 3997,
-"parties": 2382
+"anglers": 3999,
+"parties": 2384
 },
 "Skagit River|Steelhead": {
 "anglers": 4942,
@@ -11452,7 +11452,7 @@
 "incomplete": 344
 },
 "Skagit River": {
-"complete": 9139,
+"complete": 9142,
 "incomplete": 8224
 },
 "Skookumchuck River": {
