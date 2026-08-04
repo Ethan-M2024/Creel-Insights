@@ -234,7 +234,9 @@ def build(catch_rows, effort_rows, place_geo, say=print):
     # carry a catch and reporting area, though, which is the unit WDFW manages the
     # fishery in — so the same arithmetic is run again over areas, and nothing that
     # cannot be placed is lost from the map, only from the point view.
-    area_catch, area_effort, area_names = by_area(catch_rows, effort_rows)
+    shapes = waters(say=say)
+    area_catch, area_effort, area_names = by_water(
+        catch_day, effort_day, places, shapes, effort_rows)
     area_trend = trends(area_catch, area_effort, area_names, sp_index, as_of_d,
                         say=say, label='area')
     # the whole record by area as well, so switching to the area view does not
@@ -284,6 +286,7 @@ def build(catch_rows, effort_rows, place_geo, say=print):
                  **area_span.get(a['i'], {}))
             for a in sorted(area_names.values(), key=lambda a: a['i'])],
         'area_lifetime': area_lifetime,
+        'areas': shapes,
         'season': season,
         # every species, not just the year's biggest: the species tab lets a reader
         # pick any of the fifty-one, and a truncated list would draw them as zero
@@ -306,6 +309,117 @@ AREA_NUMBER = re.compile(r'(?:marine\s+)?area\s*([0-9]+(?:\.[0-9]+)?)', re.I)
 def area_key(text):
     m = AREA_NUMBER.search(text or '')
     return m.group(1) if m else None
+
+
+def waters(say=print):
+    """Every shape the map can shade: marine areas, ocean bands, river basins.
+
+    Between them they cover the whole state, which is the point. A map of dots asks
+    the reader to find the fishing; a map of filled water tells them, and a basin
+    with no creel in it is grey rather than absent.
+    """
+    shapes = []
+    for a in geo.catch_areas(say=say):
+        code = re.match(r'(\d+(?:\.\d+)?)', a.get('code') or '')
+        if not code:
+            continue
+        shapes.append({'name': f'Marine Area {code.group(1)}', 'code': code.group(1),
+                       'kind': 'marine', 'rings': a['rings']})
+    shapes.extend(geo.ocean_areas())
+    for b in geo.basins(say=say):
+        shapes.append({'name': b['name'], 'code': 'wria-' + b['code'],
+                       'kind': 'basin', 'rings': b['rings']})
+    # several polygons make up one reporting area (10, 10A, 10E); they are one water
+    merged = {}
+    for shape in shapes:
+        key = (shape['kind'], shape['code'])
+        if key in merged:
+            merged[key]['rings'].extend(shape['rings'])
+        else:
+            merged[key] = dict(shape, rings=list(shape['rings']))
+    out = list(merged.values())
+    say(f'   waters on the map: {len(out)}')
+    return out
+
+
+def water_of(place, shapes):
+    """Which shape a place sits in: its reporting area first, then the map.
+
+    A marine place states the area it was sampled in, and that is better than any
+    coordinate. Everything else is placed by where it is — a river creel falls in one
+    basin, and that basin is the ground the reader is looking at.
+    """
+    area = area_key(place.get('area'))
+    if area:
+        for i, shape in enumerate(shapes):
+            if shape['kind'] in ('marine', 'ocean') and shape['code'] == area:
+                return i
+    lat, lon = place.get('lat'), place.get('lon')
+    if lat is None or lon is None:
+        return None
+    marine_first = place.get('water') == 'marine'
+    order = ('marine', 'ocean', 'basin') if marine_first else ('basin', 'marine', 'ocean')
+    for kind in order:
+        for i, shape in enumerate(shapes):
+            if shape['kind'] == kind and geo.point_in_rings(lon, lat, shape['rings']):
+                return i
+    return None
+
+
+def by_water(catch_day, effort_day, places, shapes, effort_rows):
+    """Re-tally the daily figures by water rather than by place.
+
+    Marine days are filed by the area the sampler recorded that day, not by the place
+    they came from: a Sekiu dock reports Area 5 one day and Area 4 the next, and
+    pinning it to one of them leaves the other looking empty. Days with no area on
+    them, and all of fresh water, fall back to the shape the place itself sits in.
+    """
+    waters_ = {}
+    marine_index = {shape['code']: i for i, shape in enumerate(shapes)
+                    if shape['kind'] in ('marine', 'ocean')}
+    place_shape = {p['i']: water_of(p, shapes) for p in places.values()}
+    where = {(p['source'], p['name']): p['i'] for p in places.values()}
+
+    # (place, day) -> shape, from the area written on that day's rows
+    day_shape = {}
+    for r in effort_rows:
+        num = area_key(r.get('catch_area'))
+        pid = where.get((r['source'], r['location']))
+        if num in marine_index and pid is not None:
+            day_shape[(pid, r['date'])] = marine_index[num]
+
+    def water_id(index):
+        shape = shapes[index]
+        if index not in waters_:
+            waters_[index] = {
+                'i': len(waters_), 'name': shape['name'], 'source': 'water',
+                'region': '', 'kind': shape['kind'], 'shape': index,
+                'water': 'fresh' if shape['kind'] == 'basin' else 'marine',
+                'area': shape['code'], 'lat': None, 'lon': None,
+                'precision': 'area'}
+        return waters_[index]['i']
+
+    def shape_for(pid, day):
+        return day_shape.get((pid, day), place_shape.get(pid))
+
+    a_catch = defaultdict(lambda: [0, 0])
+    a_effort = defaultdict(lambda: [0, 0.0, 0])
+    for (pid, day), (anglers, hours, interviews) in effort_day.items():
+        index = shape_for(pid, day)
+        if index is None:
+            continue
+        cell = a_effort[(water_id(index), day)]
+        cell[0] += anglers
+        cell[1] += hours
+        cell[2] += interviews
+    for (pid, sp, day), (kept, rel) in catch_day.items():
+        index = shape_for(pid, day)
+        if index is None:
+            continue
+        cell = a_catch[(water_id(index), sp, day)]
+        cell[0] += kept
+        cell[1] += rel
+    return a_catch, a_effort, waters_
 
 
 def by_area(catch_rows, effort_rows):
@@ -608,7 +722,6 @@ def main(say=print):
         json.dump({'placed': placed, 'unplaced': sorted(unplaced)}, f, indent=0)
 
     payload = build(catch_rows, effort_rows, placed, say=say)
-    payload['areas'] = geo.catch_areas(say=say)
     # what the reader cares about is which places are missing from the map, not
     # which names failed the first matching pass — most of those are later placed
     # from their catch area

@@ -59,6 +59,12 @@ def parse(html_text):
                 continue          # the fishery was shut; there is no catch to record
             get = lambda i: (common.num(cells[i])
                              if i is not None and len(cells) > i else '')
+            # WDFW post the season's table before the season starts, one row per day
+            # with every count blank. A day nobody has fished yet is not a day of
+            # zero fishing, and taking it as one moved the whole dashboard's "latest
+            # report" two months into the future.
+            if all(get(i) == '' for i in (i_boats, i_anglers, i_chin, i_coho)):
+                continue
             effort_rows.append(common.effort(
                 day, SOURCE, LOCATION, anglers=get(i_anglers),
                 boat_anglers=get(i_anglers), boats=get(i_boats),

@@ -187,6 +187,91 @@ def catch_areas(refresh=False, say=print):
     return out
 
 
+WRIA = ('https://services.arcgis.com/6lCKYNJLvwTXqrmp/arcgis/rest/services/'
+        'ECY/FeatureServer/11/query')
+
+#: WDFW's ocean salmon areas are defined by latitude lines running out from named
+#: points on the coast — Leadbetter Point, the Queets River, Cape Alava — rather than
+#: by a published polygon, and no WDFW service draws them. They are laid out here as
+#: offshore bands between those latitudes, from the coast out to about forty miles,
+#: and are marked approximate wherever they are drawn: the boundaries are real, the
+#: seaward edge is a drawing device.
+#: south edge, north edge, and roughly where the shoreline runs at that latitude
+OCEAN_BANDS = [
+    ('1', 'Marine Area 1 (Ilwaco)', 46.25, 46.63, -124.05),
+    ('2', 'Marine Area 2 (Westport)', 46.63, 47.53, -124.10),
+    ('3', 'Marine Area 3 (La Push)', 47.53, 48.17, -124.55),
+    ('4', 'Marine Area 4 (Neah Bay)', 48.17, 48.42, -124.62),
+]
+#: the seaward edge is drawn just inside the map frame rather than at the real limit,
+#: which is forty miles out and would push the whole state to the right
+OCEAN_WEST = -125.05
+
+
+def ocean_areas():
+    """The four ocean areas as bands, so the coast is not a blank on a filled map."""
+    out = []
+    for code, name, south, north, coast in OCEAN_BANDS:
+        ring = [[OCEAN_WEST, south], [coast, south],
+                [coast, north], [OCEAN_WEST, north], [OCEAN_WEST, south]]
+        out.append({'name': name, 'code': code, 'kind': 'ocean',
+                    'precision': 'approximate', 'rings': [ring]})
+    return out
+
+
+def basins(refresh=False, say=print):
+    """Washington's water resource inventory areas — the state's river basins.
+
+    Fresh water has no equivalent of a marine catch area: a creel on the Cowlitz is
+    reported as "Cowlitz River" and nothing says how far that reaches. The WRIA
+    boundaries are the unit the state already manages water by, every river in the
+    creel sits inside exactly one, and they tile the whole state — which is what lets
+    the map show fresh water as filled ground rather than a scatter of dots.
+    """
+    path = os.path.join(paths.DATA, 'wa_basins.json')
+    if os.path.exists(path) and not refresh:
+        with open(path, encoding='utf-8') as f:
+            return json.load(f)
+    out = []
+    for f in _arcgis(WRIA, out_fields='WRIA_NR,WRIA_NM'):
+        a = f['attributes']
+        rings = (f.get('geometry') or {}).get('rings') or []
+        # basins are drawn as filled background, so they are thinned much harder than
+        # the marine areas: a bay's shape tells a reader where they are, a basin's
+        # thousandth inlet does not, and the whole set has to travel in the page
+        thin = [_thin(r, tolerance=0.02) for r in rings if len(r) > 3]
+        thin = [r for r in thin if len(r) > 5 and _spans(r) > 0.06]
+        if not thin:
+            continue
+        out.append({'name': a.get('WRIA_NM') or '', 'code': str(a.get('WRIA_NR')),
+                    'kind': 'basin', 'rings': thin})
+    with open(path, 'w', encoding='utf-8') as fh:
+        json.dump(out, fh, separators=(',', ':'))
+    say(f'   river basins: {len(out)}')
+    return out
+
+
+def _spans(ring):
+    """How wide a ring is, in degrees — used to drop specks the eye cannot see."""
+    xs = [p[0] for p in ring]
+    ys = [p[1] for p in ring]
+    return max(max(xs) - min(xs), max(ys) - min(ys))
+
+
+def point_in_rings(lon, lat, rings):
+    """Whether a coordinate falls inside a polygon, holes and all."""
+    inside = False
+    for ring in rings:
+        j = len(ring) - 1
+        for i, (x, y) in enumerate(ring):
+            xj, yj = ring[j]
+            if (y > lat) != (yj > lat):
+                if lon < (xj - x) * (lat - y) / ((yj - y) or 1e-12) + x:
+                    inside = not inside
+            j = i
+    return inside
+
+
 def area_centroids(areas=None):
     """A representative point inside each catch and reporting area.
 

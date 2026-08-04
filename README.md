@@ -182,6 +182,17 @@ the same measurement — and comes from the start and end times on the interview
 fifths of the interview database records them; the weekly reports never do, so those
 places are drawn grey on that basis and say why rather than reading as zero.
 
+The map opens on **whole waters**: every marine catch area, the four ocean bands,
+and each of the state's 62 river basins, shaded by the fishing inside it — bright
+where the catch rate is high, pale where nobody creeled it in that window. It is the
+view that answers "where should I go" without asking anyone to read a scatter of
+dots. **Single places** switches back to the individual ramps and rivers.
+
+Two of those shapes are drawn rather than published: WDFW define the ocean areas by
+latitude lines running out from named points on the coast, and no service publishes
+them as polygons, so they are laid out from those latitudes and marked approximate.
+The marine areas and the basins are the published boundaries.
+
 A **Happening window** tab puts all five side by side, one row per place, so a run
 building or fading shows up as a row that climbs or falls from left to right rather
 than as a leaderboard that rearranges itself when you change a filter.

@@ -78,8 +78,11 @@ def audit(catch_rows, effort_rows, summary_rows, place_geo, say=print):
     today = date.today().isoformat()
 
     # ------------------------------------------------------------ internal
-    future = [r for r in catch_rows if r['date'] > today]
-    a.check('no catch is dated in the future', not future,
+    # effort as well as catch: WDFW post a season's table before the season starts,
+    # and a row of blanks dated two months out is what sets "latest report" if it is
+    # allowed through
+    future = [r for r in catch_rows + effort_rows if r['date'] > today]
+    a.check('nothing is dated in the future', not future,
             f'{len(future)} rows, e.g. {future[:2]}')
 
     negative = [r for r in catch_rows if to_int(r['fish']) < 0]

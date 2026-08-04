@@ -1,17 +1,17 @@
 {
- "built": "2026-08-03T17:13:37+00:00",
+ "built": "2026-08-04T01:16:00+00:00",
  "quota_records": 42,
  "sha256": {
-  "creel_effort": "96acb573074697cd6cfdd57e594b284f46fb92ca26a6e36e414d4fb1341a5e83",
-  "creel_rows": "031f31222a05cb9ed9350a6456dd988b77a6bd0d031f99367967b54cedab9f08"
+  "creel_effort": "70013cb8e835c8b1dfef6c29f792e0f5ccba9f57628f8c3ff0bcd4b422498859",
+  "creel_rows": "45ea9147b7f7305026bebd2335663ac12fc643aee4adaf0a2b6ad524c5ed4923"
  },
  "sources": {
   "buoy10": {
-   "catch_rows": 1132,
-   "effort_rows": 681,
+   "catch_rows": 1136,
+   "effort_rows": 620,
    "first": "2014-08-01",
    "label": "Buoy 10",
-   "last": "2025-09-28",
+   "last": "2026-08-02",
    "locations": 1
   },
   "columbia-sw": {
@@ -24,7 +24,7 @@
   },
   "creel-database": {
    "catch_rows": 113173,
-   "effort_rows": 159932,
+   "effort_rows": 159929,
    "first": "1973-05-17",
    "label": "WDFW creel database (statewide)",
    "last": "2026-07-29",
@@ -55,8 +55,8 @@
    "locations": 43
   },
   "puget-ramp": {
-   "catch_rows": 331009,
-   "effort_rows": 47287,
+   "catch_rows": 331023,
+   "effort_rows": 47289,
    "first": "2013-01-02",
    "label": "Puget Sound ramp creel",
    "last": "2026-08-02",

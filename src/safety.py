@@ -21,6 +21,7 @@ ALLOWED_HOSTS = frozenset({
     'data.wa.gov',                  # WDFW's creel database, published as open data
     'geodataservices.wdfw.wa.gov',  # WDFW water access sites
     'services3.arcgis.com',         # WDFW salmon catch and reporting areas
+    'services.arcgis.com',          # Ecology's river basin boundaries (WRIA)
 })
 
 #: no single response may exceed this; the largest real report is about 9 MB

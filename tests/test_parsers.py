@@ -251,6 +251,27 @@ class TestAnglerHours(unittest.TestCase):
         self.assertEqual(socrata._hours(row), '')
 
 
+class TestBuoy10Schedule(unittest.TestCase):
+    """The season table is published before the season is fished."""
+
+    TABLE = """<h2>2026</h2><table>
+      <tr><th>Date</th><th>Boats</th><th>Anglers</th><th>Chinook Kept</th>
+          <th>Coho Kept</th><th>Comments</th></tr>
+      <tr><td>Aug 1</td><td>120</td><td>310</td><td>44</td><td>2</td><td></td></tr>
+      <tr><td>Aug 2</td><td></td><td></td><td></td><td></td><td></td></tr>
+    </table>"""
+
+    def test_a_day_nobody_has_fished_is_not_a_day_of_no_fish(self):
+        _catch, effort = buoy10.parse(self.TABLE)
+        self.assertEqual([r['date'] for r in effort], ['2026-08-01'])
+
+    def test_the_fished_day_is_read_whole(self):
+        catch, effort = buoy10.parse(self.TABLE)
+        self.assertEqual(effort[0]['anglers'], 310)
+        self.assertEqual({r['species']: r['fish'] for r in catch},
+                         {'Chinook': 44, 'Coho': 2})
+
+
 class TestPikeminnowLayouts(unittest.TestCase):
     """Eleven seasons, seventeen column layouts, one arithmetic check."""
 

@@ -288,8 +288,8 @@ ul.checks li { padding: 4px 0; border-bottom: 1px solid var(--grid); }
     <div class="field">
       <label>Show</label>
       <div class="seg" id="f-mode">
-        <button data-v="place" aria-pressed="true">Places</button>
-        <button data-v="area" aria-pressed="false">Catch areas</button>
+        <button data-v="area" aria-pressed="true">Whole waters</button>
+        <button data-v="place" aria-pressed="false">Single places</button>
       </div>
     </div>
     <div class="field">
@@ -611,15 +611,10 @@ for (const t of (DATA.area_trend || [])) {
   bySp.set(t.s, t);
 }
 
-/* Puget Sound is drawn as several polygons per reporting area — 10, 10A, 10E, 10F
-   are all "Area 10" to a reader — so they are grouped by their leading number. */
-const AREA_SHAPES = new Map();
-for (const a of (DATA.areas || [])) {
-  const m = /^(\d+(?:\.\d+)?)/.exec(a.code || '');
-  if (!m) continue;
-  if (!AREA_SHAPES.has(m[1])) AREA_SHAPES.set(m[1], []);
-  AREA_SHAPES.get(m[1]).push(...a.rings);
-}
+/* Every water the map can shade: marine reporting areas, the four ocean bands, and
+   the state's river basins. Each water carries the index of its own outline. */
+const SHAPES = DATA.areas || [];
+const ringsOf = place => (SHAPES[place.shape] || {}).rings || [];
 
 /* The whole record: every place and species WDFW ever counted, however long ago.
    The trend windows answer "what is happening now", which by construction hides
@@ -638,7 +633,9 @@ for (const t of (DATA.area_lifetime || [])) {
 
 const state = {
   tab: 'map',
-  mode: 'place',
+  // the filled view first: a map of dots asks the reader to find the fishing, a map
+  // of shaded water tells them, and every basin and marine area is on it
+  mode: 'area',
   species: SPECIES.indexOf(META.headline_species[0] || SPECIES[0]),
   // which fish count: what anglers took home, what they put back, or both.
   // A steelhead river that is catch-and-release reports almost no kept fish,
@@ -721,7 +718,7 @@ function areaRowsForWindow() {
       thin: !!t.thin,
       dseason: change(trendRate(t, 'now'), trendRate(t, 'season')),
       dprior: change(trendRate(t, 'now'), trendRate(t, 'prior')),
-      rings: AREA_SHAPES.get(a.area) || [],
+      rings: ringsOf(a),
     });
   }
   return out;
@@ -784,7 +781,7 @@ function areaLifetimeRows() {
       neverCaught: !t,
       dseason: null, dprior: null,
       first: t ? t.first : a.first, last: t ? t.last : a.last,
-      rings: AREA_SHAPES.get(a.area) || [],
+      rings: ringsOf(a),
     });
   });
   return out;
@@ -881,7 +878,9 @@ function hex(c) {
 
 /* ---------------------------------------------------------------- the map */
 
-const BOX = { west: -124.9, east: -116.85, south: 45.45, north: 49.05 };
+// the frame reaches far enough west to hold the ocean bands, which sit outside
+// the state's own outline
+const BOX = { west: -125.15, east: -116.85, south: 45.45, north: 49.05 };
 const canvas = document.getElementById('map');
 const ctx = canvas.getContext('2d');
 let plotted = [];                       // what is currently drawn, for hit testing
@@ -1040,34 +1039,63 @@ function drawMap() {
       `${META.min_anglers} anglers and are drawn faded.${hourTail} ${tail}`;
 }
 
+function pathFor(rings, cssW, cssH) {
+  const path = new Path2D();
+  for (const ring of rings) {
+    ring.forEach(([lon, lat], i) => {
+      const [x, y] = project(lon, lat, cssW, cssH);
+      i ? path.lineTo(x, y) : path.moveTo(x, y);
+    });
+    path.closePath();
+  }
+  return path;
+}
+
 function drawAreas(cssW, cssH) {
-  const rows = areaRowsForWindow().filter(r => r.rings.length);
+  // basins are the ground and the marine areas sit on top of them, so both passes
+  // draw in that order: a Puget Sound area must not be buried under the basin whose
+  // boundary happens to run out into the water
+  const order = { basin: 0, ocean: 1, marine: 2 };
+  const rows = areaRowsForWindow().filter(r => r.rings.length)
+    .sort((a, b) => (order[a.place.kind] || 0) - (order[b.place.kind] || 0));
+  const withData = new Set(rows.map(r => r.place.shape));
   plotted = [];
+
+  // every water first, in the no-reading grey, so a basin nobody has creeled reads
+  // as "not surveyed" rather than vanishing off the map
+  ctx.lineWidth = 0.5;
+  ctx.strokeStyle = getVar('--surface');
+  const quietFirst = SHAPES.map((s, i) => i)
+    .sort((a, b) => (order[SHAPES[a].kind] || 0) - (order[SHAPES[b].kind] || 0));
+  for (const i of quietFirst) {
+    if (withData.has(i)) continue;
+    const path = pathFor(SHAPES[i].rings, cssW, cssH);
+    ctx.fillStyle = getVar('--surface-2');
+    ctx.globalAlpha = 0.55; ctx.fill(path); ctx.globalAlpha = 1;
+    ctx.stroke(path);
+  }
+
   for (const row of rows) {
-    const path = new Path2D();
-    for (const ring of row.rings) {
-      ring.forEach(([lon, lat], i) => {
-        const [x, y] = project(lon, lat, cssW, cssH);
-        i ? path.lineTo(x, y) : path.moveTo(x, y);
-      });
-      path.closePath();
-    }
+    const path = pathFor(row.rings, cssW, cssH);
     ctx.fillStyle = colourFor(row);
-    ctx.globalAlpha = 0.75; ctx.fill(path); ctx.globalAlpha = 1;
-    ctx.lineWidth = state.place === row.pid ? 2 : 0.8;
+    ctx.globalAlpha = row.thin ? 0.55 : 0.92;
+    ctx.fill(path);
+    ctx.globalAlpha = 1;
+    ctx.lineWidth = state.place === row.pid ? 2 : 0.6;
     ctx.strokeStyle = state.place === row.pid ? getVar('--ink') : getVar('--surface');
     ctx.stroke(path);
     plotted.push({ path, row, x: 0, y: 0, r: 0 });
   }
-  const drawn = new Set(rows.map(r => r.place.area));
-  const missing = areaRowsForWindow().filter(r => !drawn.has(r.place.area))
-    .map(r => r.name);
+
   const period = state.window === 'all'
     ? `over the whole record, ${META.first.slice(0, 4)} to ${META.as_of.slice(0, 4)}`
     : `over the ${state.window} days to ${dayLabel(META.as_of)}`;
+  const quiet = SHAPES.length - rows.length;
   document.getElementById('map-note').textContent =
-    `${rows.length} catch and reporting areas ${period}, every ramp in each one pooled.` +
-    (missing.length ? ` ${missing.join(', ')} report catch but have no published outline, and are in the tables only.` : '');
+    `${rows.length} waters reported ${SPECIES[state.species]} ${period} — marine ` +
+    `areas, the four ocean bands, and the river basin each creel sits in, every ` +
+    `place inside one pooled together. The other ${quiet} are drawn plain: nobody ` +
+    `creeled them in this window.`;
 }
 
 function hit(ev) {
@@ -1258,14 +1286,15 @@ function renderMovers() {
     return;
   }
   const per = state.basis === 'hour' ? 'angler-hour' : 'angler';
-  const areaWord = state.mode === 'area' ? 'Areas ' : '';
+  const areaWord = state.mode === 'area' ? 'Waters ' : '';
 
   /* The lists answer whatever the map is coloured by. Ranking by last year's
      comparison while the map is coloured by the raw rate put two different answers
      side by side and left the reader to notice. */
   if (state.metric === 'rate') {
     const rows = currentRows().filter(r => !r.thin && r.cpue !== null);
-    heading.textContent = `${areaWord}Fishing best right now`;
+    heading.textContent = state.mode === 'area'
+      ? 'Waters fishing best right now' : 'Fishing best right now';
     note.textContent = `Fish ${fateWord()} per ${per}, over the last ${state.window} days.`;
     sub.textContent = 'Most anglers interviewed';
     document.getElementById('movers-up').innerHTML =
@@ -1279,7 +1308,7 @@ function renderMovers() {
   const againstPrior = state.metric === 'prior';
   const delta = r => againstPrior ? r.dprior : r.dseason;
   const baseline = r => againstPrior ? r.prior : r.season;
-  heading.textContent = `${areaWord}Heating up`;
+  heading.textContent = `${areaWord}heating up`.replace(/^./, c => c.toUpperCase());
   note.textContent = againstPrior
     ? `Fish ${fateWord()} per ${per}, against the ${state.window} days just before.`
     : `Fish ${fateWord()} per ${per}, against the same weeks in previous years.`;
@@ -1929,23 +1958,41 @@ function init() {
 function renderLegend() {
   document.getElementById('metric-rate').textContent =
     `catch per ${state.basis === 'hour' ? 'angler-hour' : 'angler'}`;
+  const filled = state.mode === 'area';
+  const unit = filled ? 'water' : 'place';
+  const shape = filled
+    ? 'style="border-radius:3px"'
+    : '';
   const el = document.getElementById('map-legend');
+  const per = state.basis === 'hour' ? 'angler-hour' : 'angler';
+  const sw = fill => `<span class="sw" ${shape} style="background:var(${fill})"></span>`;
+  const how = filled
+    ? `Each ${unit} is shaded by the fishing inside it; pale means nobody creeled it ` +
+      `in this window.`
+    : `Dot size is anglers; faded means fewer than ${META.min_anglers} anglers behind ` +
+      `the rate.`;
+  const move = 'Scroll or pinch to zoom, drag to pan.';
+
   if (state.metric === 'rate') {
-    el.innerHTML = `<span><span class="sw" style="background:var(--surface-2);border:1px solid var(--axis)"></span>few fish ${fateWord()} per ${state.basis === 'hour' ? 'angler-hour' : 'angler'}</span>
-      <span><span class="sw" style="background:var(--hot)"></span>many</span>
-      <span style="color:var(--ink-3)">Dot size is anglers interviewed. Scroll or pinch to zoom, drag to pan.</span>`;
+    el.innerHTML =
+      `<span>${sw('--surface-2')}few fish ${fateWord()} per ${per}</span>` +
+      `<span>${sw('--warm')}more</span>` +
+      `<span>${sw('--hot')}best fishing on the map</span>` +
+      `<span style="color:var(--ink-3)">${how} ${move}</span>`;
     return;
   }
-  el.innerHTML = `
-    <span><span class="sw" style="background:var(--hot)"></span>up by half or more</span>
-    <span><span class="sw" style="background:var(--warm)"></span>up</span>
-    <span><span class="sw" style="background:var(--steady)"></span>about the same</span>
-    <span><span class="sw" style="background:var(--cool)"></span>down</span>
-    <span><span class="sw" style="background:var(--cold)"></span>down by half or more</span>
-    <span><span class="sw" style="border:2px solid var(--steady);background:none"></span>placed at its catch area</span>
-    ${state.basis === 'hour'
-      ? '<span><span class="sw" style="background:var(--surface-2);border:1px dashed var(--axis)"></span>no timed trips, so no rate</span>' : ''}
-    <span style="color:var(--ink-3)">Dot size is anglers; faded means fewer than ${META.min_anglers} anglers behind the rate. Scroll or pinch to zoom, drag to pan.</span>`;
+  el.innerHTML =
+    `<span>${sw('--hot')}up by half or more</span>` +
+    `<span>${sw('--warm')}up</span>` +
+    `<span>${sw('--steady')}about the same</span>` +
+    `<span>${sw('--cool')}down</span>` +
+    `<span>${sw('--cold')}down by half or more</span>` +
+    (filled
+      ? `<span>${sw('--surface-2')}not creeled in this window</span>`
+      : '<span><span class="sw" style="border:2px solid var(--steady);background:none"></span>placed at its catch area</span>') +
+    (state.basis === 'hour'
+      ? '<span><span class="sw" style="background:var(--surface-2);border:1px dashed var(--axis)"></span>no timed trips, so no rate</span>' : '') +
+    `<span style="color:var(--ink-3)">${how} ${move}</span>`;
 }
 
 init();
