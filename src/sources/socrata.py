@@ -16,6 +16,7 @@ covers eastern Washington, the Cowlitz, and every river creel outside Puget Soun
 if a location appears nowhere else it almost certainly came from these two tables.
 """
 import json
+from collections import defaultdict
 import os
 import sys
 from datetime import datetime
@@ -128,7 +129,7 @@ def _water(project, water_body):
 
 
 def load(refresh=False, say=print):
-    """Return (catch rows, effort rows) in the shared shape."""
+    """Return (catch rows, effort rows, success rows) in the shared shape."""
     interviews = fetch_all(INTERVIEWS, refresh=refresh, say=say)
     catches = fetch_all(CATCH, refresh=refresh, say=say)
 
@@ -182,7 +183,35 @@ def load(refresh=False, say=print):
             fate=fate, origin=common.origin(r.get('fin_mark')),
             region=region, water=water,
             catch_area=r.get('catch_area_code') or ''))
-    return catch_rows, effort_rows
+
+    # How often a party caught anything, counted rather than modelled. Every
+    # interview is published with an id, and every fish record carries the id of the
+    # interview it came from, so the share of parties that went home with a Chinook
+    # is a matter of counting ids — not of assuming catch arrives at random, which is
+    # what a Poisson estimate of the same number quietly assumes.
+    parties = defaultdict(set)          # (day, water body) -> interview ids
+    for r in interviews:
+        iid = r.get('interview_id')
+        d = (r.get('event_date') or '')[:10]
+        wb = r.get('water_body') or ''
+        if iid and d and wb:
+            parties[(d, wb)].add(iid)
+    caught = defaultdict(set)           # (day, water body, species) -> interview ids
+    for r in catches:
+        iid = r.get('interview_id')
+        if not iid or common.num(r.get('fish_count')) == 0:
+            continue
+        place = by_interview.get(iid)
+        d = (r.get('event_date') or '')[:10] or (place[0] if place else '')
+        wb = r.get('water_body') or (place[1] if place else '')
+        sp = common.species(r.get('species'))
+        if d and wb and sp:
+            caught[(d, wb, sp)].add(iid)
+    success_rows = [
+        common.success(d, SOURCE, wb, sp, len(parties.get((d, wb), ())), len(ids))
+        for (d, wb, sp), ids in caught.items() if parties.get((d, wb))]
+
+    return catch_rows, effort_rows, success_rows
 
 
 def water_body_geo(refresh=False, say=print):

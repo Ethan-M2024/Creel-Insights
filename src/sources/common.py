@@ -29,6 +29,17 @@ CATCH_FIELDS = ('date', 'source', 'region', 'water', 'location', 'catch_area',
                 'species', 'fate', 'origin', 'fish')
 EFFORT_FIELDS = ('date', 'source', 'region', 'water', 'location', 'catch_area',
                  'interviews', 'anglers', 'boat_anglers', 'boats', 'angler_hours')
+#: how many parties were interviewed at a place on a day, and how many of them had
+#: the species in the boat. Every published dashboard estimates this from a Poisson
+#: model of the average catch; where the interviews are published one by one it does
+#: not need estimating, and this is the counted answer.
+SUCCESS_FIELDS = ('date', 'source', 'location', 'species', 'interviews', 'with_fish')
+
+
+def success(date_, source, location, species, interviews, with_fish):
+    return {'date': as_date(date_), 'source': source,
+            'location': (location or '').strip(), 'species': species,
+            'interviews': int(interviews), 'with_fish': int(with_fish)}
 
 #: marine or fresh, per source; the dashboard splits salt from rivers because
 #: catch-per-angler means something different in each

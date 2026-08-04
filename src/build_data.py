@@ -112,7 +112,7 @@ def month_start(iso_day):
     return iso_day[:7] + '-01'
 
 
-def build(catch_rows, effort_rows, place_geo, say=print):
+def build(catch_rows, effort_rows, place_geo, say=print, success_rows=()):
     as_of = max([r['date'] for r in catch_rows] + [r['date'] for r in effort_rows])
     as_of_d = date.fromisoformat(as_of)
 
@@ -216,17 +216,32 @@ def build(catch_rows, effort_rows, place_geo, say=print):
             w[0] += anglers
             w[1] += hours
 
+    # ------------------------------------------------------- interview outcomes
+    # How often a party caught one, counted from the interviews themselves. Only the
+    # statewide database publishes interviews one by one, so this covers the rivers
+    # and lakes in it and says nothing about the rest — which is better than
+    # modelling a number for places whose interviews were never published.
+    outcome_day = defaultdict(lambda: [0, 0])       # (pid, sp, day) -> parties, hits
+    for r in success_rows:
+        key = (r['source'], r['location'])
+        if key not in places or r['species'] not in sp_index:
+            continue
+        cell = outcome_day[(places[key]['i'], r['species'], r['date'])]
+        cell[0] += to_int(r['interviews'])
+        cell[1] += to_int(r['with_fish'])
+    say(f'   interview outcomes: {len(outcome_day):,} place-species-days')
+
     # ------------------------------------------------------------- lifetime
     # The trend windows answer "what is happening now", which by construction leaves
     # out every place that is out of season, closed, or no longer surveyed — most of
     # the record. This is the whole record instead: one row per place per species,
     # over every year it was ever sampled, so nothing WDFW counted is invisible.
     lifetime, place_span = totals(catch_day, effort_day, sp_index, say=say,
-                                  origin_day=origin_day)
+                                  origin_day=origin_day, outcome_day=outcome_day)
 
     # ------------------------------------------------------------- trends
     trend = trends(catch_day, effort_day, places, sp_index, as_of_d, say=say,
-                   origin_day=origin_day)
+                   origin_day=origin_day, outcome_day=outcome_day)
 
     # ------------------------------------------------------------- by area
     # Two hundred of the Puget Sound ramps are marinas and city docks that appear in
@@ -464,7 +479,7 @@ def by_area(catch_rows, effort_rows):
 
 
 def totals(catch_day, effort_day, sp_index, say=print, label='place',
-           origin_day=None):
+           origin_day=None, outcome_day=None):
     """Every place and species over the whole record, however long ago it was fished.
 
     Returns the per-place-species totals and, separately, each place's span and
@@ -489,6 +504,10 @@ def totals(catch_day, effort_day, sp_index, say=print, label='place',
         cell[2] = min(cell[2], day)
         cell[3] = max(cell[3], day)
 
+    outcomes_by_name = _outcome_totals(outcome_day, '0000', '9999')
+    lifetime_outcomes = {(pid, sp_index[name]): v
+                         for (pid, name), v in outcomes_by_name.items()
+                         if name in sp_index}
     by_name = _origin_totals(origin_day, '0000', '9999')
     marks = {(pid, sp_index[name]): v for (pid, name), v in by_name.items()
              if name in sp_index}
@@ -499,6 +518,9 @@ def totals(catch_day, effort_day, sp_index, say=print, label='place',
         if found:
             row.update({'kept_h': found[0], 'kept_w': found[1],
                         'rel_h': found[2], 'rel_w': found[3]})
+        parties = lifetime_outcomes.get((pid, sp))
+        if parties and parties[0] >= 10:
+            row.update({'parties': parties[0], 'parties_hit': parties[1]})
         rows.append(row)
 
     span = {}
@@ -555,6 +577,17 @@ def _window_totals(catch_day, effort_day, start, end):
 MIN_HOURS = 20
 
 
+def _outcome_totals(outcome_day, start, end):
+    """Parties interviewed and parties that caught one, between two dates."""
+    out = defaultdict(lambda: [0, 0])
+    for (pid, sp, day), (parties, hits) in (outcome_day or {}).items():
+        if start <= day <= end:
+            cell = out[(pid, sp)]
+            cell[0] += parties
+            cell[1] += hits
+    return {k: v for k, v in out.items() if v[0]}
+
+
 def _origin_totals(origin_day, start, end):
     """Clipped and unclipped fish between two dates, per place and species."""
     out = defaultdict(lambda: [0, 0, 0, 0])
@@ -567,7 +600,7 @@ def _origin_totals(origin_day, start, end):
 
 
 def trends(catch_day, effort_day, places, sp_index, as_of_d, say=print,
-           label='place', origin_day=None):
+           label='place', origin_day=None, outcome_day=None):
     """Score every place and species for whether it is picking up or falling off."""
     out = []
     for window in WINDOWS:
@@ -579,6 +612,7 @@ def trends(catch_day, effort_day, places, sp_index, as_of_d, say=print,
         r_fish, r_ang, r_hrs = _window_totals(
             catch_day, effort_day, recent_start, recent_end)
         r_origin = _origin_totals(origin_day, recent_start, recent_end)
+        r_outcome = _outcome_totals(outcome_day, recent_start, recent_end)
         p_fish, p_ang, p_hrs = _window_totals(
             catch_day, effort_day, prior_start, prior_end)
 
@@ -649,6 +683,10 @@ def trends(catch_day, effort_day, places, sp_index, as_of_d, say=print,
                 'season_r': median_or_none(rates_rel),
                 'season_years': len(rates),
             }
+            parties = r_outcome.get((pid, sp))
+            if parties and parties[0] >= 10:
+                # under ten interviews the share is a coin toss dressed as a rate
+                row.update({'parties': parties[0], 'parties_hit': parties[1]})
             marks = r_origin.get((pid, sp))
             if marks:
                 # clipped and unclipped, as counted; the rest of the fish simply
@@ -721,7 +759,9 @@ def main(say=print):
     with open(paths.PLACE_GEO, 'w', encoding='utf-8') as f:
         json.dump({'placed': placed, 'unplaced': sorted(unplaced)}, f, indent=0)
 
-    payload = build(catch_rows, effort_rows, placed, say=say)
+    success_rows = read_rows(paths.SUCCESS)
+    payload = build(catch_rows, effort_rows, placed, say=say,
+                    success_rows=success_rows)
     # what the reader cares about is which places are missing from the map, not
     # which names failed the first matching pass — most of those are later placed
     # from their catch area

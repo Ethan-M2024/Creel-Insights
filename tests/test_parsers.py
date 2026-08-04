@@ -251,6 +251,48 @@ class TestAnglerHours(unittest.TestCase):
         self.assertEqual(socrata._hours(row), '')
 
 
+class TestInterviewOutcomes(unittest.TestCase):
+    """Counting the parties that caught one, rather than modelling them."""
+
+    INTERVIEWS = [
+        {'interview_id': 'a', 'event_date': '2026-07-01', 'water_body': 'Ash Lake',
+         'project_name': 'R5 Inland Fish', 'angler_count': '2'},
+        {'interview_id': 'b', 'event_date': '2026-07-01', 'water_body': 'Ash Lake',
+         'project_name': 'R5 Inland Fish', 'angler_count': '1'},
+        {'interview_id': 'c', 'event_date': '2026-07-01', 'water_body': 'Ash Lake',
+         'project_name': 'R5 Inland Fish', 'angler_count': '3'},
+    ]
+    CATCH = [
+        {'interview_id': 'a', 'event_date': '2026-07-01', 'water_body': 'Ash Lake',
+         'species': 'Rainbow Trout', 'fate': 'Kept', 'fish_count': '2'},
+        {'interview_id': 'a', 'event_date': '2026-07-01', 'water_body': 'Ash Lake',
+         'species': 'Rainbow Trout', 'fate': 'Released', 'fish_count': '1'},
+        {'interview_id': 'b', 'event_date': '2026-07-01', 'water_body': 'Ash Lake',
+         'species': 'Rainbow Trout', 'fate': 'Kept', 'fish_count': '1'},
+    ]
+
+    def rows(self):
+        real = socrata.fetch_all
+        socrata.fetch_all = lambda dataset, **kw: (
+            self.INTERVIEWS if dataset == socrata.INTERVIEWS else self.CATCH)
+        try:
+            return socrata.load(say=lambda *a: None)
+        finally:
+            socrata.fetch_all = real
+
+    def test_one_row_per_place_species_day(self):
+        _catch, _effort, success = self.rows()
+        self.assertEqual(len(success), 1)
+        row = success[0]
+        self.assertEqual((row['location'], row['species']), ('Ash Lake', 'Rainbow trout'))
+
+    def test_parties_are_counted_once_however_many_fish(self):
+        # interview a has two catch records; it is one party, not two
+        _catch, _effort, success = self.rows()
+        self.assertEqual(success[0]['with_fish'], 2)
+        self.assertEqual(success[0]['interviews'], 3)
+
+
 class TestBuoy10Schedule(unittest.TestCase):
     """The season table is published before the season is fished."""
 

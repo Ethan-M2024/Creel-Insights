@@ -426,6 +426,7 @@ ul.checks li { padding: 4px 0; border-bottom: 1px solid var(--grid); }
           <th data-k="kept">Kept</th>
           <th data-k="rel">Released</th>
           <th data-k="cpue" id="th-rate">Per angler</th>
+          <th data-k="success">Parties that caught one</th>
           <th data-k="dseason">vs. season</th>
           <th data-k="dprior">vs. prior</th>
           <th data-k="last">Last sampled</th>
@@ -555,6 +556,13 @@ ul.checks li { padding: 4px 0; border-bottom: 1px solid var(--grid); }
         rate resting on fewer than <b id="min-anglers"></b> anglers is marked
         <span class="pill">thin</span>, drawn faded, and never ranked in the heating
         and cooling lists — one lucky boat moves a six-angler rate by half. Where a
+        Where WDFW publish the interviews one by one — the statewide database does,
+        the weekly summaries do not — the share of parties that caught one is counted
+        from those interviews rather than estimated from the average catch. Other
+        dashboards model it with a Poisson assumption, which treats fish as arriving
+        independently; they do not, and the modelled number reads high on slow days
+        and low on good ones. Where the interviews were never published, this column
+        says so instead of guessing. Where a
         report records whether a fish was fin-clipped, that split is carried too:
         hatchery and wild are not the same fish to a biologist, and under
         mark-selective rules they are not the same fish to an angler either.
@@ -698,6 +706,14 @@ function rateFate(k, r) {
 const fateWord = () => state.fate === 'kept' ? 'kept'
   : state.fate === 'released' ? 'released' : 'caught';
 
+/* The share of interviewed parties that had one aboard. Other dashboards estimate
+   this from the average catch with a Poisson model, which assumes fish arrive at
+   random and independently — they do not, which is why a good day is a good day for
+   everyone on the water. Where WDFW publish the interviews one by one, this is
+   counted instead of assumed, and it is only shown for those places. */
+const successRate = row => row.parties ? row.partiesHit / row.parties : null;
+const asPercent = v => v === null || v === undefined ? '—' : Math.round(v * 100) + '%';
+
 function areaRowsForWindow() {
   if (state.window === 'all') return areaLifetimeRows();
   const byArea = AREA_TREND.get(state.window) || new Map();
@@ -710,6 +726,8 @@ function areaRowsForWindow() {
     out.push({
       pid: aid, place: a, name: a.name, source: a.source,
       anglers: t.anglers, kept: t.kept, rel: t.rel, hours: t.hours ?? null,
+      parties: t.parties || 0, partiesHit: t.parties_hit || 0,
+      success: t.parties ? t.parties_hit / t.parties : null,
       kept_h: t.kept_h || 0, kept_w: t.kept_w || 0,
       rel_h: t.rel_h || 0, rel_w: t.rel_w || 0,
       fish: fishFate(t.kept, t.rel),
@@ -744,6 +762,8 @@ function lifetimeRows() {
     out.push({
       pid, place: p, name: p.name, source: p.source,
       anglers, kept, rel: t ? t.rel : 0, hours: hours || null,
+      parties: (t && t.parties) || 0, partiesHit: (t && t.parties_hit) || 0,
+      success: (t && t.parties) ? t.parties_hit / t.parties : null,
       kept_h: (t && t.kept_h) || 0, kept_w: (t && t.kept_w) || 0,
       rel_h: (t && t.rel_h) || 0, rel_w: (t && t.rel_w) || 0,
       fish: fishFate(kept, t ? t.rel : 0),
@@ -771,6 +791,8 @@ function areaLifetimeRows() {
     out.push({
       pid: aid, place: a, name: a.name, source: a.source,
       anglers, kept, rel: t ? t.rel : 0, hours: hours || null,
+      parties: (t && t.parties) || 0, partiesHit: (t && t.parties_hit) || 0,
+      success: (t && t.parties) ? t.parties_hit / t.parties : null,
       kept_h: (t && t.kept_h) || 0, kept_w: (t && t.kept_w) || 0,
       rel_h: (t && t.rel_h) || 0, rel_w: (t && t.rel_w) || 0,
       fish: fishFate(kept, t ? t.rel : 0),
@@ -802,6 +824,8 @@ function rowsForWindow() {
     out.push({
       pid, place: p, name: p.name, source: p.source,
       anglers: t.anglers, kept: t.kept, rel: t.rel, hours: t.hours ?? null,
+      parties: t.parties || 0, partiesHit: t.parties_hit || 0,
+      success: t.parties ? t.parties_hit / t.parties : null,
       kept_h: t.kept_h || 0, kept_w: t.kept_w || 0,
       rel_h: t.rel_h || 0, rel_w: t.rel_w || 0,
       fish: fishFate(t.kept, t.rel),
@@ -1280,6 +1304,9 @@ canvas.addEventListener('mousemove', ev => {
     (r.season !== null ? ` &middot; <span class="k">season normal</span> ${rate(r.season)}` : '') +
     `<br><span class="k">vs. season</span> ${pct(r.dseason)}` +
     ` &middot; <span class="k">vs. prior</span> ${pct(r.dprior)}` +
+    (r.parties
+      ? `<br><span class="k">${asPercent(successRate(r))} of parties caught one ` +
+        `(${fmt(r.partiesHit)} of ${fmt(r.parties)} interviewed)</span>` : '') +
     (r.kept_h + r.kept_w + r.rel_h + r.rel_w
       ? `<br><span class="k">of these ${fmt(fishFate(r.kept_h, r.rel_h))} clipped, ` +
         `${fmt(fishFate(r.kept_w, r.rel_w))} unclipped</span>` : '') +
@@ -1472,6 +1499,7 @@ function renderDetail() {
       <div class="stat"><div class="v">${trendRate(t, 'now') === null ? '—' : rate(trendRate(t, 'now'))}</div><div class="l">${escapeHtml(SPECIES[state.species])} ${fateWord()} per ${state.basis === 'hour' ? 'angler-hour' : 'angler'}, last ${state.window} days</div></div>
       <div class="stat"><div class="v">${fmt(fishFate(t.kept, t.rel))}</div><div class="l">${fateWord()}</div></div>
       <div class="stat"><div class="v">${fmt(t.anglers)}</div><div class="l">anglers</div></div>
+      ${t.parties ? `<div class="stat"><div class="v">${asPercent(t.parties_hit / t.parties)}</div><div class="l">of ${fmt(t.parties)} parties caught one</div></div>` : ''}
       <div class="stat"><div class="v ${trendRate(t, 'season') === null ? 'flat' : change(trendRate(t, 'now'), trendRate(t, 'season')) > 0 ? 'up' : 'down'}">${pct(change(trendRate(t, 'now'), trendRate(t, 'season')))}</div><div class="l">vs. the same weeks in ${(state.basis === 'hour' ? t.season_years_h : t.season_years) || 0} past years</div></div>
     </div>` : '<p class="note">This place has no scored window for that species.</p>';
 
@@ -1605,6 +1633,9 @@ function renderPlaces() {
       <td class="num">${fmt(r.kept)}${r.kept_h ? `<br><span class="k" style="color:var(--ink-3)">${fmt(r.kept_h)} clipped</span>` : ''}</td>
       <td class="num">${fmt(r.rel)}</td>
       <td class="num">${r.cpue === null ? '<span style="color:var(--ink-3)">no timed trips</span>' : rate(r.cpue)}</td>
+      <td class="num">${r.parties
+        ? `${asPercent(successRate(r))}<br><span class="k" style="color:var(--ink-3)">of ${fmt(r.parties)} parties</span>`
+        : '<span style="color:var(--ink-3)">interviews not published</span>'}</td>
       <td class="num ${cls(r.dseason)}">${pct(r.dseason)}</td>
       <td class="num ${cls(r.dprior)}">${pct(r.dprior)}</td>
       <td class="num">${r.last || r.place.last || '—'}</td>

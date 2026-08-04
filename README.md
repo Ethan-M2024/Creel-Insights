@@ -169,6 +169,15 @@ So each place is compared **against itself, at the same point in the season**:
 | **prior** | the same length of window immediately before it |
 | **seasonal** | the median of the same calendar window in each of the last three years |
 
+**How often anyone catches anything** is counted, not modelled. WDFW publish the
+statewide creel one interview at a time, and every fish record names the interview it
+came from, so the share of parties that went home with a fish is a matter of counting
+interview ids: 3,334 of 7,262 parties at Drano Lake, 46%. Dashboards that only have
+the daily totals estimate the same number from a Poisson model, which assumes fish
+arrive independently of one another — they do not, and that assumption reads high on
+slow days and low on good ones. Where the interviews were never published the column
+says so rather than guessing.
+
 Where a report says whether a fish was fin-clipped, that is carried through as well
 — 74,792 fish across the record. Hatchery and wild are not the same animal to a
 biologist, and under mark-selective rules they are not the same fish to an angler

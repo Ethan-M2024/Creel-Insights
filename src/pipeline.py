@@ -73,12 +73,15 @@ SOURCES = (
 def gather(full=False):
     """Run every parser and return the two tables, plus what each source produced."""
     this_year = date.today().year
-    catch_rows, effort_rows, summary = [], [], {}
+    catch_rows, effort_rows, success_rows, summary = [], [], [], {}
 
     def add(name, pair):
-        c, e = pair
+        # a source may also hand back how many interviews had fish in them; most
+        # cannot, because they publish totals rather than the interviews themselves
+        c, e, *extra = pair
         catch_rows.extend(c)
         effort_rows.extend(e)
+        success_rows.extend(extra[0] if extra else [])
         days = {r['date'] for r in e} | {r['date'] for r in c}
         summary[name] = {
             'catch_rows': len(c), 'effort_rows': len(e),
@@ -104,7 +107,7 @@ def gather(full=False):
     add('halibut', halibut.load(full=full, say=say))
     say('reading the quota trackers')
     quota_rows = quotas.load(full=full, say=say)
-    return catch_rows, effort_rows, summary, quota_rows
+    return catch_rows, effort_rows, success_rows, summary, quota_rows
 
 
 def write_table(path, rows, fields):
@@ -127,14 +130,16 @@ def read_table(path, fields):
 def update(full=False, no_open=False):
     paths.ensure_dirs()
     started = time.time()
-    catch_rows, effort_rows, summary, quota_rows = gather(full=full)
+    catch_rows, effort_rows, success_rows, summary, quota_rows = gather(full=full)
     if not catch_rows:
         say('no data was read from any source; refusing to overwrite what is here', '!!')
         return 1
 
     n_catch = write_table(paths.RAW, catch_rows, common.CATCH_FIELDS)
     n_effort = write_table(paths.EFFORT, effort_rows, common.EFFORT_FIELDS)
-    say(f'wrote {n_catch:,} species rows and {n_effort:,} effort rows')
+    n_success = write_table(paths.SUCCESS, success_rows, common.SUCCESS_FIELDS)
+    say(f'wrote {n_catch:,} species rows, {n_effort:,} effort rows and '
+        f'{n_success:,} interview-outcome rows')
 
     with open(paths.QUOTAS, 'w', encoding='utf-8') as f:
         json.dump(quota_rows, f, indent=1)

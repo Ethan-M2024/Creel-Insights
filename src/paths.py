@@ -21,6 +21,8 @@ API_DIR = os.path.join(CACHE, 'api')          # raw Socrata pulls
 RAW = os.path.join(DATA, 'creel_rows.csv.gz')
 #: angler effort per date x location, kept separate because it is not per-species
 EFFORT = os.path.join(DATA, 'creel_effort.csv.gz')
+#: interviews and how many of them had each species aboard
+SUCCESS = os.path.join(DATA, 'creel_success.csv.gz')
 
 #: fisheries tracked against a ceiling rather than counted: encounter guidelines
 #: and harvest quotas, which are not catch and are not stored as if they were
