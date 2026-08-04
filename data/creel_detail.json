@@ -1,0 +1,2491 @@
+{
+"gear": {
+"Ashes Lake (Big Ash Lake)|Smallmouth bass": {
+"Bait": 27,
+"Bait-Lure": 1
+},
+"Baker Lake|Kokanee": {
+"Bait": 4,
+"Bait-Lure": 2,
+"Gear": 19
+},
+"Baker Lake|Sockeye": {
+"Bait": 379,
+"Bait-Jig": 7,
+"Bait-Lure": 185,
+"Gear": 772,
+"Lure": 1
+},
+"Battle Ground Lake|Brook Trout": {
+"Bait": 461,
+"Bait-Lure": 145,
+"Fly": 6,
+"Lure": 112
+},
+"Battle Ground Lake|Rainbow trout": {
+"Bait": 4726,
+"Bait-Lure": 1179,
+"Fly": 267,
+"Lure": 1035
+},
+"Bogachiel River|Chinook": {
+"Bait": 34,
+"Bait-Lure": 3,
+"Fly": 11,
+"Gear": 28,
+"Lure": 3,
+"Multiple gear types": 10
+},
+"Bogachiel River|Coho": {
+"Bait": 4,
+"Fly": 8,
+"Gear": 40,
+"Jig": 19,
+"Lure": 70,
+"Multiple gear types": 30
+},
+"Bogachiel River|Cutthroat": {
+"Bait-Jig": 2,
+"Fly": 39,
+"Gear": 55,
+"Jig": 6,
+"Lure": 8,
+"Multiple gear types": 20
+},
+"Bogachiel River|Rainbow trout": {
+"Bait": 6,
+"Fly": 20,
+"Gear": 3,
+"Multiple gear types": 17
+},
+"Bogachiel River|Sockeye": {
+"Bait": 6,
+"Gear": 11,
+"Jig": 2,
+"Lure": 2,
+"Multiple gear types": 3
+},
+"Bogachiel River|Steelhead": {
+"Bait": 8,
+"Fly": 88,
+"Gear": 355,
+"Jig": 82,
+"Lure": 94,
+"Multiple gear types": 53
+},
+"Bogachiel River|Whitefish": {
+"Fly": 11,
+"Gear": 8,
+"Multiple gear types": 4
+},
+"Calawah River|Chinook": {
+"Bait": 5,
+"Gear": 5,
+"Jig": 5,
+"Lure": 12,
+"Multiple gear types": 2
+},
+"Calawah River|Coho": {
+"Bait": 1,
+"Fly": 1,
+"Gear": 5,
+"Jig": 2,
+"Lure": 15,
+"Multiple gear types": 2
+},
+"Calawah River|Cutthroat": {
+"Bait": 3,
+"Fly": 7,
+"Gear": 11,
+"Jig": 7,
+"Lure": 1
+},
+"Calawah River|Sockeye": {
+"Bait": 3,
+"Fly": 1,
+"Gear": 30,
+"Jig": 26,
+"Lure": 3
+},
+"Calawah River|Steelhead": {
+"Bait": 4,
+"Bait-Lure": 4,
+"Fly": 9,
+"Gear": 169,
+"Jig": 28,
+"Lure": 15
+},
+"Calawah River|Whitefish": {
+"Bait": 1,
+"Gear": 19,
+"Multiple gear types": 2
+},
+"Carbon River|Chinook": {
+"Bait": 14,
+"Bait-Lure": 1,
+"Gear": 822,
+"Lure": 10
+},
+"Carbon River|Coho": {
+"Bait": 13,
+"Bait-Lure": 22,
+"Gear": 248,
+"Jig": 3,
+"Lure": 47
+},
+"Carbon River|Pink": {
+"Bait": 5,
+"Bait-Lure": 4,
+"Gear": 1431,
+"Jig": 9,
+"Lure": 11
+},
+"Carlisle Lake|Brown trout": {
+"Bait": 85,
+"Bait-Lure": 106,
+"Fly": 13,
+"Lure": 93
+},
+"Carlisle Lake|Coho": {
+"Bait": 899,
+"Bait-Lure": 422,
+"Fly": 445,
+"Lure": 1087
+},
+"Carlisle Lake|Rainbow trout": {
+"Bait": 2832,
+"Bait-Lure": 1269,
+"Fly": 238,
+"Lure": 1375
+},
+"Cascade River|Bull trout": {
+"Bait": 22,
+"Bait-Lure": 2,
+"Fly": 11,
+"Gear": 56,
+"Jig": 12,
+"Lure": 19
+},
+"Cascade River|Chinook": {
+"Bait": 114,
+"Bait-Jig": 16,
+"Bait-Lure": 47,
+"Gear": 169,
+"Jig": 21,
+"Lure": 84
+},
+"Cascade River|Coho": {
+"Bait": 514,
+"Bait-Jig": 83,
+"Bait-Lure": 533,
+"Gear": 201,
+"Jig": 357,
+"Lure": 441
+},
+"Cascade River|Dolly Varden": {
+"Bait": 18,
+"Bait-Jig": 1,
+"Bait-Lure": 7,
+"Fly": 7,
+"Gear": 20,
+"Lure": 17
+},
+"Cascade River|Pink": {
+"Bait": 81,
+"Bait-Lure": 20,
+"Fly": 2,
+"Gear": 6,
+"Jig": 62,
+"Lure": 59
+},
+"Cascade River|Whitefish": {
+"Bait": 1,
+"Bait-Lure": 1,
+"Fly": 2,
+"Gear": 18,
+"Jig": 5,
+"Lure": 8
+},
+"Chehalis River|Chinook": {
+"Bait": 117,
+"Bait-Jig": 3,
+"Bait-Lure": 91,
+"Jig": 24,
+"Lure": 317
+},
+"Chehalis River|Chum": {
+"Bait": 4,
+"Bait-Lure": 9,
+"Jig": 6,
+"Lure": 105
+},
+"Chehalis River|Coho": {
+"Bait": 1007,
+"Bait-Jig": 28,
+"Bait-Lure": 543,
+"Jig": 479,
+"Lure": 4187,
+"Multiple gear types": 3
+},
+"Chehalis River|Cutthroat": {
+"Bait": 3,
+"Bait-Lure": 1,
+"Lure": 19
+},
+"Chehalis River|Northern pikeminnow": {
+"Bait": 31,
+"Bait-Lure": 61,
+"Jig": 5,
+"Lure": 45
+},
+"Chehalis River|Smallmouth bass": {
+"Bait-Lure": 1,
+"Lure": 37
+},
+"Chehalis River|Steelhead": {
+"Bait-Lure": 1,
+"Jig": 6,
+"Lure": 20
+},
+"Chehalis River|Sucker": {
+"Bait": 4,
+"Jig": 1,
+"Lure": 24
+},
+"Chehalis River|Whitefish": {
+"Bait": 1,
+"Bait-Lure": 4,
+"Jig": 10,
+"Lure": 8
+},
+"Clearwater River |Steelhead": {
+"Gear": 9,
+"Jig": 16,
+"Lure": 30
+},
+"Coldwater Lake|Cutthroat": {
+"Fly": 5,
+"Lure": 15
+},
+"Coldwater Lake|Rainbow trout": {
+"Fly": 155,
+"Lure": 373
+},
+"Coweeman River|Steelhead": {
+"Bait": 14,
+"Bait-Jig": 5,
+"Fly": 1,
+"Jig": 20,
+"Lure": 9
+},
+"Cowlitz River|Chinook": {
+"Bait": 1857,
+"Bait-Jig": 40,
+"Bait-Lure": 226,
+"Fly": 2,
+"Jig": 104,
+"Lure": 973
+},
+"Cowlitz River|Coho": {
+"Bait": 1087,
+"Bait-Jig": 48,
+"Bait-Lure": 194,
+"Fly": 7,
+"Jig": 452,
+"Lure": 738
+},
+"Cowlitz River|Cutthroat": {
+"Bait": 313,
+"Bait-Jig": 2,
+"Bait-Lure": 83,
+"Fly": 164,
+"Jig": 32,
+"Lure": 166
+},
+"Cowlitz River|Northern pikeminnow": {
+"Bait": 14,
+"Bait-Lure": 2,
+"Jig": 5,
+"Lure": 1
+},
+"Cowlitz River|Other": {
+"Bait": 16,
+"Bait-Lure": 8,
+"Lure": 5
+},
+"Cowlitz River|Rainbow trout": {
+"Bait": 20,
+"Bait-Lure": 11,
+"Fly": 7,
+"Lure": 15
+},
+"Cowlitz River|Salmonid - Unspecified": {
+"Lure": 30
+},
+"Cowlitz River|Steelhead": {
+"Bait": 2801,
+"Bait-Jig": 75,
+"Bait-Lure": 2483,
+"Fly": 45,
+"Jig": 189,
+"Lure": 1605
+},
+"Cowlitz River|Sturgeon": {
+"Bait": 148,
+"Bait-Lure": 18,
+"Lure": 15
+},
+"Cowlitz River|Sucker": {
+"Bait": 72,
+"Bait-Lure": 39,
+"Fly": 3,
+"Jig": 14,
+"Lure": 51
+},
+"Cowlitz River|Trout - Unspecified": {
+"Bait": 23,
+"Bait-Lure": 17,
+"Fly": 6,
+"Jig": 4,
+"Lure": 26
+},
+"Cowlitz River|Unknown": {
+"Bait": 131,
+"Bait-Jig": 1,
+"Bait-Lure": 16,
+"Fly": 24,
+"Jig": 1,
+"Lure": 65
+},
+"Cowlitz River|Whitefish": {
+"Bait": 59,
+"Bait-Lure": 36,
+"Lure": 61
+},
+"Davis Lake|Cutthroat": {
+"Bait": 25,
+"Lure": 2
+},
+"Davis Lake|Rainbow trout": {
+"Bait": 48,
+"Fly": 5,
+"Lure": 44
+},
+"East Fork Lewis River|Coho": {
+"Bait": 6,
+"Bait-Lure": 1,
+"Fly": 1,
+"Jig": 6,
+"Lure": 8
+},
+"East Fork Lewis River|Steelhead": {
+"Bait": 31,
+"Bait-Jig": 4,
+"Fly": 23,
+"Jig": 93,
+"Lure": 50
+},
+"Elochoman River|Coho": {
+"Bait": 16,
+"Bait-Jig": 10,
+"Bait-Lure": 1,
+"Jig": 23,
+"Lure": 29
+},
+"Elochoman River|Cutthroat": {
+"Bait": 4,
+"Fly": 13,
+"Jig": 8,
+"Lure": 8
+},
+"Elochoman River|Steelhead": {
+"Bait": 75,
+"Bait-Jig": 18,
+"Bait-Lure": 12,
+"Jig": 201,
+"Lure": 88
+},
+"Ft. Borst Park Pond|Rainbow trout": {
+"Bait": 1482,
+"Bait-Lure": 249,
+"Fly": 26,
+"Jig": 10,
+"Lure": 286
+},
+"Germany Creek|Steelhead": {
+"Bait": 2,
+"Jig": 5,
+"Lure": 13
+},
+"Goose Lake|Brook Trout": {
+"Bait": 10,
+"Bait-Lure": 1,
+"Fly": 33,
+"Lure": 3
+},
+"Goose Lake|Brown trout": {
+"Bait": 25,
+"Bait-Lure": 1,
+"Fly": 17,
+"Lure": 23
+},
+"Goose Lake|Cutthroat": {
+"Bait": 51,
+"Bait-Lure": 12,
+"Fly": 108,
+"Lure": 42
+},
+"Grays River|Chum": {
+"Bait": 13,
+"Bait-Jig": 1,
+"Fly": 7,
+"Jig": 54,
+"Lure": 2
+},
+"Grays River|Coho": {
+"Bait": 10,
+"Bait-Jig": 1,
+"Fly": 8,
+"Jig": 23,
+"Lure": 12
+},
+"Grays River|Steelhead": {
+"Bait": 12,
+"Bait-Lure": 2,
+"Jig": 32,
+"Lure": 22
+},
+"Hoh River|Bull trout": {
+"Fly": 131,
+"Gear": 47,
+"Jig": 6,
+"Lure": 15,
+"Multiple gear types": 10
+},
+"Hoh River|Chinook": {
+"Bait": 30,
+"Bait-Lure": 17,
+"Gear": 59,
+"Jig": 10,
+"Lure": 47,
+"Multiple gear types": 33
+},
+"Hoh River|Coho": {
+"Bait-Lure": 6,
+"Fly": 6,
+"Gear": 161,
+"Jig": 42,
+"Lure": 74,
+"Multiple gear types": 62
+},
+"Hoh River|Cutthroat": {
+"Fly": 48,
+"Gear": 78,
+"Jig": 3,
+"Lure": 16,
+"Multiple gear types": 8
+},
+"Hoh River|Rainbow trout": {
+"Bait": 1,
+"Fly": 12,
+"Gear": 11,
+"Jig": 4,
+"Lure": 5,
+"Multiple gear types": 1
+},
+"Hoh River|Steelhead": {
+"Bait-Lure": 20,
+"Fly": 449,
+"Gear": 1075,
+"Jig": 85,
+"Lure": 339,
+"Multiple gear types": 111
+},
+"Hoh River|Whitefish": {
+"Fly": 127,
+"Gear": 330,
+"Jig": 28,
+"Lure": 86,
+"Multiple gear types": 35
+},
+"Horseshoe Lake|Brown trout": {
+"Bait": 387,
+"Bait-Lure": 9,
+"Fly": 1,
+"Lure": 23
+},
+"Horseshoe Lake|Cutthroat": {
+"Bait": 17,
+"Bait-Lure": 1,
+"Lure": 2
+},
+"Horseshoe Lake|Largemouth bass": {
+"Bait": 56,
+"Bait-Lure": 3,
+"Lure": 2
+},
+"Horseshoe Lake|Rainbow trout": {
+"Bait": 2018,
+"Bait-Lure": 213,
+"Fly": 13,
+"Lure": 603
+},
+"Horsethief Lake|Rainbow trout": {
+"Bait": 2385,
+"Bait-Lure": 506,
+"Fly": 50,
+"Lure": 1272
+},
+"Horsethief Lake|Smallmouth bass": {
+"Bait": 10,
+"Bait-Lure": 17,
+"Lure": 27
+},
+"Horsethief Lake|Yellow perch": {
+"Bait": 38
+},
+"Humptulips River|Chinook": {
+"Bait": 1939,
+"Bait-Jig": 97,
+"Bait-Lure": 318,
+"Jig": 247,
+"Lure": 529,
+"Multiple gear types": 82
+},
+"Humptulips River|Chum": {
+"Bait": 678,
+"Bait-Jig": 42,
+"Bait-Lure": 154,
+"Jig": 1318,
+"Lure": 2273,
+"Multiple gear types": 48
+},
+"Humptulips River|Coho": {
+"Bait": 1054,
+"Bait-Jig": 95,
+"Bait-Lure": 321,
+"Jig": 1062,
+"Lure": 3047,
+"Multiple gear types": 311
+},
+"Humptulips River|Cutthroat": {
+"Bait": 39,
+"Bait-Jig": 3,
+"Bait-Lure": 7,
+"Jig": 5,
+"Lure": 32,
+"Multiple gear types": 1
+},
+"Humptulips River|Rainbow trout": {
+"Bait": 10,
+"Bait-Jig": 4,
+"Jig": 11,
+"Lure": 27,
+"Multiple gear types": 1
+},
+"Humptulips River|Steelhead": {
+"Bait": 43,
+"Bait-Jig": 18,
+"Bait-Lure": 7,
+"Jig": 51,
+"Lure": 352,
+"Multiple gear types": 1
+},
+"Humptulips River|Whitefish": {
+"Bait": 16,
+"Bait-Jig": 6,
+"Jig": 4,
+"Lure": 33,
+"Multiple gear types": 1
+},
+"Icehouse Lake|Brown trout": {
+"Bait": 122,
+"Bait-Lure": 71,
+"Fly": 9,
+"Lure": 91
+},
+"Icehouse Lake|Rainbow trout": {
+"Bait": 1660,
+"Bait-Lure": 166,
+"Fly": 38,
+"Lure": 190
+},
+"Kalama River|Chinook": {
+"Bait": 127,
+"Bait-Jig": 2,
+"Bait-Lure": 5,
+"Fly": 17,
+"Jig": 15,
+"Lure": 56
+},
+"Kalama River|Coho": {
+"Bait": 27,
+"Bait-Lure": 6,
+"Fly": 11,
+"Jig": 26,
+"Lure": 53,
+"Multiple gear types": 2
+},
+"Kalama River|Steelhead": {
+"Bait": 237,
+"Bait-Jig": 8,
+"Bait-Lure": 8,
+"Fly": 38,
+"Jig": 177,
+"Lure": 222
+},
+"Kalama River|Unknown": {
+"Bait": 11,
+"Fly": 57,
+"Jig": 2,
+"Lure": 16
+},
+"Klickitat River|Chinook": {
+"Bait": 156,
+"Fly": 11,
+"Jig": 5,
+"Lure": 25
+},
+"Klickitat River|Steelhead": {
+"Bait": 116,
+"Fly": 112,
+"Jig": 18,
+"Lure": 48
+},
+"Klickitat River|Trout - Unspecified": {
+"Bait": 85,
+"Fly": 43,
+"Jig": 3,
+"Lure": 23
+},
+"Klickitat River|Unknown": {
+"Bait": 94,
+"Fly": 63,
+"Jig": 15,
+"Lure": 55
+},
+"Klickitat River|Whitefish": {
+"Bait": 12,
+"Fly": 57,
+"Jig": 4,
+"Lure": 1
+},
+"Klineline Pond|Brown trout": {
+"Bait": 1748,
+"Bait-Lure": 710,
+"Fly": 457,
+"Lure": 1320
+},
+"Klineline Pond|Cutthroat": {
+"Bait": 1,
+"Bait-Lure": 16,
+"Fly": 1,
+"Lure": 54
+},
+"Klineline Pond|Rainbow trout": {
+"Bait": 8692,
+"Bait-Lure": 1136,
+"Fly": 1641,
+"Lure": 3413
+},
+"Klineline Pond|Steelhead": {
+"Bait": 4,
+"Fly": 6,
+"Lure": 13
+},
+"Kress Lake|Bluegill": {
+"Bait": 557,
+"Bait-Lure": 66,
+"Fly": 9,
+"Lure": 10
+},
+"Kress Lake|Brown trout": {
+"Bait": 377,
+"Bait-Lure": 31,
+"Fly": 25,
+"Lure": 65
+},
+"Kress Lake|Cutthroat": {
+"Bait": 42
+},
+"Kress Lake|Largemouth bass": {
+"Bait": 34,
+"Bait-Lure": 5,
+"Lure": 22
+},
+"Kress Lake|Pumpkinseed": {
+"Bait": 81
+},
+"Kress Lake|Rainbow trout": {
+"Bait": 2659,
+"Bait-Lure": 185,
+"Fly": 77,
+"Lure": 410
+},
+"Kress Lake|Steelhead": {
+"Bait": 43,
+"Bait-Lure": 1,
+"Fly": 6,
+"Lure": 6
+},
+"Lacamas Lake|Brown trout": {
+"Bait": 406,
+"Bait-Lure": 3,
+"Fly": 14,
+"Lure": 885
+},
+"Lacamas Lake|Carp": {
+"Bait": 41,
+"Lure": 1
+},
+"Lacamas Lake|Rainbow trout": {
+"Bait": 126,
+"Bait-Lure": 6,
+"Lure": 41
+},
+"Lacamas Lake|Yellow perch": {
+"Bait": 87,
+"Bait-Lure": 1
+},
+"Lake Sacajawea|Black Crappie": {
+"Bait": 6,
+"Bait-Lure": 17
+},
+"Lake Sacajawea|Bluegill": {
+"Bait": 111,
+"Bait-Lure": 21,
+"Lure": 15
+},
+"Lake Sacajawea|Brown trout": {
+"Bait": 149,
+"Bait-Lure": 9
+},
+"Lake Sacajawea|Rainbow trout": {
+"Bait": 466,
+"Bait-Lure": 22,
+"Fly": 24,
+"Lure": 14
+},
+"Lake Sacajawea|Yellow perch": {
+"Bait": 42,
+"Bait-Lure": 4
+},
+"Little Ash Lake|Brown Bullhead": {
+"Bait": 26,
+"Bait-Lure": 10
+},
+"Little Ash Lake|Rainbow trout": {
+"Bait": 1706,
+"Bait-Lure": 116,
+"Lure": 231
+},
+"Merrill Lake|Cutthroat": {
+"Fly": 45
+},
+"Merrill Lake|Rainbow trout": {
+"Fly": 26
+},
+"Mineral Lake|Brown trout": {
+"Bait": 77,
+"Bait-Lure": 27,
+"Fly": 2,
+"Lure": 51
+},
+"Mineral Lake|Cutthroat": {
+"Bait": 50,
+"Bait-Lure": 5,
+"Fly": 2,
+"Lure": 7
+},
+"Mineral Lake|Largemouth bass": {
+"Bait": 21,
+"Bait-Lure": 7,
+"Fly": 2,
+"Lure": 3
+},
+"Mineral Lake|Rainbow trout": {
+"Bait": 8459,
+"Bait-Lure": 2325,
+"Fly": 377,
+"Lure": 3284
+},
+"Naselle River|Coho": {
+"Fly": 1,
+"Gear": 3,
+"Jig": 8,
+"Lure": 43,
+"Multiple gear types": 6
+},
+"Naselle River|Cutthroat": {
+"Bait": 1,
+"Fly": 12,
+"Gear": 3,
+"Jig": 1,
+"Lure": 56,
+"Multiple gear types": 16
+},
+"Naselle River|Steelhead": {
+"Bait-Jig": 1,
+"Fly": 7,
+"Gear": 77,
+"Jig": 28,
+"Lure": 318,
+"Multiple gear types": 47
+},
+"Nisqually River|Chinook": {
+"Bait": 207,
+"Bait-Lure": 82,
+"Gear": 892,
+"Jig": 1,
+"Lure": 16
+},
+"Nisqually River|Coho": {
+"Bait": 45,
+"Bait-Lure": 31,
+"Fly": 7,
+"Gear": 544,
+"Jig": 9,
+"Lure": 55
+},
+"Nisqually River|Cutthroat": {
+"Bait-Lure": 2,
+"Fly": 1,
+"Gear": 57,
+"Lure": 6
+},
+"Nisqually River|Pink": {
+"Bait": 68,
+"Bait-Lure": 30,
+"Fly": 1,
+"Gear": 1075,
+"Lure": 5
+},
+"Nisqually River|Rainbow trout": {
+"Bait": 6,
+"Bait-Lure": 5,
+"Fly": 4,
+"Gear": 106,
+"Lure": 22
+},
+"Nooksack River - North Fork|Bull trout": {
+"Bait": 28,
+"Bait-Lure": 9,
+"Fly": 30,
+"Gear": 30,
+"Jig": 19,
+"Lure": 12
+},
+"Nooksack River - North Fork|Chinook": {
+"Bait": 55,
+"Bait-Lure": 17,
+"Fly": 1,
+"Gear": 31,
+"Lure": 16
+},
+"Nooksack River - North Fork|Chum": {
+"Bait": 11,
+"Bait-Jig": 5,
+"Fly": 3,
+"Jig": 42,
+"Lure": 43
+},
+"Nooksack River - North Fork|Coho": {
+"Bait": 11,
+"Fly": 1,
+"Gear": 1,
+"Jig": 15,
+"Lure": 2
+},
+"Nooksack River - North Fork|Dolly Varden": {
+"Bait": 23,
+"Fly": 1,
+"Gear": 3,
+"Jig": 9,
+"Lure": 9
+},
+"Nooksack River - North Fork|Steelhead": {
+"Bait": 41,
+"Bait-Lure": 1,
+"Fly": 2,
+"Gear": 48,
+"Jig": 24,
+"Lure": 2
+},
+"Nooksack River - North Fork|Whitefish": {
+"Bait": 5,
+"Fly": 33,
+"Gear": 16,
+"Jig": 2,
+"Lure": 4
+},
+"Nooksack River|Chum": {
+"Bait-Jig": 2,
+"Jig": 15,
+"Lure": 22
+},
+"Nooksack River|Coho": {
+"Bait-Lure": 8,
+"Gear": 1,
+"Jig": 12,
+"Lure": 28
+},
+"Plummer Lake|Brown trout": {
+"Bait": 23,
+"Bait-Lure": 24,
+"Lure": 23
+},
+"Plummer Lake|Rainbow trout": {
+"Bait": 1058,
+"Bait-Lure": 95,
+"Lure": 348
+},
+"Puyallup River|Chinook": {
+"Fly": 1,
+"Gear": 577,
+"Jig": 2
+},
+"Puyallup River|Coho": {
+"Bait-Lure": 6,
+"Gear": 1861,
+"Jig": 1,
+"Lure": 11
+},
+"Puyallup River|Pink": {
+"Bait-Lure": 13,
+"Fly": 2,
+"Gear": 13723,
+"Jig": 23,
+"Lure": 3
+},
+"Quillayute River|Chinook": {
+"Bait": 60,
+"Bait-Lure": 41,
+"Gear": 160,
+"Jig": 15,
+"Lure": 115,
+"Multiple gear types": 92
+},
+"Quillayute River|Coho": {
+"Bait": 27,
+"Fly": 32,
+"Gear": 341,
+"Jig": 79,
+"Lure": 285,
+"Multiple gear types": 152
+},
+"Quillayute River|Cutthroat": {
+"Bait": 1,
+"Fly": 77,
+"Gear": 3,
+"Jig": 1,
+"Lure": 16,
+"Multiple gear types": 5
+},
+"Quillayute River|Rainbow trout": {
+"Bait": 1,
+"Fly": 12,
+"Gear": 1,
+"Jig": 5,
+"Lure": 2
+},
+"Quillayute River|Steelhead": {
+"Bait": 1,
+"Fly": 30,
+"Gear": 60,
+"Jig": 8,
+"Lure": 8,
+"Multiple gear types": 4
+},
+"Quinault River|Steelhead": {
+"Jig": 12,
+"Lure": 42
+},
+"Riffe Lake|Coho": {
+"Bait": 163,
+"Bait-Lure": 14,
+"Lure": 5
+},
+"Riffe Lake|Rainbow trout": {
+"Bait": 24,
+"Lure": 2
+},
+"Rowland Lake|Black Crappie": {
+"Bait": 57,
+"Bait-Lure": 1,
+"Lure": 157
+},
+"Rowland Lake|Bluegill": {
+"Bait": 309,
+"Bait-Lure": 10,
+"Fly": 20,
+"Lure": 17
+},
+"Rowland Lake|Brook Trout": {
+"Bait": 45,
+"Bait-Lure": 107,
+"Fly": 11,
+"Lure": 89
+},
+"Rowland Lake|Channel catfish": {
+"Bait": 34,
+"Bait-Lure": 1,
+"Fly": 2
+},
+"Rowland Lake|Pumpkinseed": {
+"Bait": 68,
+"Bait-Lure": 1
+},
+"Rowland Lake|Rainbow trout": {
+"Bait": 1777,
+"Bait-Lure": 1232,
+"Fly": 135,
+"Lure": 4061
+},
+"Rowland Lake|White Crappie": {
+"Bait": 9,
+"Lure": 24
+},
+"Rowland Lake|Yellow perch": {
+"Bait": 137,
+"Bait-Lure": 1,
+"Lure": 3
+},
+"Salmon Creek|Rainbow trout": {
+"Bait": 33,
+"Lure": 9
+},
+"Salmon Creek|Steelhead": {
+"Bait": 20,
+"Jig": 23,
+"Lure": 11
+},
+"Salmon Creek|Sucker": {
+"Bait": 47,
+"Fly": 8,
+"Jig": 2,
+"Lure": 60
+},
+"Satsop River|Chinook": {
+"Bait": 128,
+"Bait-Jig": 44,
+"Bait-Lure": 48,
+"Jig": 24,
+"Lure": 13
+},
+"Satsop River|Chum": {
+"Bait": 192,
+"Bait-Jig": 586,
+"Bait-Lure": 214,
+"Jig": 860,
+"Lure": 442
+},
+"Satsop River|Coho": {
+"Bait": 495,
+"Bait-Jig": 145,
+"Bait-Lure": 385,
+"Jig": 433,
+"Lure": 519
+},
+"Satsop River|Cutthroat": {
+"Bait": 5,
+"Bait-Jig": 2,
+"Bait-Lure": 7,
+"Jig": 20,
+"Lure": 28
+},
+"Satsop River|Northern pikeminnow": {
+"Bait": 13,
+"Bait-Lure": 8,
+"Jig": 6,
+"Lure": 17
+},
+"Satsop River|Steelhead": {
+"Bait": 1,
+"Bait-Jig": 1,
+"Bait-Lure": 1,
+"Jig": 15,
+"Lure": 102
+},
+"Satsop River|Sucker": {
+"Bait": 1,
+"Bait-Jig": 3,
+"Bait-Lure": 8,
+"Jig": 3,
+"Lure": 8
+},
+"Sauk River|Bull trout": {
+"Bait": 17,
+"Bait-Jig": 2,
+"Fly": 110,
+"Gear": 15,
+"Jig": 28,
+"Lure": 35
+},
+"Sauk River|Cutthroat": {
+"Bait": 4,
+"Bait-Jig": 4,
+"Fly": 7,
+"Gear": 3,
+"Jig": 5,
+"Lure": 5
+},
+"Sauk River|Dolly Varden": {
+"Bait": 1,
+"Bait-Lure": 4,
+"Fly": 17,
+"Gear": 2,
+"Jig": 11,
+"Lure": 15
+},
+"Sauk River|Steelhead": {
+"Bait": 145,
+"Bait-Jig": 52,
+"Bait-Lure": 38,
+"Fly": 55,
+"Jig": 184,
+"Lure": 224
+},
+"Sauk River|Whitefish": {
+"Bait": 24,
+"Bait-Jig": 18,
+"Fly": 13,
+"Gear": 4,
+"Jig": 17,
+"Lure": 65
+},
+"Silver Lake|Black Crappie": {
+"Bait": 38,
+"Bait-Lure": 814,
+"Jig": 63,
+"Lure": 19
+},
+"Silver Lake|Bluegill": {
+"Bait": 225,
+"Bait-Lure": 135,
+"Jig": 27,
+"Lure": 20,
+"Multiple gear types": 40
+},
+"Silver Lake|Brown Bullhead": {
+"Bait": 35,
+"Bait-Lure": 6,
+"Lure": 2
+},
+"Silver Lake|Crappie - Unspecified": {
+"Bait": 21,
+"Bait-Lure": 40,
+"Lure": 10
+},
+"Silver Lake|Largemouth bass": {
+"Bait": 61,
+"Bait-Lure": 70,
+"Fly": 22,
+"Lure": 216
+},
+"Silver Lake|Rainbow trout": {
+"Bait": 161,
+"Bait-Lure": 48,
+"Lure": 9
+},
+"Silver Lake|White Crappie": {
+"Bait": 13,
+"Bait-Lure": 365,
+"Jig": 222,
+"Lure": 102,
+"Multiple gear types": 12
+},
+"Silver Lake|Yellow perch": {
+"Bait": 521,
+"Bait-Lure": 636,
+"Fly": 7,
+"Jig": 47,
+"Lure": 201
+},
+"Skagit River|Bull trout": {
+"Bait": 48,
+"Bait-Lure": 39,
+"Fly": 474,
+"Gear": 311,
+"Jig": 60,
+"Lure": 192
+},
+"Skagit River|Chinook": {
+"Bait": 116,
+"Bait-Lure": 57,
+"Gear": 76,
+"Jig": 13,
+"Lure": 132,
+"Multiple gear types": 19
+},
+"Skagit River|Chum": {
+"Bait": 12,
+"Bait-Jig": 14,
+"Bait-Lure": 10,
+"Fly": 32,
+"Jig": 110,
+"Lure": 175
+},
+"Skagit River|Coho": {
+"Bait": 130,
+"Bait-Jig": 257,
+"Bait-Lure": 303,
+"Gear": 492,
+"Jig": 597,
+"Lure": 3154
+},
+"Skagit River|Cutthroat": {
+"Bait": 8,
+"Bait-Lure": 18,
+"Fly": 95,
+"Gear": 56,
+"Jig": 16,
+"Lure": 76
+},
+"Skagit River|Dolly Varden": {
+"Bait": 54,
+"Bait-Lure": 76,
+"Fly": 38,
+"Gear": 38,
+"Jig": 40,
+"Lure": 201
+},
+"Skagit River|Pink": {
+"Bait-Jig": 943,
+"Bait-Lure": 1040,
+"Fly": 1493,
+"Gear": 2611,
+"Jig": 2055,
+"Lure": 3389
+},
+"Skagit River|Rainbow trout": {
+"Bait": 33,
+"Bait-Lure": 77,
+"Fly": 50,
+"Gear": 60,
+"Jig": 16,
+"Lure": 102
+},
+"Skagit River|Salmonid - Unspecified": {
+"Bait-Lure": 12,
+"Fly": 2,
+"Jig": 3,
+"Lure": 20
+},
+"Skagit River|Sockeye": {
+"Bait": 119,
+"Bait-Lure": 185,
+"Gear": 109,
+"Jig": 1,
+"Lure": 22
+},
+"Skagit River|Steelhead": {
+"Bait": 67,
+"Bait-Lure": 33,
+"Fly": 166,
+"Gear": 410,
+"Jig": 173,
+"Lure": 301
+},
+"Skagit River|Sucker": {
+"Bait": 1,
+"Bait-Lure": 4,
+"Fly": 12,
+"Gear": 2,
+"Jig": 3,
+"Lure": 9
+},
+"Skagit River|Trout - Unspecified": {
+"Bait": 4,
+"Bait-Lure": 7,
+"Fly": 10,
+"Gear": 4,
+"Jig": 3,
+"Lure": 31
+},
+"Skagit River|Whitefish": {
+"Bait": 37,
+"Bait-Lure": 31,
+"Fly": 64,
+"Gear": 318,
+"Jig": 18,
+"Lure": 155
+},
+"Skookumchuck River|Coho": {
+"Bait": 1,
+"Jig": 52,
+"Lure": 50
+},
+"Skookumchuck River|Steelhead": {
+"Bait": 1,
+"Jig": 32,
+"Lure": 62
+},
+"Skookumchuck River|Whitefish": {
+"Jig": 4,
+"Lure": 50
+},
+"Skykomish River - NF|Rainbow trout": {
+"Fly": 19,
+"Gear": 1
+},
+"Skykomish River|Bull trout": {
+"Fly": 2,
+"Gear": 22
+},
+"Skykomish River|Chinook": {
+"Gear": 276
+},
+"Skykomish River|Chum": {
+"Fly": 2,
+"Gear": 260,
+"Multiple gear types": 8
+},
+"Skykomish River|Coho": {
+"Fly": 4,
+"Gear": 361,
+"Multiple gear types": 3
+},
+"Skykomish River|Cutthroat": {
+"Fly": 23,
+"Gear": 64,
+"Multiple gear types": 2
+},
+"Skykomish River|Dolly Varden": {
+"Gear": 20
+},
+"Skykomish River|Pink": {
+"Fly": 26,
+"Gear": 871
+},
+"Skykomish River|Rainbow trout": {
+"Fly": 42,
+"Gear": 153,
+"Multiple gear types": 4
+},
+"Skykomish River|Steelhead": {
+"Fly": 39,
+"Gear": 425
+},
+"Skykomish River|Sucker": {
+"Gear": 37,
+"Multiple gear types": 1
+},
+"Skykomish River|Trout - Unspecified": {
+"Fly": 4,
+"Gear": 21
+},
+"Skykomish River|Whitefish": {
+"Fly": 2,
+"Gear": 37,
+"Multiple gear types": 1
+},
+"Snohomish River|Brown Bullhead": {
+"Gear": 23
+},
+"Snohomish River|Coho": {
+"Fly": 7,
+"Gear": 1200,
+"Multiple gear types": 2
+},
+"Snohomish River|Cutthroat": {
+"Fly": 6,
+"Gear": 46
+},
+"Snohomish River|Peamouth": {
+"Gear": 22
+},
+"Snohomish River|Pink": {
+"Fly": 106,
+"Gear": 13884,
+"Multiple gear types": 5
+},
+"Snohomish River|Rainbow trout": {
+"Fly": 2,
+"Gear": 24
+},
+"Snohomish River|Sculpin Species - Unspecified": {
+"Gear": 22
+},
+"Snoqualmie River|Coho": {
+"Fly": 2,
+"Gear": 62
+},
+"Snoqualmie River|Rainbow trout": {
+"Fly": 35,
+"Gear": 29
+},
+"Snoqualmie River|Steelhead": {
+"Fly": 5,
+"Gear": 17
+},
+"Snoqualmie River|Whitefish": {
+"Fly": 14,
+"Gear": 137
+},
+"Sol Duc River|Chinook": {
+"Bait": 147,
+"Bait-Lure": 62,
+"Gear": 284,
+"Jig": 18,
+"Lure": 54,
+"Multiple gear types": 57
+},
+"Sol Duc River|Coho": {
+"Bait-Lure": 42,
+"Fly": 31,
+"Gear": 340,
+"Jig": 164,
+"Lure": 309,
+"Multiple gear types": 219
+},
+"Sol Duc River|Cutthroat": {
+"Bait": 12,
+"Bait-Lure": 10,
+"Fly": 75,
+"Gear": 126,
+"Lure": 13,
+"Multiple gear types": 20
+},
+"Sol Duc River|Sockeye": {
+"Bait": 6,
+"Bait-Lure": 4,
+"Gear": 34,
+"Jig": 2,
+"Lure": 14,
+"Multiple gear types": 1
+},
+"Sol Duc River|Steelhead": {
+"Bait-Jig": 20,
+"Fly": 211,
+"Gear": 1107,
+"Jig": 127,
+"Lure": 333,
+"Multiple gear types": 109
+},
+"Sol Duc River|Whitefish": {
+"Bait-Lure": 2,
+"Fly": 40,
+"Gear": 132,
+"Jig": 8,
+"Lure": 18,
+"Multiple gear types": 7
+},
+"South Lewis County Park Pond|Bluegill": {
+"Bait": 16,
+"Bait-Lure": 8
+},
+"South Lewis County Park Pond|Cutthroat": {
+"Bait": 27
+},
+"South Lewis County Park Pond|Rainbow trout": {
+"Bait": 248,
+"Bait-Lure": 13,
+"Fly": 3,
+"Lure": 68
+},
+"Spearfish Lake|Rainbow trout": {
+"Bait": 2463,
+"Bait-Lure": 706,
+"Fly": 55,
+"Lure": 1619
+},
+"Stillaguamish River - North Fork|Chum": {
+"Fly": 12,
+"Gear": 11
+},
+"Stillaguamish River - North Fork|Coho": {
+"Fly": 43,
+"Gear": 82
+},
+"Stillaguamish River - North Fork|Cutthroat": {
+"Fly": 319,
+"Gear": 13
+},
+"Stillaguamish River - North Fork|Pink": {
+"Fly": 67,
+"Gear": 3
+},
+"Stillaguamish River - North Fork|Rainbow trout": {
+"Fly": 166,
+"Gear": 12
+},
+"Stillaguamish River - North Fork|Steelhead": {
+"Fly": 23,
+"Gear": 26
+},
+"Stillaguamish River - North Fork|Trout - Unspecified": {
+"Fly": 30,
+"Gear": 1
+},
+"Stillaguamish River - South Fork|Cutthroat": {
+"Fly": 14,
+"Gear": 7,
+"Multiple gear types": 5
+},
+"Stillaguamish River - South Fork|Rainbow trout": {
+"Fly": 176,
+"Gear": 66,
+"Multiple gear types": 20
+},
+"Stillaguamish River - South Fork|Trout - Unspecified": {
+"Fly": 24,
+"Gear": 1
+},
+"Stillaguamish River|Coho": {
+"Fly": 34,
+"Gear": 485,
+"Multiple gear types": 3
+},
+"Stillaguamish River|Cutthroat": {
+"Fly": 82,
+"Gear": 69,
+"Multiple gear types": 1
+},
+"Stillaguamish River|Pink": {
+"Fly": 45,
+"Gear": 1837
+},
+"Stillaguamish River|Rainbow trout": {
+"Fly": 28,
+"Gear": 13
+},
+"Swift Power Canal|Rainbow trout": {
+"Bait": 27,
+"Lure": 9
+},
+"Swofford Pond|Rainbow trout": {
+"Bait": 87,
+"Fly": 2,
+"Lure": 28
+},
+"Tokul Creek|Steelhead": {
+"Fly": 12,
+"Gear": 74
+},
+"Tunnel Lake|Rainbow trout": {
+"Bait": 651,
+"Bait-Lure": 275,
+"Fly": 11,
+"Lure": 251
+},
+"Vancouver Lake|Brown Bullhead": {
+"Bait": 151,
+"Lure": 2
+},
+"Vancouver Lake|Largemouth bass": {
+"Bait": 34,
+"Lure": 12
+},
+"Vancouver Lake|White Crappie": {
+"Bait": 35,
+"Bait-Lure": 2,
+"Lure": 565
+},
+"Vancouver Lake|Yellow perch": {
+"Bait": 130,
+"Bait-Lure": 4,
+"Lure": 14
+},
+"Wallace River|Chum": {
+"Fly": 2,
+"Gear": 387,
+"Multiple gear types": 2
+},
+"Wallace River|Coho": {
+"Fly": 44,
+"Gear": 3151,
+"Multiple gear types": 14
+},
+"Wallace River|Pink": {
+"Fly": 3,
+"Gear": 267
+},
+"Wallace River|Steelhead": {
+"Fly": 2,
+"Gear": 32
+},
+"Washougal River|Chinook": {
+"Bait": 4,
+"Fly": 1,
+"Jig": 35,
+"Lure": 43,
+"Multiple gear types": 1
+},
+"White Salmon River|Chinook": {
+"Bait": 22,
+"Fly": 1,
+"Lure": 3
+},
+"Willapa River|Coho": {
+"Gear": 33,
+"Jig": 61,
+"Lure": 118,
+"Multiple gear types": 28
+},
+"Willapa River|Cutthroat": {
+"Gear": 19,
+"Jig": 47,
+"Lure": 136,
+"Multiple gear types": 12
+},
+"Willapa River|Steelhead": {
+"Bait": 1,
+"Gear": 78,
+"Jig": 48,
+"Lure": 193,
+"Multiple gear types": 35
+},
+"Wind River|Steelhead": {
+"Fly": 67,
+"Jig": 5,
+"Lure": 4
+},
+"Wynoochee River|Coho": {
+"Bait": 1,
+"Jig": 20,
+"Lure": 32
+},
+"Wynoochee River|Cutthroat": {
+"Bait-Lure": 1,
+"Jig": 9,
+"Lure": 10
+},
+"Wynoochee River|Steelhead": {
+"Bait": 2,
+"Bait-Jig": 2,
+"Bait-Lure": 6,
+"Jig": 151,
+"Lure": 278
+}
+},
+"seat": {
+"Abernathy Creek": {
+"Bank": {
+"parties": 66,
+"with_fish": 7
+}
+},
+"Battle Ground Lake": {
+"Bank": {
+"parties": 452,
+"with_fish": 296
+},
+"Boat": {
+"parties": 433,
+"with_fish": 411
+}
+},
+"Blue Creek (Cowlitz)": {
+"Bank": {
+"parties": 50,
+"with_fish": 38
+}
+},
+"Carlisle Lake": {
+"Bank": {
+"parties": 578,
+"with_fish": 449
+},
+"Boat": {
+"parties": 380,
+"with_fish": 350
+}
+},
+"Coldwater Lake": {
+"Bank": {
+"parties": 69,
+"with_fish": 58
+}
+},
+"Coweeman River": {
+"Bank": {
+"parties": 236,
+"with_fish": 61
+}
+},
+"Cowlitz River": {
+"Bank": {
+"parties": 19262,
+"with_fish": 4631
+},
+"Boat": {
+"parties": 7677,
+"with_fish": 4428
+}
+},
+"East Fork Lewis River": {
+"Bank": {
+"parties": 2385,
+"with_fish": 303
+},
+"Boat": {
+"parties": 84,
+"with_fish": 28
+}
+},
+"Elochoman River": {
+"Bank": {
+"parties": 938,
+"with_fish": 231
+},
+"Boat": {
+"parties": 63,
+"with_fish": 37
+}
+},
+"Ft. Borst Park Pond": {
+"Bank": {
+"parties": 465,
+"with_fish": 347
+}
+},
+"Germany Creek": {
+"Bank": {
+"parties": 93,
+"with_fish": 16
+}
+},
+"Goose Lake": {
+"Bank": {
+"parties": 30,
+"with_fish": 21
+},
+"Boat": {
+"parties": 38,
+"with_fish": 38
+}
+},
+"Grays River": {
+"Bank": {
+"parties": 193,
+"with_fish": 61
+},
+"Boat": {
+"parties": 29,
+"with_fish": 15
+}
+},
+"Horseshoe Lake": {
+"Bank": {
+"parties": 335,
+"with_fish": 201
+},
+"Boat": {
+"parties": 205,
+"with_fish": 190
+}
+},
+"Horsethief Lake": {
+"Bank": {
+"parties": 284,
+"with_fish": 207
+},
+"Boat": {
+"parties": 345,
+"with_fish": 316
+}
+},
+"Icehouse Lake": {
+"Bank": {
+"parties": 303,
+"with_fish": 248
+}
+},
+"Kalama River": {
+"Bank": {
+"parties": 6258,
+"with_fish": 1151
+},
+"Boat": {
+"parties": 773,
+"with_fish": 321
+}
+},
+"Klineline Pond": {
+"Bank": {
+"parties": 7553,
+"with_fish": 4281
+}
+},
+"Kress Lake": {
+"Bank": {
+"parties": 870,
+"with_fish": 514
+},
+"Boat": {
+"parties": 281,
+"with_fish": 218
+}
+},
+"Lacamas Lake": {
+"Bank": {
+"parties": 371,
+"with_fish": 157
+},
+"Boat": {
+"parties": 121,
+"with_fish": 100
+}
+},
+"Lake Sacajawea": {
+"Bank": {
+"parties": 333,
+"with_fish": 213
+}
+},
+"Little Ash Lake": {
+"Bank": {
+"parties": 231,
+"with_fish": 188
+},
+"Boat": {
+"parties": 28,
+"with_fish": 28
+}
+},
+"Little White Salmon - Drano Lake": {
+"Boat": {
+"parties": 58,
+"with_fish": 28
+}
+},
+"Merrill Lake": {
+"Boat": {
+"parties": 32,
+"with_fish": 20
+}
+},
+"Mineral Lake": {
+"Bank": {
+"parties": 277,
+"with_fish": 231
+},
+"Boat": {
+"parties": 1430,
+"with_fish": 1338
+}
+},
+"Nisqually River": {
+"Bank": {
+"parties": 3490,
+"with_fish": 1189
+},
+"Boat": {
+"parties": 58,
+"with_fish": 40
+}
+},
+"Plummer Lake": {
+"Bank": {
+"parties": 175,
+"with_fish": 102
+},
+"Boat": {
+"parties": 101,
+"with_fish": 88
+}
+},
+"Riffe Lake": {
+"Bank": {
+"parties": 50,
+"with_fish": 42
+},
+"Boat": {
+"parties": 85,
+"with_fish": 66
+}
+},
+"Rowland Lake": {
+"Bank": {
+"parties": 493,
+"with_fish": 319
+},
+"Boat": {
+"parties": 563,
+"with_fish": 531
+}
+},
+"Salmon Creek": {
+"Bank": {
+"parties": 802,
+"with_fish": 95
+}
+},
+"Silver Lake": {
+"Bank": {
+"parties": 551,
+"with_fish": 470
+},
+"Boat": {
+"parties": 435,
+"with_fish": 320
+}
+},
+"South Fork Toutle River": {
+"Bank": {
+"parties": 1303,
+"with_fish": 321
+}
+},
+"South Lewis County Park Pond": {
+"Bank": {
+"parties": 128,
+"with_fish": 87
+}
+},
+"Spearfish Lake": {
+"Bank": {
+"parties": 549,
+"with_fish": 451
+},
+"Boat": {
+"parties": 163,
+"with_fish": 147
+}
+},
+"Swofford Pond": {
+"Bank": {
+"parties": 174,
+"with_fish": 117
+}
+},
+"Tunnel Lake": {
+"Bank": {
+"parties": 208,
+"with_fish": 115
+},
+"Boat": {
+"parties": 61,
+"with_fish": 58
+}
+},
+"Upper Gorge - Rock Creek": {
+"Bank": {
+"parties": 68,
+"with_fish": 21
+}
+},
+"Vancouver Lake": {
+"Bank": {
+"parties": 409,
+"with_fish": 155
+}
+},
+"Washougal River": {
+"Bank": {
+"parties": 3989,
+"with_fish": 379
+},
+"Boat": {
+"parties": 782,
+"with_fish": 284
+}
+}
+},
+"size": {
+"Baker Lake|Sockeye": {
+"max": 69.5,
+"mean": 55.7,
+"n": 641,
+"p25": 53.0,
+"p50": 56.0,
+"p75": 58.0
+},
+"Blue Creek (Cowlitz)|Steelhead": {
+"max": 93.0,
+"mean": 70.2,
+"n": 62,
+"p25": 64.0,
+"p50": 69.0,
+"p75": 75.0
+},
+"Bogachiel River|Chinook": {
+"max": 91.0,
+"mean": 70.3,
+"n": 20,
+"p25": 65.0,
+"p50": 77.0,
+"p75": 82.0
+},
+"Bogachiel River|Coho": {
+"max": 85.0,
+"mean": 62.9,
+"n": 53,
+"p25": 58.0,
+"p50": 66.0,
+"p75": 73.0
+},
+"Bogachiel River|Steelhead": {
+"max": 89.0,
+"mean": 67.2,
+"n": 308,
+"p25": 63.0,
+"p50": 66.0,
+"p75": 70.0
+},
+"Calawah River|Steelhead": {
+"max": 89.0,
+"mean": 68.6,
+"n": 68,
+"p25": 63.0,
+"p50": 68.0,
+"p75": 75.0
+},
+"Carbon River|Chinook": {
+"max": 98.0,
+"mean": 72.0,
+"n": 456,
+"p25": 66.0,
+"p50": 74.0,
+"p75": 81.0
+},
+"Carbon River|Coho": {
+"max": 72.0,
+"mean": 53.2,
+"n": 271,
+"p25": 50.0,
+"p50": 53.0,
+"p75": 57.0
+},
+"Cascade River|Chinook": {
+"max": 97.0,
+"mean": 73.9,
+"n": 220,
+"p25": 69.0,
+"p50": 76.0,
+"p75": 83.0
+},
+"Cascade River|Coho": {
+"max": 76.0,
+"mean": 59.4,
+"n": 820,
+"p25": 56.0,
+"p50": 59.0,
+"p75": 62.0
+},
+"Chehalis River|Chinook": {
+"max": 86.0,
+"mean": 47.7,
+"n": 58,
+"p25": 40.0,
+"p50": 44.0,
+"p75": 51.0
+},
+"Chehalis River|Coho": {
+"max": 79.0,
+"mean": 61.7,
+"n": 1591,
+"p25": 60.0,
+"p50": 65.0,
+"p75": 68.0
+},
+"Cowlitz River|Chinook": {
+"max": 107.0,
+"mean": 59.5,
+"n": 2607,
+"p25": 47.0,
+"p50": 65.0,
+"p75": 74.0
+},
+"Cowlitz River|Coho": {
+"max": 84.0,
+"mean": 59.3,
+"n": 1614,
+"p25": 43.0,
+"p50": 65.0,
+"p75": 70.0
+},
+"Cowlitz River|Cutthroat": {
+"max": 44.0,
+"mean": 34.3,
+"n": 51,
+"p25": 32.0,
+"p50": 34.0,
+"p75": 37.0
+},
+"Cowlitz River|Steelhead": {
+"max": 99.0,
+"mean": 71.4,
+"n": 5834,
+"p25": 67.0,
+"p50": 71.0,
+"p75": 75.0
+},
+"Cowlitz River|Sturgeon": {
+"max": 126.0,
+"mean": 117.1,
+"n": 36,
+"p25": 115.0,
+"p50": 117.0,
+"p75": 122.0
+},
+"East Fork Lewis River|Steelhead": {
+"max": 87.0,
+"mean": 67.5,
+"n": 55,
+"p25": 63.0,
+"p50": 66.0,
+"p75": 71.0
+},
+"Elochoman River|Steelhead": {
+"max": 89.0,
+"mean": 70.0,
+"n": 255,
+"p25": 66.0,
+"p50": 70.0,
+"p75": 74.0
+},
+"Hoh River|Chinook": {
+"max": 95.0,
+"mean": 72.5,
+"n": 81,
+"p25": 65.0,
+"p50": 77.0,
+"p75": 82.0
+},
+"Hoh River|Coho": {
+"max": 81.0,
+"mean": 65.8,
+"n": 188,
+"p25": 62.0,
+"p50": 68.0,
+"p75": 72.0
+},
+"Humptulips River|Chinook": {
+"max": 98.0,
+"mean": 72.6,
+"n": 751,
+"p25": 68.0,
+"p50": 74.0,
+"p75": 78.0
+},
+"Humptulips River|Coho": {
+"max": 79.0,
+"mean": 65.3,
+"n": 391,
+"p25": 64.0,
+"p50": 67.0,
+"p75": 70.0
+},
+"Humptulips River|Steelhead": {
+"max": 90.0,
+"mean": 70.4,
+"n": 331,
+"p25": 66.0,
+"p50": 69.0,
+"p75": 74.0
+},
+"Kalama River|Chinook": {
+"max": 98.0,
+"mean": 71.9,
+"n": 229,
+"p25": 66.0,
+"p50": 72.0,
+"p75": 79.0
+},
+"Kalama River|Coho": {
+"max": 92.0,
+"mean": 70.9,
+"n": 179,
+"p25": 68.0,
+"p50": 71.6,
+"p75": 75.0
+},
+"Kalama River|Steelhead": {
+"max": 98.0,
+"mean": 70.7,
+"n": 570,
+"p25": 67.0,
+"p50": 71.0,
+"p75": 75.0
+},
+"Klickitat River|Chinook": {
+"max": 109.0,
+"mean": 74.7,
+"n": 429,
+"p25": 69.0,
+"p50": 76.0,
+"p75": 82.0
+},
+"Klickitat River|Steelhead": {
+"max": 88.0,
+"mean": 68.4,
+"n": 68,
+"p25": 67.0,
+"p50": 70.0,
+"p75": 72.0
+},
+"Little White Salmon - Drano Lake|Chinook": {
+"max": 109.0,
+"mean": 73.0,
+"n": 3251,
+"p25": 69.0,
+"p50": 74.0,
+"p75": 78.0
+},
+"Little White Salmon - Drano Lake|Coho": {
+"max": 91.0,
+"mean": 68.0,
+"n": 631,
+"p25": 64.0,
+"p50": 68.0,
+"p75": 73.0
+},
+"Little White Salmon - Drano Lake|Steelhead": {
+"max": 96.0,
+"mean": 72.3,
+"n": 131,
+"p25": 65.0,
+"p50": 72.0,
+"p75": 79.0
+},
+"Naselle River|Steelhead": {
+"max": 77.0,
+"mean": 65.3,
+"n": 97,
+"p25": 62.0,
+"p50": 65.0,
+"p75": 69.0
+},
+"Nisqually River|Chinook": {
+"max": 88.0,
+"mean": 63.4,
+"n": 450,
+"p25": 57.0,
+"p50": 64.0,
+"p75": 70.0
+},
+"Nisqually River|Coho": {
+"max": 74.0,
+"mean": 55.4,
+"n": 298,
+"p25": 51.0,
+"p50": 55.0,
+"p75": 60.0
+},
+"Nooksack River - North Fork|Chinook": {
+"max": 94.0,
+"mean": 70.2,
+"n": 85,
+"p25": 63.0,
+"p50": 70.0,
+"p75": 77.0
+},
+"Puyallup River|Chinook": {
+"max": 92.0,
+"mean": 67.3,
+"n": 441,
+"p25": 61.0,
+"p50": 68.0,
+"p75": 76.0
+},
+"Puyallup River|Coho": {
+"max": 78.0,
+"mean": 53.1,
+"n": 1650,
+"p25": 50.0,
+"p50": 53.5,
+"p75": 57.0
+},
+"Quillayute River|Chinook": {
+"max": 98.5,
+"mean": 73.5,
+"n": 113,
+"p25": 67.0,
+"p50": 77.0,
+"p75": 82.0
+},
+"Quillayute River|Coho": {
+"max": 85.0,
+"mean": 65.0,
+"n": 312,
+"p25": 63.0,
+"p50": 68.0,
+"p75": 72.0
+},
+"Salmon Creek|Steelhead": {
+"max": 77.0,
+"mean": 69.5,
+"n": 38,
+"p25": 66.0,
+"p50": 71.0,
+"p75": 72.0
+},
+"Satsop River|Coho": {
+"max": 80.0,
+"mean": 62.8,
+"n": 331,
+"p25": 63.0,
+"p50": 66.0,
+"p75": 69.0
+},
+"Satsop River|Steelhead": {
+"max": 84.0,
+"mean": 70.1,
+"n": 34,
+"p25": 64.0,
+"p50": 71.0,
+"p75": 76.0
+},
+"Skagit River|Chinook": {
+"max": 97.0,
+"mean": 74.1,
+"n": 88,
+"p25": 68.0,
+"p50": 76.0,
+"p75": 81.0
+},
+"Skagit River|Coho": {
+"max": 82.2,
+"mean": 59.3,
+"n": 2445,
+"p25": 55.0,
+"p50": 59.9,
+"p75": 64.0
+},
+"Skagit River|Pink": {
+"max": 60.0,
+"mean": 51.5,
+"n": 113,
+"p25": 50.0,
+"p50": 52.0,
+"p75": 53.0
+},
+"Skagit River|Sockeye": {
+"max": 69.0,
+"mean": 56.1,
+"n": 350,
+"p25": 54.0,
+"p50": 56.0,
+"p75": 59.0
+},
+"Skookumchuck River|Steelhead": {
+"max": 91.0,
+"mean": 75.4,
+"n": 71,
+"p25": 70.0,
+"p50": 76.0,
+"p75": 81.0
+},
+"Skykomish River|Chinook": {
+"max": 82.0,
+"mean": 60.1,
+"n": 91,
+"p25": 53.0,
+"p50": 63.5,
+"p75": 71.0
+},
+"Skykomish River|Steelhead": {
+"max": 88.0,
+"mean": 66.7,
+"n": 208,
+"p25": 63.0,
+"p50": 67.0,
+"p75": 70.0
+},
+"Snohomish River|Coho": {
+"max": 75.0,
+"mean": 58.7,
+"n": 64,
+"p25": 54.0,
+"p50": 59.0,
+"p75": 64.0
+},
+"Sol Duc River|Chinook": {
+"max": 104.0,
+"mean": 74.3,
+"n": 216,
+"p25": 68.0,
+"p50": 75.0,
+"p75": 83.0
+},
+"Sol Duc River|Coho": {
+"max": 86.0,
+"mean": 68.7,
+"n": 278,
+"p25": 66.0,
+"p50": 70.0,
+"p75": 74.0
+},
+"South Fork Toutle River|Steelhead": {
+"max": 92.0,
+"mean": 73.2,
+"n": 149,
+"p25": 69.0,
+"p50": 73.0,
+"p75": 76.0
+},
+"Stillaguamish River|Coho": {
+"max": 85.0,
+"mean": 62.4,
+"n": 38,
+"p25": 56.0,
+"p50": 63.0,
+"p75": 68.0
+},
+"Tokul Creek|Steelhead": {
+"max": 85.0,
+"mean": 62.8,
+"n": 65,
+"p25": 57.0,
+"p50": 64.0,
+"p75": 67.0
+},
+"Wallace River|Coho": {
+"max": 77.0,
+"mean": 64.0,
+"n": 124,
+"p25": 62.0,
+"p50": 65.0,
+"p75": 67.0
+},
+"Washougal River|Chinook": {
+"max": 92.0,
+"mean": 73.1,
+"n": 73,
+"p25": 68.0,
+"p50": 73.0,
+"p75": 80.0
+},
+"Washougal River|Steelhead": {
+"max": 91.0,
+"mean": 70.9,
+"n": 354,
+"p25": 66.0,
+"p50": 70.0,
+"p75": 75.0
+},
+"White Salmon River|Steelhead": {
+"max": 88.0,
+"mean": 67.2,
+"n": 23,
+"p25": 61.0,
+"p50": 65.0,
+"p75": 73.5
+},
+"Willapa River|Steelhead": {
+"max": 93.0,
+"mean": 70.0,
+"n": 31,
+"p25": 66.0,
+"p50": 69.0,
+"p75": 73.0
+},
+"Wind River|Steelhead": {
+"max": 81.5,
+"mean": 69.9,
+"n": 20,
+"p25": 68.0,
+"p50": 69.0,
+"p75": 72.0
+},
+"Wynoochee River|Steelhead": {
+"max": 89.0,
+"mean": 70.1,
+"n": 310,
+"p25": 64.0,
+"p50": 69.0,
+"p75": 76.0
+}
+}
+}

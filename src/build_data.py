@@ -314,6 +314,9 @@ def build(catch_rows, effort_rows, place_geo, say=print, success_rows=()):
         # which parts of the state are actually in here, so a reader looking for a
         # water that is missing can see whether anyone surveys it at all
         'coverage': coverage(places, catch_day, effort_day, say=say),
+        # what the samplers wrote down beyond the count: how big, on what, and
+        # whether the boat or the bank did better
+        'detail': detail_by_place(places, sp_index, say=say),
         'year_anglers': dict(sorted(effort_year.items())),
     }
     return payload
@@ -716,6 +719,39 @@ def trends(catch_day, effort_day, places, sp_index, as_of_d, say=print,
 
 #: the Cascade crest, roughly: everything east of this line is eastern Washington
 CREST = -120.7
+
+
+def detail_by_place(places, sp_index, say=print):
+    """Re-key the size, gear and bank-or-boat summaries onto place and species ids.
+
+    They are gathered by water body name, because that is what the interviews carry;
+    the dashboard works in place ids, and a place is a source plus a name, so the
+    same water read by two sources keeps its own row.
+    """
+    if not os.path.exists(paths.DETAIL):
+        return {}
+    with open(paths.DETAIL, encoding='utf-8') as f:
+        raw = json.load(f)
+    by_name = defaultdict(list)
+    for p in places.values():
+        by_name[p['name']].append(p['i'])
+
+    size, gear, seat = {}, {}, {}
+    for key, value in (raw.get('size') or {}).items():
+        name, _, species = key.partition('|')
+        if species in sp_index:
+            for pid in by_name.get(name, ()):
+                size[f'{pid}|{sp_index[species]}'] = value
+    for key, value in (raw.get('gear') or {}).items():
+        name, _, species = key.partition('|')
+        if species in sp_index:
+            for pid in by_name.get(name, ()):
+                gear[f'{pid}|{sp_index[species]}'] = value
+    for name, value in (raw.get('seat') or {}).items():
+        for pid in by_name.get(name, ()):
+            seat[str(pid)] = value
+    say(f'   detail: {len(size)} size, {len(gear)} gear, {len(seat)} bank-or-boat')
+    return {'size': size, 'gear': gear, 'seat': seat}
 
 
 def coverage(places, catch_day, effort_day, say=print):

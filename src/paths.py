@@ -23,6 +23,8 @@ RAW = os.path.join(DATA, 'creel_rows.csv.gz')
 EFFORT = os.path.join(DATA, 'creel_effort.csv.gz')
 #: interviews and how many of them had each species aboard
 SUCCESS = os.path.join(DATA, 'creel_success.csv.gz')
+#: sizes, gear and bank-against-boat, aggregated per water and species
+DETAIL = os.path.join(DATA, 'creel_detail.json')
 
 #: fisheries tracked against a ceiling rather than counted: encounter guidelines
 #: and harvest quotas, which are not catch and are not stored as if they were

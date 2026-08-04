@@ -148,6 +148,8 @@ input[type="search"] { min-width: 230px; }
 .card h3 { margin: 18px 0 6px; font-size: 13.5px; color: var(--ink-2); }
 .card p.note { margin: 4px 0 12px; color: var(--ink-3); font-size: 13px; max-width: 62ch; }
 
+.field-notes { margin-top: 18px; border-top: 1px solid var(--rule); padding-top: 12px; }
+.field-notes h3 { margin: 12px 0 4px; }
 #map-holder { position: relative; }
 canvas { display: block; width: 100%; height: auto; border-radius: 8px; }
 /* Zoom controls sit over the map rather than beside it, so the map keeps its full
@@ -1511,7 +1513,51 @@ function renderDetail() {
       <div class="stat"><div class="v ${trendRate(t, 'season') === null ? 'flat' : change(trendRate(t, 'now'), trendRate(t, 'season')) > 0 ? 'up' : 'down'}">${pct(change(trendRate(t, 'now'), trendRate(t, 'season')))}</div><div class="l">vs. the same weeks in ${(state.basis === 'hour' ? t.season_years_h : t.season_years) || 0} past years</div></div>
     </div>` : '<p class="note">This place has no scored window for that species.</p>';
 
-  body.innerHTML = stats + weeklyChart(series);
+  body.innerHTML = stats + weeklyChart(series) + fieldNotes(pid);
+}
+
+/* What the samplers wrote down beyond the count. None of it is a rate or a trend —
+   it is the answer to "how big do they run here, what were they caught on, and does
+   the bank do as well as the boat", which is the part of a creel card an angler
+   would read first and no dashboard shows at all. */
+function fieldNotes(pid) {
+  const d = DATA.detail || {};
+  const key = `${pid}|${state.species}`;
+  const size = (d.size || {})[key];
+  const gear = (d.gear || {})[key];
+  const seat = (d.seat || {})[String(pid)];
+  if (!size && !gear && !seat) return '';
+
+  const inches = cm => (cm / 2.54).toFixed(0);
+  let out = '<div class="field-notes">';
+  if (size) {
+    out += `<h3>How big they run</h3>
+      <p class="note">Half the ${escapeHtml(SPECIES[state.species])} measured here
+        were between ${size.p25} and ${size.p75} cm
+        (${inches(size.p25)}–${inches(size.p75)} in) fork length; the median was
+        <b>${size.p50} cm</b> (${inches(size.p50)} in) and the largest
+        ${size.max} cm (${inches(size.max)} in), off ${fmt(size.n)} fish measured.</p>`;
+  }
+  if (gear) {
+    const total = Object.values(gear).reduce((a, b) => a + b, 0);
+    out += '<h3>What caught them</h3><table><tbody>' +
+      Object.entries(gear).map(([kind, n]) => `
+        <tr><td>${escapeHtml(kind)}</td>
+        <td class="num">${fmt(n)}</td>
+        <td class="num" style="color:var(--ink-3)">${Math.round(100 * n / total)}%</td>
+        </tr>`).join('') + '</tbody></table>';
+  }
+  if (seat && (seat.Bank || seat.Boat)) {
+    const line = (label, v) => v ? `
+      <tr><td>${label}</td>
+      <td class="num">${asPercent(v.with_fish / v.parties)}</td>
+      <td class="num" style="color:var(--ink-3)">of ${fmt(v.parties)} parties</td></tr>` : '';
+    out += '<h3>Bank or boat</h3><p class="note">Share of interviewed parties that ' +
+      'caught something, any species, over the whole record.</p>' +
+      '<table><tbody>' + line('Bank', seat.Bank) + line('Boat', seat.Boat) +
+      '</tbody></table>';
+  }
+  return out + '</div>';
 }
 
 function weeklyChart(series) {

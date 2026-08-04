@@ -252,6 +252,63 @@ class TestAnglerHours(unittest.TestCase):
         self.assertEqual(socrata._hours(row), '')
 
 
+class TestFieldNotes(unittest.TestCase):
+    """Size, gear and bank-or-boat, aggregated out of the interviews."""
+
+    INTERVIEWS = [{'interview_id': str(i), 'event_date': '2026-07-01',
+                   'water_body': 'Ash Lake', 'project_name': 'R5 Inland Fish',
+                   'angler_count': '1',
+                   'angler_type': 'Bank' if i % 2 else 'Boat'} for i in range(40)]
+
+    @property
+    def catch(self):
+        rows = []
+        for i in range(40):
+            rows.append({'interview_id': str(i), 'event_date': '2026-07-01',
+                         'water_body': 'Ash Lake', 'species': 'Rainbow Trout',
+                         'fate': 'Kept', 'fish_count': '1',
+                         'fork_length_cm': str(30 + i % 10),
+                         'gear_type': 'Bait' if i % 3 else 'Lure'})
+        return rows
+
+    def notes(self):
+        real = socrata.fetch_all
+        socrata.fetch_all = lambda dataset, **kw: (
+            self.INTERVIEWS if dataset == socrata.INTERVIEWS else self.catch)
+        try:
+            return socrata.load(say=lambda *a: None)[3]
+        finally:
+            socrata.fetch_all = real
+
+    def test_lengths_are_summarised_not_averaged_away(self):
+        size = self.notes()['size']['Ash Lake|Rainbow trout']
+        self.assertEqual(size['n'], 40)
+        self.assertLessEqual(size['p25'], size['p50'])
+        self.assertLessEqual(size['p50'], size['p75'])
+        self.assertEqual(size['max'], 39.0)
+
+    def test_gear_is_counted_per_species(self):
+        gear = self.notes()['gear']['Ash Lake|Rainbow trout']
+        self.assertEqual(gear['Bait'] + gear['Lure'], 40)
+
+    def test_bank_and_boat_are_kept_apart(self):
+        seat = self.notes()['seat']['Ash Lake']
+        self.assertEqual(seat['Bank']['parties'], 20)
+        self.assertEqual(seat['Boat']['parties'], 20)
+
+    def test_a_keyed_length_in_millimetres_is_dropped(self):
+        rows = self.catch
+        rows[0]['fork_length_cm'] = '650'
+        real = socrata.fetch_all
+        socrata.fetch_all = lambda dataset, **kw: (
+            self.INTERVIEWS if dataset == socrata.INTERVIEWS else rows)
+        try:
+            size = socrata.load(say=lambda *a: None)[3]['size']['Ash Lake|Rainbow trout']
+        finally:
+            socrata.fetch_all = real
+        self.assertEqual(size['n'], 39)
+
+
 class TestLocalityMatching(unittest.TestCase):
     """A dock borrows a neighbour's position, not a namesake's across the state."""
 
@@ -305,14 +362,14 @@ class TestInterviewOutcomes(unittest.TestCase):
             socrata.fetch_all = real
 
     def test_one_row_per_place_species_day(self):
-        _catch, _effort, success = self.rows()
+        _catch, _effort, success, _detail = self.rows()
         self.assertEqual(len(success), 1)
         row = success[0]
         self.assertEqual((row['location'], row['species']), ('Ash Lake', 'Rainbow trout'))
 
     def test_parties_are_counted_once_however_many_fish(self):
         # interview a has two catch records; it is one party, not two
-        _catch, _effort, success = self.rows()
+        _catch, _effort, success, _detail = self.rows()
         self.assertEqual(success[0]['with_fish'], 2)
         self.assertEqual(success[0]['interviews'], 3)
 

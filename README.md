@@ -179,6 +179,14 @@ reaches this page from east of the crest is the pikeminnow reward stations on th
 mid-Columbia and Snake and the gorge river sections. The Sources tab says so, with
 the numbers.
 
+**What the samplers write down beyond the count.** The interviews carry a fork
+length on about a third of the fish, the gear on three quarters of them, and whether
+the party was fishing from a boat or the bank on four in ten. Pick a place and the
+detail panel says how big they run there (quartiles and the largest measured), what
+caught them, and how the bank compares with the boat — on the Cowlitz, 24% of bank
+parties caught something against 58% of boat parties, over 27,000 interviews. No
+other summary of this data shows any of it.
+
 **How often anyone catches anything** is counted, not modelled. WDFW publish the
 statewide creel one interview at a time, and every fish record names the interview it
 came from, so the share of parties that went home with a fish is a matter of counting

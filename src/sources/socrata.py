@@ -211,7 +211,82 @@ def load(refresh=False, say=print):
         common.success(d, SOURCE, wb, sp, len(parties.get((d, wb), ())), len(ids))
         for (d, wb, sp), ids in caught.items() if parties.get((d, wb))]
 
-    return catch_rows, effort_rows, success_rows
+    return catch_rows, effort_rows, success_rows, detail(interviews, catches,
+                                                         by_interview)
+
+
+def detail(interviews, catches, by_interview):
+    """Three things the samplers write down that no dashboard shows.
+
+    How big the fish run, what caught them, and whether the boat or the bank did
+    better. WDFW measure a fork length on about a third of the fish, name the gear on
+    three quarters of them, and record for four interviews in ten whether the party
+    was fishing from a boat or the beach. None of it is summarised anywhere, and all
+    of it is what an angler actually wants to know before deciding how to fish a
+    place — so it is aggregated here, per water and species, over the whole record.
+    """
+    lengths = defaultdict(list)
+    gear = defaultdict(lambda: defaultdict(int))
+    for r in catches:
+        place = by_interview.get(r.get('interview_id'))
+        wb = r.get('water_body') or (place[1] if place else '')
+        sp = common.species(r.get('species'))
+        if not wb or not sp:
+            continue
+        cm = r.get('fork_length_cm')
+        if cm:
+            try:
+                value = float(cm)
+            except ValueError:
+                value = 0
+            # a hand-keyed length in the hundreds is a millimetre reading or a slip
+            if 5 <= value <= 200:
+                lengths[(wb, sp)].append(value)
+        kind = (r.get('gear_type') or '').strip()
+        if kind and kind.lower() not in ('unk', 'na', 'unknown'):
+            gear[(wb, sp)][kind] += common.num(r.get('fish_count')) or 1
+
+    # bank against boat, counted the same way as the party success rate
+    seats = defaultdict(lambda: [0, 0])            # (water, kind) -> parties, with fish
+    kind_of = {}
+    for r in interviews:
+        kind = (r.get('angler_type') or '').strip()
+        if kind in ('Bank', 'Boat') and r.get('interview_id'):
+            kind_of[r['interview_id']] = kind
+            wb = r.get('water_body') or ''
+            if wb:
+                seats[(wb, kind)][0] += 1
+    hit = set()
+    for r in catches:
+        iid = r.get('interview_id')
+        if iid in kind_of and (common.num(r.get('fish_count')) or 1) > 0:
+            place = by_interview.get(iid)
+            wb = r.get('water_body') or (place[1] if place else '')
+            if wb and (iid, wb) not in hit:
+                hit.add((iid, wb))
+                seats[(wb, kind_of[iid])][1] += 1
+
+    def quantile(values, q):
+        values = sorted(values)
+        return round(values[min(len(values) - 1, int(q * len(values)))], 1)
+
+    out = {'size': {}, 'gear': {}, 'seat': {}}
+    for (wb, sp), values in lengths.items():
+        if len(values) >= 20:                      # fewer than twenty says nothing
+            out['size'][f'{wb}|{sp}'] = {
+                'n': len(values), 'mean': round(sum(values) / len(values), 1),
+                'p25': quantile(values, 0.25), 'p50': quantile(values, 0.5),
+                'p75': quantile(values, 0.75), 'max': round(max(values), 1)}
+    for (wb, sp), kinds in gear.items():
+        total = sum(kinds.values())
+        if total >= 20:
+            out['gear'][f'{wb}|{sp}'] = dict(sorted(
+                kinds.items(), key=lambda kv: -kv[1])[:6])
+    for (wb, kind), (parties, with_fish) in seats.items():
+        if parties >= 20:
+            out['seat'].setdefault(wb, {})[kind] = {'parties': parties,
+                                                    'with_fish': with_fish}
+    return out
 
 
 def water_body_geo(refresh=False, say=print):

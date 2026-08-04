@@ -74,14 +74,18 @@ def gather(full=False):
     """Run every parser and return the two tables, plus what each source produced."""
     this_year = date.today().year
     catch_rows, effort_rows, success_rows, summary = [], [], [], {}
+    detail = {}
 
     def add(name, pair):
-        # a source may also hand back how many interviews had fish in them; most
-        # cannot, because they publish totals rather than the interviews themselves
+        # a source may also hand back how many interviews had fish in them, and what
+        # the samplers wrote down about size, gear and where the party was fishing
+        # from; most cannot, because they publish totals rather than interviews
         c, e, *extra = pair
         catch_rows.extend(c)
         effort_rows.extend(e)
         success_rows.extend(extra[0] if extra else [])
+        if len(extra) > 1 and extra[1]:
+            detail.update(extra[1])
         days = {r['date'] for r in e} | {r['date'] for r in c}
         summary[name] = {
             'catch_rows': len(c), 'effort_rows': len(e),
@@ -107,7 +111,7 @@ def gather(full=False):
     add('halibut', halibut.load(full=full, say=say))
     say('reading the quota trackers')
     quota_rows = quotas.load(full=full, say=say)
-    return catch_rows, effort_rows, success_rows, summary, quota_rows
+    return catch_rows, effort_rows, success_rows, detail, summary, quota_rows
 
 
 def write_table(path, rows, fields):
@@ -130,7 +134,8 @@ def read_table(path, fields):
 def update(full=False, no_open=False):
     paths.ensure_dirs()
     started = time.time()
-    catch_rows, effort_rows, success_rows, summary, quota_rows = gather(full=full)
+    (catch_rows, effort_rows, success_rows, detail, summary,
+     quota_rows) = gather(full=full)
     if not catch_rows:
         say('no data was read from any source; refusing to overwrite what is here', '!!')
         return 1
@@ -140,6 +145,12 @@ def update(full=False, no_open=False):
     n_success = write_table(paths.SUCCESS, success_rows, common.SUCCESS_FIELDS)
     say(f'wrote {n_catch:,} species rows, {n_effort:,} effort rows and '
         f'{n_success:,} interview-outcome rows')
+
+    with open(paths.DETAIL, 'w', encoding='utf-8') as f:
+        json.dump(detail, f, indent=0, sort_keys=True)
+    say(f"   {len(detail.get('size', {})):,} size summaries, "
+        f"{len(detail.get('gear', {})):,} gear summaries, "
+        f"{len(detail.get('seat', {})):,} waters with bank and boat apart")
 
     with open(paths.QUOTAS, 'w', encoding='utf-8') as f:
         json.dump(quota_rows, f, indent=1)
