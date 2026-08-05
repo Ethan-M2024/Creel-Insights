@@ -22,6 +22,7 @@ ALLOWED_HOSTS = frozenset({
     'geodataservices.wdfw.wa.gov',  # WDFW water access sites
     'services3.arcgis.com',         # WDFW salmon catch and reporting areas
     'services.arcgis.com',          # Ecology's river basin boundaries (WRIA)
+    'raw.githubusercontent.com',    # the sibling project's parsed hatchery returns
 })
 
 #: no single response may exceed this; the largest real report is about 9 MB

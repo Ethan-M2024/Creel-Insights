@@ -211,6 +211,11 @@ td.num { font-family: var(--mono); font-variant-numeric: tabular-nums; }
 .meter > span { display: block; height: 100%; background: var(--accent); }
 .meter-label { font-family: var(--mono); font-size: 11.5px; margin-left: 7px; }
 td.wrap { white-space: normal; min-width: 8ch; }
+/* the reading is a sentence, and a sentence needs a column wide enough to be
+   read as one rather than a word per line */
+#forecast-table { min-width: 880px; }
+#forecast-table td.wrap { min-width: 26ch; max-width: 32ch; text-align: left; }
+#forecast-table th:last-child { text-align: left; }
 
 .stat-row { display: flex; flex-wrap: wrap; gap: 18px 28px; margin: 2px 0 14px; }
 .stat .v { font-size: 25px; font-weight: 640; letter-spacing: -.02em; font-variant-numeric: tabular-nums; }
@@ -249,6 +254,7 @@ ul.checks li { padding: 4px 0; border-bottom: 1px solid var(--grid); }
 <nav class="tabs" role="tablist">
   <button role="tab" id="tab-map" aria-selected="true">Heat map</button>
   <button role="tab" id="tab-window">Happening window</button>
+  <button role="tab" id="tab-forecast">What is coming</button>
   <button role="tab" id="tab-places">Places</button>
   <button role="tab" id="tab-species">Species</button>
   <button role="tab" id="tab-quotas">Quotas</button>
@@ -383,6 +389,30 @@ ul.checks li { padding: 4px 0; border-bottom: 1px solid var(--grid); }
       shortens is turning on now, one that falls has already had its run. Rates
       resting on fewer than <b class="min-anglers"></b> anglers are marked
       <span class="pill">thin</span> — over seven days most places are.</p>
+  </div>
+</section>
+
+<section class="panel" id="panel-forecast" hidden>
+  <div class="card">
+    <h2>Where it should pick up next</h2>
+    <p class="note">The creel says when a place is normally caught out; the hatchery
+      racks above it say what is actually returning this year. A run that is running
+      heavy and has not arrived yet is a fishery about to turn on. A run already past
+      the rack is over, whatever the calendar says. Neither is a prediction of any
+      one day, and every figure behind the reading is here to be argued with.</p>
+    <div class="scroll">
+      <table id="forecast-table">
+        <thead><tr>
+          <th>Place</th><th>Species</th>
+          <th class="num">At the rack this year</th>
+          <th class="num">Next three weeks</th>
+          <th class="num">Normal rate, now → then</th>
+          <th>Reading</th>
+        </tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+    <p class="note" id="forecast-note"></p>
   </div>
 </section>
 
@@ -1882,6 +1912,77 @@ function renderWindowShift() {
     `${longest}-day one.`;
 }
 
+/* Two independent signals, kept separate on purpose: what the fish are doing, from
+   the racks they are swimming to, and what the fishing normally does at this place in
+   these weeks, from the creel. Neither is dressed up as a probability. */
+/* Four racks on the Lewis is a paragraph, not a label; the rest are on hover. */
+function racksOf(f) {
+  const racks = f.facility.split(', ');
+  return racks.length <= 2 ? f.facility
+    : `${racks.slice(0, 2).join(', ')} +${racks.length - 2} more`;
+}
+
+function renderForecast() {
+  const rows = (DATA.forecast || []).map(f => {
+    const rising = f.direction === null ? 0 : f.direction;
+    // a run that is heavy and has not arrived is the strongest thing on this page
+    const score = (f.pace || 1) * (0.4 + f.still_to_come * 3) * (1 + Math.max(-0.5, rising));
+    return { ...f, score };
+  }).sort((a, b) => b.score - a.score);
+
+  const tbody = document.querySelector('#forecast-table tbody');
+  tbody.innerHTML = rows.map(f => {
+    const place = PLACES[f.p];
+    const pace = f.pace === null ? null : f.pace;
+    const heavy = pace !== null && pace >= 1.15;
+    const thin = pace !== null && pace <= 0.85;
+    const coming = f.still_to_come >= 0.1;
+    const rising = f.direction !== null && f.direction > 0.15;
+    const reading = coming && heavy
+      ? 'Running heavy and still arriving — the weeks ahead should fish above normal.'
+      : coming && thin
+        ? 'Still arriving, but behind the pace of past years.'
+        : coming
+          ? 'Still arriving, on the pace of past years.'
+          : heavy
+            ? 'A heavy run, but most of it is already past the rack.'
+            : 'The run is largely over; what is left is what is in the river now.';
+    return `
+      <tr data-pid="${f.p}" data-sp="${f.s}">
+        <td>${escapeHtml(place.name)}<br><span class="k" style="color:var(--ink-3)">${
+          escapeHtml(racksOf(f))}</span></td>
+        <td>${escapeHtml(SPECIES[f.s])}</td>
+        <td class="num">${fmt(f.counted)}<br><span class="k" style="color:var(--ink-3)">${
+          pace === null ? 'no baseline' : `${Math.round(pace * 100)}% of the ${
+            fmt(f.expected_by_now)} normal by now`}</span></td>
+        <td class="num">${Math.round(f.still_to_come * 100)}%<br><span class="k" style="color:var(--ink-3)">of the run, next three weeks</span></td>
+        <td class="num">${rate(f.now_rate)} → ${rate(f.soon_rate)}${
+          rising ? ' <span class="pill">rising</span>' : ''}</td>
+        <td class="wrap">${reading}</td>
+      </tr>`;
+  }).join('');
+
+  for (const tr of tbody.querySelectorAll('tr')) {
+    tr.addEventListener('click', () => {
+      state.species = Number(tr.dataset.sp);
+      for (const id of ['f-species', 'f-species2', 'f-species3', 'f-species4']) {
+        const el = document.getElementById(id);
+        if (el) el.value = String(state.species);
+      }
+      selectPlace(Number(tr.dataset.pid));
+      showTab('map');
+    });
+  }
+
+  document.getElementById('forecast-note').textContent = rows.length
+    ? `${rows.length} runs where a rack above the fishery has been counted for at ` +
+      `least three past seasons, as of ${dayLabel(META.as_of)}. "Still to come" is ` +
+      `the share of a normal run that arrives in the next three weeks; the catch ` +
+      `rates are what this place normally does in those weeks, from the last five ` +
+      `years of creel, not a forecast of this year's fishing.`
+    : 'No run this week has both a counted rack above it and enough creel below it.';
+}
+
 function renderPlaces() {
   const q = state.search.trim().toLowerCase();
   let rows = rowsForWindow();
@@ -2198,12 +2299,13 @@ function renderFreshness(manifest) {
 
 function showTab(name) {
   state.tab = name;
-  for (const t of ['map', 'window', 'places', 'species', 'quotas', 'sources']) {
+  for (const t of ['map', 'window', 'forecast', 'places', 'species', 'quotas', 'sources']) {
     document.getElementById('panel-' + t).hidden = t !== name;
     document.getElementById('tab-' + t).setAttribute('aria-selected', String(t === name));
   }
   if (name === 'map') { drawMap(); renderMovers(); renderLegend(); }
   if (name === 'window') renderWindowShift();
+  if (name === 'forecast') renderForecast();
   if (name === 'places') renderPlaces();
   if (name === 'species') renderSpecies();
   if (name === 'quotas') renderQuotas();
@@ -2235,6 +2337,7 @@ function fillSpeciesSelects() {
 function refresh() {
   if (state.tab === 'map') { drawMap(); renderMovers(); renderDetail(); renderLegend(); }
   if (state.tab === 'window') renderWindowShift();
+  if (state.tab === 'forecast') renderForecast();
   if (state.tab === 'places') renderPlaces();
   if (state.tab === 'species') renderSpecies();
 }
@@ -2345,7 +2448,7 @@ function init() {
     });
   }
 
-  for (const t of ['map', 'window', 'places', 'species', 'quotas', 'sources']) {
+  for (const t of ['map', 'window', 'forecast', 'places', 'species', 'quotas', 'sources']) {
     document.getElementById('tab-' + t).addEventListener('click', () => showTab(t));
   }
 

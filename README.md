@@ -169,6 +169,31 @@ So each place is compared **against itself, at the same point in the season**:
 | **prior** | the same length of window immediately before it |
 | **seasonal** | the median of the same calendar window in each of the last three years |
 
+### What is coming
+
+Fish caught in a river are fish on their way to a hatchery rack, and WDFW count them
+again when they arrive. The sibling project
+[Hatchery-Insights](https://github.com/Ethan-M2024/Hatchery-Insights) already parses
+those weekly escapement reports, so this reads the table it publishes rather than
+parsing the same PDFs twice. Two things fall out of it:
+
+| | |
+|---|---|
+| **run timing** | which weeks of the year a run reaches the rack, from the last three seasons |
+| **this year** | how far along this year's return is against that shape |
+
+Put beside the creel's own week-by-week catch rate for the water below the rack, that
+answers a question catch data alone cannot: a run that is running heavy and has not
+arrived yet is a fishery about to turn on, and one already past the rack is over
+whatever the calendar says. The **What is coming** tab lists every run with both — as
+of August 2026, Skokomish Chinook were at 191% of a normal return by that week with a
+fifth of the run still to arrive, while the Lewis Chinook were 12% up but essentially
+all in.
+
+It is not a prediction of a day's fishing and does not pretend to be. The catch rates
+shown are what that place normally does in those weeks over the last five years; the
+rack counts are this year's. Both are on the page, and both can be argued with.
+
 **Eastern Washington is missing, and that is WDFW's doing rather than an omission
 here.** They publish creel interviews for ten survey projects — Districts 11, 13, 14,
 16, 17 north and south, the Cowlitz, two Region 5 programmes and a Columbia roving

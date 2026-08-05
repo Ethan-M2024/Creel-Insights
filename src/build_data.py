@@ -112,7 +112,8 @@ def month_start(iso_day):
     return iso_day[:7] + '-01'
 
 
-def build(catch_rows, effort_rows, place_geo, say=print, success_rows=()):
+def build(catch_rows, effort_rows, place_geo, say=print, success_rows=(),
+          hatchery_curves=None, hatchery_facilities=None):
     as_of = max([r['date'] for r in catch_rows] + [r['date'] for r in effort_rows])
     as_of_d = date.fromisoformat(as_of)
 
@@ -317,6 +318,9 @@ def build(catch_rows, effort_rows, place_geo, say=print, success_rows=()):
         # what the samplers wrote down beyond the count: how big, on what, and
         # whether the boat or the bank did better
         'detail': detail_by_place(places, sp_index, effort_day=effort_day, say=say),
+        # where the fishing should pick up next, from the run heading for the rack
+        'forecast': forecast(catch_day, effort_day, places, sp_index, as_of_d,
+                             hatchery_curves, hatchery_facilities, say=say),
         'year_anglers': dict(sorted(effort_year.items())),
     }
     return payload
@@ -798,6 +802,192 @@ def detail_by_place(places, sp_index, effort_day=None, say=print):
             'target': target, 'trips': trips, 'crowd': crowd, 'recent': recent}
 
 
+#: how many past seasons a run has to have been counted in before its shape is used
+BASELINE_SEASONS = 3
+#: how far ahead the forecast looks
+LOOKAHEAD_WEEKS = 3
+
+
+def link_hatcheries(places, facilities, curves):
+    """Which hatcheries sit on the water each creel place is fished from.
+
+    A facility knows its own water body and river system, and a creel place is named
+    after the water it is on, so the two are matched on those names rather than on
+    distance: the Cowlitz Salmon Hatchery is on the Cowlitz whether the ramp below it
+    is one mile away or twenty, and the fish pass all of them on the way up.
+
+    A river often has two racks on it — a salmon hatchery and a trout hatchery — and
+    the fish heading past an angler are heading for both, so every facility on the
+    same water is linked and their counts are added together later.
+    """
+    counted = {facility for facility, _species, _season in curves}
+    by_water = defaultdict(set)
+    for facility in counted:
+        key = _river_key(facility)
+        if key:
+            by_water[key].add(facility)
+    # the geography file gives each facility the water it is actually on, which is
+    # how "MERWIN DAM FCF" is known to be a Lewis River rack
+    for name, f in facilities.items():
+        alias = _river_key(name)
+        for label in (f.get('waterbody'), f.get('system')):
+            key = _river_key(label)
+            if key and alias:
+                by_water[key].update(by_water.get(alias, set()))
+    linked = {}
+    for p in places.values():
+        key = _river_key(p['name'])
+        if key and by_water.get(key):
+            linked[p['i']] = sorted(by_water[key])
+    return linked
+
+
+def _river_key(label):
+    """The river a name refers to: "COWLITZ SALMON HATCHERY" and "Cowlitz River (above I-5)"
+    are both the Cowlitz."""
+    text = re.sub(r'\(.*?\)', ' ', str(label or '')).lower()
+    text = re.sub(r'[^a-z ]', ' ', text)
+    drop = {'hatchery', 'salmon', 'river', 'creek', 'ponds', 'pond', 'fcf', 'dam',
+            'trap', 'rearing', 'facility', 'north', 'south', 'east', 'west', 'fork',
+            'above', 'below', 'lower', 'upper', 'section', 'the', 'and', 'lk', 'lake',
+            'springs', 'spring', 'falls', 'stock', 'unnamed', 'stream'}
+    words = [w for w in text.split() if w and w not in drop]
+    return words[0] if words else ''
+
+
+def weekly_rates(catch_day, effort_day, as_of_d, years=5):
+    """Catch per angler by week of the year, per place and species, recent years only.
+
+    This is the shape of a season at one place: when it turns on, when it peaks, when
+    it is over. It is the half of a forecast the creel data can answer by itself.
+    """
+    since = (as_of_d - timedelta(days=365 * years)).isoformat()
+    fish = defaultdict(int)
+    anglers = defaultdict(int)
+    for (pid, day), (a, _h, _i) in effort_day.items():
+        if day >= since:
+            anglers[(pid, _isoweek(day))] += a
+    for (pid, sp, day), (kept, rel) in catch_day.items():
+        if day >= since:
+            fish[(pid, sp, _isoweek(day))] += kept + rel
+    return fish, anglers
+
+
+def forecast(catch_day, effort_day, places, sp_index, as_of_d, curves, facilities,
+             say=print):
+    """Where the fishing should pick up next, and why.
+
+    Two things are known that a catch rate alone is not. The first is the shape of a
+    season at a place, from the creel: which weeks of the year the fish are caught in.
+    The second is what is actually returning this year, from the hatchery racks the
+    fish are heading for — a run that is running heavy and has not arrived yet is a
+    fishery about to turn on, and a run that has already passed the rack is one that
+    is over whatever the calendar says.
+
+    Neither is a prediction of any single day. Both together are the honest answer to
+    "where should I be looking in a fortnight", and every number behind it travels
+    with the answer.
+    """
+    curves = curves or {}
+    facilities = facilities or {}
+    linked = link_hatcheries(places, facilities, curves)
+    if not linked:
+        return []
+    fish, anglers = weekly_rates(catch_day, effort_day, as_of_d)
+    this_week = as_of_d.isocalendar()[1]
+    season = as_of_d.year if this_week > 8 else as_of_d.year - 1
+    by_index = {p['i']: p for p in places.values()}
+    species_by_index = {i: name for name, i in sp_index.items()}
+
+    out = []
+    for pid, racks in sorted(linked.items()):
+        place = by_index[pid]
+        for sp_i, species in species_by_index.items():
+            this = _merge([curves.get((f, species, season)) for f in racks])
+            past = [c for c in (_merge([curves.get((f, species, s)) for f in racks])
+                                for s in range(season - BASELINE_SEASONS, season)) if c]
+            if len(past) < BASELINE_SEASONS or not this:
+                continue
+
+            now = _season_index(this_week)
+            ahead = _season_index(this_week + LOOKAHEAD_WEEKS)
+            # how much of a normal run has arrived by now, and by three weeks on
+            shares_now, shares_ahead, finals = [], [], []
+            for curve in past:
+                final = max(curve.values()) if curve else 0
+                if final <= 0:
+                    continue
+                finals.append(final)
+                shares_now.append(_at(curve, now) / final)
+                shares_ahead.append(_at(curve, ahead) / final)
+            if not finals:
+                continue
+            share_now = statistics.median(shares_now)
+            share_ahead = statistics.median(shares_ahead)
+            typical_final = statistics.median(finals)
+
+            counted = _at(this, now)
+            expected_by_now = typical_final * share_now
+            pace = counted / expected_by_now if expected_by_now >= 20 else None
+            still_to_come = max(0.0, share_ahead - share_now)
+
+            weeks = [(_calendar(w), fish.get((pid, species, _calendar(w)), 0) /
+                      anglers.get((pid, _calendar(w)), 0))
+                     for w in range(now - 1, ahead + 1)
+                     if anglers.get((pid, _calendar(w)), 0) >= MIN_ANGLERS]
+            if len(weeks) < 2:
+                continue
+            recent = statistics.mean([r for _w, r in weeks[:2]])
+            soon = statistics.mean([r for _w, r in weeks[-2:]])
+            if recent <= 0 and soon <= 0:
+                continue
+
+            out.append({
+                'p': pid, 's': sp_i, 'facility': ', '.join(_pretty(f) for f in racks),
+                'season': season,
+                # the fishery's own shape, from the creel
+                'now_rate': round(recent, 4), 'soon_rate': round(soon, 4),
+                'direction': round((soon - recent) / recent, 3) if recent > 0.01 else None,
+                # what is actually coming, from the rack
+                'counted': counted, 'expected_by_now': int(expected_by_now),
+                'pace': None if pace is None else round(pace, 2),
+                'share_arrived': round(share_now, 3),
+                'still_to_come': round(still_to_come, 3),
+                'typical_run': int(typical_final),
+                'seasons': len(finals),
+            })
+    say(f'   forecast: {len(out):,} place-species runs with a hatchery behind them')
+    return out
+
+
+def _merge(curves):
+    """Several racks on one river, added week by week into a single run."""
+    out = defaultdict(int)
+    for curve in curves:
+        for week, count in (curve or {}).items():
+            out[week] += count
+    return dict(out)
+
+
+def _pretty(facility):
+    return ' '.join(w.capitalize() for w in facility.split())
+
+
+def _season_index(week):
+    week = ((week - 1) % 52) + 1
+    return week if week > 8 else week + 52
+
+
+def _calendar(season_week):
+    return season_week - 52 if season_week > 52 else season_week
+
+
+def _at(curve, week):
+    """The cumulative count at a week, carrying the last figure forward."""
+    known = [w for w in curve if w <= week]
+    return curve[max(known)] if known else 0
+
+
 def coverage(places, catch_day, effort_day, say=print):
     """What each region contributes, and which side of the mountains it is on.
 
@@ -884,8 +1074,15 @@ def main(say=print):
         json.dump({'placed': placed, 'unplaced': sorted(unplaced)}, f, indent=0)
 
     success_rows = read_rows(paths.SUCCESS)
+    import hatchery
+    try:
+        curves, facilities = hatchery.load(say=say)
+    except Exception as exc:                      # the forecast is an extra, not a
+        say(f'!! hatchery returns unavailable: {exc}')   # reason to fail the build
+        curves, facilities = {}, {}
     payload = build(catch_rows, effort_rows, placed, say=say,
-                    success_rows=success_rows)
+                    success_rows=success_rows, hatchery_curves=curves,
+                    hatchery_facilities=facilities)
     # what the reader cares about is which places are missing from the map, not
     # which names failed the first matching pass — most of those are later placed
     # from their catch area

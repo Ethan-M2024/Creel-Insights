@@ -26,6 +26,7 @@ import halibut       # noqa: E402
 import quotas        # noqa: E402
 import socrata       # noqa: E402
 import geo           # noqa: E402
+import hatchery      # noqa: E402
 import build_data     # noqa: E402
 
 
@@ -307,6 +308,52 @@ class TestFieldNotes(unittest.TestCase):
         finally:
             socrata.fetch_all = real
         self.assertEqual(size['n'], 39)
+
+
+class TestHatcheryRuns(unittest.TestCase):
+    """Run curves out of the escapement reports, and the traps in them."""
+
+    def rows(self, *specs):
+        return [{'facility': f, 'species': sp, 'stock': stock, 'data_date': day,
+                 'adult_total': str(n), 'jack_total': ''}
+                for f, sp, stock, day, n in specs]
+
+    def test_a_running_total_is_not_a_sum(self):
+        # the same stock reported three weeks running is one arrival, not three
+        curves = hatchery.run_curves(self.rows(
+            ('COWLITZ SALMON HATCHERY', 'Fall Chinook', 'A', '09/05/24', 100),
+            ('COWLITZ SALMON HATCHERY', 'Fall Chinook', 'A', '09/12/24', 180),
+            ('COWLITZ SALMON HATCHERY', 'Fall Chinook', 'A', '09/19/24', 240),
+        ), say=lambda *a: None)
+        curve = curves[('COWLITZ SALMON HATCHERY', 'Chinook', 2024)]
+        self.assertEqual(max(curve.values()), 240)
+
+    def test_two_stocks_at_one_rack_are_added(self):
+        curves = hatchery.run_curves(self.rows(
+            ('KALAMA FALLS HATCHERY', 'Summer Steelhead', 'A', '06/10/24', 300),
+            ('KALAMA FALLS HATCHERY', 'Summer Steelhead', 'B', '06/10/24', 200),
+        ), say=lambda *a: None)
+        curve = curves[('KALAMA FALLS HATCHERY', 'Steelhead', 2024)]
+        self.assertEqual(max(curve.values()), 500)
+
+    def test_a_january_count_belongs_to_the_season_before_it(self):
+        curves = hatchery.run_curves(self.rows(
+            ('COWLITZ SALMON HATCHERY', 'Coho', 'A', '11/20/24', 900),
+            ('COWLITZ SALMON HATCHERY', 'Coho', 'A', '01/15/25', 1000),
+        ), say=lambda *a: None)
+        self.assertIn(('COWLITZ SALMON HATCHERY', 'Coho', 2024), curves)
+        self.assertNotIn(('COWLITZ SALMON HATCHERY', 'Coho', 2025), curves)
+
+    def test_the_same_rack_spelled_two_ways_is_one_rack(self):
+        self.assertEqual(hatchery.canonical_facility('GEORGE ADAMS HATCHRY'),
+                         hatchery.canonical_facility('George Adams Hatchery'))
+        self.assertEqual(hatchery.canonical_facility('FALLERT CR HATCH'),
+                         'FALLERT CREEK HATCHERY')
+
+    def test_a_run_name_is_read_as_its_species(self):
+        self.assertEqual(hatchery.species_of('Winter-Late Steelhead'), 'Steelhead')
+        self.assertEqual(hatchery.species_of('Type N Coho'), 'Coho')
+        self.assertEqual(hatchery.species_of('Sea-run Cutthroat'), 'Cutthroat')
 
 
 class TestRecentSlice(unittest.TestCase):
