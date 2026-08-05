@@ -182,13 +182,25 @@ parsing the same PDFs twice. Two things fall out of it:
 | **run timing** | which weeks of the year a run reaches the rack, from the last three seasons |
 | **this year** | how far along this year's return is against that shape |
 
-Put beside the creel's own week-by-week catch rate for the water below the rack, that
-answers a question catch data alone cannot: a run that is running heavy and has not
-arrived yet is a fishery about to turn on, and one already past the rack is over
-whatever the calendar says. The **What is coming** tab lists every run with both — as
-of August 2026, Skokomish Chinook were at 191% of a normal return by that week with a
-fifth of the run still to arrive, while the Lewis Chinook were 12% up but essentially
-all in.
+The **What is coming** tab sorts every counted run into the only three states worth
+knowing:
+
+| | |
+|---|---|
+| **On now** | a real share of the run is arriving this fortnight — the fish are in the river as you read it |
+| **Still to come** | the bulk has not reached the rack yet, ordered by how soon the peak is due |
+| **Mostly over** | the run has largely passed, so a good week last month is not mistaken for a good week now |
+
+Beside each is how this year compares with the last three at the same point — well up,
+about normal, well behind — because timing and abundance are different questions and a
+heavy run arriving now is not the same as a thin one. In early August 2026 that read
+as 14 runs on, 12 still to come and 21 mostly over: Palmer steelhead at 136% of normal
+with three quarters of the run moving that fortnight, Minter Chinook 10% up with its
+peak three weeks out, and the Lewis Chinook 145% up but 91% already past the rack.
+
+Runs are listed whether or not anyone creels the water below them — a run is worth
+knowing about where WDFW send no sampler — and where there is creel, its own normal
+rate for those weeks travels with the row.
 
 It is not a prediction of a day's fishing and does not pretend to be. The catch rates
 shown are what that place normally does in those weeks over the last five years; the

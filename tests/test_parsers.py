@@ -28,6 +28,7 @@ import socrata       # noqa: E402
 import geo           # noqa: E402
 import hatchery      # noqa: E402
 import build_data     # noqa: E402
+from datetime import date  # noqa: E402
 
 
 class TestCommon(unittest.TestCase):
@@ -354,6 +355,53 @@ class TestHatcheryRuns(unittest.TestCase):
         self.assertEqual(hatchery.species_of('Winter-Late Steelhead'), 'Steelhead')
         self.assertEqual(hatchery.species_of('Type N Coho'), 'Coho')
         self.assertEqual(hatchery.species_of('Sea-run Cutthroat'), 'Cutthroat')
+
+
+class TestRunState(unittest.TestCase):
+    """A run is on, coming, or over — and the arithmetic has to agree."""
+
+    def curves(self, shape, seasons=(2023, 2024, 2025, 2026)):
+        out = {}
+        for season in seasons:
+            out[('X HATCHERY', 'Chinook', season)] = dict(shape)
+        return out
+
+    def test_a_run_that_has_not_started(self):
+        # nothing at the rack until week 40; in August it is still to come
+        shape = {w: (0 if w < 40 else (w - 39) * 200) for w in range(9, 61)}
+        rows = build_data.forecast(
+            {}, {}, {}, {'Chinook': 0}, date(2026, 8, 3), self.curves(shape),
+            {}, say=lambda *a: None)
+        self.assertEqual(len(rows), 1)
+        self.assertLess(rows[0]['share_arrived'], 0.05)
+        self.assertGreater(rows[0]['weeks_to_peak'], 0)
+
+    def test_a_run_that_is_over(self):
+        shape = {w: min(4000, max(0, (w - 12) * 400)) for w in range(9, 61)}
+        rows = build_data.forecast(
+            {}, {}, {}, {'Chinook': 0}, date(2026, 8, 3), self.curves(shape),
+            {}, say=lambda *a: None)
+        self.assertGreater(rows[0]['share_arrived'], 0.9)
+        self.assertLess(rows[0]['weeks_to_peak'], 0)
+
+    def test_a_thin_year_is_measured_against_the_seasons_before_it(self):
+        shape = {w: min(4000, max(0, (w - 25) * 400)) for w in range(9, 61)}
+        curves = self.curves(shape, seasons=(2023, 2024, 2025))
+        thin = {w: v // 4 for w, v in shape.items()}
+        curves[('X HATCHERY', 'Chinook', 2026)] = thin
+        rows = build_data.forecast(
+            {}, {}, {}, {'Chinook': 0}, date(2026, 8, 3), curves, {},
+            say=lambda *a: None)
+        self.assertAlmostEqual(rows[0]['pace'], 0.25, places=2)
+
+    def test_a_rack_with_too_little_history_is_left_out(self):
+        shape = {w: (w - 8) * 100 for w in range(9, 61)}
+        curves = {('X HATCHERY', 'Chinook', 2026): shape,
+                  ('X HATCHERY', 'Chinook', 2025): shape}
+        rows = build_data.forecast(
+            {}, {}, {}, {'Chinook': 0}, date(2026, 8, 3), curves, {},
+            say=lambda *a: None)
+        self.assertEqual(rows, [])
 
 
 class TestRecentSlice(unittest.TestCase):
