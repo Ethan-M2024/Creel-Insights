@@ -40,10 +40,18 @@ CLOSURES = '6zm6-iep6'
 SOURCE = 'creel-database'
 
 #: WDFW's own project names, mapped to the region a reader would look under
+#: WDFW name their creel projects after management districts, which say nothing to a
+#: reader. The names here are the waters each one actually covers, checked against
+#: the rivers in the data: District 16 is the Quillayute system on the west end of
+#: the Olympic Peninsula — the Hoh, Sol Duc, Bogachiel, Calawah — and calling it
+#: "Southwest rivers" put the Hoh in the wrong half of the state.
 PROJECT_REGION = {
-    'District 11': 'South Sound rivers', 'District 13': 'Olympic Peninsula rivers',
-    'District 14': 'North Sound rivers', 'District 16': 'Southwest rivers',
-    'District 17 North': 'North coast rivers', 'District 17 South': 'South coast rivers',
+    'District 11': 'South Sound rivers',
+    'District 13': 'Snohomish and Stillaguamish rivers',
+    'District 14': 'Skagit and Nooksack rivers',
+    'District 16': 'Olympic Peninsula rivers',
+    'District 17 North': 'Grays Harbor rivers',
+    'District 17 South': 'Willapa Bay rivers',
     'Cowlitz': 'Cowlitz', 'R5 Steelhead': 'Southwest rivers',
     'R5 Inland Fish': 'Southwest lakes', 'CRM - Roving Creel Project': 'Columbia River',
 }

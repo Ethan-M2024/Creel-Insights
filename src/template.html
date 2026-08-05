@@ -433,6 +433,7 @@ ul.checks li { padding: 4px 0; border-bottom: 1px solid var(--grid); }
           <th data-k="success">Parties that caught one</th>
           <th data-k="dseason">vs. season</th>
           <th data-k="dprior">vs. prior</th>
+          <th data-k="first">First sampled</th>
           <th data-k="last">Last sampled</th>
         </tr></thead>
         <tbody></tbody>
@@ -1121,7 +1122,9 @@ function drawMap() {
     ? `Every one of the ${rows.length} places WDFW has ever sampled for ` +
       `${SPECIES[state.species]}, over the whole record — ${META.first.slice(0, 4)} to ` +
       `${META.as_of.slice(0, 4)}, including waters no longer surveyed and the ` +
-      `${rows.filter(r => r.neverCaught).length} that never produced one. Dot size is ` +
+      `${rows.filter(r => r.neverCaught).length} that never produced one. Each place ` +
+      `covers only the years WDFW publish for it — the Cowlitz runs from 1973, the ` +
+      `Hoh from 2022 — so click one to see its own span. Dot size is ` +
       `lifetime anglers interviewed; colour is fish ${fateWord()} per ` +
       `${state.basis === 'hour' ? 'angler-hour' : 'angler'}.${hourTail} ${tail}`
     : `Every one of the ${rows.length} places that reported ${SPECIES[state.species]} ` +
@@ -1316,7 +1319,9 @@ canvas.addEventListener('mousemove', ev => {
     `<b>${escapeHtml(r.name)}</b>` +
     `<span class="k">${escapeHtml(r.place.region || r.source)}</span><br>` +
     `${fmt(r.fish)} ${fateWord()} from ${fmt(r.anglers)} anglers<br>` +
-    (r.first ? `<span class="k">${r.first.slice(0, 4)}–${r.last.slice(0, 4)}</span><br>` : '') +
+    (r.first
+      ? `<span class="k">sampled ${r.first.slice(0, 4)}–${r.last.slice(0, 4)}` +
+        `${r.place.days ? `, ${fmt(r.place.days)} days` : ''}</span><br>` : '') +
     (state.basis === 'hour'
       ? (r.hours ? `<span class="k">${fmt(r.hours)} angler-hours</span><br>` : '')
       : '') +
@@ -1507,8 +1512,12 @@ function renderDetail() {
   const t = ((area ? AREA_TREND : TREND).get(state.window)?.get(pid)
     ?.get(state.species)) || null;
   document.getElementById('detail-title').textContent = p.name;
+  const span = p.first && p.last
+    ? ` &middot; sampled ${dayLabel(p.first)} to ${dayLabel(p.last)}` +
+      (p.days ? ` on ${fmt(p.days)} days` : '')
+    : '';
   document.getElementById('detail-note').innerHTML =
-    `${escapeHtml(p.region || '')} &middot; ${escapeHtml(p.source)}` +
+    `${escapeHtml(p.region || '')} &middot; ${escapeHtml(p.source)}${span}` +
     (p.matched_to && p.matched_to !== p.name
       ? ` &middot; placed at <span class="k">${escapeHtml(p.matched_to)}</span>` : '') +
     (p.precision === 'approximate' ? ' <span class="pill">approximate position</span>' : '');
@@ -1897,6 +1906,7 @@ function renderPlaces() {
         : '<span style="color:var(--ink-3)">interviews not published</span>'}</td>
       <td class="num ${cls(r.dseason)}">${pct(r.dseason)}</td>
       <td class="num ${cls(r.dprior)}">${pct(r.dprior)}</td>
+      <td class="num">${r.first || r.place.first || '—'}</td>
       <td class="num">${r.last || r.place.last || '—'}</td>
     </tr>`).join('');
   for (const tr of tbody.querySelectorAll('tr')) {

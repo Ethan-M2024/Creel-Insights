@@ -195,6 +195,14 @@ species rather than something else, what else gets caught there, and how many of
 interviews came from parties that had finished their trip rather than been stopped
 mid-way.
 
+**"The whole record" means the whole published record for that place, and the places
+do not start together.** WDFW publish the Cowlitz from 1973 and the Hoh from December
+2022 — 3,025 interviews on 260 sampled days, which is the entire Hoh creel they make
+available, not a thin slice of a longer one. Every place now states its own span in
+the detail panel and the map tooltip, and the Places table carries first and last
+sampled dates, so a small number can be read as a short record rather than a poor
+river.
+
 Those notes follow the window. Ask for the last seven days and they answer for the
 last seven days; the day-by-day detail reaches back four months, and beyond that — or
 where too few interviews were taken to say anything — each note falls back to the

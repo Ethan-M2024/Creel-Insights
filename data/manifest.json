@@ -1,9 +1,9 @@
 {
- "built": "2026-08-04T16:56:50+00:00",
+ "built": "2026-08-05T00:40:21+00:00",
  "quota_records": 42,
  "sha256": {
-  "creel_effort": "e8b77a104a33a61839ddd7d45bb5e7c581442daa5c0f137e772d0ed37ee9d542",
-  "creel_rows": "7be55dbda8fae3d9a94f9b229d6069eaf4cfd8d66c8e19d977e3657ae5524585"
+  "creel_effort": "d83caeb4edd153b8ba8de37806e8ee0dbb3f0fb415c9e74aa8ec657d1863ff87",
+  "creel_rows": "56be167b2ed72478c61f2f989f042d5bad706e159e826c69ec80a522f3228ee0"
  },
  "sources": {
   "buoy10": {
@@ -26,7 +26,7 @@
   },
   "creel-database": {
    "catch_rows": 113173,
-   "effort_rows": 159932,
+   "effort_rows": 159929,
    "first": "1973-05-17",
    "label": "WDFW creel database (statewide)",
    "last": "2026-07-29",
@@ -61,8 +61,8 @@
    "read_from": "https://wdfw.wa.gov/fishing/reports/creel/pikeminnow (weekly PDFs)"
   },
   "puget-ramp": {
-   "catch_rows": 331275,
-   "effort_rows": 47325,
+   "catch_rows": 331282,
+   "effort_rows": 47326,
    "first": "2013-01-02",
    "label": "Puget Sound ramp creel",
    "last": "2026-08-03",
