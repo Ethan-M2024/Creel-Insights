@@ -406,10 +406,10 @@ ul.checks li { padding: 4px 0; border-bottom: 1px solid var(--grid); }
     <div class="scroll">
       <table id="forecast-table">
         <thead><tr>
-          <th>River and rack</th><th>Species</th>
-          <th class="num">Arriving now</th>
-          <th class="num">This year against normal</th>
-          <th class="num">Peak week</th>
+          <th>Place</th><th>Species</th>
+          <th class="num">Last fortnight</th>
+          <th class="num">Normal for these weeks</th>
+          <th class="num">Best week</th>
           <th>Reading</th>
         </tr></thead>
         <tbody></tbody>
@@ -1927,77 +1927,80 @@ function racksOf(f) {
     : `${racks.slice(0, 2).join(', ')} +${racks.length - 2} more`;
 }
 
-function runState(f) {
-  // three states, and only three, because they are the three questions: is it on,
-  // is it coming, or have I missed it
-  if (f.share_arrived >= 0.88 && f.arriving_now < 0.12) return 'over';
-  if (f.arriving_now >= 0.06) return 'on';
-  return f.share_arrived < 0.45 ? 'coming' : 'over';
-}
-
 function paceWords(pace) {
-  if (pace === null || pace === undefined) return 'no baseline to compare with';
-  if (pace >= 1.3) return `well up on normal (${Math.round(pace * 100)}%)`;
-  if (pace >= 1.1) return `up on normal (${Math.round(pace * 100)}%)`;
+  if (pace === null || pace === undefined) return '';
+  if (pace >= 1.3) return `well up on the last three years (${Math.round(pace * 100)}%)`;
+  if (pace >= 1.1) return `up on the last three years (${Math.round(pace * 100)}%)`;
   if (pace >= 0.9) return `about normal (${Math.round(pace * 100)}%)`;
-  if (pace >= 0.6) return `behind normal (${Math.round(pace * 100)}%)`;
-  return `well behind normal (${Math.round(pace * 100)}%)`;
+  if (pace >= 0.6) return `behind the last three years (${Math.round(pace * 100)}%)`;
+  return `well behind the last three years (${Math.round(pace * 100)}%)`;
 }
 
 function renderForecast() {
   const all = DATA.forecast || [];
   const state_ = state.runs || 'on';
-  const rows = all.filter(f => runState(f) === state_).sort((a, b) =>
-    state_ === 'coming'
-      ? (a.weeks_to_peak - b.weeks_to_peak) || ((b.pace || 0) - (a.pace || 0))
-      : (b.arriving_now * (b.pace || 1)) - (a.arriving_now * (a.pace || 1)));
+  const rows = all.filter(f => f.state === state_).sort((a, b) => {
+    if (state_ === 'on') return (b.now_rate || 0) - (a.now_rate || 0);
+    if (state_ === 'coming') {
+      return (a.weeks_to_peak - b.weeks_to_peak) ||
+             (b.normal_ahead - a.normal_ahead);
+    }
+    return b.season_fish - a.season_fish;
+  });
 
   const heading = { on: 'On now', coming: 'Still to come', over: 'Mostly over' };
   const lede = {
-    on: 'Runs arriving at the rack this fortnight — the fish are in the river as ' +
-        'you read this. Sorted by how much of the run is moving, weighted by ' +
-        'whether the year is heavy or thin.',
-    coming: 'Runs whose fish have mostly not turned up yet. Sorted by how soon the ' +
-            'peak is due, so the top of this list is what to watch next.',
-    over: 'Runs that have largely passed the rack. What is left in the river is ' +
-          'what is left; these are here so a good week last month is not mistaken ' +
-          'for a good week now.',
+    on: `What the samplers found in the last ${META.now_days || 14} days, ranked by ` +
+        'catch per angler. A place is here when the fishing right now is at least ' +
+        'half the best this water does in any week of the year — measured on this ' +
+        "season's creel, not on fish counted at a hatchery.",
+    coming: 'Places whose own record says the next six weeks beat the fortnight ' +
+            'just gone, by a margin worth driving for. Ordered by how soon the best ' +
+            'week is due. Current creel decides whether it has started; the years ' +
+            'behind it decide what is due.',
+    over: 'Only the last six months of creel, and only creel: waters where this ' +
+          "season's catch is behind us — the peak week has passed, almost nothing " +
+          'has been taken in the last month, and the rate is off its best.',
   };
   document.getElementById('forecast-title').textContent = heading[state_];
   document.getElementById('forecast-lede').textContent = lede[state_];
 
   const tbody = document.querySelector('#forecast-table tbody');
   tbody.innerHTML = rows.map(f => {
-    const heavy = f.pace !== null && f.pace >= 1.1;
-    const thin = f.pace !== null && f.pace <= 0.8;
-    const weeks = f.weeks_to_peak;
+    const against = f.normal_now > 0 && f.now_rate !== null
+      ? Math.round((f.now_rate / f.normal_now - 1) * 100) : null;
     const reading = state_ === 'on'
-      ? (heavy ? 'In the river now, and running heavier than the last three years.'
-        : thin ? 'In the river now, but a thin year — expect slower fishing than the timing suggests.'
-        : 'In the river now, on a normal year.')
+      ? (against !== null && against >= 25
+          ? `Fishing above what this water normally does in these weeks (${
+              against > 0 ? '+' : ''}${against}%).`
+          : against !== null && against <= -25
+            ? `On, but below its own normal for these weeks (${against}%).`
+            : 'On, and about normal for these weeks.')
       : state_ === 'coming'
-        ? (weeks > 0
-            ? `Peak is about ${weeks} week${weeks === 1 ? '' : 's'} out` +
-              (heavy ? ', and this year is running heavy.' : thin ? ', on a thin year so far.' : '.')
-            : 'Barely started; the bulk of this run has not reached the rack.')
-        : (heavy ? 'Mostly past the rack, but it was a heavy year — stragglers may still be worth a look.'
-          : 'Mostly past the rack. The run is behind you.');
-    const rate = f.now_rate !== null && f.soon_rate !== null
-      ? `<br><span class="k" style="color:var(--ink-3)">creel below it: ${
-          f.now_rate.toFixed(2)} → ${f.soon_rate.toFixed(2)} per angler, normal for these weeks</span>`
+        ? (f.weeks_to_peak === 0
+            ? 'The best week of the year here is this one; it has not shown in the creel yet.'
+            : `Best week is ${f.weeks_to_peak} week${f.weeks_to_peak === 1 ? '' : 's'} out, ` +
+              `normally ${rate(f.normal_ahead)} per angler against ${rate(f.normal_now)} now.`)
+        : `Peak was week ${f.peak_week}, ${-f.weeks_to_peak} weeks ago; ${
+            Math.round((f.recent_share || 0) * 100)}% of this season's catch has come in the last month.`;
+    const rack = f.rack_pace !== null && f.rack_pace !== undefined
+      ? `<br><span class="k" style="color:var(--ink-3)">at the rack above it: ${
+          fmt(f.rack_counted)} against ${fmt(f.rack_expected)} normal by now — ${
+          escapeHtml(paceWords(f.rack_pace))}</span>`
       : '';
     return `
-      <tr${f.p === null ? '' : ` data-pid="${f.p}" data-sp="${f.s}"`}>
-        <td>${escapeHtml(f.river)}${f.place ? ` &middot; <span class="k">${escapeHtml(f.place)}</span>` : ''}
-          <br><span class="k" style="color:var(--ink-3)">${escapeHtml(racksOf(f))}</span></td>
+      <tr data-pid="${f.p}" data-sp="${f.s}">
+        <td>${escapeHtml(f.place)}<br><span class="k" style="color:var(--ink-3)">${
+          escapeHtml(f.rack || f.source)}</span></td>
         <td>${escapeHtml(SPECIES[f.s])}</td>
-        <td class="num">${Math.round(f.arriving_now * 100)}%<br>
-          <span class="k" style="color:var(--ink-3)">${Math.round(f.share_arrived * 100)}% in so far</span></td>
-        <td class="num">${fmt(f.counted)}<br><span class="k" style="color:var(--ink-3)">${
-          escapeHtml(paceWords(f.pace))}</span></td>
-        <td class="num">week ${f.peak_week}<br><span class="k" style="color:var(--ink-3)">${
-          weeks > 0 ? `${weeks} to go` : weeks === 0 ? 'this week' : `${-weeks} ago`}</span></td>
-        <td class="wrap">${reading}${rate}</td>
+        <td class="num">${f.now_rate === null ? '<span style="color:var(--ink-3)">nobody interviewed</span>'
+          : `${rate(f.now_rate)}<br><span class="k" style="color:var(--ink-3)">${
+              fmt(f.now_fish)} fish, ${fmt(f.now_anglers)} anglers</span>`}</td>
+        <td class="num">${rate(f.normal_now)}<br><span class="k" style="color:var(--ink-3)">best ${
+          rate(f.peak_rate)} in week ${f.peak_week}</span></td>
+        <td class="num">${f.weeks_to_peak > 0 ? `${f.weeks_to_peak} to go`
+          : f.weeks_to_peak === 0 ? 'this week' : `${-f.weeks_to_peak} ago`}</td>
+        <td class="wrap">${reading}${rack}</td>
       </tr>`;
   }).join('');
 
@@ -2014,14 +2017,13 @@ function renderForecast() {
   }
 
   const counts = { on: 0, coming: 0, over: 0 };
-  for (const f of all) counts[runState(f)]++;
+  for (const f of all) counts[f.state]++;
   document.getElementById('forecast-note').textContent =
-    `${rows.length} of ${all.length} counted runs, as of ${dayLabel(META.as_of)} — ` +
-    `${counts.on} on now, ${counts.coming} still to come, ${counts.over} mostly ` +
-    `over. A run is here when its rack has been counted for three past seasons; ` +
-    `"arriving now" is the share of a normal run that turns up in the fortnight ` +
-    `around this week, and the year-against-normal figure is this season's count ` +
-    `against what those seasons had by now. Rows with a creel place open it on the map.`;
+    `${rows.length} of ${all.length} place-species readings, as of ${
+      dayLabel(META.as_of)} — ${counts.on} on now, ${counts.coming} still to come, ` +
+    `${counts.over} mostly over. A water needs ${META.min_anglers} anglers ` +
+    `interviewed in the last six months to be read at all, and eight weeks of the ` +
+    `year on record before its own shape is trusted. Click a row to open it on the map.`;
 }
 
 function renderPlaces() {

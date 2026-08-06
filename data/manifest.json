@@ -1,9 +1,9 @@
 {
- "built": "2026-08-05T16:47:40+00:00",
+ "built": "2026-08-06T00:55:44+00:00",
  "quota_records": 42,
  "sha256": {
-  "creel_effort": "691e3ee021f9a86166c29d86a5b3bc1248a3da0f5c33f1bf4a8d7d6153be2a55",
-  "creel_rows": "56be167b2ed72478c61f2f989f042d5bad706e159e826c69ec80a522f3228ee0"
+  "creel_effort": "d83caeb4edd153b8ba8de37806e8ee0dbb3f0fb415c9e74aa8ec657d1863ff87",
+  "creel_rows": "8dc6eea0f4e63d1eb921a1fb51c1397daa1a936f119deb0611e27d598dd7578b"
  },
  "sources": {
   "buoy10": {
@@ -26,7 +26,7 @@
   },
   "creel-database": {
    "catch_rows": 113173,
-   "effort_rows": 159932,
+   "effort_rows": 159929,
    "first": "1973-05-17",
    "label": "WDFW creel database (statewide)",
    "last": "2026-07-29",

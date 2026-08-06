@@ -171,36 +171,24 @@ So each place is compared **against itself, at the same point in the season**:
 
 ### What is coming
 
-Fish caught in a river are fish on their way to a hatchery rack, and WDFW count them
-again when they arrive. The sibling project
-[Hatchery-Insights](https://github.com/Ethan-M2024/Hatchery-Insights) already parses
-those weekly escapement reports, so this reads the table it publishes rather than
-parsing the same PDFs twice. Two things fall out of it:
+Three states, each read from its own evidence and kept apart on purpose:
 
-| | |
-|---|---|
-| **run timing** | which weeks of the year a run reaches the rack, from the last three seasons |
-| **this year** | how far along this year's return is against that shape |
+| | Read from | Rule |
+|---|---|---|
+| **On now** | the last 14 days of creel, nothing else | the rate right now is at least half the best week this water has in the record |
+| **Still to come** | current creel against the years behind it | the next six weeks are normally better than the fortnight just gone, by 40% or more, and the peak week is still ahead |
+| **Mostly over** | only the last six months of creel | the peak week has passed, under 15% of this season's catch has come in the last month, and the rate is off its best |
 
-The **What is coming** tab sorts every counted run into the only three states worth
-knowing:
+A water needs 30 anglers interviewed in the last six months to be read at all, and
+eight weeks of the year on record before its own shape is trusted — a place nobody
+fishes is not "over", it is unfished, and it is left out rather than guessed at.
 
-| | |
-|---|---|
-| **On now** | a real share of the run is arriving this fortnight — the fish are in the river as you read it |
-| **Still to come** | the bulk has not reached the rack yet, ordered by how soon the peak is due |
-| **Mostly over** | the run has largely passed, so a good week last month is not mistaken for a good week now |
-
-Beside each is how this year compares with the last three at the same point — well up,
-about normal, well behind — because timing and abundance are different questions and a
-heavy run arriving now is not the same as a thin one. In early August 2026 that read
-as 14 runs on, 12 still to come and 21 mostly over: Palmer steelhead at 136% of normal
-with three quarters of the run moving that fortnight, Minter Chinook 10% up with its
-peak three weeks out, and the Lewis Chinook 145% up but 91% already past the rack.
-
-Runs are listed whether or not anyone creels the water below them — a run is worth
-knowing about where WDFW send no sampler — and where there is creel, its own normal
-rate for those weeks travels with the row.
+Where a hatchery rack sits above the water, this year's return travels with the row as
+corroboration — heavy or thin against the last three seasons, from the escapement
+reports parsed by [Hatchery-Insights](https://github.com/Ethan-M2024/Hatchery-Insights)
+— but it never decides the state. A rack counts fish that are already past the
+anglers. Salt water borrows no rack at all: the Columbia ocean area is not fed by the
+Chelan hatchery, however much the two names have in common.
 
 It is not a prediction of a day's fishing and does not pretend to be. The catch rates
 shown are what that place normally does in those weeks over the last five years; the

@@ -282,6 +282,7 @@ def build(catch_rows, effort_rows, place_geo, say=print, success_rows=(),
             'headline_species': [s for s in common.HEADLINE_SPECIES if s in sp_index],
             'windows': list(WINDOWS),
             'min_anglers': MIN_ANGLERS,
+            'now_days': NOW_DAYS,
             'weekly_from': weekly_from,
             'regions': sorted({p['region'] for p in places.values() if p['region']}),
             'sources': sorted({p['source'] for p in places.values()}),
@@ -839,9 +840,16 @@ def link_hatcheries(places, facilities, curves):
                 by_water[key].update(by_water.get(alias, set()))
     linked = {}
     for p in places.values():
+        # salt water has no rack above it: the Columbia ocean area is not fed by the
+        # Chelan hatchery, however much the two names have in common
+        if p.get('water') == 'marine':
+            continue
         key = _river_key(p['name'])
-        if key and by_water.get(key):
-            linked[p['i']] = sorted(by_water[key])
+        racks = sorted(by_water.get(key, ()))
+        # a key that claims a dozen racks is not a river, it is a word — "Columbia"
+        # names half the hatcheries in the state
+        if key and 0 < len(racks) <= 6:
+            linked[p['i']] = racks
     return linked
 
 
@@ -876,115 +884,196 @@ def weekly_rates(catch_day, effort_day, as_of_d, years=5):
     return fish, anglers
 
 
+#: how long "right now" is, for the state of a fishery
+NOW_DAYS = 14
+#: how far ahead "still to come" looks
+AHEAD_WEEKS = 6
+#: how far back "mostly over" is allowed to look
+OVER_DAYS = 182
+
+
+def season_shape(catch_day, effort_day, as_of_d, years=5):
+    """Catch per angler by week of the year, per place and species.
+
+    The shape of a season at one place: when it turns on, when it peaks, when it is
+    over. Built from the last few years of creel and nothing else — it is the record
+    of what this water does in these weeks, which is the only honest basis for saying
+    what it should do next.
+    """
+    since = (as_of_d - timedelta(days=365 * years)).isoformat()
+    fish = defaultdict(int)
+    anglers = defaultdict(int)
+    for (pid, day), (a, _h, _i) in effort_day.items():
+        if day >= since:
+            anglers[(pid, _isoweek(day))] += a
+    for (pid, sp, day), (kept, rel) in catch_day.items():
+        if day >= since:
+            fish[(pid, sp, _isoweek(day))] += kept + rel
+    rates = {}
+    for (pid, sp, week), n in fish.items():
+        effort = anglers.get((pid, week), 0)
+        if effort >= max(10, MIN_ANGLERS // 3):
+            rates[(pid, sp, week)] = n / effort
+    return rates, anglers
+
+
+def _window_rate(catch_day, effort_day, pid, species, start, end):
+    """Fish per angler at one place over a stretch of days, and the effort behind it."""
+    fish = sum(kept + rel for (p, sp, day), (kept, rel) in catch_day.items()
+               if p == pid and sp == species and start <= day <= end)
+    anglers = sum(a for (p, day), (a, _h, _i) in effort_day.items()
+                  if p == pid and start <= day <= end)
+    return (fish / anglers if anglers else None), fish, anglers
+
+
 def forecast(catch_day, effort_day, places, sp_index, as_of_d, curves, facilities,
              say=print):
-    """What every counted run is doing right now: on, coming, or over.
+    """Is a fishery on, is it coming, or is it over — read from the creel itself.
 
-    A catch rate says what happened. The racks the fish are swimming to say what is
-    happening: how much of a normal run has arrived, how fast it is arriving this
-    week, and whether this year is heavy or thin. Those three answer the only
-    questions worth asking in August — is it on, is it coming, or have I missed it.
+    Each state answers its own question from its own evidence, and they are kept
+    apart on purpose:
 
-    Every rack with three past seasons behind it is here, whether or not anyone
-    creels the water below it: a run is worth knowing about even where WDFW send no
-    sampler. Where there is creel below the rack, its own week-by-week rate travels
-    with the run so the two can be read against each other.
+        on now        the last fortnight of creel, against what this water normally
+                      does in these same weeks. It is a statement about the fishing
+                      happening now, not about fish counted somewhere upstream.
+        still to come the same recent creel, against the weeks ahead in the record:
+                      a place whose own history says the next month and a half is
+                      better than the fortnight just gone.
+        mostly over   only the last six months, and only creel: how much of this
+                      season's catch has already been taken, and whether the rate is
+                      off its peak.
+
+    Where a hatchery rack sits above the water, this year's return travels with the
+    row as corroboration — heavy or thin against the last three seasons — but it
+    never decides the state. A rack counts fish that are already past the anglers.
     """
     curves = curves or {}
     facilities = facilities or {}
-    if not curves:
-        return []
-    linked = link_hatcheries(places, facilities, curves)
-    # A river links to every place named after it, and they are not equal: the Lewis
-    # runs past "Lewis River" and past "South Lewis County Park Pond", and only one
-    # of those is where anyone meets the run. The busiest place whose name is the
-    # river itself wins; failing that, simply the busiest.
+    rates, anglers_by_week = season_shape(catch_day, effort_day, as_of_d)
     by_index = {p['i']: p for p in places.values()}
-    best_place = {}
-    for pid, racks in linked.items():
-        place = by_index[pid]
-        name = _river_key(place['name'])
-        exact = 1 if re.fullmatch(r'[a-z]+( river| creek)?', place['name'].lower()) else 0
-        for rack in racks:
-            rank = (exact, place.get('anglers') or 0)
-            if rank > best_place.get(rack, ((-1, -1), None))[0]:
-                best_place[rack] = (rank, pid)
-    place_of = {rack: pid for rack, (_rank, pid) in best_place.items()}
-    fish, anglers = weekly_rates(catch_day, effort_day, as_of_d)
+    species_by_index = {i: name for name, i in sp_index.items()}
     this_week = as_of_d.isocalendar()[1]
     season = as_of_d.year if this_week > 8 else as_of_d.year - 1
-    # every rack on one river reports the same fish past the same anglers, so the
-    # river is the unit here, not the building
-    rivers = defaultdict(set)
-    for facility, species, _season in curves:
-        rivers[(_river_key(facility) or facility, species)].add(facility)
 
-    now = _season_index(this_week)
-    ahead = _season_index(this_week + LOOKAHEAD_WEEKS)
+    linked = link_hatcheries(places, facilities, curves)
+    now_start = (as_of_d - timedelta(days=NOW_DAYS - 1)).isoformat()
+    now_end = as_of_d.isoformat()
+    six_start = (as_of_d - timedelta(days=OVER_DAYS)).isoformat()
+
+    def clim(pid, sp, week):
+        return rates.get((pid, sp, ((week - 1) % 52) + 1))
+
     out = []
-    for (river, species), racks in sorted(rivers.items()):
-        if species not in sp_index:
-            continue
-        racks = sorted(racks)
-        this = _merge([curves.get((f, species, season)) for f in racks])
-        past = [c for c in (_merge([curves.get((f, species, s)) for f in racks])
-                            for s in range(season - BASELINE_SEASONS, season)) if c]
-        if len(past) < BASELINE_SEASONS or not this:
-            continue
+    for pid, place in sorted(by_index.items()):
+        for sp_i, species in species_by_index.items():
+            shape = {w: clim(pid, species, w) for w in range(1, 53)}
+            known = {w: r for w, r in shape.items() if r is not None}
+            if len(known) < 8:
+                continue                      # too little history to say anything
+            peak_week = max(known, key=lambda w: known[w])
+            peak_rate = known[peak_week]
+            if peak_rate <= 0:
+                continue
 
-        shares, finals, arriving, peaks = [], [], [], []
-        for curve in past:
-            final = max(curve.values()) if curve else 0
-            if final < 50:                     # a rack that counts fifty fish a year
-                continue                        # cannot say anything about timing
-            finals.append(final)
-            shares.append((_at(curve, now) / final, _at(curve, ahead) / final))
-            # how much of the run turns up in the fortnight around this week
-            arriving.append((_at(curve, now + 1) - _at(curve, now - 2)) / final)
-            weekly = [(w, _at(curve, w) - _at(curve, w - 1))
-                      for w in range(9, SEASON_END + 1)]
-            peaks.append(max(weekly, key=lambda kv: kv[1])[0])
-        if len(finals) < BASELINE_SEASONS:
-            continue
+            normal_now = statistics.mean(
+                [known[w] for w in (this_week - 1, this_week, this_week + 1)
+                 if ((w - 1) % 52) + 1 in known] or [0])
+            ahead = [known[((w - 1) % 52) + 1]
+                     for w in range(this_week + 1, this_week + AHEAD_WEEKS + 1)
+                     if ((w - 1) % 52) + 1 in known]
+            normal_ahead = max(ahead) if ahead else 0
 
-        share_now = statistics.median(s[0] for s in shares)
-        share_ahead = statistics.median(s[1] for s in shares)
-        typical_final = statistics.median(finals)
-        arriving_now = statistics.median(arriving)
-        peak_week = int(statistics.median(peaks))
+            now_rate, now_fish, now_anglers = _window_rate(
+                catch_day, effort_day, pid, species, now_start, now_end)
 
-        counted = _at(this, now)
-        expected_by_now = typical_final * share_now
-        pace = counted / expected_by_now if expected_by_now >= 20 else None
+            # only the last six months, only creel: how much of a season's catch is
+            # already behind us, and how far the rate has fallen from its peak
+            season_fish = sum(kept + rel
+                              for (p, sp, day), (kept, rel) in catch_day.items()
+                              if p == pid and sp == species and six_start <= day <= now_end)
+            recent_share = None
+            if season_fish > 0:
+                past_fish = sum(
+                    kept + rel for (p, sp, day), (kept, rel) in catch_day.items()
+                    if p == pid and sp == species
+                    and six_start <= day <= (as_of_d - timedelta(days=28)).isoformat())
+                recent_share = 1 - (past_fish / season_fish)
 
-        pid = place_of.get(racks[0])
-        rate_now = rate_soon = None
-        if pid is not None:
-            weeks = [(w, fish.get((pid, species, _calendar(w)), 0) /
-                      anglers.get((pid, _calendar(w)), 0))
-                     for w in range(now - 1, ahead + 1)
-                     if anglers.get((pid, _calendar(w)), 0) >= MIN_ANGLERS]
-            if len(weeks) >= 2:
-                rate_now = round(statistics.mean([r for _w, r in weeks[:2]]), 4)
-                rate_soon = round(statistics.mean([r for _w, r in weeks[-2:]]), 4)
+            # a water nobody has fished this season is not on, not coming and not
+            # over; it is unfished, and saying anything about it would be invention
+            _r, _f, season_anglers = _window_rate(
+                catch_day, effort_day, pid, species, six_start, now_end)
+            if season_anglers < MIN_ANGLERS:
+                continue
 
-        out.append({
-            'p': pid, 's': sp_index[species], 'season': season,
-            'river': _pretty(river), 'facility': ', '.join(_pretty(f) for f in racks),
-            'place': by_index[pid]['name'] if pid is not None else '',
-            'counted': counted, 'expected_by_now': int(expected_by_now),
-            'typical_run': int(typical_final),
-            'pace': None if pace is None else round(pace, 2),
-            'share_arrived': round(share_now, 3),
-            'still_to_come': round(max(0.0, share_ahead - share_now), 3),
-            'arriving_now': round(arriving_now, 3),
-            'peak_week': _calendar(peak_week),
-            'weeks_to_peak': peak_week - now,
-            'now_rate': rate_now, 'soon_rate': rate_soon,
-            'seasons': len(finals),
-        })
-    say(f'   forecast: {len(out):,} runs read against the racks above them')
+            fishing_now = now_rate is not None and now_anglers >= MIN_ANGLERS
+            peak_ahead = 0 <= weeks_to_peak(peak_week, this_week) <= AHEAD_WEEKS
+            state = None
+            if fishing_now and now_rate >= max(0.02, 0.5 * peak_rate):
+                # they are catching them there now, at half the best this water does
+                state = 'on'
+            elif (peak_ahead
+                  and normal_ahead >= max(0.05, 0.4 * peak_rate)
+                  and normal_ahead >= 1.4 * max(now_rate or 0, normal_now)):
+                # the record says the next month and a half is better than the
+                # fortnight just gone, and by a margin worth driving for
+                state = 'coming'
+            elif (season_fish >= 20
+                  and weeks_to_peak(peak_week, this_week) < 0
+                  and (recent_share or 0) <= 0.15
+                  and (not fishing_now or now_rate < 0.4 * peak_rate)):
+                # the season's catch is behind us and the rate has fallen off it
+                state = 'over'
+            if state is None:
+                continue
+
+            racks = linked.get(pid) or []
+            rack_pace = rack_counted = rack_expected = None
+            if racks:
+                this = _merge([curves.get((f, species, season)) for f in racks])
+                past = [c for c in (_merge([curves.get((f, species, s)) for f in racks])
+                                    for s in range(season - BASELINE_SEASONS, season)) if c]
+                if this and len(past) >= BASELINE_SEASONS:
+                    index = _season_index(this_week)
+                    shares, finals = [], []
+                    for curve in past:
+                        final = max(curve.values()) if curve else 0
+                        if final >= 50:
+                            finals.append(final)
+                            shares.append(_at(curve, index) / final)
+                    if finals:
+                        rack_counted = _at(this, index)
+                        rack_expected = int(statistics.median(finals) *
+                                            statistics.median(shares))
+                        if rack_expected >= 20:
+                            rack_pace = round(rack_counted / rack_expected, 2)
+
+            out.append({
+                'p': pid, 's': sp_i, 'state': state,
+                'place': place['name'], 'source': place['source'],
+                'now_rate': None if now_rate is None else round(now_rate, 4),
+                'now_fish': now_fish, 'now_anglers': now_anglers,
+                'normal_now': round(normal_now, 4),
+                'normal_ahead': round(normal_ahead, 4),
+                'peak_rate': round(peak_rate, 4), 'peak_week': peak_week,
+                'weeks_to_peak': weeks_to_peak(peak_week, this_week),
+                'season_fish': season_fish,
+                'recent_share': None if recent_share is None else round(recent_share, 3),
+                'rack': ', '.join(_pretty(f) for f in racks) if racks else '',
+                'rack_counted': rack_counted, 'rack_expected': rack_expected,
+                'rack_pace': rack_pace,
+            })
+    counts = defaultdict(int)
+    for row in out:
+        counts[row['state']] += 1
+    say(f"   fishery state: {counts['on']} on now, {counts['coming']} still to come, "
+        f"{counts['over']} mostly over")
     return out
+
+
+def weeks_to_peak(peak_week, this_week):
+    """How many weeks until the best week of the year here — negative once past."""
+    return ((peak_week - this_week + 26) % 52) - 26
 
 
 def _merge(curves):

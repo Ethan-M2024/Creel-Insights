@@ -28,7 +28,7 @@ import socrata       # noqa: E402
 import geo           # noqa: E402
 import hatchery      # noqa: E402
 import build_data     # noqa: E402
-from datetime import date  # noqa: E402
+from datetime import date, timedelta  # noqa: E402
 
 
 class TestCommon(unittest.TestCase):
@@ -357,51 +357,81 @@ class TestHatcheryRuns(unittest.TestCase):
         self.assertEqual(hatchery.species_of('Sea-run Cutthroat'), 'Cutthroat')
 
 
-class TestRunState(unittest.TestCase):
-    """A run is on, coming, or over — and the arithmetic has to agree."""
+class TestFisheryState(unittest.TestCase):
+    """On now, still to come, mostly over — each from its own evidence."""
 
-    def curves(self, shape, seasons=(2023, 2024, 2025, 2026)):
-        out = {}
-        for season in seasons:
-            out[('X HATCHERY', 'Chinook', season)] = dict(shape)
-        return out
+    def setUp(self):
+        self.as_of = date(2026, 8, 3)
+        self.places = {('creel', 'River'): {'i': 0, 'name': 'River',
+                                            'source': 'creel', 'water': 'fresh'}}
 
-    def test_a_run_that_has_not_started(self):
-        # nothing at the rack until week 40; in August it is still to come
-        shape = {w: (0 if w < 40 else (w - 39) * 200) for w in range(9, 61)}
-        rows = build_data.forecast(
-            {}, {}, {}, {'Chinook': 0}, date(2026, 8, 3), self.curves(shape),
-            {}, say=lambda *a: None)
-        self.assertEqual(len(rows), 1)
-        self.assertLess(rows[0]['share_arrived'], 0.05)
+    def build(self, weekly, recent):
+        """weekly: {week: (fish, anglers)} for past years; recent: (fish, anglers)."""
+        catch, effort = {}, {}
+        for back in (1, 2, 3):
+            for week, (fish, anglers) in weekly.items():
+                day = (date(2026 - back, 1, 4) + timedelta(weeks=week - 1)).isoformat()
+                catch[(0, 'Chinook', day)] = [fish, 0]
+                effort[(0, day)] = [anglers, 0.0, anglers]
+        fish, anglers = recent
+        day = (self.as_of - timedelta(days=3)).isoformat()
+        catch[(0, 'Chinook', day)] = [fish, 0]
+        effort[(0, day)] = [anglers, 0.0, anglers]
+        return build_data.forecast(catch, effort, self.places, {'Chinook': 0},
+                                   self.as_of, {}, {}, say=lambda *a: None)
+
+    def test_on_now_is_read_from_this_fortnight(self):
+        # the record says these weeks are middling; the last fortnight is red hot
+        weekly = {w: (10, 100) for w in range(20, 45)}
+        rows = self.build(weekly, (120, 200))
+        self.assertEqual([r['state'] for r in rows], ['on'])
+        self.assertAlmostEqual(rows[0]['now_rate'], 0.6, places=2)
+
+    def test_still_to_come_is_read_from_the_years_behind_it(self):
+        # quiet now, and the record says week 36 is four times better
+        weekly = {w: ((80, 100) if w == 36 else (5, 100)) for w in range(20, 45)}
+        rows = self.build(weekly, (4, 100))
+        self.assertEqual([r['state'] for r in rows], ['coming'])
+        self.assertEqual(rows[0]['peak_week'], 36)
         self.assertGreater(rows[0]['weeks_to_peak'], 0)
 
-    def test_a_run_that_is_over(self):
-        shape = {w: min(4000, max(0, (w - 12) * 400)) for w in range(9, 61)}
-        rows = build_data.forecast(
-            {}, {}, {}, {'Chinook': 0}, date(2026, 8, 3), self.curves(shape),
-            {}, say=lambda *a: None)
-        self.assertGreater(rows[0]['share_arrived'], 0.9)
+    def test_mostly_over_looks_only_at_the_last_six_months(self):
+        # the peak was in June, and nothing has been caught for a month
+        weekly = {w: ((90, 100) if w == 24 else (2, 100)) for w in range(20, 45)}
+        catch, effort = {}, {}
+        for back in (1, 2, 3):
+            for week, (fish, anglers) in weekly.items():
+                day = (date(2026 - back, 1, 4) + timedelta(weeks=week - 1)).isoformat()
+                catch[(0, 'Chinook', day)] = [fish, 0]
+                effort[(0, day)] = [anglers, 0.0, anglers]
+        # this season: a big June, nothing since
+        catch[(0, 'Chinook', '2026-06-12')] = [400, 0]
+        effort[(0, '2026-06-12')] = [300, 0.0, 300]
+        effort[(0, '2026-08-01')] = [60, 0.0, 60]
+        rows = build_data.forecast(catch, effort, self.places, {'Chinook': 0},
+                                   self.as_of, {}, {}, say=lambda *a: None)
+        self.assertEqual([r['state'] for r in rows], ['over'])
         self.assertLess(rows[0]['weeks_to_peak'], 0)
+        self.assertLessEqual(rows[0]['recent_share'], 0.15)
 
-    def test_a_thin_year_is_measured_against_the_seasons_before_it(self):
-        shape = {w: min(4000, max(0, (w - 25) * 400)) for w in range(9, 61)}
-        curves = self.curves(shape, seasons=(2023, 2024, 2025))
-        thin = {w: v // 4 for w, v in shape.items()}
-        curves[('X HATCHERY', 'Chinook', 2026)] = thin
-        rows = build_data.forecast(
-            {}, {}, {}, {'Chinook': 0}, date(2026, 8, 3), curves, {},
-            say=lambda *a: None)
-        self.assertAlmostEqual(rows[0]['pace'], 0.25, places=2)
-
-    def test_a_rack_with_too_little_history_is_left_out(self):
-        shape = {w: (w - 8) * 100 for w in range(9, 61)}
-        curves = {('X HATCHERY', 'Chinook', 2026): shape,
-                  ('X HATCHERY', 'Chinook', 2025): shape}
-        rows = build_data.forecast(
-            {}, {}, {}, {'Chinook': 0}, date(2026, 8, 3), curves, {},
-            say=lambda *a: None)
+    def test_a_water_nobody_has_fished_is_not_read_at_all(self):
+        weekly = {w: (10, 100) for w in range(20, 45)}
+        catch, effort = {}, {}
+        for back in (1, 2, 3):
+            for week, (fish, anglers) in weekly.items():
+                day = (date(2026 - back, 1, 4) + timedelta(weeks=week - 1)).isoformat()
+                catch[(0, 'Chinook', day)] = [fish, 0]
+                effort[(0, day)] = [anglers, 0.0, anglers]
+        rows = build_data.forecast(catch, effort, self.places, {'Chinook': 0},
+                                   self.as_of, {}, {}, say=lambda *a: None)
         self.assertEqual(rows, [])
+
+    def test_salt_water_borrows_no_hatchery(self):
+        places = {('x', 'Columbia River ocean area'): {
+            'i': 0, 'name': 'Columbia River ocean area', 'source': 'x',
+            'water': 'marine'}}
+        curves = {('COLUMBIA BASIN HATCHERY', 'Chinook', 2026): {30: 100}}
+        self.assertEqual(build_data.link_hatcheries(places, {}, curves), {})
 
 
 class TestRecentSlice(unittest.TestCase):
