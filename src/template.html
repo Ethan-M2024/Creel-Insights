@@ -1958,9 +1958,9 @@ function renderForecast() {
             'just gone, by a margin worth driving for. Ordered by how soon the best ' +
             'week is due. Current creel decides whether it has started; the years ' +
             'behind it decide what is due.',
-    over: 'Only the last six months of creel, and only creel: waters where this ' +
-          "season's catch is behind us — the peak week has passed, almost nothing " +
-          'has been taken in the last month, and the rate is off its best.',
+    over: 'Only the last two months of creel, and only creel: waters where the run ' +
+          'is behind us — the peak week has passed, almost nothing has been taken ' +
+          'in the last month of it, and the rate is off the best this water reaches.',
   };
   document.getElementById('forecast-title').textContent = heading[state_];
   document.getElementById('forecast-lede').textContent = lede[state_];
@@ -1981,8 +1981,9 @@ function renderForecast() {
             ? 'The best week of the year here is this one; it has not shown in the creel yet.'
             : `Best week is ${f.weeks_to_peak} week${f.weeks_to_peak === 1 ? '' : 's'} out, ` +
               `normally ${rate(f.normal_ahead)} per angler against ${rate(f.normal_now)} now.`)
-        : `Peak was week ${f.peak_week}, ${-f.weeks_to_peak} weeks ago; ${
-            Math.round((f.recent_share || 0) * 100)}% of this season's catch has come in the last month.`;
+        : `Peak was week ${f.peak_week}, ${-f.weeks_to_peak} weeks ago; of the ${
+            fmt(f.season_fish)} fish taken here in the last ${
+            f.over_days || 61} days, ${Math.round((f.recent_share || 0) * 100)}% came in the last month.`;
     const rack = f.rack_pace !== null && f.rack_pace !== undefined
       ? `<br><span class="k" style="color:var(--ink-3)">at the rack above it: ${
           fmt(f.rack_counted)} against ${fmt(f.rack_expected)} normal by now — ${
@@ -2021,9 +2022,11 @@ function renderForecast() {
   document.getElementById('forecast-note').textContent =
     `${rows.length} of ${all.length} place-species readings, as of ${
       dayLabel(META.as_of)} — ${counts.on} on now, ${counts.coming} still to come, ` +
-    `${counts.over} mostly over. A water needs ${META.min_anglers} anglers ` +
-    `interviewed in the last six months to be read at all, and eight weeks of the ` +
-    `year on record before its own shape is trusted. Click a row to open it on the map.`;
+    `${counts.over} mostly over. "On now" reads the last fortnight of creel, "still ` +
+    `to come" reads it against the years behind it, and "mostly over" looks only at ` +
+    `the last two months. A water needs ${META.min_anglers} anglers interviewed in ` +
+    `the last six months to be read at all, and eight weeks of the year on record ` +
+    `before its own shape is trusted. Click a row to open it on the map.`;
 }
 
 function renderPlaces() {

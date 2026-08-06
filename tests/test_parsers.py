@@ -395,7 +395,7 @@ class TestFisheryState(unittest.TestCase):
         self.assertEqual(rows[0]['peak_week'], 36)
         self.assertGreater(rows[0]['weeks_to_peak'], 0)
 
-    def test_mostly_over_looks_only_at_the_last_six_months(self):
+    def test_mostly_over_looks_only_at_the_last_two_months(self):
         # the peak was in June, and nothing has been caught for a month
         weekly = {w: ((90, 100) if w == 24 else (2, 100)) for w in range(20, 45)}
         catch, effort = {}, {}
@@ -413,6 +413,22 @@ class TestFisheryState(unittest.TestCase):
         self.assertEqual([r['state'] for r in rows], ['over'])
         self.assertLess(rows[0]['weeks_to_peak'], 0)
         self.assertLessEqual(rows[0]['recent_share'], 0.15)
+        self.assertEqual(rows[0]['over_days'], 61)
+
+    def test_a_run_that_ended_in_spring_is_not_still_just_over(self):
+        # a March fishery, quiet since: outside the two-month window it counts no
+        # fish, so there is nothing recent to call "mostly over"
+        catch, effort = {}, {}
+        for back in (1, 2, 3):
+            for week in range(8, 20):
+                day = (date(2026 - back, 1, 4) + timedelta(weeks=week - 1)).isoformat()
+                catch[(0, 'Chinook', day)] = [40 if week == 12 else 2, 0]
+                effort[(0, day)] = [100, 0.0, 100]
+        catch[(0, 'Chinook', '2026-03-20')] = [300, 0]
+        effort[(0, '2026-03-20')] = [200, 0.0, 200]
+        rows = build_data.forecast(catch, effort, self.places, {'Chinook': 0},
+                                   self.as_of, {}, {}, say=lambda *a: None)
+        self.assertEqual([r for r in rows if r['state'] == 'over'], [])
 
     def test_a_water_nobody_has_fished_is_not_read_at_all(self):
         weekly = {w: (10, 100) for w in range(20, 45)}

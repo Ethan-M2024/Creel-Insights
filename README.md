@@ -177,11 +177,14 @@ Three states, each read from its own evidence and kept apart on purpose:
 |---|---|---|
 | **On now** | the last 14 days of creel, nothing else | the rate right now is at least half the best week this water has in the record |
 | **Still to come** | current creel against the years behind it | the next six weeks are normally better than the fortnight just gone, by 40% or more, and the peak week is still ahead |
-| **Mostly over** | only the last six months of creel | the peak week has passed, under 15% of this season's catch has come in the last month, and the rate is off its best |
+| **Mostly over** | only the last two months of creel | the peak week has passed, under 15% of those two months' catch came in the final month, and the rate is off its best |
 
-A water needs 30 anglers interviewed in the last six months to be read at all, and
-eight weeks of the year on record before its own shape is trusted — a place nobody
-fishes is not "over", it is unfished, and it is left out rather than guessed at.
+Two months is one turn of a run: long enough to hold a peak and the fall off it,
+short enough that a fishery which ended in spring is not still being called "just
+over" in August. A water needs 30 anglers interviewed in the last six months to be
+read at all — a wider net than the two-month window on purpose — and eight weeks of
+the year on record before its own shape is trusted. A place nobody fishes is not
+"over", it is unfished, and it is left out rather than guessed at.
 
 Where a hatchery rack sits above the water, this year's return travels with the row as
 corroboration — heavy or thin against the last three seasons, from the escapement

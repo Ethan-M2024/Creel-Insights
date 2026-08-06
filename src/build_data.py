@@ -888,8 +888,14 @@ def weekly_rates(catch_day, effort_day, as_of_d, years=5):
 NOW_DAYS = 14
 #: how far ahead "still to come" looks
 AHEAD_WEEKS = 6
-#: how far back "mostly over" is allowed to look
-OVER_DAYS = 182
+#: how far back "mostly over" is allowed to look. Two months is one turn of a run:
+#: long enough to hold a peak and the fall off it, short enough that a fishery which
+#: ended in spring does not still count as "just over" in August.
+OVER_DAYS = 61
+#: how far back a water has to have been fished at all before anything is said about
+#: it. Wider than the window above on purpose — a river fished in June and quiet
+#: since is a river with something to say; a river nobody has touched is not.
+ELIGIBLE_DAYS = 182
 
 
 def season_shape(catch_day, effort_day, as_of_d, years=5):
@@ -939,9 +945,9 @@ def forecast(catch_day, effort_day, places, sp_index, as_of_d, curves, facilitie
         still to come the same recent creel, against the weeks ahead in the record:
                       a place whose own history says the next month and a half is
                       better than the fortnight just gone.
-        mostly over   only the last six months, and only creel: how much of this
-                      season's catch has already been taken, and whether the rate is
-                      off its peak.
+        mostly over   only the last two months, and only creel: how much of that
+                      catch came in the final month, and whether the rate is off the
+                      peak this water reaches.
 
     Where a hatchery rack sits above the water, this year's return travels with the
     row as corroboration — heavy or thin against the last three seasons — but it
@@ -958,7 +964,8 @@ def forecast(catch_day, effort_day, places, sp_index, as_of_d, curves, facilitie
     linked = link_hatcheries(places, facilities, curves)
     now_start = (as_of_d - timedelta(days=NOW_DAYS - 1)).isoformat()
     now_end = as_of_d.isoformat()
-    six_start = (as_of_d - timedelta(days=OVER_DAYS)).isoformat()
+    over_start = (as_of_d - timedelta(days=OVER_DAYS)).isoformat()
+    eligible_start = (as_of_d - timedelta(days=ELIGIBLE_DAYS)).isoformat()
 
     def clim(pid, sp, week):
         return rates.get((pid, sp, ((week - 1) % 52) + 1))
@@ -990,19 +997,20 @@ def forecast(catch_day, effort_day, places, sp_index, as_of_d, curves, facilitie
             # already behind us, and how far the rate has fallen from its peak
             season_fish = sum(kept + rel
                               for (p, sp, day), (kept, rel) in catch_day.items()
-                              if p == pid and sp == species and six_start <= day <= now_end)
+                              if p == pid and sp == species
+                              and over_start <= day <= now_end)
             recent_share = None
             if season_fish > 0:
                 past_fish = sum(
                     kept + rel for (p, sp, day), (kept, rel) in catch_day.items()
                     if p == pid and sp == species
-                    and six_start <= day <= (as_of_d - timedelta(days=28)).isoformat())
+                    and over_start <= day <= (as_of_d - timedelta(days=28)).isoformat())
                 recent_share = 1 - (past_fish / season_fish)
 
             # a water nobody has fished this season is not on, not coming and not
             # over; it is unfished, and saying anything about it would be invention
             _r, _f, season_anglers = _window_rate(
-                catch_day, effort_day, pid, species, six_start, now_end)
+                catch_day, effort_day, pid, species, eligible_start, now_end)
             if season_anglers < MIN_ANGLERS:
                 continue
 
@@ -1057,7 +1065,7 @@ def forecast(catch_day, effort_day, places, sp_index, as_of_d, curves, facilitie
                 'normal_ahead': round(normal_ahead, 4),
                 'peak_rate': round(peak_rate, 4), 'peak_week': peak_week,
                 'weeks_to_peak': weeks_to_peak(peak_week, this_week),
-                'season_fish': season_fish,
+                'season_fish': season_fish, 'over_days': OVER_DAYS,
                 'recent_share': None if recent_share is None else round(recent_share, 3),
                 'rack': ', '.join(_pretty(f) for f in racks) if racks else '',
                 'rack_counted': rack_counted, 'rack_expected': rack_expected,
