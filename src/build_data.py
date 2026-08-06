@@ -217,6 +217,11 @@ def build(catch_rows, effort_rows, place_geo, say=print, success_rows=(),
             w[0] += anglers
             w[1] += hours
 
+    # ------------------------------------------------------- biennial runs
+    # pinks run in odd years here and almost nowhere in even ones; a reader looking
+    # at an even-year August needs to be told that rather than shown a flat chart
+    biennial = biennial_species(catch_day, as_of_d, say=say)
+
     # ------------------------------------------------------- interview outcomes
     # How often a party caught one, counted from the interviews themselves. Only the
     # statewide database publishes interviews one by one, so this covers the rivers
@@ -283,6 +288,7 @@ def build(catch_rows, effort_rows, place_geo, say=print, success_rows=(),
             'windows': list(WINDOWS),
             'min_anglers': MIN_ANGLERS,
             'now_days': NOW_DAYS,
+            'biennial': {sp: parity for sp, parity in sorted(biennial.items())},
             'weekly_from': weekly_from,
             'regions': sorted({p['region'] for p in places.values() if p['region']}),
             'sources': sorted({p['source'] for p in places.values()}),
@@ -321,7 +327,8 @@ def build(catch_rows, effort_rows, place_geo, say=print, success_rows=(),
         'detail': detail_by_place(places, sp_index, effort_day=effort_day, say=say),
         # where the fishing should pick up next, from the run heading for the rack
         'forecast': forecast(catch_day, effort_day, places, sp_index, as_of_d,
-                             hatchery_curves, hatchery_facilities, say=say),
+                             hatchery_curves, hatchery_facilities, say=say,
+                             biennial=biennial),
         'year_anglers': dict(sorted(effort_year.items())),
     }
     return payload
@@ -898,7 +905,44 @@ OVER_DAYS = 61
 ELIGIBLE_DAYS = 182
 
 
-def season_shape(catch_day, effort_day, as_of_d, years=5):
+#: a run is treated as every-other-year when one parity holds this share of the
+#: catch. Pinks in Washington are odd-year fish — 48,128 of them in 2025 against
+#: three in 2026 — and averaging the two together invents a run that is not coming.
+BIENNIAL_SHARE = 0.9
+#: and only when there is enough catch either way to tell
+BIENNIAL_FISH = 500
+
+
+def biennial_species(catch_day, as_of_d, years=12, say=print):
+    """Species that only run in odd or only in even years, and which parity.
+
+    Read from the catch rather than assumed: a species whose fish arrive almost
+    entirely in one parity of year is a biennial run, and in the off year it should
+    not appear in a forecast at all. Averaging the last five years of pink salmon
+    produces a handsome August peak in a year when there are no pinks.
+    """
+    since = (as_of_d - timedelta(days=365 * years)).isoformat()
+    by_parity = defaultdict(lambda: [0, 0])
+    for (_pid, species, day), (kept, rel) in catch_day.items():
+        if day >= since:
+            by_parity[species][int(day[:4]) % 2] += kept + rel
+    out = {}
+    for species, (even, odd) in by_parity.items():
+        total = even + odd
+        if total < BIENNIAL_FISH:
+            continue
+        if odd / total >= BIENNIAL_SHARE:
+            out[species] = 1
+        elif even / total >= BIENNIAL_SHARE:
+            out[species] = 0
+    if out:
+        say('   every-other-year runs: ' + ', '.join(
+            f"{sp} ({'odd' if parity else 'even'} years)"
+            for sp, parity in sorted(out.items())))
+    return out
+
+
+def season_shape(catch_day, effort_day, as_of_d, years=5, biennial=None):
     """Catch per angler by week of the year, per place and species.
 
     The shape of a season at one place: when it turns on, when it peaks, when it is
@@ -907,17 +951,27 @@ def season_shape(catch_day, effort_day, as_of_d, years=5):
     what it should do next.
     """
     since = (as_of_d - timedelta(days=365 * years)).isoformat()
+    biennial = biennial or {}
+    parity_of = as_of_d.year % 2
     fish = defaultdict(int)
     anglers = defaultdict(int)
+    matching = defaultdict(int)          # effort in the years that count for a run
     for (pid, day), (a, _h, _i) in effort_day.items():
         if day >= since:
             anglers[(pid, _isoweek(day))] += a
+            if int(day[:4]) % 2 == parity_of:
+                matching[(pid, _isoweek(day))] += a
     for (pid, sp, day), (kept, rel) in catch_day.items():
-        if day >= since:
-            fish[(pid, sp, _isoweek(day))] += kept + rel
+        if day < since:
+            continue
+        # an every-other-year run is measured against its own years only: the fish
+        # of 2025 divided by the anglers of 2025 and 2026 is half a run
+        if sp in biennial and int(day[:4]) % 2 != biennial[sp]:
+            continue
+        fish[(pid, sp, _isoweek(day))] += kept + rel
     rates = {}
     for (pid, sp, week), n in fish.items():
-        effort = anglers.get((pid, week), 0)
+        effort = (matching if sp in biennial else anglers).get((pid, week), 0)
         if effort >= max(10, MIN_ANGLERS // 3):
             rates[(pid, sp, week)] = n / effort
     return rates, anglers
@@ -933,7 +987,7 @@ def _window_rate(catch_day, effort_day, pid, species, start, end):
 
 
 def forecast(catch_day, effort_day, places, sp_index, as_of_d, curves, facilities,
-             say=print):
+             say=print, biennial=None):
     """Is a fishery on, is it coming, or is it over — read from the creel itself.
 
     Each state answers its own question from its own evidence, and they are kept
@@ -955,7 +1009,10 @@ def forecast(catch_day, effort_day, places, sp_index, as_of_d, curves, facilitie
     """
     curves = curves or {}
     facilities = facilities or {}
-    rates, anglers_by_week = season_shape(catch_day, effort_day, as_of_d)
+    biennial = biennial_species(catch_day, as_of_d, say=lambda *a: None) \
+        if biennial is None else biennial
+    rates, anglers_by_week = season_shape(catch_day, effort_day, as_of_d,
+                                          biennial=biennial)
     by_index = {p['i']: p for p in places.values()}
     species_by_index = {i: name for name, i in sp_index.items()}
     this_week = as_of_d.isocalendar()[1]
@@ -973,6 +1030,9 @@ def forecast(catch_day, effort_day, places, sp_index, as_of_d, curves, facilitie
     out = []
     for pid, place in sorted(by_index.items()):
         for sp_i, species in species_by_index.items():
+            # in the off year of an every-other-year run there is nothing to forecast
+            if species in biennial and as_of_d.year % 2 != biennial[species]:
+                continue
             shape = {w: clim(pid, species, w) for w in range(1, 53)}
             known = {w: r for w, r in shape.items() if r is not None}
             if len(known) < 8:

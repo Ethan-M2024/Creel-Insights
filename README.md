@@ -179,6 +179,14 @@ Three states, each read from its own evidence and kept apart on purpose:
 | **Still to come** | current creel against the years behind it | the next six weeks are normally better than the fortnight just gone, by 40% or more, and the peak week is still ahead |
 | **Mostly over** | only the last two months of creel | the peak week has passed, under 15% of those two months' catch came in the final month, and the rate is off its best |
 
+**Every-other-year runs are left out in their off years.** Pinks return to
+Washington in odd years — 48,128 counted in 2025 against three in 2026 — and
+averaging the last five seasons produces a handsome August peak in a year when there
+are no pinks. Any species whose catch is 90% or more one parity of year, on at least
+500 fish, is read as biennial: in its off year it is dropped from the forecast
+entirely, and in its on year its rate is measured against its own years rather than
+halved by the empty ones in between. The species tab says which is which.
+
 Two months is one turn of a run: long enough to hold a peak and the fall off it,
 short enough that a fishery which ended in spring is not still being called "just
 over" in August. A water needs 30 anglers interviewed in the last six months to be

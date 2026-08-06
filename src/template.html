@@ -775,6 +775,21 @@ const fateWord = () => state.fate === 'kept' ? 'kept'
    everyone on the water. Where WDFW publish the interviews one by one, this is
    counted instead of assumed, and it is only shown for those places. */
 const successRate = row => row.parties ? row.partiesHit / row.parties : null;
+
+/* Some runs are every other year. Pinks are odd-year fish in Washington — 48,128 of
+   them in 2025 against three in 2026 — and a chart that averages the two says a run
+   is due when there is none. */
+const biennialOf = species => (META.biennial || {})[species];
+function biennialNote(species) {
+  const parity = biennialOf(species);
+  if (parity === undefined) return '';
+  const year = Number(META.as_of.slice(0, 4));
+  const word = parity ? 'odd' : 'even';
+  return year % 2 === parity
+    ? `${species} run in ${word}-numbered years, and ${year} is one of them.`
+    : `${species} run in ${word}-numbered years; ${year} is an off year, so what ` +
+      `you are looking at is the record of past runs, not a run that is coming.`;
+}
 const asPercent = v => v === null || v === undefined ? '—' : Math.round(v * 100) + '%';
 
 function areaRowsForWindow() {
@@ -2022,7 +2037,10 @@ function renderForecast() {
   document.getElementById('forecast-note').textContent =
     `${rows.length} of ${all.length} place-species readings, as of ${
       dayLabel(META.as_of)} — ${counts.on} on now, ${counts.coming} still to come, ` +
-    `${counts.over} mostly over. "On now" reads the last fortnight of creel, "still ` +
+    `${counts.over} mostly over. ${
+      Object.keys(META.biennial || {}).length
+        ? `Every-other-year runs — ${Object.keys(META.biennial).join(', ')} — are ` +
+          `left out entirely in their off years. ` : ''}"On now" reads the last fortnight of creel, "still ` +
     `to come" reads it against the years behind it, and "mostly over" looks only at ` +
     `the last two months. A water needs ${META.min_anglers} anglers interviewed in ` +
     `the last six months to be read at all, and eight weeks of the year on record ` +
@@ -2130,8 +2148,10 @@ function renderSpecies() {
   const seasonRel = (DATA.season.released || {})[String(state.species)] || [];
   const weeks = seasonKept.map((n, i) => fishFate(n, seasonRel[i] || 0));
   document.getElementById('season-chart').innerHTML = weekChart(weeks);
+  const biennial = biennialNote(sp);
   document.getElementById('season-note').textContent =
-    `Fish ${fateWord()} by week of the year, across the last five seasons.`;
+    `Fish ${fateWord()} by week of the year, across the last five seasons.` +
+    (biennial ? ` ${biennial}` : '');
   // a rate off five anglers tops any leaderboard by luck alone, so the thin ones
   // are shown last and labelled rather than mixed in as if they were measurements
   const scored = currentRows().filter(r => r.fish > 0 && r.cpue !== null);

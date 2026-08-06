@@ -450,6 +450,68 @@ class TestFisheryState(unittest.TestCase):
         self.assertEqual(build_data.link_hatcheries(places, {}, curves), {})
 
 
+class TestBiennialRuns(unittest.TestCase):
+    """Pinks are odd-year fish; an even-year August must not be told they are due."""
+
+    def pink_years(self, odd, even):
+        catch = {}
+        for year in range(2016, 2026):
+            n = odd if year % 2 else even
+            catch[(0, 'Pink', f'{year}-08-15')] = [n, 0]
+        return catch
+
+    def test_an_odd_year_run_is_recognised(self):
+        found = build_data.biennial_species(
+            self.pink_years(20000, 5), date(2026, 8, 3), say=lambda *a: None)
+        self.assertEqual(found.get('Pink'), 1)
+
+    def test_a_species_that_runs_every_year_is_not_biennial(self):
+        found = build_data.biennial_species(
+            self.pink_years(9000, 8000), date(2026, 8, 3), say=lambda *a: None)
+        self.assertNotIn('Pink', found)
+
+    def test_too_few_fish_to_judge(self):
+        found = build_data.biennial_species(
+            self.pink_years(20, 0), date(2026, 8, 3), say=lambda *a: None)
+        self.assertEqual(found, {})
+
+    def test_the_off_year_is_left_out_of_the_forecast(self):
+        # a fat odd-year August in the record, and the current year is even
+        places = {('creel', 'Sound'): {'i': 0, 'name': 'Sound', 'source': 'creel',
+                                       'water': 'marine'}}
+        catch, effort = {}, {}
+        for year in (2021, 2023, 2025):
+            for week in range(26, 40):
+                day = (date(year, 1, 4) + timedelta(weeks=week - 1)).isoformat()
+                catch[(0, 'Pink', day)] = [200 if week in (32, 33) else 10, 0]
+                effort[(0, day)] = [150, 0.0, 150]
+        for week in range(26, 32):        # this even year: effort, no pinks
+            day = (date(2026, 1, 4) + timedelta(weeks=week - 1)).isoformat()
+            effort[(0, day)] = [150, 0.0, 150]
+        rows = build_data.forecast(catch, effort, places, {'Pink': 0},
+                                   date(2026, 8, 3), {}, {}, say=lambda *a: None)
+        self.assertEqual(rows, [])
+
+    def test_the_on_year_is_measured_against_its_own_years(self):
+        places = {('creel', 'Sound'): {'i': 0, 'name': 'Sound', 'source': 'creel',
+                                       'water': 'marine'}}
+        catch, effort = {}, {}
+        for year in (2021, 2023, 2025):
+            for week in range(26, 40):
+                day = (date(year, 1, 4) + timedelta(weeks=week - 1)).isoformat()
+                catch[(0, 'Pink', day)] = [200 if week in (32, 33) else 10, 0]
+                effort[(0, day)] = [150, 0.0, 150]
+        for week in range(26, 32):
+            day = (date(2027, 1, 4) + timedelta(weeks=week - 1)).isoformat()
+            effort[(0, day)] = [150, 0.0, 150]
+            catch[(0, 'Pink', day)] = [10, 0]
+        rows = build_data.forecast(catch, effort, places, {'Pink': 0},
+                                   date(2027, 8, 3), {}, {}, say=lambda *a: None)
+        self.assertEqual([r['state'] for r in rows], ['coming'])
+        # the peak rate is 200/150, not halved by the even years in between
+        self.assertGreater(rows[0]['peak_rate'], 1.0)
+
+
 class TestRecentSlice(unittest.TestCase):
     """The day-by-day slice that lets a short window answer for itself."""
 
