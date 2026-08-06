@@ -733,6 +733,11 @@ def trends(catch_day, effort_day, places, sp_index, as_of_d, say=print,
 CREST = -120.7
 
 
+#: the only source that publishes interviews one at a time, and so the only one that
+#: can say anything about size, gear, or who was fishing from where
+DETAIL_SOURCE = 'creel-database'
+
+
 def detail_by_place(places, sp_index, effort_day=None, say=print):
     """Re-key the size, gear and bank-or-boat summaries onto place and species ids.
 
@@ -744,9 +749,14 @@ def detail_by_place(places, sp_index, effort_day=None, say=print):
         return {}
     with open(paths.DETAIL, encoding='utf-8') as f:
         raw = json.load(f)
+    # These notes come out of the interview database and nothing else, so they
+    # belong to that source's places only. Two sources both call a water "Cowlitz
+    # River"; attaching the interviews to both put pikeminnow gear on a river
+    # section that never reported one.
     by_name = defaultdict(list)
     for p in places.values():
-        by_name[p['name']].append(p['i'])
+        if p['source'] == DETAIL_SOURCE:
+            by_name[p['name']].append(p['i'])
 
     size, gear, seat = {}, {}, {}
     for key, value in (raw.get('size') or {}).items():

@@ -7,6 +7,7 @@ parser silently returning nothing.
 
     python3 tests/test_parsers.py
 """
+import json
 import os
 import sys
 import unittest
@@ -28,6 +29,7 @@ import socrata       # noqa: E402
 import geo           # noqa: E402
 import hatchery      # noqa: E402
 import build_data     # noqa: E402
+import paths          # noqa: E402
 from datetime import date, timedelta  # noqa: E402
 
 
@@ -448,6 +450,62 @@ class TestFisheryState(unittest.TestCase):
             'water': 'marine'}}
         curves = {('COLUMBIA BASIN HATCHERY', 'Chinook', 2026): {30: 100}}
         self.assertEqual(build_data.link_hatcheries(places, {}, curves), {})
+
+
+class TestFateFiltering(unittest.TestCase):
+    """Broodstock and unknown-fate records are not angler catch."""
+
+    def notes(self, fate):
+        interviews = [{'interview_id': str(i), 'event_date': '2026-07-01',
+                       'water_body': 'Ash Lake', 'angler_count': '1',
+                       'fishing_start_time': '06:30:00'} for i in range(30)]
+        catch = [{'interview_id': str(i), 'event_date': '2026-07-01',
+                  'water_body': 'Ash Lake', 'species': 'Rainbow Trout',
+                  'fate': fate, 'fish_count': '1', 'gear_type': 'Bait',
+                  'fork_length_cm': '30'} for i in range(30)]
+        real = socrata.fetch_all
+        socrata.fetch_all = lambda dataset, **kw: (
+            interviews if dataset == socrata.INTERVIEWS else catch)
+        try:
+            return socrata.load(say=lambda *a: None)
+        finally:
+            socrata.fetch_all = real
+
+    def test_kept_fish_are_counted(self):
+        _c, _e, success, detail = self.notes('Kept')
+        self.assertTrue(detail['gear'])
+        self.assertTrue(success)
+
+    def test_broodstock_is_not(self):
+        # it never reaches the catch table, so it must not reach the notes either
+        catch, _e, success, detail = self.notes('Broodstock')
+        self.assertEqual(catch, [])
+        self.assertEqual(detail['gear'], {})
+        self.assertEqual(detail['size'], {})
+        self.assertEqual(success, [])
+
+
+class TestDetailAttribution(unittest.TestCase):
+    """Field notes belong to the source that recorded them."""
+
+    def test_two_sources_with_the_same_water_name(self):
+        places = {
+            ('creel-database', 'Cowlitz River'): {
+                'i': 0, 'name': 'Cowlitz River', 'source': 'creel-database'},
+            ('columbia-sw', 'Cowlitz River'): {
+                'i': 1, 'name': 'Cowlitz River', 'source': 'columbia-sw'},
+        }
+        raw = {'size': {}, 'gear': {'Cowlitz River|Chinook': {'Bait': 40}},
+               'seat': {}, 'hour': {}, 'target': {}, 'trips': {}, 'recent': {}}
+        with open(paths.DETAIL, 'w', encoding='utf-8') as f:
+            json.dump(raw, f)
+        try:
+            out = build_data.detail_by_place(places, {'Chinook': 0},
+                                             say=lambda *a: None)
+        finally:
+            os.remove(paths.DETAIL)
+        # the interviews are the database's; the weekly PDF summary never saw them
+        self.assertEqual(list(out['gear']), ['0|0'])
 
 
 class TestBiennialRuns(unittest.TestCase):

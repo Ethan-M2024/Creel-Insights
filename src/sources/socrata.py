@@ -207,7 +207,7 @@ def load(refresh=False, say=print):
     caught = defaultdict(set)           # (day, water body, species) -> interview ids
     for r in catches:
         iid = r.get('interview_id')
-        if not iid or common.num(r.get('fish_count')) == 0:
+        if not iid or not _is_catch(r) or common.num(r.get('fish_count')) == 0:
             continue
         place = by_interview.get(iid)
         d = (r.get('event_date') or '')[:10] or (place[0] if place else '')
@@ -221,6 +221,13 @@ def load(refresh=False, say=print):
 
     return catch_rows, effort_rows, success_rows, detail(interviews, catches,
                                                          by_interview)
+
+
+#: broodstock and unknown-fate records are not angler catch and never enter the catch
+#: table, so they must not enter the notes taken beside it either — counting them put
+#: gear and a time of day against fish the dashboard says were never caught
+def _is_catch(row):
+    return (row.get('fate') or '').strip().lower() in ('kept', 'released')
 
 
 #: how far back the day-by-day slice runs. The whole-record summaries answer "what
@@ -274,6 +281,8 @@ def _recent(interviews, catches, by_interview, band_of, target_of, status_of):
 
     hit_species, hit_seat = set(), set()
     for r in catches:
+        if not _is_catch(r):
+            continue
         iid = r.get('interview_id')
         day = (r.get('event_date') or '')[:10]
         place = by_interview.get(iid)
@@ -340,6 +349,8 @@ def detail(interviews, catches, by_interview):
     lengths = defaultdict(list)
     gear = defaultdict(lambda: defaultdict(int))
     for r in catches:
+        if not _is_catch(r):
+            continue
         place = by_interview.get(r.get('interview_id'))
         wb = r.get('water_body') or (place[1] if place else '')
         sp = common.species(r.get('species'))
@@ -371,7 +382,7 @@ def detail(interviews, catches, by_interview):
     hit = set()
     for r in catches:
         iid = r.get('interview_id')
-        if iid in kind_of and (common.num(r.get('fish_count')) or 1) > 0:
+        if iid in kind_of and _is_catch(r) and (common.num(r.get('fish_count')) or 1) > 0:
             place = by_interview.get(iid)
             wb = r.get('water_body') or (place[1] if place else '')
             if wb and (iid, wb) not in hit:
@@ -408,6 +419,8 @@ def detail(interviews, catches, by_interview):
 
     seen_band, seen_species = set(), defaultdict(set)
     for r in catches:
+        if not _is_catch(r):
+            continue
         iid = r.get('interview_id')
         place = by_interview.get(iid)
         wb = r.get('water_body') or (place[1] if place else '')

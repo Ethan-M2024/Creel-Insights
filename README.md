@@ -179,6 +179,13 @@ Three states, each read from its own evidence and kept apart on purpose:
 | **Still to come** | current creel against the years behind it | the next six weeks are normally better than the fortnight just gone, by 40% or more, and the peak week is still ahead |
 | **Mostly over** | only the last two months of creel | the peak week has passed, under 15% of those two months' catch came in the final month, and the rate is off its best |
 
+Broodstock and unknown-fate records are not angler catch: WDFW record them, the
+catch table drops them, and the field notes drop them too — counting them once put
+gear and a time of day against fish the dashboard elsewhere says were never caught.
+Notes taken from the interviews are attached only to that source's places; two
+sources both call a water "Cowlitz River", and the weekly summary never saw those
+interviews.
+
 **Every-other-year runs are left out in their off years.** Pinks return to
 Washington in odd years — 48,128 counted in 2025 against three in 2026 — and
 averaging the last five seasons produces a handsome August peak in a year when there
