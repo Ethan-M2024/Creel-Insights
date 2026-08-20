@@ -1,9 +1,9 @@
 {
- "built": "2026-08-19T15:36:41+00:00",
+ "built": "2026-08-20T15:39:03+00:00",
  "quota_records": 42,
  "sha256": {
-  "creel_effort": "dfb62c60ae078ebeef15f390d5c42f7b6a0110906e92392a1e17cf593095f232",
-  "creel_rows": "0ac5b270f5bb4a1fb155b883e7ed59262b7c0cd1f1a6a3f8c5af0ea20b45ec71"
+  "creel_effort": "c8a3cf9216da67cf30bfb545fd9bff716d98c1454a54e5b4ee2c5debc99edced",
+  "creel_rows": "7bcd5ce5f33b56ddf945067758f5f0f34bb40bfe4e8df0252c475ab1e14d133b"
  },
  "sources": {
   "buoy10": {
@@ -43,11 +43,11 @@
    "read_from": "https://wdfw.wa.gov/fishing/regulations/halibut/seasons-quotas"
   },
   "ocean-quota": {
-   "catch_rows": 1500,
-   "effort_rows": 527,
+   "catch_rows": 1512,
+   "effort_rows": 531,
    "first": "2016-07-01",
    "label": "Ocean sport salmon quota report",
-   "last": "2026-08-03",
+   "last": "2026-08-10",
    "locations": 4,
    "read_from": "https://wdfw.wa.gov/fishing/reports/creel/ocean and its archives page"
   },
@@ -61,11 +61,11 @@
    "read_from": "https://wdfw.wa.gov/fishing/reports/creel/pikeminnow (weekly PDFs)"
   },
   "puget-ramp": {
-   "catch_rows": 334299,
-   "effort_rows": 47757,
+   "catch_rows": 334348,
+   "effort_rows": 47764,
    "first": "2013-01-02",
    "label": "Puget Sound ramp creel",
-   "last": "2026-08-18",
+   "last": "2026-08-19",
    "locations": 218,
    "read_from": "https://wdfw.wa.gov/fishing/reports/creel/puget-annual"
   },
