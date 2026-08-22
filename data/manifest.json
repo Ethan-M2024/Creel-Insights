@@ -1,17 +1,17 @@
 {
- "built": "2026-08-21T15:37:51+00:00",
+ "built": "2026-08-22T15:25:28+00:00",
  "quota_records": 42,
  "sha256": {
-  "creel_effort": "dffc6ccf0893e69c20599979198594d1dfe6d83aa8d34ebc55a05a2bffdaa837",
-  "creel_rows": "16f3ffe4106aa484acb7bf112488b8562258826d22e04ec29fa4fe0cd5796de7"
+  "creel_effort": "cc0dd9ddeb91c9230b5dea9c3953a2dd02999f69563bb971c674d672630ee77b",
+  "creel_rows": "312cecfd7d5fb81ba0f3239d5d7d5c97f8adda1b41682488ceaf192f03514229"
  },
  "sources": {
   "buoy10": {
-   "catch_rows": 1164,
-   "effort_rows": 634,
+   "catch_rows": 1172,
+   "effort_rows": 638,
    "first": "2014-08-01",
    "label": "Buoy 10",
-   "last": "2026-08-16",
+   "last": "2026-08-20",
    "locations": 1,
    "read_from": "https://wdfw.wa.gov/fishing/reports/creel/buoy10"
   },
@@ -34,11 +34,11 @@
    "read_from": "https://data.wa.gov/resource/rpax-ahqm.json (interviews), https://data.wa.gov/resource/6y4e-8ftk.json (catch)"
   },
   "halibut": {
-   "catch_rows": 42,
-   "effort_rows": 42,
+   "catch_rows": 47,
+   "effort_rows": 47,
    "first": "2026-04-02",
    "label": "Pacific halibut landings summary",
-   "last": "2026-06-30",
+   "last": "2026-08-16",
    "locations": 4,
    "read_from": "https://wdfw.wa.gov/fishing/regulations/halibut/seasons-quotas"
   },
@@ -61,11 +61,11 @@
    "read_from": "https://wdfw.wa.gov/fishing/reports/creel/pikeminnow (weekly PDFs)"
   },
   "puget-ramp": {
-   "catch_rows": 334649,
-   "effort_rows": 47807,
+   "catch_rows": 334985,
+   "effort_rows": 47855,
    "first": "2013-01-02",
    "label": "Puget Sound ramp creel",
-   "last": "2026-08-20",
+   "last": "2026-08-21",
    "locations": 218,
    "read_from": "https://wdfw.wa.gov/fishing/reports/creel/puget-annual"
   },
