@@ -1,9 +1,9 @@
 {
- "built": "2026-08-26T16:22:54+00:00",
+ "built": "2026-08-28T00:20:57+00:00",
  "quota_records": 42,
  "sha256": {
-  "creel_effort": "b6c47a3da8c5b07dbf5744c7a5b82868673897802a2c7b206cd0c0a1eed7a085",
-  "creel_rows": "fab7a32c1289f8dd278314e263cbd90e9fead2893055fabbd684d5b4bceb104f"
+  "creel_effort": "6e47ba1539cbfc3904f2692c8d7e101ec88627a0970512e969355549bc6190dc",
+  "creel_rows": "f07a29f3cb5931d67aff54d1cb7b0dbfa1d58e0fb2877a9a3b2b829ee764a370"
  },
  "sources": {
   "buoy10": {
@@ -16,11 +16,11 @@
    "read_from": "https://wdfw.wa.gov/fishing/reports/creel/buoy10"
   },
   "columbia-sw": {
-   "catch_rows": 8704,
-   "effort_rows": 3988,
+   "catch_rows": 8770,
+   "effort_rows": 4008,
    "first": "2019-01-14",
    "label": "Columbia River and tributary report",
-   "last": "2026-08-10",
+   "last": "2026-08-17",
    "locations": 35,
    "read_from": "https://wdfw.wa.gov/fishing/reports/creel/southwest (weekly PDFs)"
   },
@@ -34,20 +34,20 @@
    "read_from": "https://data.wa.gov/resource/rpax-ahqm.json (interviews), https://data.wa.gov/resource/6y4e-8ftk.json (catch)"
   },
   "halibut": {
-   "catch_rows": 47,
-   "effort_rows": 47,
+   "catch_rows": 52,
+   "effort_rows": 52,
    "first": "2026-04-02",
    "label": "Pacific halibut landings summary",
-   "last": "2026-08-16",
+   "last": "2026-08-17",
    "locations": 4,
    "read_from": "https://wdfw.wa.gov/fishing/regulations/halibut/seasons-quotas"
   },
   "ocean-quota": {
-   "catch_rows": 1512,
-   "effort_rows": 531,
+   "catch_rows": 1524,
+   "effort_rows": 535,
    "first": "2016-07-01",
    "label": "Ocean sport salmon quota report",
-   "last": "2026-08-10",
+   "last": "2026-08-17",
    "locations": 4,
    "read_from": "https://wdfw.wa.gov/fishing/reports/creel/ocean and its archives page"
   },
@@ -61,11 +61,11 @@
    "read_from": "https://wdfw.wa.gov/fishing/reports/creel/pikeminnow (weekly PDFs)"
   },
   "puget-ramp": {
-   "catch_rows": 335937,
-   "effort_rows": 47991,
+   "catch_rows": 336217,
+   "effort_rows": 48031,
    "first": "2013-01-02",
    "label": "Puget Sound ramp creel",
-   "last": "2026-08-25",
+   "last": "2026-08-26",
    "locations": 218,
    "read_from": "https://wdfw.wa.gov/fishing/reports/creel/puget-annual"
   },
