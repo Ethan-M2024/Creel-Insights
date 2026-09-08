@@ -1,9 +1,9 @@
 {
- "built": "2026-09-08T23:15:03+00:00",
+ "built": "2026-09-08T23:30:15+00:00",
  "quota_records": 42,
  "sha256": {
-  "creel_effort": "6dfdac7c3af2d3edb13aef949abb4ad713cf059ddde4f2f2d91273090b24e418",
-  "creel_rows": "b54d5a0b8851dcb9c5ea41ec5a5a7b56e76f42526426949c8d88134e1ffaf898"
+  "creel_effort": "658378edb6327bd718d0ddae00abb730edc1add1ed43e48bdcdbab6a1972bd73",
+  "creel_rows": "0e242478c130a5a3863a291ed92b7957af89a7d9c4ccb0ef6fc70cf179947730"
  },
  "sources": {
   "buoy10": {
@@ -16,17 +16,17 @@
    "read_from": "https://wdfw.wa.gov/fishing/reports/creel/buoy10"
   },
   "columbia-sw": {
-   "catch_rows": 8824,
-   "effort_rows": 4028,
+   "catch_rows": 8884,
+   "effort_rows": 4046,
    "first": "2019-01-14",
    "label": "Columbia River and tributary report",
-   "last": "2026-08-24",
+   "last": "2026-09-01",
    "locations": 35,
    "read_from": "https://wdfw.wa.gov/fishing/reports/creel/southwest (weekly PDFs)"
   },
   "creel-database": {
    "catch_rows": 113173,
-   "effort_rows": 159929,
+   "effort_rows": 159932,
    "first": "1973-05-17",
    "label": "WDFW creel database (statewide)",
    "last": "2026-07-29",
