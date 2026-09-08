@@ -359,6 +359,50 @@ class TestHatcheryRuns(unittest.TestCase):
         self.assertEqual(hatchery.species_of('Sea-run Cutthroat'), 'Cutthroat')
 
 
+class TestWeekendReport(unittest.TestCase):
+    """The weekend just gone, by marine area, from the day's own creel."""
+
+    def rows(self, days):
+        effort = [{'date': d, 'source': 'puget-ramp', 'location': 'Ramp A',
+                   'catch_area': 'Area 8-2, Ports Susan and Gardner',
+                   'interviews': '20', 'anglers': '50'} for d in days]
+        catch = [{'date': d, 'source': 'puget-ramp', 'location': 'Ramp A',
+                  'catch_area': 'Area 8-2, Ports Susan and Gardner',
+                  'species': 'Coho', 'fate': 'kept', 'fish': '40'} for d in days]
+        return catch, effort
+
+    def test_the_last_friday_to_sunday_is_read(self):
+        days = ['2026-09-04', '2026-09-05', '2026-09-06']
+        catch, effort = self.rows(days + ['2026-09-01'])
+        out = build_data.weekend_report(catch, effort, date(2026, 9, 6),
+                                        say=lambda *a: None)
+        self.assertEqual(out['days'], days)
+
+    def test_the_sub_area_number_is_not_left_in_the_name(self):
+        days = ['2026-09-04', '2026-09-05', '2026-09-06']
+        catch, effort = self.rows(days)
+        out = build_data.weekend_report(catch, effort, date(2026, 9, 6),
+                                        say=lambda *a: None)
+        self.assertEqual(out['areas'][0]['name'], 'Ports Susan and Gardner')
+
+    def test_a_thin_area_is_left_out(self):
+        days = ['2026-09-04', '2026-09-05', '2026-09-06']
+        catch, effort = self.rows(days)
+        for r in effort:
+            r['interviews'] = '2'
+        out = build_data.weekend_report(catch, effort, date(2026, 9, 6),
+                                        say=lambda *a: None)
+        self.assertEqual(out['areas'], [])
+
+    def test_each_day_keeps_its_own_count(self):
+        days = ['2026-09-04', '2026-09-05', '2026-09-06']
+        catch, effort = self.rows(days)
+        catch[1]['fish'] = '80'
+        out = build_data.weekend_report(catch, effort, date(2026, 9, 6),
+                                        say=lambda *a: None)
+        self.assertEqual(out['areas'][0]['species']['Coho']['fish'], [40, 80, 40])
+
+
 class TestFisheryState(unittest.TestCase):
     """On now, still to come, mostly over — each from its own evidence."""
 

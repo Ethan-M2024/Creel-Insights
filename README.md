@@ -169,6 +169,19 @@ So each place is compared **against itself, at the same point in the season**:
 | **prior** | the same length of window immediately before it |
 | **seasonal** | the median of the same calendar window in each of the last three years |
 
+### The weekend report
+
+The first tab is a poster rather than a workbench: the Friday to Sunday just gone,
+one species, by marine area. Interviews, anglers and fish for each of the three days,
+the per-interview and per-angler rates beside them, two trend charts, and the ramps
+that landed the fish. It opens on whatever the weekend was actually about, which in
+September is coho and in July is Chinook.
+
+Everything written underneath is generated from the table above it. A line that says
+an area "held level all three days" has to be level on all three, not merely finish
+where it started: the first version of that check called 3.24, 4.02, 2.93 steady, and
+a Saturday spike between two ordinary days is the opposite of steady.
+
 ### What is coming
 
 Three states, each read from its own evidence and kept apart on purpose:

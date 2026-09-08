@@ -326,6 +326,8 @@ def build(catch_rows, effort_rows, place_geo, say=print, success_rows=(),
         # whether the boat or the bank did better
         'detail': detail_by_place(places, sp_index, effort_day=effort_day, say=say),
         # where the fishing should pick up next, from the run heading for the rack
+        # the weekend just gone, by marine area, read straight from the day's creel
+        'weekend': weekend_report(catch_rows, effort_rows, as_of_d, say=say),
         'forecast': forecast(catch_day, effort_day, places, sp_index, as_of_d,
                              hatchery_curves, hatchery_facilities, say=say,
                              biennial=biennial),
@@ -342,6 +344,89 @@ AREA_NUMBER = re.compile(r'(?:marine\s+)?area\s*([0-9]+(?:\.[0-9]+)?)', re.I)
 def area_key(text):
     m = AREA_NUMBER.search(text or '')
     return m.group(1) if m else None
+
+
+#: the smallest weekend worth publishing a card about
+WEEKEND_MIN_INTERVIEWS = 10
+
+
+def weekend_report(catch_rows, effort_rows, as_of_d, say=print):
+    """The last full Friday-to-Sunday, by marine area, the way an angler reads it.
+
+    Everything else on this page is a season or a trend. This is the weekend just
+    gone: how many parties were interviewed in each marine area on each of the three
+    days, how many fish they had, and which ramps produced them. It is the report a
+    reader actually wants on a Monday morning, and every figure in it is one day's
+    creel rather than an average of anything.
+    """
+    days = sorted({r['date'] for r in effort_rows if r.get('catch_area')})
+    if not days:
+        return None
+    latest = date.fromisoformat(days[-1])
+    # walk back to the most recent Sunday that has been sampled
+    sunday = latest
+    while sunday.weekday() != 6 and sunday > latest - timedelta(days=7):
+        sunday -= timedelta(days=1)
+    weekend = [(sunday - timedelta(days=n)).isoformat() for n in (2, 1, 0)]
+    if not any(d in days for d in weekend):
+        return None
+
+    names = {}
+    effort = defaultdict(lambda: [0, 0])          # (area, day) -> interviews, anglers
+    fish = defaultdict(int)                       # (area, day, species) -> fish
+    ramps = defaultdict(int)                      # (area, ramp, species) -> fish
+    ramp_effort = defaultdict(int)                # (area, ramp) -> anglers
+    for r in effort_rows:
+        if r['date'] not in weekend:
+            continue
+        area = area_key(r.get('catch_area'))
+        if not area:
+            continue
+        # "Area 10, Seattle-Bremerton area" carries the name anglers use for it,
+        # and the sub-areas are written "Area 8-2, Ports Susan and Gardner" — the
+        # number and its suffix both have to come off, or the name reads "-2, Ports"
+        label = re.sub(r'^\s*(?:marine\s+)?area\s*[0-9]+(?:[.\-][0-9]+)?[,\s]*', '',
+                       r.get('catch_area') or '', flags=re.I)
+        label = re.sub(r'\s+area$', '', label.strip(), flags=re.I)
+        if label and area not in names:
+            names[area] = label[:1].upper() + label[1:]
+        cell = effort[(area, r['date'])]
+        cell[0] += to_int(r.get('interviews'))
+        cell[1] += to_int(r.get('anglers'))
+        ramp_effort[(area, r['location'])] += to_int(r.get('anglers'))
+    for r in catch_rows:
+        if r['date'] not in weekend or not r['species']:
+            continue
+        area = area_key(r.get('catch_area'))
+        if not area:
+            continue
+        fish[(area, r['date'], r['species'])] += to_int(r.get('fish'))
+        ramps[(area, r['location'], r['species'])] += to_int(r.get('fish'))
+
+    areas = sorted({a for a, _d in effort}, key=lambda a: float(a))
+    rows = []
+    for area in areas:
+        total = sum(effort[(area, d)][0] for d in weekend)
+        if total < WEEKEND_MIN_INTERVIEWS:
+            continue
+        days_out = []
+        for day in weekend:
+            interviews, anglers = effort[(area, day)]
+            days_out.append({'day': day, 'interviews': interviews, 'anglers': anglers})
+        by_species = {}
+        for species in {s for (a, _d, s) in fish if a == area}:
+            counts = [fish.get((area, day, species), 0) for day in weekend]
+            if sum(counts) <= 0:
+                continue
+            top = sorted(((n, ramp) for (a, ramp, s), n in ramps.items()
+                          if a == area and s == species and n > 0), reverse=True)[:2]
+            by_species[species] = {'fish': counts,
+                                   'ramps': [{'name': r, 'fish': n} for n, r in top]}
+        rows.append({'area': area, 'name': names.get(area, f'Marine Area {area}'),
+                     'days': days_out, 'species': by_species})
+
+    say(f'   weekend report: {len(rows)} marine areas over {weekend[0]} to {weekend[-1]}')
+    return {'days': weekend, 'areas': rows}
 
 
 def waters(say=print):
