@@ -18,7 +18,8 @@ import urllib.request
 #: attack surface of every update run.
 ALLOWED_HOSTS = frozenset({
     'wdfw.wa.gov',                  # the creel report pages and PDFs
-    'data.wa.gov',                  # WDFW's creel database, published as open data
+    'data.wa.gov',                  # WDFW's creel database, the fish plant
+                                    # records and the tag recoveries
     'geodataservices.wdfw.wa.gov',  # WDFW water access sites
     'services3.arcgis.com',         # WDFW salmon catch and reporting areas
     'services.arcgis.com',          # Ecology's river basin boundaries (WRIA)

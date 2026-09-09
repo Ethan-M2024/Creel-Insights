@@ -444,9 +444,36 @@ def detail(interviews, catches, by_interview):
         values = sorted(values)
         return round(values[min(len(values) - 1, int(q * len(values)))], 1)
 
+    # the same lengths, kept season by season: a median pooled over thirty years
+    # cannot show a fish getting smaller
+    by_year = defaultdict(list)
+    for r in catches:
+        if not _is_catch(r):
+            continue
+        cm = r.get('fork_length_cm')
+        day = (r.get('event_date') or '')[:10]
+        if not cm or not day:
+            continue
+        try:
+            value = float(cm)
+        except ValueError:
+            continue
+        # A jack is a fish that came back a year early and is half the size of an
+        # adult. The Cowlitz's 1975 record is nearly all jacks, and pooling them
+        # with adults put the median Chinook at 31 cm that season, which reads as a
+        # collapse rather than as a different fish.
+        stage = (r.get('life_stage') or '').strip().lower()
+        if 5 <= value <= 200 and stage not in ('jack', 'jill', 'juvenile', 'smolt'):
+            by_year[f"{common.species(r.get('species'))}|{day[:4]}"].append(value)
+
     out = {'size': {}, 'gear': {}, 'seat': {}, 'hour': {}, 'target': {},
-           'trips': {}, 'recent': _recent(interviews, catches, by_interview,
-                                          band_of, target_of, status_of)}
+           'trips': {}, 'by_year': {}, 'recent': _recent(
+               interviews, catches, by_interview, band_of, target_of, status_of)}
+    for key, values in by_year.items():
+        if len(values) >= 20:
+            out['by_year'][key] = {'n': len(values),
+                                   'median': quantile(values, 0.5),
+                                   'mean': round(sum(values) / len(values), 1)}
     for (wb, sp, band), (parties, hits) in hours.items():
         if parties >= 20:
             out['hour'].setdefault(f'{wb}|{sp}', {})[band] = {

@@ -364,6 +364,15 @@ ul.checks li { padding: 4px 0; border-bottom: 1px solid var(--grid); }
       <select id="f-species5"></select>
     </div>
     <div class="field">
+      <label for="f-plan-near">Within</label>
+      <select id="f-plan-near">
+        <option value="">anywhere in the state</option>
+        <option value="30">30 miles of the place picked</option>
+        <option value="60">60 miles</option>
+        <option value="120">120 miles</option>
+      </select>
+    </div>
+    <div class="field">
       <label>Week</label>
       <div class="seg" id="f-plan-week">
         <button data-v="0" aria-pressed="true">This week</button>
@@ -387,6 +396,16 @@ ul.checks li { padding: 4px 0; border-bottom: 1px solid var(--grid); }
         <h2>What the samplers found there</h2>
         <p class="note">Counted from the interviews at this place, not modelled.</p>
         <div id="plan-detail"></div>
+      </div>
+      <div class="card" style="margin-top:18px">
+        <h2>How busy it gets</h2>
+        <p class="note" id="plan-crowd-note"></p>
+        <div id="plan-crowd"></div>
+      </div>
+      <div class="card" style="margin-top:18px">
+        <h2>Who stocks this water</h2>
+        <p class="note" id="plan-stock-note"></p>
+        <div id="plan-stock"></div>
       </div>
       <div class="card" style="margin-top:18px">
         <h2>Where else is fishing, that week</h2>
@@ -580,6 +599,19 @@ ul.checks li { padding: 4px 0; border-bottom: 1px solid var(--grid); }
       <p class="note" id="timing-note"></p>
       <div id="timing-chart"></div>
       <div id="timing-table"></div>
+    </div>
+    <div class="card">
+      <h2>Are the fish getting smaller?</h2>
+      <p class="note" id="size-note"></p>
+      <div id="size-chart"></div>
+      <div id="size-table"></div>
+    </div>
+  </div>
+  <div class="layout" style="margin-top:18px">
+    <div class="card">
+      <h2>Fish caught for every million released</h2>
+      <p class="note" id="returns-note"></p>
+      <div class="scroll"><div id="returns-table"></div></div>
     </div>
     <div class="card">
       <h2>Hatchery or wild, and what gets put back</h2>
@@ -790,6 +822,7 @@ const state = {
   // the planner: which place, and how many weeks ahead of the latest report
   planPlace: null,
   planWeek: 0,
+  planNear: null,
   // per angler, or per hour those anglers actually fished. Only the interview
   // database times its trips, so the hour basis covers part of the state — the
   // places without it say so rather than being quietly dropped to zero.
@@ -2121,6 +2154,8 @@ function renderPlan() {
     `over the last five seasons. The marked week is the one you asked about; a week ` +
     `with no bar was never sampled, which is not the same as a week with no fish.`;
 
+  renderPlanCrowd(chosen.pid, week);
+  renderPlanStock(chosen.pid);
   document.getElementById('plan-detail').innerHTML =
     fieldNotesFor(chosen.pid) || '<p class="note">Nothing beyond the counts is ' +
     'published for this place: no lengths, no gear, no start times.</p>';
@@ -2133,16 +2168,20 @@ function renderPlan() {
              rate: cell.reduce((a, v) => a + v.rate, 0) / cell.length,
              anglers: cell.reduce((a, v) => a + v.anglers, 0) };
   }).filter(Boolean).filter(a => a.anglers >= META.min_anglers)
+    .map(a => ({ ...a, miles: milesBetween(chosen.place, a.place) }))
+    .filter(a => !state.planNear || (a.miles !== null && a.miles <= state.planNear))
     .sort((a, b) => b.rate - a.rate).slice(0, 8);
   document.getElementById('plan-alt-note').textContent =
     `The waters with the best record in week ${week}, out of everywhere creeled for ` +
-    `${SPECIES[state.species].toLowerCase()}.`;
+    `${SPECIES[state.species].toLowerCase()}` +
+    (state.planNear ? `, within ${state.planNear} miles of ${chosen.place.name}.` : '.');
   document.getElementById('plan-alternatives').innerHTML = alts.length ? `
     <table><tbody>${alts.map(a => `
       <tr data-pid="${a.pid}"><td>${escapeHtml(a.place.name)}<br>
         <span class="k" style="color:var(--ink-3)">${escapeHtml(a.place.region || a.place.source)}</span></td>
         <td class="num">${a.rate.toFixed(2)}</td>
-        <td class="num" style="color:var(--ink-3)">${fmt(a.anglers)} anglers</td></tr>`).join('')}
+        <td class="num" style="color:var(--ink-3)">${a.miles === null ? ''
+          : `${Math.round(a.miles)} mi · `}${fmt(a.anglers)} anglers</td></tr>`).join('')}
     </tbody></table>` : '<p class="note">Nothing else was creeled in that week.</p>';
   for (const tr of document.querySelectorAll('#plan-alternatives tr[data-pid]')) {
     tr.addEventListener('click', () => {
@@ -2162,6 +2201,155 @@ function fieldNotesFor(pid) {
   } finally {
     state.window = saved;
   }
+}
+
+/* how far apart two places are, in miles, for the "within an hour" filter */
+function milesBetween(a, b) {
+  if (a.lat === null || b.lat === null || a.lat === undefined || b.lat === undefined) {
+    return null;
+  }
+  const toRad = d => d * Math.PI / 180;
+  const dLat = toRad(b.lat - a.lat), dLon = toRad(b.lon - a.lon);
+  const lat = toRad((a.lat + b.lat) / 2);
+  const x = dLon * Math.cos(lat);
+  return Math.sqrt(x * x + dLat * dLat) * 3958.8;
+}
+
+function renderPlanCrowd(pid, week) {
+  const crowd = (DATA.crowding || {})[String(pid)];
+  const note = document.getElementById('plan-crowd-note');
+  const body = document.getElementById('plan-crowd');
+  if (!crowd) {
+    note.textContent = 'No effort profile for this place.';
+    body.innerHTML = '';
+    return;
+  }
+  const weeks = crowd.week || {};
+  const typical = weeks[String(week)];
+  const busiest = Object.entries(weeks).sort((a, b) => b[1] - a[1])[0];
+  const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+  const peak = Math.max(...crowd.weekday, 1);
+  note.textContent = typical === undefined
+    ? `This place has never been sampled in week ${week}, so there is no crowd to quote.`
+    : `A sampled day in week ${week} has had about ${fmt(typical)} anglers ` +
+      `interviewed here. Its busiest week of the year is ${busiest[0]}, at ${
+        fmt(busiest[1])}.`;
+  body.innerHTML = '<table><tbody>' + crowd.weekday.map((n, i) => `
+    <tr><td>${days[i]}</td>
+      <td class="num" style="width:130px"><span class="meter"><span style="width:${
+        Math.round(100 * n / peak)}%"></span></span></td>
+      <td class="num">${fmt(n)}</td></tr>`).join('') + '</tbody></table>';
+}
+
+function renderPlanStock(pid) {
+  const stock = (DATA.stocking || {})[String(pid)];
+  const note = document.getElementById('plan-stock-note');
+  const body = document.getElementById('plan-stock');
+  if (!stock) {
+    note.textContent = 'No hatchery releases are recorded into this water.';
+    body.innerHTML = '';
+    return;
+  }
+  note.textContent =
+    `WDFW have released ${fmt(stock.total)} juvenile fish into this water since ` +
+    `2010. Which of them a fish in the boat came from cannot be said: the recovery ` +
+    `records note that a tag was decoded but not the code, so no fish here is ` +
+    `traceable to a rack. These are the racks that stock the water.`;
+  body.innerHTML = '<table><tbody>' + stock.racks.map(r => `
+    <tr><td>${escapeHtml(r.name)}</td>
+      <td class="num">${fmt(r.released)}</td>
+      <td class="num" style="color:var(--ink-3)">${
+        Math.round(100 * r.released / stock.total)}%</td></tr>`).join('') +
+    '</tbody></table>';
+}
+
+function renderSizes() {
+  const name = SPECIES[state.species];
+  const series = (DATA.sizes || {})[name];
+  const note = document.getElementById('size-note');
+  if (!series) {
+    note.textContent = `Too few ${name.toLowerCase()} have been measured to show a ` +
+      `size series. A season needs twenty measured fish in the creel, or two ` +
+      `hundred in the tag recovery sample.`;
+    document.getElementById('size-chart').innerHTML = '';
+    document.getElementById('size-table').innerHTML = '';
+    return;
+  }
+  const sampled = series.sampled || [], creel = series.creel || [];
+  note.textContent =
+    `Two independent measurements of the same fish stock. The long series is the ` +
+    `tag recovery sample, tens of thousands of fish a year from the same fisheries, ` +
+    `back to the 1970s; the short one is the creel's own tape at the ramp. They ` +
+    `disagree in level because the recovery sample leans on marked fish, so they ` +
+    `are drawn apart rather than averaged into one flattering line. ` +
+    `Theil-Sen on the longer series: ${series.slope > 0 ? '+' : ''}${
+      series.slope.toFixed(1)} cm per decade.`;
+  document.getElementById('size-chart').innerHTML = sizeChart(sampled, creel);
+  const rows = (sampled.length >= 8 ? sampled : creel).slice(-8).reverse();
+  document.getElementById('size-table').innerHTML = `
+    <table><thead><tr><th>Season</th><th class="num">Mean length</th>
+      <th class="num">Fish measured</th></tr></thead><tbody>${rows.map(r => `
+      <tr><td>${r[0]}</td><td class="num">${r[1].toFixed(1)} cm
+        <span class="k" style="color:var(--ink-3)">${(r[1] / 2.54).toFixed(0)} in</span></td>
+        <td class="num" style="color:var(--ink-3)">${fmt(r[2])}</td></tr>`).join('')}
+    </tbody></table>`;
+}
+
+function sizeChart(sampled, creel) {
+  const all = [...sampled, ...creel];
+  if (all.length < 3) return '';
+  const W = 460, H = 190, padL = 40, padR = 12, padT = 14, padB = 24;
+  const years = all.map(p => p[0]), lens = all.map(p => p[1]);
+  const x0 = Math.min(...years), x1 = Math.max(...years);
+  const y0 = Math.min(...lens) - 2, y1 = Math.max(...lens) + 2;
+  const X = y => padL + ((y - x0) / Math.max(1, x1 - x0)) * (W - padL - padR);
+  const Y = v => H - padB - ((v - y0) / Math.max(1, y1 - y0)) * (H - padT - padB);
+  const line = (points, colour, dash) => points.length < 2 ? '' :
+    `<path d="${points.map((p, i) => `${i ? 'L' : 'M'}${X(p[0]).toFixed(1)},${
+      Y(p[1]).toFixed(1)}`).join('')}" fill="none" stroke="${colour}"
+      stroke-width="2" ${dash ? 'stroke-dasharray="4 3"' : ''}></path>` +
+    points.map(p => `<circle cx="${X(p[0]).toFixed(1)}" cy="${Y(p[1]).toFixed(1)}"
+      r="2.6" fill="${colour}"><title>${p[0]}: ${p[1].toFixed(1)} cm, ${
+        fmt(p[2])} fish</title></circle>`).join('');
+  return `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Mean fork length by season">
+    <text x="${padL - 6}" y="${padT + 8}" text-anchor="end" class="axis" font-size="10">${y1.toFixed(0)} cm</text>
+    <text x="${padL - 6}" y="${H - padB}" text-anchor="end" class="axis" font-size="10">${y0.toFixed(0)} cm</text>
+    <text x="${X(x0).toFixed(1)}" y="${H - 8}" class="axis" font-size="10">${x0}</text>
+    <text x="${X(x1).toFixed(1)}" y="${H - 8}" text-anchor="end" class="axis" font-size="10">${x1}</text>
+    ${line(sampled, 'var(--accent)', false)}${line(creel, 'var(--hot)', true)}
+    <text x="${W - padR}" y="${padT + 8}" text-anchor="end" font-size="10"
+      fill="var(--ink-3)">solid: tag recoveries · dashed: creel tape</text>
+  </svg>`;
+}
+
+function renderReturns() {
+  const name = SPECIES[state.species];
+  const rows = (DATA.returns || []).filter(r => r.species === name)
+    .sort((a, b) => b.per_million - a.per_million).slice(0, 12);
+  const note = document.getElementById('returns-note');
+  if (!rows.length) {
+    note.textContent = `No water has both ${name.toLowerCase()} releases on record ` +
+      `and enough creel two to four years later to compare them.`;
+    document.getElementById('returns-table').innerHTML = '';
+    return;
+  }
+  note.textContent =
+    `Juveniles released by WDFW into a water, against the ${name.toLowerCase()} the ` +
+    `creel counted there two to four years later. It is an index, not a survival ` +
+    `rate: samplers see a fraction of the catch, and fish released in one river are ` +
+    `caught in several. Salt water is excluded, because every rack in the state ` +
+    `feeds it. Read the order of magnitude and the ranking, not the decimal.`;
+  document.getElementById('returns-table').innerHTML = `
+    <table><thead><tr><th>Water</th><th class="num">Brood</th>
+      <th class="num">Released</th><th class="num">In the creel</th>
+      <th class="num">Per million</th></tr></thead><tbody>${rows.map(r => `
+      <tr><td>${escapeHtml(r.water)}<br><span class="k" style="color:var(--ink-3)">${
+        escapeHtml(r.racks.join(', '))}</span></td>
+        <td class="num">${r.brood}</td>
+        <td class="num">${fmt(r.released)}</td>
+        <td class="num">${fmt(r.caught)}</td>
+        <td class="num">${fmt(Math.round(r.per_million))}</td></tr>`).join('')}
+    </tbody></table>`;
 }
 
 function planWeekChart(chosen, week) {
@@ -2780,7 +2968,9 @@ function showTab(name) {
   if (name === 'window') renderWindowShift();
   if (name === 'forecast') { renderForecast(); renderPosition(); }
   if (name === 'places') renderPlaces();
-  if (name === 'species') { renderSpecies(); renderTiming(); renderClips(); }
+  if (name === 'species') {
+    renderSpecies(); renderTiming(); renderClips(); renderSizes(); renderReturns();
+  }
   if (name === 'quotas') renderQuotas();
   if (name === 'sources') renderSources();
 }
@@ -2813,7 +3003,9 @@ function refresh() {
   if (state.tab === 'window') renderWindowShift();
   if (state.tab === 'forecast') { renderForecast(); renderPosition(); }
   if (state.tab === 'places') renderPlaces();
-  if (state.tab === 'species') { renderSpecies(); renderTiming(); renderClips(); }
+  if (state.tab === 'species') {
+    renderSpecies(); renderTiming(); renderClips(); renderSizes(); renderReturns();
+  }
 }
 
 function init() {
@@ -2884,6 +3076,13 @@ function init() {
       for (const other of planWeeks.querySelectorAll('button')) {
         other.setAttribute('aria-pressed', String(other === b));
       }
+      renderPlan();
+    });
+  }
+  const planNear = document.getElementById('f-plan-near');
+  if (planNear) {
+    planNear.addEventListener('change', () => {
+      state.planNear = planNear.value ? Number(planNear.value) : null;
       renderPlan();
     });
   }

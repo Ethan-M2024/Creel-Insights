@@ -178,6 +178,42 @@ week are crowded, and where else was worth the drive that same week. Every figur
 carries the sample behind it, and a week nobody sampled is drawn empty rather than
 as a zero.
 
+Beside it: how busy that water gets, by week of the year and by day of the week, out
+of the effort counts alone; and a distance filter, so the question can be "what is
+fishing within sixty miles of here" rather than "what is fishing in Washington".
+
+### Who stocks this water, and what came back
+
+WDFW publish every juvenile release they make: the rack, the water, the brood year
+and the number of fish, 56,220 records since 2010. The planner names the racks that
+stock the water you are looking at, and the species tab divides those releases into
+the catch two to four years later — fish counted for every million released.
+
+It is an index and is presented as one. Samplers see a fraction of the catch, and a
+fish released in one river is caught in several, so the ranking is the useful part
+and the decimal is not. Salt water is excluded outright: every rack in the state and
+half of British Columbia feed it, and crediting an ocean port's coho to the hatchery
+that shares its name produced 700,000 fish back per million released, which is not a
+number but a mistake. Anything above two per thousand is refused for the same reason.
+
+The recovery records note that a tag was decoded but not the code itself, so no fish
+here can be traced to the rack that raised it. What can be said is which hatcheries
+stock a water and in what numbers, and that is all that is said.
+
+### Are the fish getting smaller
+
+Two independent measurements of the same stock. The long one is WDFW's coded wire tag
+recovery sample, tens of thousands of fish a year out of the same sport fisheries,
+back to 1975; the short one is the creel's own tape at the ramp. They disagree in
+level, because the recovery sample leans on marked fish, so they are drawn as two
+series rather than averaged into one flattering line. Chinook read about half a
+centimetre smaller per decade on the long series.
+
+Jacks are kept out. A jack is a fish that came back a year early at half the size of
+an adult, and the Cowlitz's 1975 record is nearly all jacks: pooled with adults, the
+median Chinook that season came out at 31 cm, which reads as a collapse rather than
+as a different fish.
+
 ### Is the run arriving earlier
 
 For every water with six or more seasons on record, the week by which half that

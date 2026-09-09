@@ -21,6 +21,7 @@ import json
 import os
 import re
 import statistics
+from collections import Counter as collections_Counter
 import sys
 from collections import defaultdict
 from datetime import date, datetime, timedelta, timezone
@@ -112,8 +113,17 @@ def month_start(iso_day):
     return iso_day[:7] + '-01'
 
 
+def detail_by_year(say=print):
+    """The creel's own lengths, season by season, as the detail file left them."""
+    if not os.path.exists(paths.DETAIL):
+        return {}
+    with open(paths.DETAIL, encoding='utf-8') as f:
+        return (json.load(f).get('by_year') or {})
+
+
 def build(catch_rows, effort_rows, place_geo, say=print, success_rows=(),
-          hatchery_curves=None, hatchery_facilities=None):
+          hatchery_curves=None, hatchery_facilities=None,
+          plant_rows=(), sampled_sizes=()):
     as_of = max([r['date'] for r in catch_rows] + [r['date'] for r in effort_rows])
     as_of_d = date.fromisoformat(as_of)
 
@@ -339,6 +349,15 @@ def build(catch_rows, effort_rows, place_geo, say=print, success_rows=(),
                                  as_of_d, say=say),
         # the clipped share and the release burden, by species and year
         'clips': clip_history(catch_rows, say=say),
+        # which racks stock the water each place is on, and how many they put in
+        'stocking': stocking(plant_rows, places, shapes, say=say),
+        # fish caught for every million released, by water and brood year
+        'returns': return_on_release(plant_rows, catch_day, places, sp_index,
+                                     as_of_d, say=say),
+        # how big they run, season by season, from two independent samples
+        'sizes': size_history(sampled_sizes, detail_by_year(say=say), say=say),
+        # how busy a place is by week and by day of the week
+        'crowding': crowding(effort_day, places, say=say),
         'year_anglers': dict(sorted(effort_year.items())),
     }
     return payload
@@ -570,6 +589,186 @@ def clip_history(catch_rows, say=print):
                      'per_kept': round(released / kept, 2) if kept else None})
     say(f'   clip history: {len(rows):,} species-years')
     return rows
+
+
+def stocking(plant_rows, places, shapes, say=print):
+    """Which racks stock each water, and how many juveniles they put in.
+
+    The recovery table records that a tag was decoded but not the code itself, so no
+    fish here can be traced to the rack that raised it. What can be said is which
+    hatcheries release into a water and in what numbers, which is the structural
+    answer to the same question and comes straight from WDFW's own plant records.
+    """
+    by_water = defaultdict(lambda: defaultdict(int))     # water key -> rack -> fish
+    years = defaultdict(lambda: defaultdict(int))        # (water, species) -> yr -> n
+    for r in plant_rows:
+        fish = to_int(r.get('number_released'))
+        if fish <= 0:
+            continue
+        species = common.species(r.get('species'))
+        rack = _pretty((r.get('facility') or '').strip())
+        water = _river_key(r.get('release_location')) or _river_key(r.get('facility'))
+        if not water or not species or not rack:
+            continue
+        by_water[water][rack] += fish
+        years[(water, species)][r.get('release_year')] += fish
+
+    # a creel place shares a water with a rack when their names share a river
+    out = {}
+    for p in places.values():
+        key = _river_key(p['name'])
+        racks = by_water.get(key)
+        if not racks:
+            continue
+        top = sorted(racks.items(), key=lambda kv: -kv[1])[:4]
+        out[str(p['i'])] = {
+            'water': key,
+            'racks': [{'name': name, 'released': fish} for name, fish in top],
+            'total': sum(racks.values()),
+        }
+    say(f'   stocking: {len(out)} places with a rack releasing into their water')
+    return out
+
+
+def return_on_release(plant_rows, catch_day, places, sp_index, as_of_d, say=print):
+    """Fish caught for every million released, by rack and brood year.
+
+    A hatchery releases juveniles and, two to four years later, some of them are
+    caught. Dividing one by the other gives a rough return index — rough because the
+    creel sees a fraction of the catch and because a fish released in one river is
+    caught in several. It is not a survival estimate and is not presented as one; it
+    is the order-of-magnitude answer to which racks put fish in front of anglers.
+    """
+    by_water = defaultdict(lambda: defaultdict(lambda: defaultdict(int)))
+    racks = defaultdict(set)
+    # "sol" is not the name of a river; the fullest release location seen for a
+    # water is kept so the table can say Sol Duc River
+    labels = defaultdict(collections_Counter)
+    for r in plant_rows:
+        fish = to_int(r.get('number_released'))
+        species = common.species(r.get('species'))
+        water = _river_key(r.get('release_location')) or _river_key(r.get('facility'))
+        year = to_int(r.get('brood_year')) or to_int(r.get('release_year'))
+        if fish <= 0 or not species or not water or year < FIRST_BROOD_YEAR:
+            continue
+        by_water[water][species][year] += fish
+        racks[water].add(_pretty((r.get('facility') or '').strip()))
+        # WDFW write release locations as "WYNOOCHEE R 22.0260" and "MINERAL LK
+        # (LEWI)": the stream code and the county tag are theirs to file by, not a
+        # name to print
+        place_name = re.sub(r'\s*\(.*?\)|\s+[\d.]{3,}\s*$', '',
+                            (r.get('release_location') or '').strip())
+        place_name = re.sub(r'\s+-\s*\w{1,3}$', '', place_name).strip()
+        place_name = re.sub(r'\bR$', 'River', re.sub(r'\bLK$', 'Lake', place_name))
+        if place_name:
+            labels[water][_pretty(place_name)] += 1
+
+    caught = defaultdict(lambda: defaultdict(int))       # (water, sp) -> year -> fish
+    for p in places.values():
+        # Salt water is fed by every rack in the state and by British Columbia
+        # besides. Crediting an ocean port's whole coho catch to the hatchery that
+        # happens to share its name read as 700,000 fish returning per million
+        # released, which is not a number, it is a mistake.
+        if p.get('water') == 'marine':
+            continue
+        water = _river_key(p['name'])
+        if water not in by_water:
+            continue
+        for (pid, species, day), (kept, rel) in catch_day.items():
+            if pid == p['i'] and species in sp_index:
+                caught[(water, species)][int(day[:4])] += kept + rel
+
+    rows = []
+    for water, species_map in by_water.items():
+        for species, brood_years in species_map.items():
+            for brood, released in sorted(brood_years.items()):
+                # the fish of a brood year meet anglers two to four years later
+                window = range(brood + 2, brood + 5)
+                if brood + 4 > as_of_d.year:
+                    continue
+                seen = sum(caught.get((water, species), {}).get(y, 0) for y in window)
+                if released < 100000 or seen < 20:
+                    continue
+                per_million = seen / (released / 1e6)
+                # a creel sees a fraction of a fraction; anything above this is a
+                # water whose name is doing more work than its fish
+                if per_million > MAX_PER_MILLION:
+                    continue
+                nice = labels[water].most_common(1)
+                rows.append({
+                    'water': nice[0][0] if nice else _pretty(water),
+                    'species': species, 'brood': brood,
+                    'released': released, 'caught': seen,
+                    'per_million': round(per_million, 1),
+                    'racks': sorted(racks[water])[:3],
+                })
+    rows.sort(key=lambda r: (r['water'], r['species'], r['brood']))
+    say(f'   return on release: {len(rows):,} rack-brood-species records')
+    return rows
+
+
+#: releases before this cannot be checked against the creel we hold
+FIRST_BROOD_YEAR = 2012
+#: the creel interviews a sample of anglers, who catch a sample of a run, so a plant
+#: showing more than two per thousand back in the creel is a mis-attribution rather
+#: than a triumph
+MAX_PER_MILLION = 2000
+
+
+def size_history(sampled, catch_detail, say=print):
+    """How big the fish run, season by season, from two independent samples.
+
+    The creel measures a few thousand fish a year at the ramp. The tag recovery
+    programme measures tens of thousands from the same fisheries, back to the
+    1970s. Neither is a census and the two disagree in level — the recovery sample
+    leans on marked fish — so they are shown as separate series rather than pooled
+    into one flattering line.
+    """
+    out = defaultdict(lambda: {'sampled': [], 'creel': []})
+    for r in sampled:
+        if r['species']:
+            out[r['species']]['sampled'].append([r['year'], r['mean'], r['n']])
+    for key, v in (catch_detail or {}).items():
+        species, _, year = key.rpartition('|')
+        if species and v.get('n', 0) >= 20:
+            out[species]['creel'].append([int(year), v['median'], v['n']])
+    for v in out.values():
+        v['sampled'].sort()
+        v['creel'].sort()
+    rows = {k: v for k, v in out.items() if len(v['sampled']) >= 8 or len(v['creel']) >= 5}
+    for species, v in rows.items():
+        series = v['sampled'] if len(v['sampled']) >= 8 else v['creel']
+        v['slope'] = round(_theil_sen([p[0] for p in series],
+                                      [p[1] for p in series]) * 10, 2)
+    say(f'   size history: {len(rows)} species with a length series')
+    return rows
+
+
+def crowding(effort_day, places, say=print):
+    """How busy a place is, by week of the year and day of the week.
+
+    Effort is the one thing the creel measures without any fish in it, and it is
+    what decides whether a ramp is a pleasure or a queue. Both cuts are kept: the
+    season's shape, and which days of the week that shape lands on.
+    """
+    weeks = defaultdict(lambda: defaultdict(list))       # pid -> week -> anglers/day
+    weekdays = defaultdict(lambda: [0] * 7)
+    for (pid, day), (anglers, _h, _i) in effort_day.items():
+        if anglers <= 0:
+            continue
+        d = date.fromisoformat(day)
+        weeks[pid][_isoweek(day)].append(anglers)
+        weekdays[pid][d.weekday()] += anglers
+    out = {}
+    for pid, by_week in weeks.items():
+        if sum(len(v) for v in by_week.values()) < 20:
+            continue
+        out[str(pid)] = {
+            'week': {str(w): int(statistics.median(v)) for w, v in by_week.items()},
+            'weekday': weekdays[pid],
+        }
+    say(f'   crowding: {len(out)} places with an effort profile')
+    return out
 
 
 def waters(say=print):
@@ -1502,9 +1701,16 @@ def main(say=print):
     except Exception as exc:                      # the forecast is an extra, not a
         say(f'!! hatchery returns unavailable: {exc}')   # reason to fail the build
         curves, facilities = {}, {}
+    import plants
+    try:
+        plant_rows, sampled_sizes = plants.load(say=say)
+    except Exception as exc:
+        say(f'!! release and size records unavailable: {exc}')
+        plant_rows, sampled_sizes = [], []
     payload = build(catch_rows, effort_rows, placed, say=say,
                     success_rows=success_rows, hatchery_curves=curves,
-                    hatchery_facilities=facilities)
+                    hatchery_facilities=facilities, plant_rows=plant_rows,
+                    sampled_sizes=sampled_sizes)
     # what the reader cares about is which places are missing from the map, not
     # which names failed the first matching pass — most of those are later placed
     # from their catch area

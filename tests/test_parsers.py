@@ -359,6 +359,71 @@ class TestHatcheryRuns(unittest.TestCase):
         self.assertEqual(hatchery.species_of('Sea-run Cutthroat'), 'Cutthroat')
 
 
+class TestSizeSeries(unittest.TestCase):
+    """Lengths season by season, with the jacks kept out of the adult series."""
+
+    def by_year(self, stage):
+        interviews = [{'interview_id': str(i), 'event_date': '2026-07-01',
+                       'water_body': 'Ash Lake', 'angler_count': '1'}
+                      for i in range(30)]
+        catch = [{'interview_id': str(i), 'event_date': '2026-07-01',
+                  'water_body': 'Ash Lake', 'species': 'Chinook', 'fate': 'Kept',
+                  'fish_count': '1', 'fork_length_cm': '35', 'life_stage': stage}
+                 for i in range(30)]
+        real = socrata.fetch_all
+        socrata.fetch_all = lambda dataset, **kw: (
+            interviews if dataset == socrata.INTERVIEWS else catch)
+        try:
+            return socrata.load(say=lambda *a: None)[3]['by_year']
+        finally:
+            socrata.fetch_all = real
+
+    def test_adults_are_measured(self):
+        self.assertIn('Chinook|2026', self.by_year('Adult'))
+
+    def test_jacks_are_not_pooled_with_adults(self):
+        # a jack is half the size of an adult; pooling them put the median Chinook
+        # at 31 cm in 1975, which reads as a collapse rather than a different fish
+        self.assertEqual(self.by_year('Jack'), {})
+
+
+class TestReturnOnRelease(unittest.TestCase):
+    """Fish caught per million released, and the attributions it must refuse."""
+
+    def plants(self, water, brood=2018, released=1000000):
+        return [{'facility': 'X HATCHERY', 'release_location': water,
+                 'species': 'Coho', 'brood_year': str(brood),
+                 'release_year': str(brood + 1), 'number_released': str(released)}]
+
+    def test_a_river_release_is_credited(self):
+        places = {('creel', 'Ash River'): {'i': 0, 'name': 'Ash River',
+                                           'source': 'creel', 'water': 'fresh'}}
+        catch = {(0, 'Coho', '2021-09-01'): [500, 0]}
+        rows = build_data.return_on_release(
+            self.plants('ASH RIVER'), catch, places, {'Coho': 0},
+            date(2026, 8, 3), say=lambda *a: None)
+        self.assertEqual(len(rows), 1)
+        self.assertEqual(rows[0]['per_million'], 500.0)
+
+    def test_salt_water_is_not_credited_to_one_rack(self):
+        places = {('x', 'Ash Bay'): {'i': 0, 'name': 'Ash Bay', 'source': 'x',
+                                     'water': 'marine'}}
+        catch = {(0, 'Coho', '2021-09-01'): [80000, 0]}
+        rows = build_data.return_on_release(
+            self.plants('ASH BAY'), catch, places, {'Coho': 0},
+            date(2026, 8, 3), say=lambda *a: None)
+        self.assertEqual(rows, [])
+
+    def test_an_impossible_rate_is_refused(self):
+        places = {('creel', 'Ash River'): {'i': 0, 'name': 'Ash River',
+                                           'source': 'creel', 'water': 'fresh'}}
+        catch = {(0, 'Coho', '2021-09-01'): [90000, 0]}
+        rows = build_data.return_on_release(
+            self.plants('ASH RIVER', released=200000), catch, places, {'Coho': 0},
+            date(2026, 8, 3), say=lambda *a: None)
+        self.assertEqual(rows, [])
+
+
 class TestRunTiming(unittest.TestCase):
     """The week half a season's catch has gone past, and whether it is moving."""
 
