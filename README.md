@@ -169,18 +169,40 @@ So each place is compared **against itself, at the same point in the season**:
 | **prior** | the same length of window immediately before it |
 | **seasonal** | the median of the same calendar window in each of the last three years |
 
-### The weekend report
+### Plan a trip
 
-The first tab is a poster rather than a workbench: the Friday to Sunday just gone,
-one species, by marine area. Interviews, anglers and fish for each of the three days,
-the per-interview and per-angler rates beside them, two trend charts, and the ramps
-that landed the fish. It opens on whatever the weekend was actually about, which in
-September is coho and in July is Chinook.
+Pick a water, a species and a week, and the planner answers from the record: what
+that place normally does in that week, the counted share of parties that caught one,
+how big they run, what gear produced them, which start times paid, which days of the
+week are crowded, and where else was worth the drive that same week. Every figure
+carries the sample behind it, and a week nobody sampled is drawn empty rather than
+as a zero.
 
-Everything written underneath is generated from the table above it. A line that says
-an area "held level all three days" has to be level on all three, not merely finish
-where it started: the first version of that check called 3.24, 4.02, 2.93 steady, and
-a Saturday spike between two ordinary days is the opposite of steady.
+### Is the run arriving earlier
+
+For every water with six or more seasons on record, the week by which half that
+season's catch had been taken, plotted season by season with a Theil-Sen slope, which
+one freak year cannot move. Seasons are anchored to March rather than January: on the
+calendar a winter run's middle lands in week 4 one year and week 43 the next, and read
+that way the Cowlitz appeared to be arriving twenty-seven weeks earlier per decade.
+Waters whose middle week wanders more than ten weeks between seasons are left out
+entirely, because that is a mixed fishery rather than a shifting one.
+
+### Hatchery or wild, and what gets put back
+
+The share of checked fish that were fin-clipped, season by season, beside how many
+fish were released for every one kept. Both come from columns WDFW publish and nobody
+summarises: it is the evidence for how mark-selective rules are landing, and for what
+catch-and-release actually costs in handling. A season needs 200 checked fish before
+a share is quoted.
+
+### Where the run has got to
+
+A salmon run is a wave moving through the state, and the creel watches it pass. For
+each marine area and river basin, the share of a normal season's catch already taken
+by this week, and what this year has taken against the same point in the last four
+seasons. Sekiu before the Strait, the Strait before Seattle, Seattle before the south
+sound.
 
 ### What is coming
 

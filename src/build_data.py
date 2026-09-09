@@ -326,11 +326,19 @@ def build(catch_rows, effort_rows, place_geo, say=print, success_rows=(),
         # whether the boat or the bank did better
         'detail': detail_by_place(places, sp_index, effort_day=effort_day, say=say),
         # where the fishing should pick up next, from the run heading for the rack
-        # the weekend just gone, by marine area, read straight from the day's creel
-        'weekend': weekend_report(catch_rows, effort_rows, as_of_d, say=say),
         'forecast': forecast(catch_day, effort_day, places, sp_index, as_of_d,
                              hatchery_curves, hatchery_facilities, say=say,
                              biennial=biennial),
+        # what a water normally does week by week, for the planner
+        'shape': week_shape(catch_day, effort_day, sp_index, as_of_d,
+                            biennial=biennial, say=say),
+        # when the middle of the season went past, year by year
+        'timing': run_timing(catch_day, sp_index, say=say),
+        # how far through its season each water is, against a normal year
+        'position': run_position(catch_day, effort_day, places, shapes, sp_index,
+                                 as_of_d, say=say),
+        # the clipped share and the release burden, by species and year
+        'clips': clip_history(catch_rows, say=say),
         'year_anglers': dict(sorted(effort_year.items())),
     }
     return payload
@@ -346,87 +354,222 @@ def area_key(text):
     return m.group(1) if m else None
 
 
-#: the smallest weekend worth publishing a card about
-WEEKEND_MIN_INTERVIEWS = 10
+#: a run season is taken to start in the ninth week of the year, the first week of
+#: March, which is where WDFW's own escapement year turns over
+SEASON_WEEK_START = 8
+#: how far apart the middle weeks of different seasons may sit before a place is
+#: treated as having no settled timing at all
+TIMING_SPREAD = 10
+#: a place-species needs this many seasons before a timing trend is worth testing
+TIMING_SEASONS = 6
+#: and this many fish in a season before that season counts as sampled
+TIMING_FISH = 50
 
 
-def weekend_report(catch_rows, effort_rows, as_of_d, say=print):
-    """The last full Friday-to-Sunday, by marine area, the way an angler reads it.
+def week_shape(catch_day, effort_day, sp_index, as_of_d, years=5, biennial=None,
+               say=print):
+    """Catch per angler by week of the year, per place and species.
 
-    Everything else on this page is a season or a trend. This is the weekend just
-    gone: how many parties were interviewed in each marine area on each of the three
-    days, how many fish they had, and which ramps produced them. It is the report a
-    reader actually wants on a Monday morning, and every figure in it is one day's
-    creel rather than an average of anything.
+    The plain answer to "what does this water normally do in the third week of
+    September", which is the question behind a trip. Built from the last few seasons
+    of creel and shipped as it is, so the page can show the weeks either side of the
+    one being asked about rather than a single smoothed number.
     """
-    days = sorted({r['date'] for r in effort_rows if r.get('catch_area')})
-    if not days:
-        return None
-    latest = date.fromisoformat(days[-1])
-    # walk back to the most recent Sunday that has been sampled
-    sunday = latest
-    while sunday.weekday() != 6 and sunday > latest - timedelta(days=7):
-        sunday -= timedelta(days=1)
-    weekend = [(sunday - timedelta(days=n)).isoformat() for n in (2, 1, 0)]
-    if not any(d in days for d in weekend):
-        return None
+    rates, _anglers = season_shape(catch_day, effort_day, as_of_d, years=years,
+                                   biennial=biennial)
+    effort = defaultdict(int)
+    for (pid, day), (anglers, _h, _i) in effort_day.items():
+        if day >= (as_of_d - timedelta(days=365 * years)).isoformat():
+            effort[(pid, _isoweek(day))] += anglers
+    out = []
+    for (pid, species, week), rate in sorted(rates.items()):
+        if species not in sp_index or rate <= 0:
+            continue
+        out.append({'p': pid, 's': sp_index[species], 'w': week,
+                    'rate': round(rate, 4), 'anglers': effort.get((pid, week), 0)})
+    say(f'   week shape: {len(out):,} place-species-weeks')
+    return out
 
-    names = {}
-    effort = defaultdict(lambda: [0, 0])          # (area, day) -> interviews, anglers
-    fish = defaultdict(int)                       # (area, day, species) -> fish
-    ramps = defaultdict(int)                      # (area, ramp, species) -> fish
-    ramp_effort = defaultdict(int)                # (area, ramp) -> anglers
-    for r in effort_rows:
-        if r['date'] not in weekend:
-            continue
-        area = area_key(r.get('catch_area'))
-        if not area:
-            continue
-        # "Area 10, Seattle-Bremerton area" carries the name anglers use for it,
-        # and the sub-areas are written "Area 8-2, Ports Susan and Gardner" — the
-        # number and its suffix both have to come off, or the name reads "-2, Ports"
-        label = re.sub(r'^\s*(?:marine\s+)?area\s*[0-9]+(?:[.\-][0-9]+)?[,\s]*', '',
-                       r.get('catch_area') or '', flags=re.I)
-        label = re.sub(r'\s+area$', '', label.strip(), flags=re.I)
-        if label and area not in names:
-            names[area] = label[:1].upper() + label[1:]
-        cell = effort[(area, r['date'])]
-        cell[0] += to_int(r.get('interviews'))
-        cell[1] += to_int(r.get('anglers'))
-        ramp_effort[(area, r['location'])] += to_int(r.get('anglers'))
-    for r in catch_rows:
-        if r['date'] not in weekend or not r['species']:
-            continue
-        area = area_key(r.get('catch_area'))
-        if not area:
-            continue
-        fish[(area, r['date'], r['species'])] += to_int(r.get('fish'))
-        ramps[(area, r['location'], r['species'])] += to_int(r.get('fish'))
 
-    areas = sorted({a for a, _d in effort}, key=lambda a: float(a))
+def run_timing(catch_day, sp_index, say=print):
+    """When the middle of a season's catch went past, year by year.
+
+    The median week is the honest summary of a run's timing: not when the first fish
+    showed up, which is a rumour, and not the peak week, which moves with one good
+    Saturday. Half the season's fish are taken before it and half after.
+
+    A run arriving a week earlier every decade is the kind of thing a creel record
+    can show and nothing else can, so the slope is fitted and reported with the
+    seasons behind it rather than left for the eye.
+    """
+    # A season is anchored in March, not January. On the calendar a winter run's
+    # middle lands in week 4 one year and week 43 the next, and the difference is a
+    # wrap rather than a shift — read that way, the Cowlitz appeared to be arriving
+    # twenty-seven weeks earlier per decade.
+    by_year = defaultdict(lambda: defaultdict(int))
+    fish = defaultdict(lambda: defaultdict(int))
+    for (pid, species, day), (kept, rel) in catch_day.items():
+        if species not in sp_index:
+            continue
+        week = _isoweek(day)
+        year = int(day[:4])
+        season = year if week > SEASON_WEEK_START else year - 1
+        index = week if week > SEASON_WEEK_START else week + 52
+        fish[(pid, species)][season] += kept + rel
+        by_year[(pid, species, season)][index] += kept + rel
+
     rows = []
-    for area in areas:
-        total = sum(effort[(area, d)][0] for d in weekend)
-        if total < WEEKEND_MIN_INTERVIEWS:
+    for (pid, species), years in fish.items():
+        seasons = sorted(y for y, n in years.items() if n >= TIMING_FISH)
+        if len(seasons) < TIMING_SEASONS:
             continue
-        days_out = []
-        for day in weekend:
-            interviews, anglers = effort[(area, day)]
-            days_out.append({'day': day, 'interviews': interviews, 'anglers': anglers})
-        by_species = {}
-        for species in {s for (a, _d, s) in fish if a == area}:
-            counts = [fish.get((area, day, species), 0) for day in weekend]
-            if sum(counts) <= 0:
-                continue
-            top = sorted(((n, ramp) for (a, ramp, s), n in ramps.items()
-                          if a == area and s == species and n > 0), reverse=True)[:2]
-            by_species[species] = {'fish': counts,
-                                   'ramps': [{'name': r, 'fish': n} for n, r in top]}
-        rows.append({'area': area, 'name': names.get(area, f'Marine Area {area}'),
-                     'days': days_out, 'species': by_species})
+        points = []
+        for year in seasons:
+            weeks = by_year[(pid, species, year)]
+            total = sum(weeks.values())
+            running = 0
+            for week in sorted(weeks):
+                running += weeks[week]
+                if running >= total / 2:
+                    # back to a calendar week for anyone reading the chart
+                    points.append([year, week - 52 if week > 52 else week])
+                    break
+        if len(points) < TIMING_SEASONS:
+            continue
+        # the fit runs on the season clock, so a run whose middle crosses the new
+        # year is not read as jumping backwards fifty weeks
+        fitted = [[p[0], p[1] + 52 if p[1] <= SEASON_WEEK_START else p[1]]
+                  for p in points]
+        weeks = sorted(p[1] for p in fitted)
+        spread = weeks[-2] - weeks[1] if len(weeks) > 3 else weeks[-1] - weeks[0]
+        # A place where the middle of the season lands in February one year and July
+        # the next has no timing to trend: it is a mixed fishery, or a thin one, and
+        # fitting a line through it produced "twenty weeks earlier per decade".
+        if spread > TIMING_SPREAD:
+            continue
+        slope = _theil_sen([p[0] for p in fitted], [p[1] for p in fitted])
+        rows.append({'p': pid, 's': sp_index[species], 'points': points,
+                     'slope': round(slope * 10, 2),      # weeks per decade
+                     'seasons': len(points)})
+    say(f'   run timing: {len(rows):,} place-species with {TIMING_SEASONS}+ seasons')
+    return rows
 
-    say(f'   weekend report: {len(rows)} marine areas over {weekend[0]} to {weekend[-1]}')
-    return {'days': weekend, 'areas': rows}
+
+def _theil_sen(xs, ys):
+    """The median of the slopes between every pair of points.
+
+    One freak season moves a least-squares line and does not move this, which matters
+    on a record where a hatchery closure or a flood can wipe out a year.
+    """
+    slopes = [(ys[j] - ys[i]) / (xs[j] - xs[i])
+              for i in range(len(xs)) for j in range(i + 1, len(xs))
+              if xs[j] != xs[i]]
+    return statistics.median(slopes) if slopes else 0.0
+
+
+def run_position(catch_day, effort_day, places, shapes, sp_index, as_of_d,
+                 years=4, say=print):
+    """Where a run has got to, water by water, this week against a normal year.
+
+    A salmon run is a wave moving through the state, and a creel record watches it
+    pass: Sekiu before the Strait, the Strait before Seattle, Seattle before the
+    south sound. For each water and species this gives the share of a normal
+    season's catch that has been taken by now, and the same figure for this year, so
+    the leading edge and the tail are both visible.
+    """
+    area_of = {}
+    for p in places.values():
+        index = water_of(p, shapes)
+        if index is not None:
+            area_of[p['i']] = index
+    this_year = as_of_d.year
+    week_now = as_of_d.isocalendar()[1]
+    since = this_year - years
+
+    seen = defaultdict(lambda: defaultdict(int))     # (area, sp) -> (year, week) -> n
+    for (pid, species, day), (kept, rel) in catch_day.items():
+        index = area_of.get(pid)
+        if index is None or species not in sp_index:
+            continue
+        year = int(day[:4])
+        if year < since:
+            continue
+        seen[(index, species)][(year, _isoweek(day))] += kept + rel
+
+    rows = []
+    for (index, species), counts in seen.items():
+        past = [y for y in range(since, this_year)]
+        shares = []
+        for year in past:
+            total = sum(n for (y, _w), n in counts.items() if y == year)
+            if total < 50:
+                continue
+            to_date = sum(n for (y, w), n in counts.items()
+                          if y == year and w <= week_now)
+            shares.append(to_date / total)
+        if len(shares) < 2:
+            continue
+        this_total = sum(n for (y, _w), n in counts.items() if y == this_year)
+        # what past years had taken by this same week, so a season can be called
+        # ahead or behind rather than merely early or late
+        past_to_date = [sum(n for (y, w), n in counts.items()
+                            if y == year and w <= week_now)
+                        for year in past
+                        if sum(n for (y, _w), n in counts.items() if y == year) >= 50]
+        peak_weeks = []
+        for year in past:
+            weeks = {w: n for (y, w), n in counts.items() if y == year}
+            if weeks and sum(weeks.values()) >= 50:
+                peak_weeks.append(max(weeks, key=lambda w: weeks[w]))
+        rows.append({
+            'area': shapes[index]['code'], 'name': shapes[index]['name'],
+            'kind': shapes[index]['kind'], 's': sp_index[species],
+            'share': round(statistics.median(shares), 3),
+            'peak_week': int(statistics.median(peak_weeks)) if peak_weeks else None,
+            'this_to_date': sum(n for (y, w), n in counts.items()
+                                if y == this_year and w <= week_now),
+            'past_to_date': int(statistics.median(past_to_date)) if past_to_date else None,
+            'seasons': len(shares),
+        })
+    rows = [r for r in rows if r['peak_week'] is not None]
+    say(f'   run position: {len(rows):,} water-species')
+    return rows
+
+
+def clip_history(catch_rows, say=print):
+    """The clipped share and the release burden, species by species and year by year.
+
+    Two questions that only the fin-mark and fate columns can answer: how much of
+    what anglers meet is hatchery fish, and how many fish are handled for every one
+    taken home. Both matter under mark-selective rules, and neither is published
+    anywhere as a series.
+    """
+    counts = defaultdict(lambda: [0, 0, 0, 0])      # (species, year) -> H, W, kept, rel
+    for r in catch_rows:
+        species, day = r['species'], r['date']
+        if not species or not day:
+            continue
+        n = to_int(r.get('fish'))
+        cell = counts[(species, day[:4])]
+        if r.get('origin') == 'hatchery':
+            cell[0] += n
+        elif r.get('origin') == 'wild':
+            cell[1] += n
+        cell[2 if r.get('fate') == 'kept' else 3] += n
+    rows = []
+    for (species, year), (clipped, wild, kept, released) in sorted(counts.items()):
+        checked = clipped + wild
+        if checked < 200 and kept + released < 500:
+            continue
+        rows.append({'species': species, 'year': year,
+                     'clipped': clipped, 'wild': wild,
+                     # a share off fourteen checked fish is not a share; the year
+                     # still earns its row for the release ratio behind it
+                     'clipped_share': round(clipped / checked, 3) if checked >= 200 else None,
+                     'kept': kept, 'released': released,
+                     'per_kept': round(released / kept, 2) if kept else None})
+    say(f'   clip history: {len(rows):,} species-years')
+    return rows
 
 
 def waters(say=print):

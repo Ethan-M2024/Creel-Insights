@@ -359,48 +359,73 @@ class TestHatcheryRuns(unittest.TestCase):
         self.assertEqual(hatchery.species_of('Sea-run Cutthroat'), 'Cutthroat')
 
 
-class TestWeekendReport(unittest.TestCase):
-    """The weekend just gone, by marine area, from the day's own creel."""
+class TestRunTiming(unittest.TestCase):
+    """The week half a season's catch has gone past, and whether it is moving."""
 
-    def rows(self, days):
-        effort = [{'date': d, 'source': 'puget-ramp', 'location': 'Ramp A',
-                   'catch_area': 'Area 8-2, Ports Susan and Gardner',
-                   'interviews': '20', 'anglers': '50'} for d in days]
-        catch = [{'date': d, 'source': 'puget-ramp', 'location': 'Ramp A',
-                  'catch_area': 'Area 8-2, Ports Susan and Gardner',
-                  'species': 'Coho', 'fate': 'kept', 'fish': '40'} for d in days]
-        return catch, effort
+    def catch(self, week_by_year):
+        out = {}
+        for year, week in week_by_year.items():
+            for w, n in ((week - 1, 20), (week, 60), (week + 1, 20)):
+                day = (date(year, 1, 4) + timedelta(weeks=w - 1)).isoformat()
+                out[(0, 'Chinook', day)] = [n, 0]
+        return out
 
-    def test_the_last_friday_to_sunday_is_read(self):
-        days = ['2026-09-04', '2026-09-05', '2026-09-06']
-        catch, effort = self.rows(days + ['2026-09-01'])
-        out = build_data.weekend_report(catch, effort, date(2026, 9, 6),
-                                        say=lambda *a: None)
-        self.assertEqual(out['days'], days)
+    def test_a_run_that_is_arriving_earlier(self):
+        rows = build_data.run_timing(
+            self.catch({2018: 38, 2019: 38, 2020: 37, 2021: 36, 2022: 36,
+                        2023: 35, 2024: 34}),
+            {'Chinook': 0}, say=lambda *a: None)
+        self.assertEqual(len(rows), 1)
+        self.assertLess(rows[0]['slope'], -3)
 
-    def test_the_sub_area_number_is_not_left_in_the_name(self):
-        days = ['2026-09-04', '2026-09-05', '2026-09-06']
-        catch, effort = self.rows(days)
-        out = build_data.weekend_report(catch, effort, date(2026, 9, 6),
-                                        say=lambda *a: None)
-        self.assertEqual(out['areas'][0]['name'], 'Ports Susan and Gardner')
+    def test_a_settled_run_reads_as_no_shift(self):
+        rows = build_data.run_timing(
+            self.catch({y: 36 for y in range(2018, 2025)}),
+            {'Chinook': 0}, say=lambda *a: None)
+        self.assertAlmostEqual(rows[0]['slope'], 0, places=6)
 
-    def test_a_thin_area_is_left_out(self):
-        days = ['2026-09-04', '2026-09-05', '2026-09-06']
-        catch, effort = self.rows(days)
-        for r in effort:
-            r['interviews'] = '2'
-        out = build_data.weekend_report(catch, effort, date(2026, 9, 6),
-                                        say=lambda *a: None)
-        self.assertEqual(out['areas'], [])
+    def test_a_mixed_fishery_is_left_out(self):
+        # a middle week that lands in February one year and July the next has no
+        # timing to trend; fitting it produced "twenty weeks earlier per decade"
+        rows = build_data.run_timing(
+            self.catch({2018: 6, 2019: 30, 2020: 8, 2021: 33, 2022: 5,
+                        2023: 29, 2024: 12}),
+            {'Chinook': 0}, say=lambda *a: None)
+        self.assertEqual(rows, [])
 
-    def test_each_day_keeps_its_own_count(self):
-        days = ['2026-09-04', '2026-09-05', '2026-09-06']
-        catch, effort = self.rows(days)
-        catch[1]['fish'] = '80'
-        out = build_data.weekend_report(catch, effort, date(2026, 9, 6),
-                                        say=lambda *a: None)
-        self.assertEqual(out['areas'][0]['species']['Coho']['fish'], [40, 80, 40])
+    def test_too_few_seasons(self):
+        rows = build_data.run_timing(
+            self.catch({2022: 36, 2023: 35, 2024: 34}),
+            {'Chinook': 0}, say=lambda *a: None)
+        self.assertEqual(rows, [])
+
+
+class TestClipHistory(unittest.TestCase):
+    """Clipped share and the release burden, by species and season."""
+
+    def rows(self, clipped, wild, kept, released):
+        out = []
+        for origin, n in (('hatchery', clipped), ('wild', wild)):
+            if n:
+                out.append({'species': 'Chinook', 'date': '2025-08-01',
+                            'origin': origin, 'fate': 'kept', 'fish': str(n)})
+        out.append({'species': 'Chinook', 'date': '2025-08-02', 'origin': 'unknown',
+                    'fate': 'kept', 'fish': str(max(0, kept - clipped - wild))})
+        out.append({'species': 'Chinook', 'date': '2025-08-03', 'origin': 'unknown',
+                    'fate': 'released', 'fish': str(released)})
+        return out
+
+    def test_share_and_release_ratio(self):
+        out = build_data.clip_history(self.rows(600, 400, 1000, 500),
+                                      say=lambda *a: None)
+        self.assertEqual(out[0]['clipped_share'], 0.6)
+        self.assertEqual(out[0]['per_kept'], 0.5)
+
+    def test_a_share_off_a_handful_is_not_reported(self):
+        out = build_data.clip_history(self.rows(9, 5, 900, 300),
+                                      say=lambda *a: None)
+        self.assertIsNone(out[0]['clipped_share'])
+        self.assertIsNotNone(out[0]['per_kept'])
 
 
 class TestFisheryState(unittest.TestCase):

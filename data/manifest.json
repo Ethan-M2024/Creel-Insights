@@ -1,9 +1,9 @@
 {
- "built": "2026-09-08T23:30:15+00:00",
+ "built": "2026-09-08T23:55:15+00:00",
  "quota_records": 42,
  "sha256": {
-  "creel_effort": "658378edb6327bd718d0ddae00abb730edc1add1ed43e48bdcdbab6a1972bd73",
-  "creel_rows": "0e242478c130a5a3863a291ed92b7957af89a7d9c4ccb0ef6fc70cf179947730"
+  "creel_effort": "dc3d2c123248674b4d914cb2df9ff4df948447307ad41a7bd7693dc0a3b9a100",
+  "creel_rows": "8c6711d328909ae1255f6e6dfa9ff754d0412c946fac2a75a2a832a677c34a41"
  },
  "sources": {
   "buoy10": {
@@ -26,7 +26,7 @@
   },
   "creel-database": {
    "catch_rows": 113173,
-   "effort_rows": 159932,
+   "effort_rows": 159929,
    "first": "1973-05-17",
    "label": "WDFW creel database (statewide)",
    "last": "2026-07-29",
@@ -70,11 +70,11 @@
    "read_from": "https://wdfw.wa.gov/fishing/reports/creel/puget-annual"
   },
   "willapa": {
-   "catch_rows": 319,
-   "effort_rows": 80,
+   "catch_rows": 323,
+   "effort_rows": 81,
    "first": "2018-08-01",
    "label": "Willapa Bay",
-   "last": "2026-08-24",
+   "last": "2026-08-31",
    "locations": 1,
    "read_from": "https://wdfw.wa.gov/fishing/reports/creel/willapa-bay"
   }

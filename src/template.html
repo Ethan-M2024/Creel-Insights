@@ -150,69 +150,6 @@ input[type="search"] { min-width: 230px; }
 
 .field-notes { margin-top: 18px; border-top: 1px solid var(--rule); padding-top: 12px; }
 .field-notes h3 { margin: 12px 0 4px; }
-/* ---------------------------------------------------------- weekend report
-   A poster rather than a workbench: one weekend, one species, read across the
-   marine areas the way an angler talks about them. It borrows nothing from the
-   analytic tabs except the data, and states its own colours so a printed copy
-   looks the same as the screen. */
-#panel-weekend {
-  --navy: #0b192c; --gold: #eab308; --good: #dcfce7; --good-ink: #14532d;
-  --poster: #f1f5f9; --line: #dbe3ec;
-}
-:root[data-theme="dark"] #panel-weekend,
-html[data-theme="dark"] #panel-weekend {
-  --poster: #10171f; --line: #26313d; --good: #10331f; --good-ink: #8ff0b5;
-}
-.poster { background: var(--poster); border-radius: 14px; overflow: hidden;
-  border: 1px solid var(--line); }
-.poster-head {
-  background: var(--navy); color: #fff; padding: 22px 24px 20px;
-  display: flex; flex-wrap: wrap; gap: 18px; align-items: flex-start;
-  justify-content: space-between;
-}
-.poster-head h2 { color: #fff; font-size: clamp(20px, 3vw, 30px); line-height: 1.1;
-  letter-spacing: -.01em; text-transform: uppercase; margin: 0 0 10px; max-width: 22ch; }
-.poster-date {
-  display: inline-block; background: var(--gold); color: #1a1400; font-weight: 700;
-  text-transform: uppercase; letter-spacing: .04em; font-size: 13px;
-  padding: 5px 12px; border-radius: 4px;
-}
-.poster-source { color: #9fb2c8; font-size: 12px; margin: 10px 0 0; max-width: 60ch; }
-.poster-tag { color: #dbe7f5; font-style: italic; font-size: 15px; text-align: right; }
-.poster-bar {
-  background: var(--navy); color: #fff; text-transform: uppercase;
-  letter-spacing: .06em; font-size: 12.5px; font-weight: 650;
-  padding: 9px 14px; text-align: center;
-}
-.poster-body { padding: 0; }
-.poster-grid { display: grid; gap: 14px; padding: 14px; }
-@media (min-width: 900px) { .poster-grid.two { grid-template-columns: 1fr 1fr; }
-  .poster-grid.three { grid-template-columns: 1fr 1fr 1fr; } }
-.poster-card { background: var(--surface); border: 1px solid var(--line);
-  border-radius: 10px; overflow: hidden; }
-.poster-card > div:not(.poster-bar) { padding: 12px 14px; }
-.area-pill {
-  display: inline-block; min-width: 52px; text-align: center; color: #fff;
-  font-weight: 700; font-size: 12px; letter-spacing: .03em; border-radius: 4px;
-  padding: 3px 8px;
-}
-#weekend-table { min-width: 940px; font-variant-numeric: tabular-nums; }
-#weekend-table th { font-size: 11px; }
-#weekend-table td.hot { background: var(--good); color: var(--good-ink); font-weight: 700; }
-#weekend-table tbody td:first-child { min-width: 210px; white-space: normal; }
-#weekend-table tbody td:first-child .area-pill { margin-right: 8px; }
-#weekend-table .daygroup { border-left: 2px solid var(--line); }
-.take { display: flex; gap: 10px; padding: 8px 0; border-bottom: 1px solid var(--rule); }
-.take:last-child { border-bottom: 0; }
-.take .mark { font-size: 16px; line-height: 1.2; }
-.poster-foot {
-  background: var(--navy); color: #fff; padding: 16px 24px; display: flex;
-  flex-wrap: wrap; gap: 12px; justify-content: space-between; align-items: center;
-}
-.poster-foot .left { font-size: 20px; font-style: italic; }
-.poster-foot .right { text-transform: uppercase; letter-spacing: .08em; font-size: 12px;
-  color: #b7c8dc; }
-
 #map-holder { position: relative; }
 canvas { display: block; width: 100%; height: auto; border-radius: 8px; }
 /* Zoom controls sit over the map rather than beside it, so the map keeps its full
@@ -315,8 +252,8 @@ ul.checks li { padding: 4px 0; border-bottom: 1px solid var(--grid); }
 </header>
 
 <nav class="tabs" role="tablist">
-  <button role="tab" id="tab-weekend">Weekend report</button>
   <button role="tab" id="tab-map" aria-selected="true">Heat map</button>
+  <button role="tab" id="tab-plan">Plan a trip</button>
   <button role="tab" id="tab-window">Happening window</button>
   <button role="tab" id="tab-forecast">What is coming</button>
   <button role="tab" id="tab-places">Places</button>
@@ -326,72 +263,6 @@ ul.checks li { padding: 4px 0; border-bottom: 1px solid var(--grid); }
 </nav>
 
 <!-- ------------------------------------------------------------------ map -->
-<section class="panel" id="panel-weekend" hidden>
-  <div class="controls">
-    <div class="field">
-      <label for="f-species5">Species</label>
-      <select id="f-species5"></select>
-    </div>
-  </div>
-
-  <div class="poster">
-    <div class="poster-head">
-      <div>
-        <h2 id="weekend-title">Puget Sound weekend fishing report</h2>
-        <span class="poster-date" id="weekend-date">&mdash;</span>
-        <p class="poster-source" id="weekend-source"></p>
-      </div>
-      <div class="poster-tag">Good fish. Good company.<br>Puget Sound.</div>
-    </div>
-
-    <div class="poster-bar" id="weekend-table-bar">Performance by area</div>
-    <div class="poster-body">
-      <div class="scroll" style="margin:0;padding:0 14px 14px">
-        <table id="weekend-table">
-          <thead>
-            <tr id="weekend-head-days"></tr>
-            <tr id="weekend-head-cols"></tr>
-          </thead>
-          <tbody></tbody>
-        </table>
-      </div>
-    </div>
-
-    <div class="poster-grid two">
-      <div class="poster-card">
-        <div class="poster-bar" id="weekend-chart1-bar">Fish per interview</div>
-        <div id="weekend-chart1"></div>
-      </div>
-      <div class="poster-card">
-        <div class="poster-bar" id="weekend-chart2-bar">Fish per angler</div>
-        <div id="weekend-chart2"></div>
-      </div>
-    </div>
-
-    <div class="poster-grid three">
-      <div class="poster-card">
-        <div class="poster-bar">Weekend takeaways</div>
-        <div id="weekend-takeaways"></div>
-      </div>
-      <div class="poster-card">
-        <div class="poster-bar">Area highlights</div>
-        <div id="weekend-highlights"></div>
-      </div>
-      <div class="poster-card">
-        <div class="poster-bar">The big picture</div>
-        <div id="weekend-picture"></div>
-        <div class="poster-bar">About the data</div>
-        <div id="weekend-about"></div>
-      </div>
-    </div>
-
-    <div class="poster-foot">
-      <div class="left">Tight lines.</div>
-      <div class="right">Every figure is one day&rsquo;s creel, counted by WDFW.</div>
-    </div>
-  </div>
-</section>
-
 <section class="panel" id="panel-map">
   <div class="controls">
     <div class="field">
@@ -482,6 +353,50 @@ ul.checks li { padding: 4px 0; border-bottom: 1px solid var(--grid); }
 </section>
 
 <!-- --------------------------------------------------------------- places -->
+<section class="panel" id="panel-plan" hidden>
+  <div class="controls">
+    <div class="field">
+      <label for="f-plan-place">Place</label>
+      <select id="f-plan-place"></select>
+    </div>
+    <div class="field">
+      <label for="f-species5">Species</label>
+      <select id="f-species5"></select>
+    </div>
+    <div class="field">
+      <label>Week</label>
+      <div class="seg" id="f-plan-week">
+        <button data-v="0" aria-pressed="true">This week</button>
+        <button data-v="1" aria-pressed="false">Next week</button>
+        <button data-v="2" aria-pressed="false">In a fortnight</button>
+        <button data-v="4" aria-pressed="false">In a month</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="layout">
+    <div class="card">
+      <h2 id="plan-title">Pick a place</h2>
+      <p class="note" id="plan-note"></p>
+      <div id="plan-stats"></div>
+      <div id="plan-week-chart"></div>
+      <p class="note" id="plan-week-note"></p>
+    </div>
+    <div>
+      <div class="card">
+        <h2>What the samplers found there</h2>
+        <p class="note">Counted from the interviews at this place, not modelled.</p>
+        <div id="plan-detail"></div>
+      </div>
+      <div class="card" style="margin-top:18px">
+        <h2>Where else is fishing, that week</h2>
+        <p class="note" id="plan-alt-note"></p>
+        <div id="plan-alternatives"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="panel" id="panel-window" hidden>
   <div class="controls">
     <div class="field">
@@ -546,6 +461,21 @@ ul.checks li { padding: 4px 0; border-bottom: 1px solid var(--grid); }
       </table>
     </div>
     <p class="note" id="forecast-note"></p>
+  </div>
+
+  <div class="card" style="margin-top:18px">
+    <h2>Where the run has got to</h2>
+    <p class="note" id="position-note"></p>
+    <div class="scroll">
+      <table id="position-table">
+        <thead><tr>
+          <th>Water</th><th class="num">Through the season</th>
+          <th class="num">Best week</th><th class="num">This year to date</th>
+          <th>Reading</th>
+        </tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
   </div>
 </section>
 
@@ -642,6 +572,20 @@ ul.checks li { padding: 4px 0; border-bottom: 1px solid var(--grid); }
       <div id="season-chart"></div>
       <h3>Best places in the window</h3>
       <div id="species-top"></div>
+    </div>
+  </div>
+  <div class="layout" style="margin-top:18px">
+    <div class="card">
+      <h2>Is the run arriving earlier?</h2>
+      <p class="note" id="timing-note"></p>
+      <div id="timing-chart"></div>
+      <div id="timing-table"></div>
+    </div>
+    <div class="card">
+      <h2>Hatchery or wild, and what gets put back</h2>
+      <p class="note" id="clip-note"></p>
+      <div id="clip-chart"></div>
+      <div id="clip-table"></div>
     </div>
   </div>
 </section>
@@ -843,6 +787,9 @@ const state = {
   yearMode: 'fish',
   // which of the three run states the forecast tab is showing
   runs: 'on',
+  // the planner: which place, and how many weeks ahead of the latest report
+  planPlace: null,
+  planWeek: 0,
   // per angler, or per hour those anglers actually fished. Only the interview
   // database times its trips, so the hour basis covers part of the state — the
   // places without it say so rather than being quietly dropped to zero.
@@ -2081,296 +2028,333 @@ function paceWords(pace) {
   return `well behind the last three years (${Math.round(pace * 100)}%)`;
 }
 
-/* ===================== the weekend report =====================
-   One weekend, one species, by marine area. Everything here is a single day's creel
-   rather than an average, and the words under the tables are written from the same
-   numbers the tables show — nothing is composed by hand. */
+/* ===================== plan a trip =====================
+   One place, one species, one week: what the record says that water does then, what
+   the samplers wrote down about how it was fished, and what else was worth the drive
+   the same week. Every figure carries the sample it rests on. */
 
-//: a colour per marine area, fixed so the table pill, the chart line and the
-//: highlight paragraph all agree at a glance
-const AREA_COLOURS = {
-  '5': '#dc2626', '6': '#15803d', '7': '#0f766e', '8': '#7c3aed', '8.1': '#7c3aed',
-  '8.2': '#6d28d9', '9': '#0284c7', '10': '#ea580c', '11': '#d97706',
-  '12': '#4d7c0f', '13': '#be185d', '4': '#0369a1', '3': '#475569',
+const SHAPE = new Map();          // `${pid}|${sp}` -> week -> {rate, anglers}
+for (const row of (DATA.shape || [])) {
+  const key = `${row.p}|${row.s}`;
+  if (!SHAPE.has(key)) SHAPE.set(key, new Map());
+  SHAPE.get(key).set(row.w, { rate: row.rate, anglers: row.anglers });
+}
+
+const weekOfYear = iso => {
+  const d = new Date(iso + 'T12:00:00Z');
+  const target = new Date(Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate()));
+  const day = (target.getUTCDay() + 6) % 7;
+  target.setUTCDate(target.getUTCDate() - day + 3);
+  const first = new Date(Date.UTC(target.getUTCFullYear(), 0, 4));
+  return 1 + Math.round(((target - first) / 86400000 - 3 + ((first.getUTCDay() + 6) % 7)) / 7);
 };
-const areaColour = a => AREA_COLOURS[a] || '#334155';
-const DAY_NAMES = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
-const dayName = iso => DAY_NAMES[(new Date(iso + 'T12:00:00Z').getUTCDay() + 6) % 7];
-const shortDay = iso => `${dayName(iso)} · ${new Date(iso + 'T12:00:00Z')
-  .toLocaleDateString('en-US', { month: 'short', day: 'numeric', timeZone: 'UTC' })}`;
+const wrapWeek = w => ((w - 1) % 52 + 52) % 52 + 1;
 
-function weekendLeader() {
-  const w = DATA.weekend;
-  if (!w) return null;
-  const totals = new Map();
-  for (const area of w.areas) {
-    for (const [sp, v] of Object.entries(area.species)) {
-      totals.set(sp, (totals.get(sp) || 0) + v.fish.reduce((a, b) => a + b, 0));
-    }
+function planPlaces() {
+  const sp = state.species;
+  const out = [];
+  for (const [key, weeks] of SHAPE) {
+    const [pid, s] = key.split('|').map(Number);
+    if (s !== sp) continue;
+    const anglers = [...weeks.values()].reduce((a, v) => a + v.anglers, 0);
+    out.push({ pid, place: PLACES[pid], weeks, anglers });
   }
-  return [...totals.entries()].sort((a, b) => b[1] - a[1])[0]?.[0] || null;
+  return out.sort((a, b) => b.anglers - a.anglers);
 }
 
-function weekendSpecies() {
-  const w = DATA.weekend;
-  if (!w) return null;
-  const name = SPECIES[state.species];
-  const anywhere = w.areas.some(a => a.species[name]);
-  if (anywhere) return name;
-  // whatever the weekend actually produced, if the picked species was not in it
-  const totals = new Map();
-  for (const area of w.areas) {
-    for (const [sp, v] of Object.entries(area.species)) {
-      totals.set(sp, (totals.get(sp) || 0) + v.fish.reduce((a, b) => a + b, 0));
+function renderPlan() {
+  const week = wrapWeek(weekOfYear(META.as_of) + (state.planWeek || 0));
+  const places = planPlaces();
+  const select = document.getElementById('f-plan-place');
+  const wanted = state.planPlace;
+  select.innerHTML = places.map(p =>
+    `<option value="${p.pid}"${p.pid === wanted ? ' selected' : ''}>${
+      escapeHtml(p.place.name)} · ${escapeHtml(p.place.source)}</option>`).join('')
+    || '<option value="">nothing on record for this species</option>';
+  if (!places.length) {
+    document.getElementById('plan-title').textContent =
+      `No week-by-week record for ${SPECIES[state.species]}`;
+    document.getElementById('plan-note').textContent =
+      'This species has too little creel behind it to say what any water does in a ' +
+      'given week. Pick another from the list.';
+    for (const id of ['plan-stats', 'plan-week-chart', 'plan-detail', 'plan-alternatives']) {
+      document.getElementById(id).innerHTML = '';
     }
+    return;
   }
-  return [...totals.entries()].sort((a, b) => b[1] - a[1])[0]?.[0] || null;
-}
+  const chosen = places.find(p => p.pid === wanted) || places[0];
+  state.planPlace = chosen.pid;
+  select.value = String(chosen.pid);
 
-function weekendRows(species) {
-  const w = DATA.weekend;
-  return w.areas.map(area => {
-    const caught = area.species[species] || { fish: w.days.map(() => 0), ramps: [] };
-    const days = area.days.map((d, i) => {
-      const fish = caught.fish[i] || 0;
-      return { ...d, fish,
-               perInterview: d.interviews ? fish / d.interviews : null,
-               perAngler: d.anglers ? fish / d.anglers : null };
+  const here = chosen.weeks.get(week);
+  const nearby = [week - 1, week, week + 1].map(wrapWeek)
+    .map(w => chosen.weeks.get(w)).filter(Boolean);
+  const rate = nearby.length
+    ? nearby.reduce((a, v) => a + v.rate, 0) / nearby.length : null;
+  const anglers = nearby.reduce((a, v) => a + v.anglers, 0);
+  const best = [...chosen.weeks.entries()].sort((a, b) => b[1].rate - a[1].rate)[0];
+
+  document.getElementById('plan-title').textContent = chosen.place.name;
+  document.getElementById('plan-note').innerHTML =
+    `${escapeHtml(chosen.place.region || '')} &middot; ${escapeHtml(chosen.place.source)} &middot; ` +
+    `week ${week} of the year, from the last five seasons of creel here`;
+
+  const life = LIFETIME.get(chosen.pid)?.get(state.species);
+  const success = life && life.parties
+    ? life.parties_hit / life.parties : null;
+  document.getElementById('plan-stats').innerHTML = `
+    <div class="stat-row">
+      <div class="stat"><div class="v">${rate === null ? '—' : rate.toFixed(2)}</div>
+        <div class="l">${escapeHtml(SPECIES[state.species])} per angler, normal for this week</div></div>
+      <div class="stat"><div class="v">${success === null ? '—' : asPercent(success)}</div>
+        <div class="l">${success === null ? 'interviews not published here'
+          : `of parties caught one, over ${fmt(life.parties)} interviews`}</div></div>
+      <div class="stat"><div class="v">${fmt(anglers)}</div>
+        <div class="l">anglers interviewed in these weeks, five seasons</div></div>
+      <div class="stat"><div class="v">week ${best ? best[0] : '—'}</div>
+        <div class="l">its best week of the year, ${best ? best[1].rate.toFixed(2) : '—'} per angler</div></div>
+    </div>`;
+
+  document.getElementById('plan-week-chart').innerHTML = planWeekChart(chosen, week);
+  document.getElementById('plan-week-note').textContent =
+    `Every week this water has been creeled for ${SPECIES[state.species].toLowerCase()}, ` +
+    `over the last five seasons. The marked week is the one you asked about; a week ` +
+    `with no bar was never sampled, which is not the same as a week with no fish.`;
+
+  document.getElementById('plan-detail').innerHTML =
+    fieldNotesFor(chosen.pid) || '<p class="note">Nothing beyond the counts is ' +
+    'published for this place: no lengths, no gear, no start times.</p>';
+
+  const alts = places.filter(p => p.pid !== chosen.pid).map(p => {
+    const cell = [week - 1, week, week + 1].map(wrapWeek)
+      .map(w => p.weeks.get(w)).filter(Boolean);
+    if (!cell.length) return null;
+    return { place: p.place, pid: p.pid,
+             rate: cell.reduce((a, v) => a + v.rate, 0) / cell.length,
+             anglers: cell.reduce((a, v) => a + v.anglers, 0) };
+  }).filter(Boolean).filter(a => a.anglers >= META.min_anglers)
+    .sort((a, b) => b.rate - a.rate).slice(0, 8);
+  document.getElementById('plan-alt-note').textContent =
+    `The waters with the best record in week ${week}, out of everywhere creeled for ` +
+    `${SPECIES[state.species].toLowerCase()}.`;
+  document.getElementById('plan-alternatives').innerHTML = alts.length ? `
+    <table><tbody>${alts.map(a => `
+      <tr data-pid="${a.pid}"><td>${escapeHtml(a.place.name)}<br>
+        <span class="k" style="color:var(--ink-3)">${escapeHtml(a.place.region || a.place.source)}</span></td>
+        <td class="num">${a.rate.toFixed(2)}</td>
+        <td class="num" style="color:var(--ink-3)">${fmt(a.anglers)} anglers</td></tr>`).join('')}
+    </tbody></table>` : '<p class="note">Nothing else was creeled in that week.</p>';
+  for (const tr of document.querySelectorAll('#plan-alternatives tr[data-pid]')) {
+    tr.addEventListener('click', () => {
+      state.planPlace = Number(tr.dataset.pid);
+      renderPlan();
     });
-    const fish = days.reduce((a, d) => a + d.fish, 0);
-    const interviews = days.reduce((a, d) => a + d.interviews, 0);
-    const anglers = days.reduce((a, d) => a + d.anglers, 0);
-    return { ...area, days, fish, interviews, anglers, ramps: caught.ramps,
-             perInterview: interviews ? fish / interviews : 0,
-             perAngler: anglers ? fish / anglers : 0 };
-  }).filter(r => r.interviews >= 10).sort((a, b) => b.fish - a.fish ||
-                                                     b.perInterview - a.perInterview);
-}
-
-let weekendOpened = false;
-function renderWeekend() {
-  const w = DATA.weekend;
-  if (!w) return;
-  // the first time the tab is opened it shows the species the weekend was about,
-  // which in September is coho and in July is Chinook; after that the picker rules
-  if (!weekendOpened) {
-    weekendOpened = true;
-    const leader = weekendLeader();
-    if (leader && SPECIES.indexOf(leader) >= 0) {
-      state.species = SPECIES.indexOf(leader);
-      for (const id of ['f-species', 'f-species2', 'f-species3', 'f-species4', 'f-species5']) {
-        const el = document.getElementById(id);
-        if (el) el.value = String(state.species);
-      }
-    }
   }
-  const species = weekendSpecies();
-  const rows = weekendRows(species);
-  const days = w.days;
-  const label = species ? species.toLowerCase() : 'fish';
-
-  document.getElementById('weekend-title').textContent =
-    `Puget Sound ${label} weekend fishing report`;
-  document.getElementById('weekend-date').textContent =
-    `${new Date(days[0] + 'T12:00:00Z').toLocaleDateString('en-US',
-      { month: 'long', day: 'numeric', timeZone: 'UTC' })} – ${
-      new Date(days[2] + 'T12:00:00Z').toLocaleDateString('en-US',
-      { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' })}`;
-  document.getElementById('weekend-source').textContent =
-    `WDFW Puget Sound ramp creel, read from the daily tables at ` +
-    `wdfw.wa.gov. ${label.charAt(0).toUpperCase() + label.slice(1)} per interview ` +
-    `(a boat or shore party) and per angler, by marine area.`;
-  document.getElementById('weekend-table-bar').textContent =
-    `${label} performance by area`;
-  document.getElementById('weekend-chart1-bar').textContent =
-    `${label} per interview`;
-  document.getElementById('weekend-chart2-bar').textContent =
-    `${label} per angler`;
-
-  // ---------------------------------------------------------------- the table
-  document.getElementById('weekend-head-days').innerHTML =
-    '<th></th>' + days.map(d =>
-      `<th colspan="5" class="daygroup" style="text-align:center">${shortDay(d)}</th>`).join('');
-  document.getElementById('weekend-head-cols').innerHTML =
-    '<th>Marine area</th>' + days.map((_d, i) => `
-      <th class="num${i ? ' daygroup' : ' daygroup'}">Interviews</th>
-      <th class="num">Anglers</th>
-      <th class="num">${escapeHtml(species || 'Fish')}</th>
-      <th class="num">Per interview</th>
-      <th class="num">Per angler</th>`).join('');
-
-  // the top of the table is the top of the weekend: a rate worth driving for
-  const best = Math.max(...rows.map(r => r.perInterview), 0);
-  const hot = Math.max(2, best * 0.75);
-  document.querySelector('#weekend-table tbody').innerHTML = rows.map(r => `
-    <tr>
-      <td><span class="area-pill" style="background:${areaColour(r.area)}">MA${
-        escapeHtml(r.area)}</span> ${escapeHtml(r.name)}</td>
-      ${r.days.map((d, i) => `
-        <td class="num${i ? ' daygroup' : ' daygroup'}">${fmt(d.interviews)}</td>
-        <td class="num">${fmt(d.anglers)}</td>
-        <td class="num">${fmt(d.fish)}</td>
-        <td class="num${d.perInterview >= hot ? ' hot' : ''}">${
-          d.perInterview === null ? '—' : d.perInterview.toFixed(2)}</td>
-        <td class="num${d.perAngler >= hot / 2.4 ? ' hot' : ''}">${
-          d.perAngler === null ? '—' : d.perAngler.toFixed(2)}</td>`).join('')}
-    </tr>`).join('');
-
-  // ---------------------------------------------------------------- the charts
-  document.getElementById('weekend-chart1').innerHTML =
-    weekendChart(rows, days, r => r.days.map(d => d.perInterview), 'per interview');
-  document.getElementById('weekend-chart2').innerHTML =
-    weekendChart(rows, days, r => r.days.map(d => d.perAngler), 'per angler');
-
-  renderWeekendWords(rows, days, species, label);
 }
 
-function weekendChart(rows, days, pick, unit) {
-  const W = 460, H = 210, padL = 38, padR = 96, padT = 12, padB = 30;
-  const series = rows.slice(0, 6).map(r => ({ area: r.area, values: pick(r) }));
-  const max = Math.max(0.5, ...series.flatMap(s => s.values.filter(v => v !== null)));
-  const x = i => padL + i * ((W - padL - padR) / (days.length - 1));
-  const y = v => H - padB - (v / max) * (H - padT - padB);
-  const ticks = [0, max / 2, max];
-  const labels = [];
-  let out = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${
-    escapeHtml(unit)} by marine area, day by day">`;
-  out += ticks.map(t => `
-    <line x1="${padL}" x2="${W - padR}" y1="${y(t).toFixed(1)}" y2="${y(t).toFixed(1)}"
+/* The same field notes the map's detail panel shows, read over the whole record —
+   a planner is asking what this water is like, not what it did last Tuesday. */
+function fieldNotesFor(pid) {
+  const saved = state.window;
+  state.window = 'all';
+  try {
+    return fieldNotes(pid);
+  } finally {
+    state.window = saved;
+  }
+}
+
+function planWeekChart(chosen, week) {
+  const W = 640, H = 170, padL = 34, padR = 10, padT = 12, padB = 26;
+  const weeks = [...Array(52)].map((_x, i) => i + 1);
+  const max = Math.max(0.05, ...[...chosen.weeks.values()].map(v => v.rate));
+  const bw = (W - padL - padR) / 52;
+  let bars = '';
+  for (const w of weeks) {
+    const cell = chosen.weeks.get(w);
+    const x = padL + (w - 1) * bw;
+    if (!cell) continue;
+    const h = (cell.rate / max) * (H - padT - padB);
+    const thin = cell.anglers < META.min_anglers;
+    bars += `<rect x="${x.toFixed(1)}" y="${(H - padB - h).toFixed(1)}"
+      width="${Math.max(1, bw - 1.4).toFixed(1)}" height="${h.toFixed(1)}"
+      fill="${w === week ? 'var(--hot)' : 'var(--accent)'}"
+      opacity="${thin ? 0.45 : 0.9}"><title>week ${w}: ${cell.rate.toFixed(2)} per angler, ${
+        fmt(cell.anglers)} anglers</title></rect>`;
+  }
+  const months = [[1, 'Jan'], [10, 'Mar'], [18, 'May'], [27, 'Jul'], [35, 'Sep'], [44, 'Nov']];
+  const axis = months.map(([w, name]) =>
+    `<text x="${(padL + (w - 1) * bw).toFixed(1)}" y="${H - 8}" class="axis"
+      font-size="10">${name}</text>`).join('');
+  return `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Catch per angler by week of the year">
+    <line x1="${padL}" x2="${W - padR}" y1="${H - padB}" y2="${H - padB}" stroke="var(--axis)"></line>
+    <text x="${padL - 6}" y="${padT + 8}" text-anchor="end" class="axis" font-size="10">${max.toFixed(2)}</text>
+    ${bars}${axis}</svg>`;
+}
+
+/* ===================== run timing, clips, and where the run is =====================
+   Three questions the creel can answer and nothing else can: whether a run is
+   arriving earlier than it used to, how much of what anglers meet is hatchery fish
+   and what they put back, and how far through its season each water has got. */
+
+function renderTiming() {
+  const rows = (DATA.timing || []).filter(r => r.s === state.species)
+    .sort((a, b) => b.seasons - a.seasons);
+  const note = document.getElementById('timing-note');
+  if (!rows.length) {
+    note.textContent = `No water has ${SPECIES[state.species].toLowerCase()} on ` +
+      `record for six seasons with a settled season, so there is no timing to trend.`;
+    document.getElementById('timing-chart').innerHTML = '';
+    document.getElementById('timing-table').innerHTML = '';
+    return;
+  }
+  const shown = rows.slice(0, 8);
+  note.textContent =
+    `The week by which half a season's ${SPECIES[state.species].toLowerCase()} had ` +
+    `been caught, season by season. The slope is a Theil-Sen fit, which one freak ` +
+    `year cannot move. Waters whose middle week wanders more than ten weeks between ` +
+    `seasons are left out: that is a mixed fishery, not a shifting one.`;
+  document.getElementById('timing-chart').innerHTML = timingChart(shown[0]);
+  document.getElementById('timing-table').innerHTML = `
+    <table><tbody>${shown.map(r => {
+      const dir = r.slope < -0.3 ? 'earlier' : r.slope > 0.3 ? 'later' : 'no shift';
+      return `<tr data-pid="${r.p}"><td>${escapeHtml(PLACES[r.p].name)}<br>
+        <span class="k" style="color:var(--ink-3)">${r.seasons} seasons, ${
+          r.points[0][0]}–${r.points[r.points.length - 1][0]}</span></td>
+        <td class="num ${r.slope < -0.3 ? 'up' : r.slope > 0.3 ? 'down' : 'flat'}">${
+          Math.abs(r.slope) < 0.05 ? '—' : `${r.slope > 0 ? '+' : ''}${r.slope.toFixed(1)}`}</td>
+        <td class="num" style="color:var(--ink-3)">weeks per decade ${dir}</td></tr>`;
+    }).join('')}</tbody></table>`;
+  for (const tr of document.querySelectorAll('#timing-table tr[data-pid]')) {
+    tr.addEventListener('click', () => {
+      document.getElementById('timing-chart').innerHTML =
+        timingChart(rows.find(r => r.p === Number(tr.dataset.pid)));
+    });
+  }
+}
+
+function timingChart(row) {
+  if (!row) return '';
+  const W = 460, H = 190, padL = 40, padR = 12, padT = 14, padB = 26;
+  const years = row.points.map(p => p[0]);
+  const weeks = row.points.map(p => p[1] <= 8 ? p[1] + 52 : p[1]);
+  const x0 = Math.min(...years), x1 = Math.max(...years);
+  const y0 = Math.min(...weeks) - 2, y1 = Math.max(...weeks) + 2;
+  const X = y => padL + ((y - x0) / Math.max(1, x1 - x0)) * (W - padL - padR);
+  const Y = w => H - padB - ((w - y0) / Math.max(1, y1 - y0)) * (H - padT - padB);
+  const dots = row.points.map((p, i) =>
+    `<circle cx="${X(p[0]).toFixed(1)}" cy="${Y(weeks[i]).toFixed(1)}" r="4"
+      fill="var(--accent)"><title>${p[0]}: half the season's catch by week ${p[1]}</title></circle>`).join('');
+  const mid = weeks.reduce((a, b) => a + b, 0) / weeks.length;
+  const midYear = (x0 + x1) / 2;
+  const slope = row.slope / 10;
+  const line = `<line x1="${X(x0).toFixed(1)}" y1="${Y(mid + slope * (x0 - midYear)).toFixed(1)}"
+    x2="${X(x1).toFixed(1)}" y2="${Y(mid + slope * (x1 - midYear)).toFixed(1)}"
+    stroke="var(--hot)" stroke-width="2"></line>`;
+  return `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Median catch week by season">
+    <text x="${padL - 6}" y="${padT + 8}" text-anchor="end" class="axis" font-size="10">wk ${
+      Math.round(y1 > 52 ? y1 - 52 : y1)}</text>
+    <text x="${padL - 6}" y="${H - padB}" text-anchor="end" class="axis" font-size="10">wk ${
+      Math.round(y0 > 52 ? y0 - 52 : y0)}</text>
+    <text x="${X(x0).toFixed(1)}" y="${H - 8}" class="axis" font-size="10">${x0}</text>
+    <text x="${X(x1).toFixed(1)}" y="${H - 8}" text-anchor="end" class="axis" font-size="10">${x1}</text>
+    ${line}${dots}
+    <text x="${W - padR}" y="${padT + 8}" text-anchor="end" font-size="11" font-weight="700"
+      fill="var(--hot)">${row.slope > 0 ? '+' : ''}${row.slope.toFixed(1)} wk / decade</text>
+  </svg>`;
+}
+
+function renderClips() {
+  const name = SPECIES[state.species];
+  const rows = (DATA.clips || []).filter(r => r.species === name);
+  const note = document.getElementById('clip-note');
+  if (!rows.length) {
+    note.textContent = `Too few ${name.toLowerCase()} have been checked for a fin ` +
+      `clip, or too few counted, to say anything by year.`;
+    document.getElementById('clip-chart').innerHTML = '';
+    document.getElementById('clip-table').innerHTML = '';
+    return;
+  }
+  note.textContent =
+    `Of the ${name.toLowerCase()} whose fin was checked, the share that were ` +
+    `clipped — hatchery fish — and beside it how many were released for every one ` +
+    `kept. A year needs 200 checked fish or 500 counted before it appears.`;
+  document.getElementById('clip-chart').innerHTML = clipChart(rows);
+  document.getElementById('clip-table').innerHTML = `
+    <table><thead><tr><th>Season</th><th class="num">Clipped</th>
+      <th class="num">Checked</th><th class="num">Released per kept</th></tr></thead>
+      <tbody>${rows.slice(-10).reverse().map(r => `
+        <tr><td>${r.year}</td>
+          <td class="num">${r.clipped_share === null ? '—' : asPercent(r.clipped_share)}</td>
+          <td class="num" style="color:var(--ink-3)">${fmt(r.clipped + r.wild)}</td>
+          <td class="num">${r.per_kept === null ? '—' : r.per_kept.toFixed(2)}</td></tr>`).join('')}
+      </tbody></table>`;
+}
+
+function clipChart(rows) {
+  const W = 460, H = 180, padL = 36, padR = 12, padT = 14, padB = 26;
+  const withShare = rows.filter(r => r.clipped_share !== null);
+  if (withShare.length < 2) return '';
+  const years = withShare.map(r => Number(r.year));
+  const x0 = Math.min(...years), x1 = Math.max(...years);
+  const X = y => padL + ((y - x0) / Math.max(1, x1 - x0)) * (W - padL - padR);
+  const Y = v => H - padB - v * (H - padT - padB);
+  const path = withShare.map((r, i) =>
+    `${i ? 'L' : 'M'}${X(Number(r.year)).toFixed(1)},${Y(r.clipped_share).toFixed(1)}`).join('');
+  const dots = withShare.map(r =>
+    `<circle cx="${X(Number(r.year)).toFixed(1)}" cy="${Y(r.clipped_share).toFixed(1)}"
+      r="3.5" fill="var(--accent)"><title>${r.year}: ${asPercent(r.clipped_share)} clipped of ${
+        fmt(r.clipped + r.wild)} checked</title></circle>`).join('');
+  return `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Clipped share by season">
+    <line x1="${padL}" x2="${W - padR}" y1="${Y(0.5).toFixed(1)}" y2="${Y(0.5).toFixed(1)}"
       stroke="var(--grid)"></line>
-    <text x="${padL - 6}" y="${(y(t) + 4).toFixed(1)}" text-anchor="end"
-      class="axis" font-size="10">${t.toFixed(1)}</text>`).join('');
-  out += days.map((d, i) => `<text x="${x(i)}" y="${H - 10}" text-anchor="middle"
-    class="axis" font-size="10">${shortDay(d)}</text>`).join('');
-  for (const s of series) {
-    const pts = s.values.map((v, i) => v === null ? null : [x(i), y(v)]).filter(Boolean);
-    if (pts.length < 2) continue;
-    out += `<path d="${pts.map((p, i) => `${i ? 'L' : 'M'}${p[0].toFixed(1)},${p[1].toFixed(1)}`).join('')}"
-      fill="none" stroke="${areaColour(s.area)}" stroke-width="2.4"></path>`;
-    out += pts.map(p => `<circle cx="${p[0].toFixed(1)}" cy="${p[1].toFixed(1)}" r="3"
-      fill="${areaColour(s.area)}"></circle>`).join('');
-    labels.push({ y: pts[pts.length - 1][1], x: pts[pts.length - 1][0], area: s.area });
-  }
-  // three areas can finish the weekend on the same rate; their labels are nudged
-  // apart so the legend is readable rather than a pile
-  labels.sort((a, b) => a.y - b.y);
-  let previous = -Infinity;
-  for (const l of labels) {
-    l.y = Math.max(l.y, previous + 13);
-    previous = l.y;
-    out += `<text x="${(l.x + 8).toFixed(1)}" y="${(l.y + 4).toFixed(1)}"
-      font-size="11" font-weight="700" fill="${areaColour(l.area)}">MA${escapeHtml(l.area)}</text>`;
-  }
-  return out + '</svg>';
+    <text x="${padL - 6}" y="${(Y(0.5) + 4).toFixed(1)}" text-anchor="end" class="axis" font-size="10">50%</text>
+    <text x="${padL - 6}" y="${(Y(1) + 8).toFixed(1)}" text-anchor="end" class="axis" font-size="10">100%</text>
+    <path d="${path}" fill="none" stroke="var(--accent)" stroke-width="2"></path>${dots}
+    <text x="${X(x0).toFixed(1)}" y="${H - 8}" class="axis" font-size="10">${x0}</text>
+    <text x="${X(x1).toFixed(1)}" y="${H - 8}" text-anchor="end" class="axis" font-size="10">${x1}</text>
+  </svg>`;
 }
 
-/* Every sentence below is generated from the table above it. A weekend report that
-   says "excellent" about a number nobody can see is an advertisement; this says what
-   moved, by how much, and where it was landed. */
-function renderWeekendWords(rows, days, species, label) {
-  const trend = r => r.days.map(d => d.perInterview || 0);
-  const arrow = r => trend(r).map(v => v.toFixed(2)).join(' → ');
-  const climbed = r => trend(r)[2] > trend(r)[0] * 1.25;
-  const faded = r => trend(r)[2] < trend(r)[0] * 0.75;
-  /* The shape of three days, in the words an angler would use. "Level" has to mean
-     level on all three, not merely to finish where it started: a Saturday spike
-     between two ordinary days is the opposite of steady, and the first version of
-     this called it "held level all three days" while the numbers read 3.24, 4.02,
-     2.93. */
-  const shapeOf = r => {
-    const v = trend(r), [fri, sat, sun] = v;
-    const peak = Math.max(...v), floor = Math.min(...v);
-    const flat = peak - floor <= peak * 0.15;
-    if (flat) return 'level';
-    if (sat > fri * 1.2 && sat > sun * 1.2) return 'spiked';
-    if (sat < fri * 0.8 && sat < sun * 0.8) return 'dipped';
-    if (climbed(r)) return 'climbed';
-    if (faded(r)) return 'faded';
-    return sun > fri ? 'edged up' : 'eased off';
-  };
-  const level = r => shapeOf(r) === 'level';
-
-  const takes = [];
-  const top = rows[0];
-  if (top) {
-    const bestDay = top.days.reduce((a, b) => (b.perInterview || 0) > (a.perInterview || 0) ? b : a);
-    takes.push(['🏆', `MA${top.area} led the weekend at ${top.perInterview.toFixed(2)} ` +
-      `${label} per interview, best on ${dayName(bestDay.day)} at ${
-      (bestDay.perInterview || 0).toFixed(2)}.`]);
+function renderPosition() {
+  const rows = (DATA.position || []).filter(r => r.s === state.species)
+    .sort((a, b) => a.share - b.share);
+  const note = document.getElementById('position-note');
+  const tbody = document.querySelector('#position-table tbody');
+  if (!rows.length) {
+    note.textContent = `No water has enough ${SPECIES[state.species].toLowerCase()} ` +
+      `on record to say how far through its season it is.`;
+    tbody.innerHTML = '';
+    return;
   }
-  const steady = rows.filter(r => level(r) && r.perInterview > 1)
-    .sort((a, b) => b.perInterview - a.perInterview)[0];
-  if (steady) takes.push(['📊', `MA${steady.area} held level all three days ` +
-    `(${arrow(steady)}).`]);
-  const spike = rows.filter(r => shapeOf(r) === 'spiked' && r.perInterview > 1)
-    .sort((a, b) => trend(b)[1] - trend(a)[1])[0];
-  if (spike) takes.push(['📊', `MA${spike.area} had one standout day, Saturday ` +
-    `(${arrow(spike)}).`]);
-  const busiest = [...rows].sort((a, b) => b.fish - a.fish)[0];
-  if (busiest) takes.push(['⚓', `MA${busiest.area} produced the most fish outright: ` +
-    `${fmt(busiest.fish)} ${label} from ${fmt(busiest.anglers)} anglers` +
-    (busiest.ramps[0] ? `, most of it at ${busiest.ramps[0].name}.` : '.')]);
-  for (const r of rows.filter(climbed).sort((a, b) => trend(b)[2] - trend(a)[2]).slice(0, 2)) {
-    takes.push(['📈', `MA${r.area} improved through the weekend (${arrow(r)}).`]);
-  }
-  for (const r of rows.filter(faded).sort((a, b) => trend(b)[0] - trend(a)[0]).slice(0, 2)) {
-    takes.push(['📉', `MA${r.area} fell away after a good start (${arrow(r)}).`]);
-  }
-  const quiet = [...rows].sort((a, b) => a.perInterview - b.perInterview)[0];
-  if (quiet && quiet !== top) takes.push(['🎯', `MA${quiet.area} was the slowest of ` +
-    `the areas sampled, ${quiet.perInterview.toFixed(2)} per interview.`]);
-  document.getElementById('weekend-takeaways').innerHTML = takes.slice(0, 6).map(([mark, text]) =>
-    `<div class="take"><span class="mark">${mark}</span><span>${escapeHtml(text)}</span></div>`).join('');
-
-  document.getElementById('weekend-highlights').innerHTML = rows.slice(0, 6).map(r => {
-    const shape = {
-      level: 'held steady', spiked: 'peaked on Saturday', dipped: 'dropped on Saturday',
-      climbed: 'built through the weekend', faded: 'started well and fell away',
-      'edged up': 'edged up', 'eased off': 'eased off',
-    }[shapeOf(r)];
-    const ramps = r.ramps.length
-      ? ` ${r.ramps.map(x => `${x.name} (${fmt(x.fish)})`).join(' and ')} landed the most.`
-      : '';
-    return `<div class="take"><span class="area-pill" style="background:${areaColour(r.area)}">MA${
-      escapeHtml(r.area)}</span><span><b>${escapeHtml(r.name)}</b> ${shape}: ${
-      arrow(r)} per interview, ${fmt(r.fish)} ${escapeHtml(label)} from ${
-      fmt(r.interviews)} parties.${escapeHtml(ramps)}</span></div>`;
+  note.textContent =
+    `How much of a normal season's ${SPECIES[state.species].toLowerCase()} catch has ` +
+    `been taken by this week, water by water, from the last four seasons — and what ` +
+    `this year has taken against the same point. A run moves through the state, and ` +
+    `this is where it has got to.`;
+  tbody.innerHTML = rows.map(r => {
+    const share = Math.round(r.share * 100);
+    const pace = r.past_to_date
+      ? r.this_to_date / r.past_to_date : null;
+    const reading = share < 25 ? 'Barely started here.'
+      : share < 60 ? 'In the middle of it.'
+      : share < 85 ? 'Past the peak.' : 'All but over here.';
+    const paceWords = pace === null ? ''
+      : pace >= 1.25 ? ` This year is well ahead of the last four at the same point.`
+      : pace >= 1.05 ? ` Ahead of the last four at the same point.`
+      : pace >= 0.8 ? ` About the same as the last four.`
+      : ` Behind the last four at the same point.`;
+    return `<tr>
+      <td>${escapeHtml(r.name)}<br><span class="k" style="color:var(--ink-3)">${
+        r.kind === 'basin' ? 'river basin' : 'marine area'}</span></td>
+      <td class="num" style="width:150px">
+        <span class="meter"><span style="width:${share}%"></span></span>
+        <span class="meter-label">${share}%</span></td>
+      <td class="num">week ${r.peak_week}</td>
+      <td class="num">${fmt(r.this_to_date)}${r.past_to_date
+        ? `<br><span class="k" style="color:var(--ink-3)">${fmt(r.past_to_date)} typical</span>` : ''}</td>
+      <td class="wrap">${reading}${paceWords}</td></tr>`;
   }).join('');
-
-  const byDay = days.map((d, i) => ({
-    day: d,
-    fish: rows.reduce((a, r) => a + r.days[i].fish, 0),
-    interviews: rows.reduce((a, r) => a + r.days[i].interviews, 0),
-  }));
-  const bestDay = byDay.reduce((a, b) => (b.fish / (b.interviews || 1)) > (a.fish / (a.interviews || 1)) ? b : a);
-  const totalFish = byDay.reduce((a, d) => a + d.fish, 0);
-  const totalInt = byDay.reduce((a, d) => a + d.interviews, 0);
-  const central = rows.filter(r => ['8', '9', '10'].includes(r.area));
-  const points = [];
-  points.push(`Across the areas sampled, ${fmt(totalInt)} parties were interviewed ` +
-    `and ${fmt(totalFish)} ${label} counted — ${(totalFish / (totalInt || 1)).toFixed(2)} per interview.`);
-  points.push(`${dayName(bestDay.day)} was the best of the three days, ` +
-    `${(bestDay.fish / (bestDay.interviews || 1)).toFixed(2)} per interview.`);
-  if (central.length) {
-    const rate = central.reduce((a, r) => a + r.fish, 0) /
-      Math.max(1, central.reduce((a, r) => a + r.interviews, 0));
-    points.push(`Central Puget Sound (areas ${central.map(r => r.area).join(', ')}) ` +
-      `ran at ${rate.toFixed(2)} per interview.`);
-  }
-  const risers = rows.filter(climbed).map(r => `MA${r.area}`);
-  if (risers.length) points.push(`Improving into Sunday: ${risers.join(', ')}.`);
-  const fallers = rows.filter(faded).map(r => `MA${r.area}`);
-  if (fallers.length) points.push(`Fading by Sunday: ${fallers.join(', ')}.`);
-  document.getElementById('weekend-picture').innerHTML = points.map(t =>
-    `<div class="take"><span class="mark">✓</span><span>${escapeHtml(t)}</span></div>`).join('');
-
-  document.getElementById('weekend-about').innerHTML =
-    `<p class="note">Every figure is one day's creel from WDFW's Puget Sound ramp ` +
-    `tables, not an estimate of the whole fishery. An interview is one party, boat ` +
-    `or shore; samplers work some ramps and not others, so an area with few ` +
-    `interviews is a thin sample rather than a poor fishery. Areas with fewer than ` +
-    `ten interviews across the weekend are left out. Dates: ${shortDay(days[0])} to ${
-      shortDay(days[2])}.</p>`;
 }
 
 function renderForecast() {
@@ -2787,16 +2771,16 @@ function renderFreshness(manifest) {
 
 function showTab(name) {
   state.tab = name;
-  for (const t of ['weekend', 'map', 'window', 'forecast', 'places', 'species', 'quotas', 'sources']) {
+  for (const t of ['map', 'plan', 'window', 'forecast', 'places', 'species', 'quotas', 'sources']) {
     document.getElementById('panel-' + t).hidden = t !== name;
     document.getElementById('tab-' + t).setAttribute('aria-selected', String(t === name));
   }
   if (name === 'map') { drawMap(); renderMovers(); renderLegend(); }
-  if (name === 'weekend') renderWeekend();
+  if (name === 'plan') renderPlan();
   if (name === 'window') renderWindowShift();
-  if (name === 'forecast') renderForecast();
+  if (name === 'forecast') { renderForecast(); renderPosition(); }
   if (name === 'places') renderPlaces();
-  if (name === 'species') renderSpecies();
+  if (name === 'species') { renderSpecies(); renderTiming(); renderClips(); }
   if (name === 'quotas') renderQuotas();
   if (name === 'sources') renderSources();
 }
@@ -2825,11 +2809,11 @@ function fillSpeciesSelects() {
 
 function refresh() {
   if (state.tab === 'map') { drawMap(); renderMovers(); renderDetail(); renderLegend(); }
-  if (state.tab === 'weekend') renderWeekend();
+  if (state.tab === 'plan') renderPlan();
   if (state.tab === 'window') renderWindowShift();
-  if (state.tab === 'forecast') renderForecast();
+  if (state.tab === 'forecast') { renderForecast(); renderPosition(); }
   if (state.tab === 'places') renderPlaces();
-  if (state.tab === 'species') renderSpecies();
+  if (state.tab === 'species') { renderSpecies(); renderTiming(); renderClips(); }
 }
 
 function init() {
@@ -2892,6 +2876,24 @@ function init() {
   };
   syncSwitch(['f-year'], 'yearMode');
   syncSwitch(['f-runs'], 'runs');
+  const planWeeks = document.getElementById('f-plan-week');
+  if (planWeeks) {
+    planWeeks.addEventListener('click', ev => {
+      const b = ev.target.closest('button'); if (!b) return;
+      state.planWeek = Number(b.dataset.v);
+      for (const other of planWeeks.querySelectorAll('button')) {
+        other.setAttribute('aria-pressed', String(other === b));
+      }
+      renderPlan();
+    });
+  }
+  const planPlace = document.getElementById('f-plan-place');
+  if (planPlace) {
+    planPlace.addEventListener('change', () => {
+      state.planPlace = Number(planPlace.value);
+      renderPlan();
+    });
+  }
   syncSwitch(['f-basis', 'f-basis2', 'f-basis4'], 'basis');
   syncSwitch(['f-fate', 'f-fate2', 'f-fate3', 'f-fate4'], 'fate');
 
@@ -2939,7 +2941,7 @@ function init() {
     });
   }
 
-  for (const t of ['weekend', 'map', 'window', 'forecast', 'places', 'species', 'quotas', 'sources']) {
+  for (const t of ['map', 'plan', 'window', 'forecast', 'places', 'species', 'quotas', 'sources']) {
     document.getElementById('tab-' + t).addEventListener('click', () => showTab(t));
   }
 
