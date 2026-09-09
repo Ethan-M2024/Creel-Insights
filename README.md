@@ -169,6 +169,19 @@ So each place is compared **against itself, at the same point in the season**:
 | **prior** | the same length of window immediately before it |
 | **seasonal** | the median of the same calendar window in each of the last three years |
 
+### Getting around it
+
+One box takes a water, a species, a marine area or a basin and puts you in front of
+it: press `/` and type. Digits one to eight jump between tabs, square brackets widen
+or narrow the window, `?` lists the keys.
+
+Every view has an address. The tab, species, window, count, basis, place and filters
+all live in the URL, so a view survives a reload, can be bookmarked, and can be sent
+to somebody else exactly as you are looking at it. The link button copies it.
+
+A line under the headline says what is true today before any filter is touched: the
+newest report, the water fishing best right now, and what is due next.
+
 ### Plan a trip
 
 Pick a water, a species and a week, and the planner answers from the record: what

@@ -150,6 +150,52 @@ input[type="search"] { min-width: 230px; }
 
 .field-notes { margin-top: 18px; border-top: 1px solid var(--rule); padding-top: 12px; }
 .field-notes h3 { margin: 12px 0 4px; }
+/* --------------------------------------------------------------- the finder
+   Eight tabs and four hundred waters is a lot to know your way around. One box
+   that takes a water, a species or an area and puts you in front of it is worth
+   more than any amount of menu. */
+.finder { display: flex; gap: 8px; margin: 14px 0 0; max-width: 720px; }
+.finder input {
+  flex: 1; padding: 9px 12px; font: inherit; font-size: 14px;
+  background: var(--surface); color: var(--ink);
+  border: 1px solid var(--rule); border-radius: 9px;
+}
+.finder input:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+.palette {
+  position: absolute; z-index: 40; max-width: 720px; width: calc(100% - 48px);
+  background: var(--surface); border: 1px solid var(--rule); border-radius: 10px;
+  box-shadow: 0 18px 40px rgba(0,0,0,.16); overflow: hidden; margin-top: 4px;
+}
+.palette [role="option"] {
+  display: flex; gap: 10px; align-items: baseline; padding: 8px 12px;
+  cursor: pointer; border-bottom: 1px solid var(--rule);
+}
+.palette [role="option"]:last-child { border-bottom: 0; }
+.palette [role="option"][aria-selected="true"] { background: var(--accent-soft); }
+.palette .kind {
+  font-size: 11px; text-transform: uppercase; letter-spacing: .05em;
+  color: var(--ink-3); min-width: 74px;
+}
+.palette .hint { color: var(--ink-3); font-size: 12px; margin-left: auto; }
+.rightnow {
+  display: flex; flex-wrap: wrap; gap: 8px 18px; margin: 14px 0 0;
+  font-size: 13px; color: var(--ink-2);
+}
+.rightnow b { color: var(--ink); }
+.rightnow a { cursor: pointer; text-decoration: underline; text-underline-offset: 2px; }
+kbd {
+  font: 11px/1.6 var(--mono); background: var(--surface-2); color: var(--ink-2);
+  border: 1px solid var(--rule); border-radius: 4px; padding: 1px 5px;
+}
+
+@media print {
+  /* a printed copy is one tab, without the furniture around it */
+  nav.tabs, .finder, .palette, #map-zoom, .rightnow, footer { display: none !important; }
+  .panel[hidden] { display: none !important; }
+  .card { break-inside: avoid; border: 1px solid #ccc; }
+  body { background: #fff; }
+}
+
 #map-holder { position: relative; }
 canvas { display: block; width: 100%; height: auto; border-radius: 8px; }
 /* Zoom controls sit over the map rather than beside it, so the map keeps its full
@@ -249,7 +295,15 @@ ul.checks li { padding: 4px 0; border-bottom: 1px solid var(--grid); }
     of who fished, where, and what they caught.
   </p>
   <p class="currency" id="currency"></p>
+  <div class="finder">
+    <input type="search" id="finder" autocomplete="off" spellcheck="false"
+      placeholder="Find a water, a species, a marine area…  (press /)"
+      aria-label="Find a water, a species or a marine area">
+    <button class="ghost" id="copy-link" title="Copy a link to exactly this view">Copy link</button>
+  </div>
+  <div id="rightnow" class="rightnow"></div>
 </header>
+<div id="palette" class="palette" hidden role="listbox" aria-label="Search results"></div>
 
 <nav class="tabs" role="tablist">
   <button role="tab" id="tab-map" aria-selected="true">Heat map</button>
@@ -2998,6 +3052,7 @@ function fillSpeciesSelects() {
 }
 
 function refresh() {
+  rememberState();
   if (state.tab === 'map') { drawMap(); renderMovers(); renderDetail(); renderLegend(); }
   if (state.tab === 'plan') renderPlan();
   if (state.tab === 'window') renderWindowShift();
@@ -3005,6 +3060,287 @@ function refresh() {
   if (state.tab === 'places') renderPlaces();
   if (state.tab === 'species') {
     renderSpecies(); renderTiming(); renderClips(); renderSizes(); renderReturns();
+  }
+}
+
+/* ===================== finding things, and saying where you are =====================
+   The state of this page is a handful of choices — a tab, a species, a window, a
+   place — and until now none of them survived a reload or could be sent to anyone.
+   They live in the address bar instead, so a view is a link. */
+
+const URL_KEYS = ['tab', 'species', 'window', 'fate', 'basis', 'metric', 'mode',
+                  'place', 'water', 'region', 'source', 'runs', 'yearMode',
+                  'planPlace', 'planWeek', 'planNear'];
+
+function stateToHash() {
+  const parts = [];
+  for (const key of URL_KEYS) {
+    const value = state[key];
+    if (value === null || value === undefined || value === '') continue;
+    if (key === 'species') {
+      parts.push(`species=${encodeURIComponent(SPECIES[value])}`);
+      continue;
+    }
+    parts.push(`${key}=${encodeURIComponent(value)}`);
+  }
+  return parts.join('&');
+}
+
+function hashToState() {
+  const raw = location.hash.replace(/^#/, '');
+  if (!raw) return false;
+  const params = new URLSearchParams(raw);
+  let touched = false;
+  for (const key of URL_KEYS) {
+    if (!params.has(key)) continue;
+    let value = params.get(key);
+    if (key === 'species') {
+      const i = SPECIES.indexOf(value);
+      if (i < 0) continue;
+      value = i;
+    } else if (['place', 'planPlace', 'planWeek', 'planNear'].includes(key)) {
+      value = value === '' ? null : Number(value);
+    } else if (key === 'window' && value !== 'all') {
+      value = Number(value);
+    }
+    state[key] = value;
+    touched = true;
+  }
+  return touched;
+}
+
+let hashTimer = null;
+function rememberState() {
+  clearTimeout(hashTimer);
+  hashTimer = setTimeout(() => {
+    const hash = stateToHash();
+    if (hash !== location.hash.replace(/^#/, '')) {
+      history.replaceState(null, '', `#${hash}`);
+    }
+  }, 120);
+}
+
+/* Everything the box can find: every water, every species, every marine area and
+   basin, and the tabs themselves. Ranked so a whole word beats a prefix and a prefix
+   beats a fragment, because "coho" should not first offer Cohoe Creek. */
+function searchIndex() {
+  const out = [];
+  PLACES.forEach((p, i) => out.push({
+    kind: 'water', label: p.name, sub: p.region || p.source, place: i }));
+  SPECIES.forEach((sp, i) => out.push({ kind: 'species', label: sp, species: i }));
+  for (const a of AREA_PLACES) {
+    out.push({ kind: a.kind === 'basin' ? 'basin' : 'marine area', label: a.name,
+               sub: 'whole water', area: a.area, water: a.water });
+  }
+  for (const [id, label] of [['map', 'Heat map'], ['plan', 'Plan a trip'],
+      ['window', 'Happening window'], ['forecast', 'What is coming'],
+      ['places', 'Places'], ['species', 'Species'], ['quotas', 'Quotas'],
+      ['sources', 'Sources and accuracy']]) {
+    out.push({ kind: 'tab', label, tab: id });
+  }
+  return out;
+}
+const SEARCH = searchIndex();
+
+function searchFor(query) {
+  const q = query.trim().toLowerCase();
+  if (q.length < 2) return [];
+  const scored = [];
+  for (const item of SEARCH) {
+    const label = item.label.toLowerCase();
+    let score = null;
+    if (label === q) score = 0;
+    else if (label.startsWith(q)) score = 1;
+    else if (label.split(/[^a-z0-9]+/).some(w => w.startsWith(q))) score = 2;
+    else if (label.includes(q)) score = 3;
+    if (score === null) continue;
+    scored.push({ ...item, score: score * 10 + (item.kind === 'species' ? 0 : 1) });
+  }
+  return scored.sort((a, b) => a.score - b.score || a.label.length - b.label.length)
+    .slice(0, 8);
+}
+
+function setSpeciesEverywhere(index) {
+  state.species = index;
+  for (const id of ['f-species', 'f-species2', 'f-species3', 'f-species4', 'f-species5']) {
+    const el = document.getElementById(id);
+    if (el) el.value = String(index);
+  }
+}
+
+function openResult(item) {
+  if (item.species !== undefined) {
+    setSpeciesEverywhere(item.species);
+    refresh();
+  } else if (item.place !== undefined) {
+    state.mode = 'place';
+    selectPlace(item.place);
+    showTab('map');
+  } else if (item.area !== undefined) {
+    state.mode = 'area';
+    showTab('map');
+  } else if (item.tab) {
+    showTab(item.tab);
+  }
+  closePalette();
+  // hand the keyboard back to the page, or the next keystroke goes on typing
+  const box = document.getElementById('finder');
+  if (box) { box.value = ''; box.blur(); }
+  rememberState();
+}
+
+let paletteItems = [], paletteAt = -1;
+function drawPalette(items) {
+  const box = document.getElementById('palette');
+  paletteItems = items;
+  if (!items.length) { box.hidden = true; return; }
+  const finder = document.getElementById('finder').getBoundingClientRect();
+  box.style.left = `${finder.left + window.scrollX}px`;
+  box.style.top = `${finder.bottom + window.scrollY}px`;
+  box.style.width = `${finder.width}px`;
+  box.innerHTML = items.map((item, i) => `
+    <div role="option" data-i="${i}" aria-selected="${i === paletteAt}">
+      <span class="kind">${escapeHtml(item.kind)}</span>
+      <span>${escapeHtml(item.label)}</span>
+      ${item.sub ? `<span class="hint">${escapeHtml(item.sub)}</span>` : ''}
+    </div>`).join('');
+  box.hidden = false;
+  for (const el of box.querySelectorAll('[role="option"]')) {
+    el.addEventListener('mousedown', ev => {
+      ev.preventDefault();
+      openResult(items[Number(el.dataset.i)]);
+    });
+  }
+}
+
+function closePalette() {
+  const box = document.getElementById('palette');
+  if (box) box.hidden = true;
+  paletteItems = [];
+  paletteAt = -1;
+}
+
+function wireFinder() {
+  const box = document.getElementById('finder');
+  box.addEventListener('input', () => {
+    paletteAt = -1;
+    drawPalette(searchFor(box.value));
+  });
+  box.addEventListener('keydown', ev => {
+    if (ev.key === 'Escape') { box.blur(); closePalette(); return; }
+    if (!paletteItems.length) return;
+    if (ev.key === 'ArrowDown' || ev.key === 'ArrowUp') {
+      ev.preventDefault();
+      paletteAt = (paletteAt + (ev.key === 'ArrowDown' ? 1 : -1) + paletteItems.length)
+        % paletteItems.length;
+      drawPalette(paletteItems);
+    } else if (ev.key === 'Enter') {
+      ev.preventDefault();
+      openResult(paletteItems[Math.max(0, paletteAt)]);
+      box.value = '';
+    }
+  });
+  box.addEventListener('blur', () => setTimeout(closePalette, 120));
+
+  document.addEventListener('keydown', ev => {
+    const typing = /^(INPUT|SELECT|TEXTAREA)$/.test(ev.target.tagName);
+    if (ev.key === '/' && !typing) { ev.preventDefault(); box.focus(); return; }
+    if (ev.key === '?' && !typing) { ev.preventDefault(); toggleShortcuts(); return; }
+    if (typing || ev.metaKey || ev.ctrlKey || ev.altKey) return;
+    const tabs = ['map', 'plan', 'window', 'forecast', 'places', 'species',
+                  'quotas', 'sources'];
+    if (/^[1-8]$/.test(ev.key)) { showTab(tabs[Number(ev.key) - 1]); rememberState(); }
+    if (ev.key === '[' || ev.key === ']') {
+      const windows = [...META.windows, 'all'];
+      const at = windows.indexOf(state.window);
+      const next = windows[Math.min(windows.length - 1,
+        Math.max(0, at + (ev.key === ']' ? 1 : -1)))];
+      const button = document.querySelector(`#f-window button[data-v="${next}"]`);
+      if (button) button.click();
+    }
+  });
+
+  document.getElementById('copy-link').addEventListener('click', async () => {
+    const url = `${location.origin}${location.pathname}#${stateToHash()}`;
+    const button = document.getElementById('copy-link');
+    const was = button.textContent;
+    try {
+      await navigator.clipboard.writeText(url);
+      button.textContent = 'Copied';
+    } catch (err) {
+      history.replaceState(null, '', `#${stateToHash()}`);
+      button.textContent = 'In the address bar';
+    }
+    setTimeout(() => { button.textContent = was; }, 1600);
+  });
+}
+
+/* The keys are worth knowing and worth forgetting, so the list is one keystroke
+   away rather than printed permanently across the top of the page. */
+function toggleShortcuts() {
+  let box = document.getElementById('shortcuts');
+  if (box) { box.remove(); return; }
+  box = document.createElement('div');
+  box.id = 'shortcuts';
+  box.className = 'palette';
+  box.style.cssText = 'left:50%;top:12vh;transform:translateX(-50%);width:min(420px,92vw);padding:14px 16px';
+  box.innerHTML = `
+    <b>Keys</b>
+    <table style="margin-top:8px"><tbody>
+      <tr><td><kbd>/</kbd></td><td>find a water, a species or an area</td></tr>
+      <tr><td><kbd>1</kbd>–<kbd>8</kbd></td><td>jump to a tab</td></tr>
+      <tr><td><kbd>[</kbd> <kbd>]</kbd></td><td>shorter or longer window</td></tr>
+      <tr><td><kbd>?</kbd></td><td>this list</td></tr>
+      <tr><td><kbd>Esc</kbd></td><td>close</td></tr>
+    </tbody></table>
+    <p class="note" style="margin-top:10px">Every view has an address: the link
+      button copies exactly what you are looking at.</p>`;
+  document.body.appendChild(box);
+  const away = ev => {
+    if (ev.key === 'Escape' || ev.type === 'click') {
+      box.remove();
+      document.removeEventListener('keydown', away);
+      document.removeEventListener('click', away);
+    }
+  };
+  setTimeout(() => {
+    document.addEventListener('keydown', away);
+    document.addEventListener('click', away);
+  }, 0);
+}
+
+/* A line of what is true today, before any filter has been touched: the freshest
+   report, the water fishing best right now, and how the runs stand. */
+function renderRightNow() {
+  const el = document.getElementById('rightnow');
+  const on = (DATA.forecast || []).filter(f => f.state === 'on');
+  const coming = (DATA.forecast || []).filter(f => f.state === 'coming');
+  const best = [...on].sort((a, b) => (b.now_rate || 0) - (a.now_rate || 0))[0];
+  const soonest = [...coming].sort((a, b) => a.weeks_to_peak - b.weeks_to_peak)[0];
+  const parts = [`<span>Newest report <b>${dayLabel(META.as_of)}</b></span>`];
+  if (best) {
+    parts.push(`<span>Fishing best now: <a data-go="place" data-p="${best.p}" ` +
+      `data-s="${best.s}"><b>${escapeHtml(best.place)}</b></a>, ` +
+      `${best.now_rate.toFixed(2)} ${escapeHtml(SPECIES[best.s].toLowerCase())} per angler</span>`);
+  }
+  if (soonest) {
+    parts.push(`<span>Due next: <a data-go="place" data-p="${soonest.p}" ` +
+      `data-s="${soonest.s}"><b>${escapeHtml(soonest.place)}</b></a> ` +
+      `${escapeHtml(SPECIES[soonest.s].toLowerCase())}, peak ${
+        soonest.weeks_to_peak === 0 ? 'this week'
+        : `${soonest.weeks_to_peak} week${soonest.weeks_to_peak === 1 ? '' : 's'} out`}</span>`);
+  }
+  parts.push(`<span><a data-go="tab" data-t="forecast">${on.length} on now, ` +
+    `${coming.length} still to come</a></span>`);
+  el.innerHTML = parts.join('');
+  for (const a of el.querySelectorAll('a[data-go]')) {
+    a.addEventListener('click', () => {
+      if (a.dataset.go === 'tab') { showTab(a.dataset.t); rememberState(); return; }
+      setSpeciesEverywhere(Number(a.dataset.s));
+      selectPlace(Number(a.dataset.p));
+      showTab('map');
+      rememberState();
+    });
   }
 }
 
@@ -3145,7 +3481,27 @@ function init() {
   }
 
   renderLegend();
-  showTab('map');
+  wireFinder();
+  renderRightNow();
+  const restored = hashToState();
+  for (const [group, key] of [['f-window', 'window'], ['f-fate', 'fate'],
+      ['f-basis', 'basis'], ['f-metric', 'metric'], ['f-mode', 'mode'],
+      ['f-runs', 'runs'], ['f-year', 'yearMode']]) {
+    for (const b of document.querySelectorAll(`#${group} button`)) {
+      b.setAttribute('aria-pressed', String(String(b.dataset.v) === String(state[key])));
+    }
+  }
+  for (const id of ['f-species', 'f-species2', 'f-species3', 'f-species4', 'f-species5']) {
+    const el = document.getElementById(id);
+    if (el) el.value = String(state.species);
+  }
+  showTab(restored && state.tab ? state.tab : 'map');
+  if (restored && state.place !== null && state.place !== undefined) {
+    selectPlace(state.place);
+  }
+  window.addEventListener('hashchange', () => {
+    if (hashToState()) { showTab(state.tab || 'map'); refresh(); }
+  });
   renderMovers();
   window.addEventListener('resize', () => { if (state.tab === 'map') drawMap(); });
   matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
