@@ -1,9 +1,9 @@
 {
- "built": "2026-11-03T20:53:12+00:00",
+ "built": "2026-11-04T21:10:06+00:00",
  "quota_records": 42,
  "sha256": {
   "creel_effort": "191db676d0c56c56d2d9622520f1bc48e6acef254cf4215952d2b02260aec9ae",
-  "creel_rows": "10ccc1cb81c7db7d157689c5593d7b3f783518aee9c693fb4ad5ace7e032eee6"
+  "creel_rows": "bf2f63dbbb34abbbc1bffc9c87aba9d4dde86f9162c7b126196a30ccc1ddb754"
  },
  "sources": {
   "buoy10": {
