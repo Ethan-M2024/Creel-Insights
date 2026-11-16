@@ -1,9 +1,9 @@
 {
- "built": "2026-11-15T20:17:09+00:00",
+ "built": "2026-11-16T23:43:30+00:00",
  "quota_records": 42,
  "sha256": {
-  "creel_effort": "8e924f34ba477a599c5d835172f1a72d7a9a9bc6063b6f8c874949b5daf4c9a0",
-  "creel_rows": "d1a1f68eec6591c25436fb8c2587388e297c6e22fba3c52c9e91fa5bf6f59ed0"
+  "creel_effort": "51c0b1d83a22713deac6b37ac83c86af544ad8f752f5c10b4b706db72c1a1baf",
+  "creel_rows": "59b63c2b196a56ca1f5cf2e70171bc1b68e0ebcde1f6967eea26a0c64353886f"
  },
  "sources": {
   "buoy10": {
@@ -16,11 +16,11 @@
    "read_from": "https://wdfw.wa.gov/fishing/reports/creel/buoy10"
   },
   "columbia-sw": {
-   "catch_rows": 9342,
-   "effort_rows": 4188,
+   "catch_rows": 9346,
+   "effort_rows": 4196,
    "first": "2019-01-14",
    "label": "Columbia River and tributary report",
-   "last": "2026-10-26",
+   "last": "2026-11-09",
    "locations": 35,
    "read_from": "https://wdfw.wa.gov/fishing/reports/creel/southwest (weekly PDFs)"
   },
@@ -61,11 +61,11 @@
    "read_from": "https://wdfw.wa.gov/fishing/reports/creel/pikeminnow (weekly PDFs)"
   },
   "puget-ramp": {
-   "catch_rows": 345394,
-   "effort_rows": 49342,
+   "catch_rows": 345422,
+   "effort_rows": 49346,
    "first": "2013-01-02",
    "label": "Puget Sound ramp creel",
-   "last": "2026-11-14",
+   "last": "2026-11-15",
    "locations": 220,
    "read_from": "https://wdfw.wa.gov/fishing/reports/creel/puget-annual"
   },
