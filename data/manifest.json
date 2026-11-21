@@ -1,9 +1,9 @@
 {
- "built": "2026-11-19T22:40:48+00:00",
+ "built": "2026-11-21T20:52:55+00:00",
  "quota_records": 42,
  "sha256": {
-  "creel_effort": "aaf8c349e6137e34637b8a2310c785ac703babad5f249ecfdf38825d2748a2fc",
-  "creel_rows": "d83e60789b8c26537d89e1f3d6c0b5848b6402501eb2d1f8750155f822e4b2cb"
+  "creel_effort": "b7d99a27f1cf1b03c36894b978fde4554d2cda88b235071229087e83f3fde175",
+  "creel_rows": "ee4ec0046a1d5f97368f787c09f338f65b0fdf563f5dbc3f698e6548c97111db"
  },
  "sources": {
   "buoy10": {
@@ -61,11 +61,11 @@
    "read_from": "https://wdfw.wa.gov/fishing/reports/creel/pikeminnow (weekly PDFs)"
   },
   "puget-ramp": {
-   "catch_rows": 345436,
-   "effort_rows": 49348,
+   "catch_rows": 345471,
+   "effort_rows": 49353,
    "first": "2013-01-02",
    "label": "Puget Sound ramp creel",
-   "last": "2026-11-17",
+   "last": "2026-11-20",
    "locations": 220,
    "read_from": "https://wdfw.wa.gov/fishing/reports/creel/puget-annual"
   },
